@@ -14,7 +14,7 @@
 
 [X] Fix Enemy Movement
 
-[ ] Fitur 2 jenis soal, aljabar dan pecahan
+[ ] Fitur 4 jenis soal, aljabar dan pecahan, bangun datar dan ??
 [X] Fix Bug di ketika leave selesai interaksi dengan chest
 [ ] Fix Bug musuh berhenti ketika interaksi dengan chest
 
@@ -34,10 +34,15 @@
 [ ] Bisa bunuh musuh dan boss
 [ ] Fitur menang dan kalah ketika tim yang bunuh boss pertama kali
 
-[ ] Implement MLAPI Main Menu
-[ ] Implement MLAPI Lobby
-[ ] Implement MLAPI Gameplay Multiplier
-[ ] Implement MLAPI Logout Lobby
+[ ] Fitur guru browse soal local
+[ ] Fitur guru camera soal
+[ ] Fitur guru upload soal
+[ ] Fitur guru bikin save save an data soal
+
+[ ] Implement Photon Main Menu
+[ ] Implement Photon Lobby
+[ ] Implement Photon Gameplay Multiplier
+[ ] Implement Photon Logout Lobby
 
 [ ] Test Multiplayer 
 [ ] Convert Android Test
