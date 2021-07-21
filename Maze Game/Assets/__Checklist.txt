@@ -1,6 +1,9 @@
 [ ] Pahami code saat ini
 [ ] Catat kode yang perlu diperbaiki
 
+[ ] Perbaiki script kode yang rusak
+[ ] Merapikan script kode yang rusak
+
 [ ] Interaksi Chest jawaban soal
 [ ] Interaksi Chest quit
 [ ] Interaksi Chest success

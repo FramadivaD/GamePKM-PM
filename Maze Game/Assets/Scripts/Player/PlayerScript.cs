@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class playerScript : MonoBehaviour
+public class PlayerScript : MonoBehaviour
 {
     public GameObject mainCircle, outCircle;
     public bool isJoystick = true;
     Vector2 circleDir;
     Rigidbody2D rb;
     Animator anim;
-    gameManage GM;
+    GameManager GM;
 
     public float ms;
     float mss;
     void Start()
     {
         gameObject.GetComponent<Collider2D>().isTrigger = true;
-        GM = GameObject.Find("Game Manager").GetComponent<gameManage>();
+        GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
         anim = GetComponent<Animator>();
         Invoke("triggerfalse", 0.5f);
         rb = GetComponent<Rigidbody2D>();
@@ -110,7 +110,7 @@ public class playerScript : MonoBehaviour
                 //rb.velocity = new Vector2(-3f, rb.velocity.y);
                 Debug.Log("damage from left");
             }
-            gameObject.GetComponent<healthScript>().health--;
+            gameObject.GetComponent<HealthScript>().health--;
         }
     }
 

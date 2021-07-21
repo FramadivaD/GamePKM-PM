@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class itemScript : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
+public class ItemScript : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
     [SerializeField] private Canvas canvas;
     RectTransform rect;
@@ -14,12 +14,6 @@ public class itemScript : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDr
         rect = GetComponent<RectTransform>();
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         startPos = rect.position;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     /*public void itemDrag(PointerEventData eventdata){

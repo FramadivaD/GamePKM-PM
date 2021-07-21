@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class healthScript : MonoBehaviour
+public class HealthScript : MonoBehaviour
 {
     public int health;
 

@@ -23,7 +23,7 @@ public class EnemyScript : MonoBehaviour
     
     void Update()
     {
-        if(GameObject.Find("Game Manager").GetComponent<gameManage>().Allowed){
+        if(GameObject.Find("Game Manager").GetComponent<GameManager>().Allowed){
             transform.position = Vector2.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * enemySpeed);
             if(transform.position.x < playerTarget.transform.position.x && transform.rotation.y == 0){
                 transform.eulerAngles = Vector3.down * 180f;

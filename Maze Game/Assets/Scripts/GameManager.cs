@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class gameManage : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public GameObject login;
     public GameObject[] soal2;
     public GameObject canvas;
-    public GameObject JamurMerah;
+    public GameObject player;
+
     public bool joystickAllowed = true;
     public bool available = false;
     public Text InputName;
+
     public bool Allowed;
     public bool gateCheck;
+
     public Sprite treasureSprite;
 
-    playerScript playerInfo;
+    PlayerScript playerInfo;
     InventoryManager inventoryInfo;
     Text playerName;
 
@@ -24,7 +27,7 @@ public class gameManage : MonoBehaviour
     {
         playerName = GameObject.Find("NameTag").GetComponent<Text>();
         InputName = GameObject.Find("InputText").GetComponent<Text>();
-        JamurMerah = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
@@ -64,12 +67,12 @@ public class gameManage : MonoBehaviour
     }
 
     public void PressButton(){
-        GameObject.Find("JamurMerah").GetComponent<playerScript>().isJoystick = false;
+        GameObject.Find("JamurMerah").GetComponent<PlayerScript>().isJoystick = false;
         Debug.Log("Pressed");
     }
 
     public void AfterPressed(){
-        GameObject.Find("JamurMerah").GetComponent<playerScript>().isJoystick = true;
+        GameObject.Find("JamurMerah").GetComponent<PlayerScript>().isJoystick = true;
         //joystickAllowed = true;
         Debug.Log("Droped");
     }
