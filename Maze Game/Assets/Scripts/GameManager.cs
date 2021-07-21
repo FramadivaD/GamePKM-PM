@@ -17,9 +17,9 @@ public class GameManager : MonoBehaviour
     public bool available = false;
     public Text InputName;
 
-    public bool AllowEntityMove { get; private set; }
-    public bool AllowEnemyMove { get; private set; }
-    public bool AllowPlayerMove { get; private set; }
+    public bool AllowEntityMove { get; private set; } = true;
+    public bool AllowEnemyMove { get; private set; } = true;
+    public bool AllowPlayerMove { get; private set; } = true;
 
     public bool gateCheck;
 
@@ -31,11 +31,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-    }
-
-    void Update()
-    {
-        
     }
 
     void SpawnSoal(){

@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 
     [Header("UI Element")]
     [SerializeField] private Text nameTag;
-    [SerializeField] private Image interactableButtonImage;
+    [SerializeField] private Button interactableButton;
 
     [Header("Config")]
     [SerializeField] private float movementSpeed;
@@ -63,7 +63,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(AllowMove){
+        if(GameManager.Instance.AllowEntityMove 
+            && GameManager.Instance.AllowPlayerMove
+            && AllowMove)
+        {
             MovementController();
         }
         AnimationController();
@@ -145,16 +148,18 @@ public class Player : MonoBehaviour
     }
     
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.CompareTag("Treasure")){
-            interactableButtonImage.color = new Color(1f,1f,1f,1f);
-        }if(other.CompareTag("GateOpen")){
-            interactableButtonImage.color = new Color(1f,1f,1f,1f);
-        }
-        if(other.CompareTag("damage")){
-            if(other.gameObject.transform.position.x > transform.position.x){
+        if (other.tag == "Treasure") interactableButton.interactable = true;
+        if (other.tag == "GateOpen") interactableButton.interactable = true;
+
+        if (other.tag == "Enemy")
+        {
+            if (other.gameObject.transform.position.x > transform.position.x)
+            {
                 rb.AddForce(Vector2.right * 3f);
                 Debug.Log("damage from right");
-            }else if(other.gameObject.transform.position.x <= transform.position.x){
+            }
+            else if (other.gameObject.transform.position.x <= transform.position.x)
+            {
                 rb.AddForce(Vector2.right * -3f);
                 Debug.Log("damage from left");
             }
@@ -163,12 +168,8 @@ public class Player : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if(other.gameObject.CompareTag("Treasure")){
-            interactableButtonImage.color = new Color(1f,1f,1f,0.184f);
-        }
-        if(other.CompareTag("GateOpen")){
-            interactableButtonImage.color = new Color(1f,1f,1f,1f);
-        }
+        if (other.tag == "Treasure") interactableButton.interactable = false;
+        if (other.tag == "GateOpen") interactableButton.interactable = false;
     }
 
     private void Die()
