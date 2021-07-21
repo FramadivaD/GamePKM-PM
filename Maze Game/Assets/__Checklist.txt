@@ -1,0 +1,35 @@
+[ ] Pahami code saat ini
+[ ] Catat kode yang perlu diperbaiki
+
+[ ] Interaksi Chest jawaban soal
+[ ] Interaksi Chest quit
+[ ] Interaksi Chest success
+
+[ ] Fitur 2 jenis soal, aljabar dan pecahan
+[ ] Fix Bug di ketika leave selesai interaksi dengan chest
+[ ] Fix Bug musuh berhenti ketika interaksi dengan chest
+
+[ ] Mechanic nyari senjata di level, ngambil senjata dan ganti senjata
+
+[ ] Mechanic nembak Senjata
+[ ] Peluru senjata infinite
+[ ] Mechanic Healthbar Enemy
+[ ] Mechanic Enemy Mati
+
+[ ] Ada 2 tim, jadi main gate ada 2 (tim merah, tim biru), pemain ada 8 - 10, masing tim 4 orang
+[ ] ketika pecahan jawaban kekumpul, nanti dipasang di main gate
+[ ] Fitur pasang pecahan jawaban per player di main gate
+[ ] Fitur UI pasang pecahan jawaban di main gate
+
+[ ] Mechanic Boss Level
+[ ] Bisa bunuh musuh dan boss
+[ ] Fitur menang dan kalah ketika tim yang bunuh boss pertama kali
+
+[ ] Implement MLAPI Main Menu
+[ ] Implement MLAPI Lobby
+[ ] Implement MLAPI Gameplay Multiplier
+[ ] Implement MLAPI Logout Lobby
+
+[ ] Test Multiplayer 
+[ ] Convert Android Test
+
