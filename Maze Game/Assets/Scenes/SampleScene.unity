@@ -2409,6 +2409,7 @@ GameObject:
   - component: {fileID: 839668591}
   - component: {fileID: 839668586}
   - component: {fileID: 839668592}
+  - component: {fileID: 839668593}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2501,7 +2502,11 @@ MonoBehaviour:
   mainCircle: {fileID: 1425399188}
   outCircle: {fileID: 1365271173}
   isJoystick: 1
-  ms: 5
+  nameTag: {fileID: 367100218}
+  interactableButtonImage: {fileID: 532639375}
+  movementSpeed: 80
+  playerName: Player
+  allowMove: 0
 --- !u!70 &839668591
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2512,7 +2517,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.028923418}
@@ -2531,7 +2536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 6
-  currentHealth: 0
+  currentHealth: 6
   hearts:
   - {fileID: 1004921165}
   - {fileID: 1492099885}
@@ -2539,6 +2544,20 @@ MonoBehaviour:
   - {fileID: 848529930}
   - {fileID: 132819252}
   - {fileID: 624372307}
+--- !u!114 &839668593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839668585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10bcd6989db07e149aa54202c9314956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loginUI: {fileID: 828393512}
+  inputName: {fileID: 483314111}
 --- !u!1 &843452453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2624,9 +2643,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1053766168}
-        m_TargetAssemblyTypeName: gameManage, Assembly-CSharp
-        m_MethodName: EnterName
+      - m_Target: {fileID: 839668593}
+        m_TargetAssemblyTypeName: PlayerLogin, Assembly-CSharp
+        m_MethodName: SubmitName
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4203,7 +4222,7 @@ GameObject:
   - component: {fileID: 1425399189}
   - component: {fileID: 1425399190}
   m_Layer: 0
-  m_Name: mainCircle
+  m_Name: MainCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     public GameObject login;
     public GameObject[] soal2;
     public GameObject canvas;
-    public GameObject player;
+
+    public Player controlledPlayer;
 
     public bool joystickAllowed = true;
     public bool available = false;
@@ -19,15 +22,12 @@ public class GameManager : MonoBehaviour
 
     public Sprite treasureSprite;
 
-    PlayerScript playerInfo;
+    Player playerInfo;
     InventoryManager inventoryInfo;
-    Text playerName;
 
-    void Start()
+    private void Awake()
     {
-        playerName = GameObject.Find("NameTag").GetComponent<Text>();
-        InputName = GameObject.Find("InputText").GetComponent<Text>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        Instance = this;
     }
 
     void Update()
@@ -46,14 +46,6 @@ public class GameManager : MonoBehaviour
         gateCheck = false;
     }
 
-    public void EnterName(){
-        if(InputName.text != "" && InputName.text.Length <= 5){
-            playerName.text = InputName.text;
-            Destroy(login);
-            Allowed = true;
-        }
-    }
-
     public void EnterAnswer(){
         GameObject Questions = GameObject.FindGameObjectWithTag("soal");
         Text InputAnswer = GameObject.Find("InputAnswer").GetComponent<Text>();
@@ -67,12 +59,12 @@ public class GameManager : MonoBehaviour
     }
 
     public void PressButton(){
-        GameObject.Find("JamurMerah").GetComponent<PlayerScript>().isJoystick = false;
+        GameObject.Find("JamurMerah").GetComponent<Player>().isJoystick = false;
         Debug.Log("Pressed");
     }
 
     public void AfterPressed(){
-        GameObject.Find("JamurMerah").GetComponent<PlayerScript>().isJoystick = true;
+        GameObject.Find("JamurMerah").GetComponent<Player>().isJoystick = true;
         //joystickAllowed = true;
         Debug.Log("Droped");
     }
