@@ -9,6 +9,8 @@ public class ChestContainer : MonoBehaviour
     public GameObject unlockedGraphic;
     public GameObject lockedGraphic;
 
+    public SpriteRenderer teamIndicator;
+
     private bool isUnlocked = false;
     public bool IsUnlocked {
         get {
@@ -18,6 +20,7 @@ public class ChestContainer : MonoBehaviour
             isUnlocked = value;
             unlockedGraphic.SetActive(isUnlocked);
             lockedGraphic.SetActive(!isUnlocked);
+            teamIndicator.color = TeamHelper.GetColorTeam(teamType);
         }
     }
 
