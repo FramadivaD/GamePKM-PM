@@ -70,6 +70,7 @@ public class QuestionManager : MonoBehaviour
 
     private void OnAnswerTrue()
     {
+        SelectedChest.UnlockChest();
         RefreshQuestionUI();
         CloseQuestion();
     }
