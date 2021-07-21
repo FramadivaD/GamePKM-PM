@@ -6,6 +6,8 @@ public class Gate : MonoBehaviour
 {
     Animator gateAnim;
     private bool open = false;
+
+    public TeamType teamType;
     
     void Start()
     {

@@ -314,6 +314,8 @@ GameObject:
   - component: {fileID: 6117276585491530553}
   - component: {fileID: 6117276585491530531}
   - component: {fileID: 6117276585491530530}
+  - component: {fileID: 839668586}
+  - component: {fileID: 839668587}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -406,6 +408,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0e950c79cb19a4990e500e0327b1f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teamType: 0
+  questionManager: {fileID: 839668587}
+  gateManager: {fileID: 839668586}
   nameTag: {fileID: 6117276585925300585}
   interactableButton: {fileID: 0}
   movementSpeed: 80
@@ -474,6 +479,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loginUI: {fileID: 0}
   inputName: {fileID: 0}
+--- !u!114 &839668586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6117276585491530554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef04b3a842277744a862618b2f92e8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &839668587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6117276585491530554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe70e7183cb0f34692d5e87c91e8557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questionContainer: {fileID: 0}
+  questionTitleText: {fileID: 0}
+  questionAnswerText: {fileID: 0}
 --- !u!1 &6117276585659172069
 GameObject:
   m_ObjectHideFlags: 0

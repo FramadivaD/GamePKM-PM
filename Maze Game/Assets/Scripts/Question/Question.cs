@@ -2,21 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Question : MonoBehaviour
+public class Question
 {
     float koef1, koef2, konst;
     int pembilang1, pembilang2, pembilang3, penyebut1, penyebut2, penyebut3;
     int FPB;
-    public Text questionText;
-    string question;
+    public string question;
     char[] plusminus = {'+', '-'};
     int randplsmin;
     public string answer;
     public int tipeSoal = 1;
 
-    void Awake()
+    public Question()
     {
         switch(tipeSoal){
             case 0:
@@ -28,7 +26,6 @@ public class Question : MonoBehaviour
                     }while(koef1 == koef2);
                     konst = UnityEngine.Random.Range(11, 21);
                     question = "Tentukan nilai x dari persamaan berikut ini :\n" + koef1 + "x " + plusminus[randplsmin] + " " +konst + " = " + koef2 + "x";
-                    questionText.text = question;
                 }while(koef1 % 2 != 0 || koef2 % 2 != 0 || konst % 2 != 0);
                 if(randplsmin == 0){
                     answer = Math.Round((-konst/(koef1 - koef2)), 2).ToString();
@@ -41,7 +38,6 @@ public class Question : MonoBehaviour
                 penyebut1 = UnityEngine.Random.Range(1, 11);
                 penyebut2 = UnityEngine.Random.Range(1, 11);
                 question = "Berapa hasil dari perhitungan berikut ini :\n" + pembilang1 + "/" + penyebut1 + " " + plusminus[randplsmin] + " " + pembilang2 + "/" + penyebut2 + " = ??";
-                questionText.text = question;
                 penyebut3 = penyebut1 * penyebut2;
                 if(randplsmin == 0){
                     pembilang3 = (pembilang1 * penyebut2) + (pembilang2 * penyebut1);
@@ -58,10 +54,6 @@ public class Question : MonoBehaviour
                 }
                 break;
         }
-        
-    }
-
-    private void Update() {
         
     }
 

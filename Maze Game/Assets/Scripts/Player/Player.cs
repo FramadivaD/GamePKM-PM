@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [Header("Player Config")]
+    public TeamType teamType;
+
+    [Header("Player Manager")]
+    public QuestionManager questionManager;
+    public GateManager gateManager;
+
     private JoystickController joystickController;
     private PlayerHealth health;
     private PlayerLogin login;
@@ -19,6 +25,21 @@ public class Player : MonoBehaviour
 
     private Animator anim;
     private Rigidbody2D rb;
+
+    public GameObject LatestInteractionObject { get; private set; }
+    private PlayerInteractionType playerInteraction = PlayerInteractionType.None;
+    public PlayerInteractionType PlayerInteraction {
+        get {
+            return playerInteraction;
+        }
+        set {
+            if (value == PlayerInteractionType.None)
+            {
+                LatestInteractionObject = null;
+            }
+            playerInteraction = value;
+        }
+    }
 
     [SerializeField] private string playerName = "Player";
     public string PlayerName
@@ -45,6 +66,9 @@ public class Player : MonoBehaviour
         login = GetComponent<PlayerLogin>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        questionManager.Initialize(this);
+        gateManager.Initialize(this);
 
         SubscribeEvents();
     }
@@ -97,8 +121,18 @@ public class Player : MonoBehaviour
     }
     
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Treasure") interactableButton.interactable = true;
-        if (other.tag == "GateOpen") interactableButton.interactable = true;
+        if (other.tag == "Treasure")
+        {
+            interactableButton.interactable = true;
+            LatestInteractionObject = other.gameObject;
+            PlayerInteraction = PlayerInteractionType.OpenChest;
+        }
+        if (other.tag == "GateOpen")
+        {
+            interactableButton.interactable = true;
+            LatestInteractionObject = other.gameObject;
+            PlayerInteraction = PlayerInteractionType.OpenGate;
+        }
 
         if (other.tag == "damage")
         {
@@ -117,8 +151,16 @@ public class Player : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (other.tag == "Treasure") interactableButton.interactable = false;
-        if (other.tag == "GateOpen") interactableButton.interactable = false;
+        if (other.tag == "Treasure")
+        {
+            interactableButton.interactable = false;
+            PlayerInteraction = PlayerInteractionType.None;
+        }
+        if (other.tag == "GateOpen")
+        {
+            interactableButton.interactable = false;
+            PlayerInteraction = PlayerInteractionType.None;
+        }
     }
 
     private void Die()

@@ -5,6 +5,11 @@ public enum PlayerInteractionType
 {
     None,
     OpenChest,
-    ActivateGate,
     OpenGate
+}
+
+[System.Serializable]
+public enum TeamType
+{
+    Red, Blue
 }
