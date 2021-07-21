@@ -15,6 +15,7 @@ TagManager:
   - item
   - damage
   - Treasure
+  - soal
   layers:
   - Default
   - TransparentFX

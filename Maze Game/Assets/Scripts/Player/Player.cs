@@ -5,13 +5,8 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [Header("Joystick Analog")]
-    public GameObject mainCircle;
-    public GameObject outCircle;
-    public bool isJoystick = true;
-    private Vector2 circleDir;
-
     [Header("Player Config")]
+    private JoystickController joystickController;
     private PlayerHealth health;
     private PlayerLogin login;
 
@@ -24,7 +19,6 @@ public class Player : MonoBehaviour
 
     private Animator anim;
     private Rigidbody2D rb;
-    private Camera mainCamera;
 
     [SerializeField] private string playerName = "Player";
     public string PlayerName
@@ -46,12 +40,11 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        joystickController = GetComponent<JoystickController>();
         health = GetComponent<PlayerHealth>();
         login = GetComponent<PlayerLogin>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-
-        mainCamera = Camera.main;
 
         SubscribeEvents();
     }
@@ -63,62 +56,18 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(GameManager.Instance.AllowEntityMove 
-            && GameManager.Instance.AllowPlayerMove
-            && AllowMove)
-        {
-            MovementController();
-        }
         AnimationController();
     }
 
-    private void MovementController()
+    private void MovementController(Vector2 movement)
     {
-        //Joystick Control
-        if (isJoystick)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Vector3 mouseDir = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-                Vector3 mouseDis = mouseDir - mainCamera.transform.position;
-                if (mouseDis.x <= -2f && mouseDis.y <= 0)
-                {
-                    outCircle.SetActive(true);
-                    outCircle.transform.position = new Vector3(mouseDir.x, mouseDir.y, outCircle.transform.position.z);
-                }
-            }
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                outCircle.SetActive(false);
-                circleDir = Vector2.zero;
-            }
-
-            if (outCircle.activeSelf)
-            {
-                Vector2 circleDis = mainCamera.ScreenToWorldPoint(Input.mousePosition) - outCircle.transform.position;
-                circleDir = Vector2.ClampMagnitude(circleDis, 1f);
-                mainCircle.transform.position = new Vector2(outCircle.transform.position.x + circleDir.x, outCircle.transform.position.y + circleDir.y);
-            }
-        }
-        else if (!isJoystick)
-        {
-            outCircle.SetActive(false);
-        }
-
         //Player Move
-        float moveX = 0;
-        float moveY = 0;
-        if (circleDir.x >= 0.2f || circleDir.x <= -0.2f)
+        if (GameManager.Instance.AllowEntityMove
+            && GameManager.Instance.AllowPlayerMove
+            && AllowMove)
         {
-            moveX = circleDir.x;
+            rb.velocity = movement * movementSpeed * Time.deltaTime;
         }
-        if (circleDir.y >= 0.2f || circleDir.y <= -0.2f)
-        {
-            moveY = circleDir.y;
-        }
-
-        rb.velocity = new Vector2(moveX, moveY) * movementSpeed * Time.deltaTime;
     }
 
     private void AnimationController()
@@ -151,7 +100,7 @@ public class Player : MonoBehaviour
         if (other.tag == "Treasure") interactableButton.interactable = true;
         if (other.tag == "GateOpen") interactableButton.interactable = true;
 
-        if (other.tag == "Enemy")
+        if (other.tag == "damage")
         {
             if (other.gameObject.transform.position.x > transform.position.x)
             {
@@ -183,12 +132,14 @@ public class Player : MonoBehaviour
     {
         login.OnSubmitNameSuccess += OnSubmitNameSuccess;
         health.OnDied += Die;
+        joystickController.OnMovingJoystick += MovementController;
     }
 
     private void UnsubscribeEvents()
     {
         login.OnSubmitNameSuccess -= OnSubmitNameSuccess;
         health.OnDied -= Die;
+        joystickController.OnMovingJoystick -= MovementController;
     }
 
     private void OnSubmitNameSuccess(string playerName)

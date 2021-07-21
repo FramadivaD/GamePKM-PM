@@ -6,6 +6,8 @@
 [X] Perbaiki script kode yang rusak
 [X] Perbaiki script Health untuk Player, Enemy dan Boss
 
+[ ] Fix Room Generator
+
 [ ] Interaksi Chest jawaban soal
 [ ] Interaksi Chest quit
 [ ] Interaksi Chest success
