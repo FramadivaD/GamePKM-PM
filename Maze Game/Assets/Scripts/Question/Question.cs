@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuestionScript : MonoBehaviour
+public class Question : MonoBehaviour
 {
     float koef1, koef2, konst;
     int pembilang1, pembilang2, pembilang3, penyebut1, penyebut2, penyebut3;

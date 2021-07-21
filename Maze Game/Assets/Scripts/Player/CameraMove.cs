@@ -8,19 +8,10 @@ public class CameraMove : MonoBehaviour
     public GameObject Player;
     public Vector3 originPos = new Vector3(0,0,0);
     Vector3 charapos, camDistance;
-    void Start()
-    {
-        Player = GameObject.FindGameObjectWithTag("Player");
-    }
 
     void Update()
     {
-        //CameraFollow();
         CameraPlayer();
-    }
-
-    void CameraFollow(){
-        transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, transform.position.z);
     }
 
     void CameraPlayer(){
@@ -44,6 +35,5 @@ public class CameraMove : MonoBehaviour
         else if(camDistance.y >= 1.5f)
             camPos = new Vector3(camPos.x, 1.5f + originPos.y, -12f);
         transform.position = camPos;
-        
     }
 }

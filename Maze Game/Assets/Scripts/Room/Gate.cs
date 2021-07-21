@@ -5,17 +5,16 @@ using UnityEngine;
 public class Gate : MonoBehaviour
 {
     Animator gateAnim;
-    public bool open = false;
+    private bool open = false;
     
     void Start()
     {
         gateAnim = GetComponent<Animator>();
     }
-    
-    void Update()
+
+    public void OpenGate()
     {
-        if(open){
-            gateAnim.SetBool("isAnswer", true);
-        }
+        open = true;
+        gateAnim.SetBool("isAnswer", true);
     }
 }

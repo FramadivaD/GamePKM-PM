@@ -15,7 +15,9 @@ public class RoomSpawner : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         Destroy(gameObject, 4f);
         roomtype = GameObject.FindGameObjectWithTag("rooms").GetComponent<RoomType>();
-        Invoke("Spawn", 0.15f);
+        //Invoke("Spawn", 0.15f);
+
+        Spawn();
     }
 
     void Spawn(){
