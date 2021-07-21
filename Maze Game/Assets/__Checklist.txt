@@ -12,8 +12,10 @@
 [X] Interaksi Chest quit
 [X] Interaksi Chest success
 
+[ ] Fix Enemy Movement
+
 [ ] Fitur 2 jenis soal, aljabar dan pecahan
-[ ] Fix Bug di ketika leave selesai interaksi dengan chest
+[X] Fix Bug di ketika leave selesai interaksi dengan chest
 [ ] Fix Bug musuh berhenti ketika interaksi dengan chest
 
 [ ] Mechanic nyari senjata di level, ngambil senjata dan ganti senjata

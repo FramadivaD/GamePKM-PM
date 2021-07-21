@@ -708,4 +708,4 @@ MonoBehaviour:
   timeIdle: 3
   enemySpeed: 2
   playerTarget: {fileID: 0}
-  allowMove: 0
+  allowMove: 1

@@ -16,5 +16,18 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        AllowEntityMove = false;
+        player.login.OnSubmitNameSuccess += EnableAllEntitiesMovement;
+    }
+
+    private void OnDestroy()
+    {
+        player.login.OnSubmitNameSuccess -= EnableAllEntitiesMovement;
+    }
+
+    public void EnableAllEntitiesMovement(string str)
+    {
+        AllowEntityMove = true;
     }
 }

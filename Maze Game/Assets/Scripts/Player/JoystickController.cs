@@ -16,6 +16,9 @@ public class JoystickController : MonoBehaviour
     public delegate void JoystickEventHandler(Vector2 delta);
     public event JoystickEventHandler OnMovingJoystick;
 
+    public delegate bool JoystickConditionEventHandler();
+    public event JoystickConditionEventHandler OnCheckConditionJoystick = () => true;
+
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -38,7 +41,7 @@ public class JoystickController : MonoBehaviour
     private void Controller()
     {
         //Joystick Control
-        if (active)
+        if (active && OnCheckConditionJoystick.Invoke())
         {
             if (Application.isMobilePlatform)
             {

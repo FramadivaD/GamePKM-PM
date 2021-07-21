@@ -19,7 +19,8 @@ public class PlayerLogin : MonoBehaviour
 
     public void SubmitName()
     {
-        if (inputName.text != "" && inputName.text.Length >= 5)
+        string name = inputName.text.Trim();
+        if (name != "" && name.Length >= 3)
         {
             loginUI.SetActive(false);
 
@@ -27,7 +28,7 @@ public class PlayerLogin : MonoBehaviour
         } else
         {
             OnSubmitNameFailed?.Invoke(inputName.text);
-            Debug.Log("Nama setidaknya harus 5 karakter!");
+            Debug.Log("Nama setidaknya harus 3 karakter!");
         }
     }
 }

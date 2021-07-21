@@ -375,9 +375,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7ebdc891804804787be796eb55a4e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 1
   mainCircle: {fileID: 0}
   outCircle: {fileID: 0}
-  isJoystick: 1
 --- !u!114 &6117276585491530557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +393,9 @@ MonoBehaviour:
   teamType: 0
   questionManager: {fileID: 839668587}
   gateManager: {fileID: 839668586}
+  joystickController: {fileID: 5590809888531092290}
+  health: {fileID: 6117276585491530531}
+  login: {fileID: 6117276585491530530}
   nameTag: {fileID: 6117276585925300585}
   interactableButton: {fileID: 0}
   movementSpeed: 80

@@ -12,9 +12,9 @@ public class Player : MonoBehaviour
     public QuestionManager questionManager;
     public GateManager gateManager;
 
-    private JoystickController joystickController;
-    private PlayerHealth health;
-    private PlayerLogin login;
+    public JoystickController joystickController;
+    public PlayerHealth health;
+    public PlayerLogin login;
 
     [Header("UI Element")]
     [SerializeField] private Text nameTag;
@@ -47,11 +47,16 @@ public class Player : MonoBehaviour
         set { allowMove = value; }
     }
 
+    public bool CheckAllowedMove()
+    {
+        return GameManager.Instance.AllowEntityMove
+            && GameManager.Instance.AllowPlayerMove
+            && AllowMove
+            && !questionManager.questionContainer.activeSelf;
+    }
+
     void Start()
     {
-        joystickController = GetComponent<JoystickController>();
-        health = GetComponent<PlayerHealth>();
-        login = GetComponent<PlayerLogin>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -81,9 +86,7 @@ public class Player : MonoBehaviour
     private void MovementController(Vector2 movement)
     {
         //Player Move
-        if (GameManager.Instance.AllowEntityMove
-            && GameManager.Instance.AllowPlayerMove
-            && AllowMove)
+        if (CheckAllowedMove())
         {
             rb.velocity = movement * movementSpeed * Time.deltaTime;
         }
@@ -125,14 +128,12 @@ public class Player : MonoBehaviour
             interactableButton.interactable = true;
             OnInteract = () => {
                 OpenChest(other.gameObject);
-                interactableButton.interactable = false;
             };
         } else if (other.tag == "GateOpen")
         {
             interactableButton.interactable = true;
             OnInteract = () => {
                 OpenGate(other.gameObject);
-                interactableButton.interactable = false;
             };
         }
         else if (other.tag == "damage")
@@ -174,8 +175,11 @@ public class Player : MonoBehaviour
         if (interactedObject.TryGetComponent(out ChestContainer chest))
         {
             questionManager.OpenQuestion(chest);
+            if (chest.IsUnlocked)
+            {
+                OnInteract = null;
+            }
         }
-        OnInteract = null;
     }
 
     private void OpenGate(GameObject interactedObject)
@@ -196,6 +200,7 @@ public class Player : MonoBehaviour
         login.OnSubmitNameSuccess += OnSubmitNameSuccess;
         health.OnDied += Die;
         joystickController.OnMovingJoystick += MovementController;
+        joystickController.OnCheckConditionJoystick += CheckAllowedMove;
     }
 
     private void UnsubscribeEvents()
@@ -203,6 +208,7 @@ public class Player : MonoBehaviour
         login.OnSubmitNameSuccess -= OnSubmitNameSuccess;
         health.OnDied -= Die;
         joystickController.OnMovingJoystick -= MovementController;
+        joystickController.OnCheckConditionJoystick -= CheckAllowedMove;
         OnInteract = null;
     }
 
