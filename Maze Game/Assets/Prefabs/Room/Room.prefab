@@ -505,7 +505,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2143980860508508770}
   - component: {fileID: 2143980860508508701}
-  - component: {fileID: 2143980860508508700}
   - component: {fileID: 2143980860508508771}
   m_Layer: 0
   m_Name: Destroyer
@@ -549,18 +548,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2143980860508508700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2143980860508508769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e81a0a2e72f1b642b534d57f089103c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &2143980860508508771
 BoxCollider2D:
   m_ObjectHideFlags: 0

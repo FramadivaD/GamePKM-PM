@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Compass : MonoBehaviour
 {
+    int teamId = 0;
     RoomType roomtype;
     Vector3 dir;
     GameObject dest;
@@ -20,7 +21,7 @@ public class Compass : MonoBehaviour
     }
 
     void FindLocation(){
-        dest = roomtype.TargetRoom;
+        dest = roomtype.TargetRoom[teamId];
         dir = dest.transform.position;
         Vector3 angleTarget = dir - Player.transform.position;
         float angle = Mathf.Atan2(angleTarget.y, angleTarget.x) * Mathf.Rad2Deg - 90f;

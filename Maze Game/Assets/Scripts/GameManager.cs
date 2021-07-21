@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public bool AllowEnemyMove { get; private set; } = true;
     public bool AllowPlayerMove { get; private set; } = true;
 
-    private void Awake()
+    private void Start()
     {
         Instance = this;
 
