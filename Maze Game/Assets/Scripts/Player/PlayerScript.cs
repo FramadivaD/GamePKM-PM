@@ -12,10 +12,14 @@ public class PlayerScript : MonoBehaviour
     Animator anim;
     GameManager GM;
 
+    PlayerHealth health;
+
     public float ms;
     float mss;
     void Start()
     {
+        health = GetComponent<PlayerHealth>();
+
         gameObject.GetComponent<Collider2D>().isTrigger = true;
         GM = GameObject.Find("Game Manager").GetComponent<GameManager>();
         anim = GetComponent<Animator>();
@@ -110,7 +114,7 @@ public class PlayerScript : MonoBehaviour
                 //rb.velocity = new Vector2(-3f, rb.velocity.y);
                 Debug.Log("damage from left");
             }
-            gameObject.GetComponent<HealthScript>().health--;
+            health.DecreaseHealth(1);
         }
     }
 

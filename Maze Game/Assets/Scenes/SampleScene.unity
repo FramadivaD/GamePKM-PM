@@ -2410,7 +2410,7 @@ GameObject:
   - component: {fileID: 839668586}
   - component: {fileID: 839668592}
   m_Layer: 0
-  m_Name: JamurMerah
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2527,10 +2527,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 839668585}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baa85043e200cc54fa56553d644dc43a, type: 3}
+  m_Script: {fileID: 11500000, guid: a4e48fc2bd088bd488850b4e1f689284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 6
+  maxHealth: 6
+  currentHealth: 0
   hearts:
   - {fileID: 1004921165}
   - {fileID: 1492099885}

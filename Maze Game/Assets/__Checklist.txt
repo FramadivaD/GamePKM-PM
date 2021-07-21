@@ -1,8 +1,10 @@
-[ ] Pahami code saat ini
-[ ] Catat kode yang perlu diperbaiki
+[X] Pahami code saat ini
+[X] Catat kode yang perlu diperbaiki
 
-[ ] Perbaiki script kode yang rusak
-[ ] Merapikan script kode yang rusak
+[X] Merapikan script kode yang rusak
+
+[X] Perbaiki script kode yang rusak
+[X] Perbaiki script Health untuk Player, Enemy dan Boss
 
 [ ] Interaksi Chest jawaban soal
 [ ] Interaksi Chest quit
