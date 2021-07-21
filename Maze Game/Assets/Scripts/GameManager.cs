@@ -17,7 +17,10 @@ public class GameManager : MonoBehaviour
     public bool available = false;
     public Text InputName;
 
-    public bool Allowed;
+    public bool AllowEntityMove { get; private set; }
+    public bool AllowEnemyMove { get; private set; }
+    public bool AllowPlayerMove { get; private set; }
+
     public bool gateCheck;
 
     public Sprite treasureSprite;
@@ -37,12 +40,12 @@ public class GameManager : MonoBehaviour
 
     void SpawnSoal(){
         Instantiate(soal2[0], canvas.transform, false);
-        Allowed = false;
+        // Allowed = false;
         available = false;
     }
     void SpawnMainSoal(){
         Instantiate(soal2[1], canvas.transform, false);
-        Allowed = false;
+        // Allowed = false;
         gateCheck = false;
     }
 
@@ -52,28 +55,19 @@ public class GameManager : MonoBehaviour
         QuestionScript correctAnswer = GameObject.Find("QuestionText").GetComponent<QuestionScript>();
         if(InputAnswer.text == correctAnswer.answer){
             GameObject.Find("MainGate(Clone)").GetComponent<Gate>().open = true;
-            Allowed = true;
+            // Allowed = true;
             Destroy(GameObject.Find("GateOpen"));
             Destroy(Questions);
         }
     }
 
-    public void PressButton(){
-        GameObject.Find("JamurMerah").GetComponent<Player>().isJoystick = false;
-        Debug.Log("Pressed");
-    }
-
-    public void AfterPressed(){
-        GameObject.Find("JamurMerah").GetComponent<Player>().isJoystick = true;
-        //joystickAllowed = true;
-        Debug.Log("Droped");
-    }
-
     public void InteractButton(){
+        /*
         if(Allowed && available){
             SpawnSoal();
         }else if(gateCheck && Allowed){
             SpawnMainSoal();
         }
+        */
     }
 }

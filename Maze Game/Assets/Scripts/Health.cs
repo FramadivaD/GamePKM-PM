@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] protected float maxHealth = 0;
-    [SerializeField] protected float currentHealth = 0;
+    [SerializeField] private float maxHealth = 0;
+    [SerializeField] private float currentHealth = 0;
 
     public float MaxHealth
     {
@@ -22,6 +22,18 @@ public class Health : MonoBehaviour
         {
             return currentHealth;
         }
+        set
+        {
+            float valueHealth = Mathf.Clamp(value, 0, maxHealth);
+
+            if (valueHealth > currentHealth) OnHealthIncreased?.Invoke();
+            if (valueHealth < currentHealth) OnHealthDecreased?.Invoke();
+            if (valueHealth <= 0 && currentHealth > 0) OnDied?.Invoke();
+
+            OnHealthChanged?.Invoke();
+
+            currentHealth = valueHealth;
+        }
     }
 
     public bool IsDie
@@ -32,23 +44,14 @@ public class Health : MonoBehaviour
         }
     }
 
+    public delegate void HealthEventHandler();
+    public event HealthEventHandler OnHealthChanged;
+    public event HealthEventHandler OnDied;
+    public event HealthEventHandler OnHealthDecreased;
+    public event HealthEventHandler OnHealthIncreased;
+
     private void Start()
     {
-        SetHealth(maxHealth);
-    }
-
-    public void IncreaseHealth(float amount)
-    {
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-    }
-
-    public void DecreaseHealth(float amount)
-    {
-        currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
-    }
-
-    public void SetHealth(float health)
-    {
-        currentHealth = Mathf.Clamp(health, 0, maxHealth);
+        CurrentHealth = MaxHealth;
     }
 }

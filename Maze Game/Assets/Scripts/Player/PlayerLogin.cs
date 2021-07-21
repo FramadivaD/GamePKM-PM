@@ -13,16 +13,20 @@ public class PlayerLogin : MonoBehaviour
         player = GetComponent<Player>();
     }
 
+    public delegate void SubmitEventHandler(string playerName);
+    public event SubmitEventHandler OnSubmitNameSuccess;
+    public event SubmitEventHandler OnSubmitNameFailed;
+
     public void SubmitName()
     {
         if (inputName.text != "" && inputName.text.Length >= 5)
         {
-            player.PlayerName = inputName.text;
-            player.AllowMove = true;
-
             loginUI.SetActive(false);
+
+            OnSubmitNameSuccess?.Invoke(inputName.text);
         } else
         {
+            OnSubmitNameFailed?.Invoke(inputName.text);
             Debug.Log("Nama setidaknya harus 5 karakter!");
         }
     }

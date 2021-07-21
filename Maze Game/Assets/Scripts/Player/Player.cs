@@ -11,8 +11,9 @@ public class Player : MonoBehaviour
     public bool isJoystick = true;
     private Vector2 circleDir;
 
-    [Header("Player Health")]
+    [Header("Player Config")]
     private PlayerHealth health;
+    private PlayerLogin login;
 
     [Header("UI Element")]
     [SerializeField] private Text nameTag;
@@ -46,11 +47,18 @@ public class Player : MonoBehaviour
     void Start()
     {
         health = GetComponent<PlayerHealth>();
+        login = GetComponent<PlayerLogin>();
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
 
         mainCamera = Camera.main;
 
-        rb = GetComponent<Rigidbody2D>();
+        SubscribeEvents();
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeEvents();
     }
 
     void Update()
@@ -150,7 +158,7 @@ public class Player : MonoBehaviour
                 rb.AddForce(Vector2.right * -3f);
                 Debug.Log("damage from left");
             }
-            health.DecreaseHealth(1);
+            health.CurrentHealth -= 1;
         }
     }
 
@@ -162,4 +170,31 @@ public class Player : MonoBehaviour
             interactableButtonImage.color = new Color(1f,1f,1f,1f);
         }
     }
+
+    private void Die()
+    {
+        Debug.Log("Player Dies.");
+    }
+
+    #region All about events
+
+    private void SubscribeEvents()
+    {
+        login.OnSubmitNameSuccess += OnSubmitNameSuccess;
+        health.OnDied += Die;
+    }
+
+    private void UnsubscribeEvents()
+    {
+        login.OnSubmitNameSuccess -= OnSubmitNameSuccess;
+        health.OnDied -= Die;
+    }
+
+    private void OnSubmitNameSuccess(string playerName)
+    {
+        PlayerName = playerName;
+        AllowMove = true;
+    }
+
+    #endregion
 }

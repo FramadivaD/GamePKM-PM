@@ -8,13 +8,14 @@ public class PlayerHealth : Health
 
     private void Start()
     {
-        SetHealth(MaxHealth);
-        RefreshHealthUI();
+        OnHealthChanged += RefreshHealthUI;
+
+        CurrentHealth = MaxHealth;
     }
 
-    private void Update()
+    private void OnDestroy()
     {
-        RefreshHealthUI();
+        OnHealthChanged -= RefreshHealthUI;
     }
 
     private void RefreshHealthUI()
