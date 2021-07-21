@@ -6,11 +6,11 @@
 [X] Perbaiki script kode yang rusak
 [X] Perbaiki script Health untuk Player, Enemy dan Boss
 
-[ ] Fix Room Generator
+[A] Fix Room Generator
 
-[ ] Interaksi Chest jawaban soal
-[ ] Interaksi Chest quit
-[ ] Interaksi Chest success
+[X] Interaksi Chest jawaban soal
+[X] Interaksi Chest quit
+[X] Interaksi Chest success
 
 [ ] Fitur 2 jenis soal, aljabar dan pecahan
 [ ] Fix Bug di ketika leave selesai interaksi dengan chest

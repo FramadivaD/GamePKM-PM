@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class JoystickController : MonoBehaviour
 {
+    public bool active = true;
+
     [Header("Joystick Analog")]
     public GameObject mainCircle;
     public GameObject outCircle;
-    public bool isJoystick = true;
 
     private Vector2 circleDir;
     private Camera mainCamera;
@@ -37,37 +38,58 @@ public class JoystickController : MonoBehaviour
     private void Controller()
     {
         //Joystick Control
-        if (isJoystick)
+        if (active)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Application.isMobilePlatform)
             {
-                Vector3 mouseDir = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-                Vector3 mouseDis = mouseDir - mainCamera.transform.position;
-                if (mouseDis.x <= -2f && mouseDis.y <= 0)
+                if (Input.touchCount > 0)
                 {
-                    outCircle.SetActive(true);
-                    outCircle.transform.position = new Vector3(mouseDir.x, mouseDir.y, outCircle.transform.position.z);
+                    bool tapCondition = Input.GetTouch(0).phase == TouchPhase.Began;
+                    bool holdCondition = 
+                        Input.GetTouch(0).phase == TouchPhase.Moved 
+                        || Input.GetTouch(0).phase == TouchPhase.Stationary;
+                    bool releaseCondition = Input.GetTouch(0).phase == TouchPhase.Ended;
+
+                    Controlling(tapCondition, holdCondition, releaseCondition);
                 }
-            }
-
-            if (Input.GetMouseButtonUp(0))
+            } else
             {
-                outCircle.SetActive(false);
-                circleDir = Vector2.zero;
-            }
+                bool tapCondition = Input.GetMouseButtonDown(0);
+                bool holdCondition = Input.GetMouseButton(0);
+                bool releaseCondition = Input.GetMouseButtonUp(0);
 
-            if (outCircle.activeSelf)
-            {
-                Vector2 circleDis = mainCamera.ScreenToWorldPoint(Input.mousePosition) - outCircle.transform.position;
-                circleDir = Vector2.ClampMagnitude(circleDis, 1f);
-                mainCircle.transform.position = new Vector2(outCircle.transform.position.x + circleDir.x, outCircle.transform.position.y + circleDir.y);
+                Controlling(tapCondition, holdCondition, releaseCondition);
             }
         }
-        else if (!isJoystick)
+    }
+
+    private void Controlling(bool tapCondition, bool holdCondition, bool releaseCondition)
+    {
+        if (tapCondition)
+        {
+            Vector3 mouseDir = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 mouseDis = mouseDir - mainCamera.transform.position;
+            if (mouseDis.x <= -2f && mouseDis.y <= 0)
+            {
+                outCircle.SetActive(true);
+                outCircle.transform.position = new Vector3(mouseDir.x, mouseDir.y, outCircle.transform.position.z);
+            }
+        }
+
+        if (releaseCondition)
         {
             outCircle.SetActive(false);
+            circleDir = Vector2.zero;
         }
 
+        if (outCircle.activeSelf)
+        {
+            Vector2 circleDis = mainCamera.ScreenToWorldPoint(Input.mousePosition) - outCircle.transform.position;
+            circleDir = Vector2.ClampMagnitude(circleDis, 1f);
+            mainCircle.transform.position = new Vector2(outCircle.transform.position.x + circleDir.x, outCircle.transform.position.y + circleDir.y);
+        }
+
+        /*
         //Player Move
         float moveX = 0;
         float moveY = 0;
@@ -79,7 +101,8 @@ public class JoystickController : MonoBehaviour
         {
             moveY = circleDir.y;
         }
+        */
 
-        OnMovingJoystick?.Invoke(new Vector2(moveX, moveY));
+        OnMovingJoystick?.Invoke(circleDir);
     }
 }
