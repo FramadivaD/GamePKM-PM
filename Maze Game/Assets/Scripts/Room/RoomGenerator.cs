@@ -109,9 +109,12 @@ public class RoomGenerator : MonoBehaviour
             // x pos
             for (int x = 0; x < roomSize; x++)
             {
-                if (roomMapRoom[y, x].GetUnlockedDoorCount() == 3)
+                if (roomMap[y, x])
                 {
-                    cornerRoom.Add(roomMapRoom[y, x]);
+                    if (roomMapRoom[y, x].GetUnlockedDoorCount() == 3)
+                    {
+                        cornerRoom.Add(roomMapRoom[y, x]);
+                    }
                 }
             }
         }

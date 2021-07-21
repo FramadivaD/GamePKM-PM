@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Obsolete]
 public class Limit : MonoBehaviour
 {
     public bool isLimit_left = false;
