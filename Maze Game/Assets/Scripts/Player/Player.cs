@@ -26,20 +26,8 @@ public class Player : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
 
-    public GameObject LatestInteractionObject { get; private set; }
-    private PlayerInteractionType playerInteraction = PlayerInteractionType.None;
-    public PlayerInteractionType PlayerInteraction {
-        get {
-            return playerInteraction;
-        }
-        set {
-            if (value == PlayerInteractionType.None)
-            {
-                LatestInteractionObject = null;
-            }
-            playerInteraction = value;
-        }
-    }
+    private delegate void PlayerInteractEventHandler();
+    private event PlayerInteractEventHandler OnInteract;
 
     [SerializeField] private string playerName = "Player";
     public string PlayerName
@@ -83,6 +71,13 @@ public class Player : MonoBehaviour
         AnimationController();
     }
 
+    private void Die()
+    {
+        Debug.Log("Player Dies.");
+    }
+
+    #region All About Movement
+
     private void MovementController(Vector2 movement)
     {
         //Player Move
@@ -119,22 +114,28 @@ public class Player : MonoBehaviour
             anim.SetBool("isWalk", true);
         }
     }
-    
+
+    #endregion
+
+    #region All About Interaction
+
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Treasure")
         {
             interactableButton.interactable = true;
-            LatestInteractionObject = other.gameObject;
-            PlayerInteraction = PlayerInteractionType.OpenChest;
-        }
-        if (other.tag == "GateOpen")
+            OnInteract = () => {
+                OpenChest(other.gameObject);
+                interactableButton.interactable = false;
+            };
+        } else if (other.tag == "GateOpen")
         {
             interactableButton.interactable = true;
-            LatestInteractionObject = other.gameObject;
-            PlayerInteraction = PlayerInteractionType.OpenGate;
+            OnInteract = () => {
+                OpenGate(other.gameObject);
+                interactableButton.interactable = false;
+            };
         }
-
-        if (other.tag == "damage")
+        else if (other.tag == "damage")
         {
             if (other.gameObject.transform.position.x > transform.position.x)
             {
@@ -154,19 +155,39 @@ public class Player : MonoBehaviour
         if (other.tag == "Treasure")
         {
             interactableButton.interactable = false;
-            PlayerInteraction = PlayerInteractionType.None;
+            OnInteract = null;
         }
-        if (other.tag == "GateOpen")
+        else if (other.tag == "GateOpen")
         {
             interactableButton.interactable = false;
-            PlayerInteraction = PlayerInteractionType.None;
+            OnInteract = null;
         }
     }
 
-    private void Die()
+    public void InteractAction()
     {
-        Debug.Log("Player Dies.");
+        OnInteract?.Invoke();
     }
+
+    private void OpenChest(GameObject interactedObject)
+    {
+        if (interactedObject.TryGetComponent(out ChestContainer chest))
+        {
+            questionManager.OpenQuestion(chest);
+        }
+        OnInteract = null;
+    }
+
+    private void OpenGate(GameObject interactedObject)
+    {
+        if (interactedObject.TryGetComponent(out Gate gate))
+        {
+            gateManager.OpenGate(gate);
+        }
+        OnInteract = null;
+    }
+
+    #endregion
 
     #region All about events
 
@@ -182,6 +203,7 @@ public class Player : MonoBehaviour
         login.OnSubmitNameSuccess -= OnSubmitNameSuccess;
         health.OnDied -= Die;
         joystickController.OnMovingJoystick -= MovementController;
+        OnInteract = null;
     }
 
     private void OnSubmitNameSuccess(string playerName)

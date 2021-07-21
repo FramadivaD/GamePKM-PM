@@ -26,16 +26,29 @@ public class QuestionManager : MonoBehaviour
     public void OpenQuestion(ChestContainer chest)
     {
         if (chest.teamType == player.teamType) {
+            if (chest.question == null)
+            {
+                chest.Initialize();
+            }
             questionContainer.SetActive(true);
             SelectedChest = chest;
             RefreshQuestionUI();
+
+            Debug.Log("Answer is " + SelectedChest.question.answer);
         }
     }
 
     public void RefreshQuestionUI()
     {
-        questionTitleText.text = SelectedChest.question.question;
-        questionAnswerText.text = "";
+        if (SelectedChest && SelectedChest.question != null)
+        {
+            questionTitleText.text = SelectedChest.question.question;
+            questionAnswerText.text = "";
+        } else
+        {
+            questionTitleText.text = "No Question ?";
+            questionAnswerText.text = "";
+        }
     }
 
     public void CloseQuestion()
