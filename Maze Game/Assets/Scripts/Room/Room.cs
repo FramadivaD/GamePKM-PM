@@ -28,6 +28,7 @@ public class Room : MonoBehaviour
     public TeamType BossTeamType { get; private set; } = TeamType.Red;
 
     [Header("Main Gate Config")]
+    [SerializeField] private Transform mainGateParent;
     [SerializeField] private GameObject mainGatePrefab;
 
     public void Initialize()
@@ -118,11 +119,19 @@ public class Room : MonoBehaviour
 
     private void ChangeDoorToMainGate(TeamType teamType)
     {
-        /*
-        GameObject topGate = Instantiate(mainGatePrefab, );
-        GameObject rightGate = Instantiate(mainGatePrefab, );
-        GameObject bottomGate = Instantiate(mainGatePrefab, );
-        GameObject leftGate = Instantiate(mainGatePrefab, );
-        */
+        GameObject topGate = Instantiate(mainGatePrefab, topDoor.transform.position, Quaternion.Euler(0, 0, 90), mainGateParent);
+        GameObject rightGate = Instantiate(mainGatePrefab, rightDoor.transform.position, Quaternion.identity, mainGateParent);
+        GameObject bottomGate = Instantiate(mainGatePrefab, bottomDoor.transform.position, Quaternion.Euler(0, 0, 90), mainGateParent);
+        GameObject leftGate = Instantiate(mainGatePrefab, leftDoor.transform.position, Quaternion.identity, mainGateParent);
+
+        Destroy(topDoor);
+        Destroy(rightDoor);
+        Destroy(bottomDoor);
+        Destroy(leftDoor);
+
+        topDoor = topGate;
+        rightDoor = rightGate;
+        bottomDoor = bottomGate;
+        leftDoor = leftGate;
     }
 }
