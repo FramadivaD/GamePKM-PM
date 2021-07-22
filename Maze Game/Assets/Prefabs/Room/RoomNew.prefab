@@ -210,6 +210,36 @@ PolygonCollider2D:
       - {x: 14.11425, y: -2.411158}
       - {x: 14.11793, y: -7.689459}
       - {x: 2.923368, y: -7.680886}
+--- !u!1 &2553489451592915177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5124675353304063843}
+  m_Layer: 0
+  m_Name: Bosses
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5124675353304063843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2553489451592915177}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9052686003985560676}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2906289885412769287
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +418,7 @@ Transform:
   - {fileID: 2214759617100072298}
   - {fileID: 8834405245449930351}
   - {fileID: 5230462483666567626}
+  - {fileID: 5124675353304063843}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -416,6 +447,11 @@ MonoBehaviour:
   - {fileID: 2228071287639619934}
   - {fileID: 7429417405129824560}
   - {fileID: 1776838757168125139}
+  bossParent: {fileID: 5124675353304063843}
+  bossTypePrefab:
+  - {fileID: 8006803719243552604, guid: 8dbe7a30ec972b54ab71c859c78fbafe, type: 3}
+  mainGatePrefab: {fileID: 2830248482729328609, guid: a528687bf87e32d4ab9c230825f6c2b3,
+    type: 3}
 --- !u!1 &3547787880218295141
 GameObject:
   m_ObjectHideFlags: 0

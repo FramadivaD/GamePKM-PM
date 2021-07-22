@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Room : MonoBehaviour
 {
+    [Header("Door Objects")]
     [SerializeField] private GameObject topDoor;
     [SerializeField] private GameObject rightDoor;
     [SerializeField] private GameObject bottomDoor;
@@ -17,6 +18,17 @@ public class Room : MonoBehaviour
 
     private int latestTreasureChestPossiblePosIndex = -1;
     private int treasureChestCount = 0;
+
+    [Header("Boss Room Config")]
+    [SerializeField] private Transform bossParent;
+    [SerializeField] private GameObject[] bossTypePrefab;
+
+    private GameObject activeBossEnemy;
+    public bool IsBossRoom { get; private set; } = false;
+    public TeamType BossTeamType { get; private set; } = TeamType.Red;
+
+    [Header("Main Gate Config")]
+    [SerializeField] private GameObject mainGatePrefab;
 
     public void Initialize()
     {
@@ -88,5 +100,29 @@ public class Room : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void SetToBossRoom(TeamType teamType)
+    {
+        IsBossRoom = true;
+        BossTeamType = teamType;
+
+        SpawnBoss(teamType);
+        ChangeDoorToMainGate(teamType);
+    }
+
+    private void SpawnBoss(TeamType teamType)
+    {
+        activeBossEnemy = Instantiate(bossTypePrefab[(int)teamType], bossParent);
+    }
+
+    private void ChangeDoorToMainGate(TeamType teamType)
+    {
+        /*
+        GameObject topGate = Instantiate(mainGatePrefab, );
+        GameObject rightGate = Instantiate(mainGatePrefab, );
+        GameObject bottomGate = Instantiate(mainGatePrefab, );
+        GameObject leftGate = Instantiate(mainGatePrefab, );
+        */
     }
 }

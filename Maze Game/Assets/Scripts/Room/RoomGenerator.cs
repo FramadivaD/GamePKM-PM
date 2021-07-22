@@ -73,6 +73,9 @@ public class RoomGenerator : MonoBehaviour
 
         // Spawn Random Treasure
         SpawnTreasures();
+
+        // Spawn Random Boss on Corner Room
+        SpawnBossRooms();
     }
 
     private void DrawMap(int x, int y, int iter)
@@ -275,6 +278,16 @@ public class RoomGenerator : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void SpawnBossRooms()
+    {
+        int teamNumber = TeamHelper.GetTeamCount();
+        for (int i = 0; i < teamNumber && i < cornerRoom.Count; i++)
+        {
+            Room selectedRoom = cornerRoom[i];
+            selectedRoom.SetToBossRoom(TeamHelper.TeamTypes[i]);
         }
     }
 }
