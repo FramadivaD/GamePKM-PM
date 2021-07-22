@@ -5626,34 +5626,6 @@ PrefabInstance:
       propertyPath: questionAnswerText
       value: 
       objectReference: {fileID: 612647019476044116}
-    - target: {fileID: 1030328693, guid: 20b9696fed033e140b87062bf6f3378c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1030328693, guid: 20b9696fed033e140b87062bf6f3378c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 1030328693, guid: 20b9696fed033e140b87062bf6f3378c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.97236997
-      objectReference: {fileID: 0}
-    - target: {fileID: 1030328693, guid: 20b9696fed033e140b87062bf6f3378c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1030328693, guid: 20b9696fed033e140b87062bf6f3378c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1030328693, guid: 20b9696fed033e140b87062bf6f3378c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.23344536
-      objectReference: {fileID: 0}
-    - target: {fileID: 1030328693, guid: 20b9696fed033e140b87062bf6f3378c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -27
-      objectReference: {fileID: 0}
     - target: {fileID: 3703510726965139056, guid: 20b9696fed033e140b87062bf6f3378c,
         type: 3}
       propertyPath: inventorySelectedItemCursor

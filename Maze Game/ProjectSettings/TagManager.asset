@@ -17,6 +17,7 @@ TagManager:
   - Treasure
   - soal
   - WeaponOrb
+  - PlayerProjectile
   layers:
   - Default
   - TransparentFX
