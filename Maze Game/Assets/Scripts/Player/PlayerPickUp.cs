@@ -16,6 +16,7 @@ public class PlayerPickUp : MonoBehaviour
         
     }
 
+    /*
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("item")){
             for(int i = 0; i < inventory.inventorySlots.Length; i++){
@@ -28,4 +29,5 @@ public class PlayerPickUp : MonoBehaviour
             }
         }
     }
+    */
 }

@@ -66,7 +66,7 @@ public class ChestContainer : MonoBehaviour
                 if (player.teamType == teamType)
                 {
                     // check inventory dulu harunya
-                    // player.inventory.Add(fragmentKey)
+                    player.inventoryManager.AddItem(fragmentKey);
                     fragmentKey = null;
 
                     IsFragmentTaken = true;

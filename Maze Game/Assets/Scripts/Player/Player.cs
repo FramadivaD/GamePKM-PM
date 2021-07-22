@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [Header("Player Manager")]
     public QuestionManager questionManager;
     public GateManager gateManager;
+    public InventoryManager inventoryManager;
 
     public JoystickController joystickController;
     public PlayerHealth health;

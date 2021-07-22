@@ -9,7 +9,7 @@ public class MainGateKey
 }
 
 [System.Serializable]
-public class MainGateFragment
+public class MainGateFragment : IInventoryAble
 {
     [SerializeField] private string key;
     [SerializeField] private string data;
