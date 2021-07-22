@@ -241,6 +241,7 @@ public class Player : MonoBehaviour
         if (EquippedItem != null)
         {
             inventoryManager.DropItem(EquippedItem);
+            EquippedItem = null;
         }
     }
 

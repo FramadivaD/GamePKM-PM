@@ -25,7 +25,7 @@
 
 [X] Mechanic nyari senjata di level
 [X] Mechanic ngambil senjata
-[ ] Mechanic ganti senjata
+[X] Mechanic ganti senjata
 
 [ ] Mechanic item scattered di level
 [X] Mechanic inventory ngambil senjata

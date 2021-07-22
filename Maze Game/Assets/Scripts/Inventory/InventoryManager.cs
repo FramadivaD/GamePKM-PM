@@ -19,6 +19,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private List<Sprite> inventoryImageSprite;
 
     [SerializeField] private Image inventorySelectedItemCursor;
+    [SerializeField] private Button dropButton;
 
     public bool IsFull
     {
@@ -78,6 +79,7 @@ public class InventoryManager : MonoBehaviour
                 inventory[i] = null;
 
                 RefreshImageUI();
+                RefreshSelectionCursor(-1);
 
                 return temp;
             }
@@ -155,14 +157,17 @@ public class InventoryManager : MonoBehaviour
         {
             if (inventory[id] != null) {
                 inventorySelectedItemCursor.enabled = true;
+                dropButton.interactable = true;
                 inventorySelectedItemCursor.rectTransform.position = inventoryButton[id].image.rectTransform.position;
             } else
             {
                 inventorySelectedItemCursor.enabled = false;
+                dropButton.interactable = false;
             }
         } else
         {
             inventorySelectedItemCursor.enabled = false;
+            dropButton.interactable = false;
         }
     }
 }
