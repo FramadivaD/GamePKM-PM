@@ -25,6 +25,8 @@
 
 [ ] Mechanic nyari senjata di level, ngambil senjata dan ganti senjata
 
+[ ] Mechanic item scattered di level
+[ ] Mechanic inventory ngambil senjata
 [ ] Mechanic nembak Senjata
 [ ] Peluru senjata infinite
 [ ] Mechanic Healthbar Enemy
@@ -39,6 +41,8 @@
 [ ] Mechanic Boss Level
 [ ] Bisa bunuh musuh dan boss
 [ ] Fitur menang dan kalah ketika tim yang bunuh boss pertama kali
+
+[ ] Fitur Navigasi Scene dari main menu, lobby, ke gameplay, ke halaman result terus ke main menu lagi
 
 [ ] Fitur guru browse soal local
 [ ] Fitur guru camera soal
