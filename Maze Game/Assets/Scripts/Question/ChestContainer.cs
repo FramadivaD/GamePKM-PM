@@ -70,6 +70,8 @@ public class ChestContainer : MonoBehaviour
                     fragmentKey = null;
 
                     IsFragmentTaken = true;
+
+                    Debug.Log("Fragment Key saved in inventory.");
                 }
                 else
                 {

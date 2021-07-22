@@ -26,15 +26,23 @@ public class QuestionManager : MonoBehaviour
     public void OpenQuestion(ChestContainer chest)
     {
         if (chest.teamType == player.teamType) {
-            if (chest.question == null)
+            if (chest.IsUnlocked)
             {
-                chest.Initialize();
+                SelectedChest = chest;
+                SelectedChest.TryTakeFragmentKey(player);
             }
-            questionContainer.SetActive(true);
-            SelectedChest = chest;
-            RefreshQuestionUI();
+            else
+            {
+                if (chest.question == null)
+                {
+                    chest.Initialize();
+                }
+                questionContainer.SetActive(true);
+                SelectedChest = chest;
+                RefreshQuestionUI();
 
-            Debug.Log("Answer is " + SelectedChest.question.answer);
+                Debug.Log("Answer is " + SelectedChest.question.answer);
+            }
         }
     }
 
