@@ -13,6 +13,7 @@ public class WeaponManager : MonoBehaviour
     [SerializeField] private List<GameObject> weaponProjectiles;
 
     [SerializeField] private Transform weaponControl;
+    [SerializeField] private Transform weaponProjectileOrigin;
 
     public void Initialize(Player player)
     {
@@ -80,10 +81,10 @@ public class WeaponManager : MonoBehaviour
         {
             if (weaponTimer <= 0)
             {
-                GameObject ne = Instantiate(weaponProjectiles[0], weaponControl.position, Quaternion.identity);
+                GameObject ne = Instantiate(weaponProjectiles[0], weaponProjectileOrigin.position, Quaternion.identity);
 
                 WeaponProjectile bullet = ne.GetComponent<WeaponProjectile>();
-                bullet.Initialize(GetAimDirection(), GetAimRotation());
+                bullet.Initialize(GetAimRotation());
 
                 weaponTimer += basokaCooldown;
             }

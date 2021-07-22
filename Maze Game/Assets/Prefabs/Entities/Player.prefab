@@ -111,8 +111,39 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1030328693}
+  - {fileID: 2962693582260253500}
   m_Father: {fileID: 6117276585491530558}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2969901913068180245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2962693582260253500}
+  m_Layer: 0
+  m_Name: WeaponProjectileOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2962693582260253500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2969901913068180245}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.32, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1672847131}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6117276584428097284
 GameObject:
@@ -654,6 +685,7 @@ MonoBehaviour:
   weaponProjectiles:
   - {fileID: 8687706552621162461, guid: a9303fecb8058a64ea9be8d650d4595d, type: 3}
   weaponControl: {fileID: 1672847131}
+  weaponProjectileOrigin: {fileID: 2962693582260253500}
 --- !u!1 &6117276585659172069
 GameObject:
   m_ObjectHideFlags: 0

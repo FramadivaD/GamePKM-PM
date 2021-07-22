@@ -3,7 +3,6 @@ using System.Collections;
 
 public class WeaponProjectile : MonoBehaviour
 {
-    [SerializeField] protected Vector3 direction;
     [SerializeField] protected float speed;
 
     Rigidbody2D rb2;
@@ -18,9 +17,8 @@ public class WeaponProjectile : MonoBehaviour
         Destroy(gameObject, 5);
     }
 
-    public void Initialize(Vector3 direction, Quaternion rotation)
+    public void Initialize(Quaternion rotation)
     {
-        this.direction = direction;
         transform.rotation = rotation;
 
         Launch();
@@ -28,7 +26,7 @@ public class WeaponProjectile : MonoBehaviour
 
     private void Launch()
     {
-        Vector3 dir = direction.normalized * speed;
+        Vector3 dir = transform.right * speed;
         rb2.AddForce(dir, ForceMode2D.Impulse);
     }
 }
