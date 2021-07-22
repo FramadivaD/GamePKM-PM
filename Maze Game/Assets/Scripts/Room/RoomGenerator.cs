@@ -25,6 +25,9 @@ public class RoomGenerator : MonoBehaviour
     [Header("Configuration")]
     public Room roomPrefab;
 
+    [Header("Item Configuration")]
+    public int weaponItemCount = 3;
+
     private void Update()
     {
         if (Application.isEditor)
@@ -86,6 +89,9 @@ public class RoomGenerator : MonoBehaviour
 
         // Spawn Random Treasure
         SpawnTreasures();
+
+        // Spawn Random Items
+        SpawnItems();
 
         // Spawn Random Boss on Corner Room
         SpawnBossRooms();
@@ -295,6 +301,32 @@ public class RoomGenerator : MonoBehaviour
                                     break;
                                 }
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void SpawnItems()
+    {
+        int itemsCount = weaponItemCount;
+
+        for (int j = 0; j < itemsCount; j++)
+        {
+            int ind = Random.Range(0, notCornerRoom.Count);
+            if (ind < notCornerRoom.Count)
+            {
+                Room selectedRoom = notCornerRoom[ind];
+                if (selectedRoom)
+                {
+                    // limit biar gak infinite
+                    for (int k = 0; k < 10; k++)
+                    {
+                        WeaponOrb weaponOrb = selectedRoom.SpawnWeaponItemOrb();
+                        if (weaponOrb)
+                        {
+                            break;
                         }
                     }
                 }

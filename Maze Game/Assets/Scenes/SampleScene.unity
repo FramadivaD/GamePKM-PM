@@ -245,75 +245,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9135582}
   m_CullTransparentMesh: 1
---- !u!1001 &78559550
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 254827903964115764, guid: 59ae21e8238d672489529f74ccaf3925,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 254827903964115764, guid: 59ae21e8238d672489529f74ccaf3925,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.1195202
-      objectReference: {fileID: 0}
-    - target: {fileID: 254827903964115764, guid: 59ae21e8238d672489529f74ccaf3925,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.4250299
-      objectReference: {fileID: 0}
-    - target: {fileID: 254827903964115764, guid: 59ae21e8238d672489529f74ccaf3925,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 254827903964115764, guid: 59ae21e8238d672489529f74ccaf3925,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 254827903964115764, guid: 59ae21e8238d672489529f74ccaf3925,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 254827903964115764, guid: 59ae21e8238d672489529f74ccaf3925,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 254827903964115764, guid: 59ae21e8238d672489529f74ccaf3925,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 254827903964115764, guid: 59ae21e8238d672489529f74ccaf3925,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 254827903964115764, guid: 59ae21e8238d672489529f74ccaf3925,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 254827903964115764, guid: 59ae21e8238d672489529f74ccaf3925,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3775917153467377673, guid: 59ae21e8238d672489529f74ccaf3925,
-        type: 3}
-      propertyPath: m_Name
-      value: WeaponBasokaOrb
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 59ae21e8238d672489529f74ccaf3925, type: 3}
 --- !u!1 &103842816
 GameObject:
   m_ObjectHideFlags: 0
@@ -4825,6 +4756,7 @@ MonoBehaviour:
   roomWalkIteration: 4
   roomPrefab: {fileID: 5138995550937514085, guid: e1b9403ec5c5e7b4d804e2f1adf3e62b,
     type: 3}
+  weaponItemCount: 3
 --- !u!4 &2088515436
 Transform:
   m_ObjectHideFlags: 0

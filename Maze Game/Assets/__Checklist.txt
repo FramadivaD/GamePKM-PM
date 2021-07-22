@@ -27,11 +27,11 @@
 [X] Mechanic ngambil senjata
 [X] Mechanic ganti senjata
 
-[ ] Mechanic item scattered di level
+[X] Mechanic weapon item scattered di level
 [X] Mechanic inventory ngambil senjata
 [X] Mechanic inventory equip item
 [X] Mechanic inventory change item
-[ ] Mechanic inventory drop item
+[X] Mechanic inventory drop item
 [X] Mechanic nembak Senjata
 [X] Peluru senjata infinite
 [X] Mechanic Healthbar Enemy

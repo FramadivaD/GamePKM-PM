@@ -9,15 +9,19 @@ public class Room : MonoBehaviour
     [SerializeField] private GameObject bottomDoor;
     [SerializeField] private GameObject leftDoor;
 
+    [Header("Spawn Item Config")]
+    [SerializeField] private Transform spawnedItemParent;
+    [SerializeField] private Transform[] spawnedItemPossiblePos;
+    private GameObject[] spawnedItemSpawned;
+
+    private int latestSpawnedItemPossiblePosIndex = -1;
+    private int spawnedItemCount = 0;
+
     [Header("Chest Treasure Config")]
-    [SerializeField] private Transform treasureChestParent;
     [SerializeField] private GameObject treasureChestPrefab;
 
-    [SerializeField] private Transform[] treasureChestPossiblePos;
-    private GameObject[] treasureChestSpawned;
-
-    private int latestTreasureChestPossiblePosIndex = -1;
-    private int treasureChestCount = 0;
+    [Header("Weapon Orb Config")]
+    [SerializeField] private GameObject weaponOrbPrefab;
 
     [Header("Boss Room Config")]
     [SerializeField] private Transform bossParent;
@@ -71,33 +75,67 @@ public class Room : MonoBehaviour
 
     }
 
-    public ChestContainer SpawnTreasureChest(TeamType teamType, MainGateFragment fragment)
+    public WeaponOrb SpawnWeaponItemOrb()
     {
-        if (treasureChestCount < treasureChestPossiblePos.Length)
+        if (spawnedItemCount < spawnedItemPossiblePos.Length)
         {
-            if (treasureChestSpawned == null) treasureChestSpawned = new GameObject[treasureChestPossiblePos.Length];
-            if (latestTreasureChestPossiblePosIndex == -1)
+            if (spawnedItemSpawned == null) spawnedItemSpawned = new GameObject[spawnedItemPossiblePos.Length];
+            if (latestSpawnedItemPossiblePosIndex == -1)
             {
-                latestTreasureChestPossiblePosIndex = Random.Range(0, treasureChestPossiblePos.Length);
+                latestSpawnedItemPossiblePosIndex = Random.Range(0, spawnedItemPossiblePos.Length);
             }
 
             while (true)
             {
-                if (treasureChestSpawned[latestTreasureChestPossiblePosIndex] == null)
+                if (spawnedItemSpawned[latestSpawnedItemPossiblePosIndex] == null)
                 {
-                    GameObject chest = Instantiate(treasureChestPrefab, treasureChestPossiblePos[latestTreasureChestPossiblePosIndex].position, Quaternion.identity, treasureChestParent);
-                    treasureChestSpawned[latestTreasureChestPossiblePosIndex] = chest;
+                    GameObject weapon = Instantiate(weaponOrbPrefab, spawnedItemPossiblePos[latestSpawnedItemPossiblePosIndex].position, Quaternion.identity, spawnedItemParent);
+                    spawnedItemSpawned[latestSpawnedItemPossiblePosIndex] = weapon;
+
+                    WeaponOrb weaponOrb = weapon.GetComponent<WeaponOrb>();
+
+                    // Saat ini hanya random Basoka
+                    weaponOrb.Initialize(new WeaponInventory() { weaponType = WeaponType.Basoka });
+
+                    spawnedItemCount++;
+
+                    return weaponOrb;
+                }
+
+                latestSpawnedItemPossiblePosIndex++;
+                latestSpawnedItemPossiblePosIndex %= spawnedItemPossiblePos.Length;
+            }
+        }
+        return null;
+    }
+
+    public ChestContainer SpawnTreasureChest(TeamType teamType, MainGateFragment fragment)
+    {
+        if (spawnedItemCount < spawnedItemPossiblePos.Length)
+        {
+            if (spawnedItemSpawned == null) spawnedItemSpawned = new GameObject[spawnedItemPossiblePos.Length];
+            if (latestSpawnedItemPossiblePosIndex == -1)
+            {
+                latestSpawnedItemPossiblePosIndex = Random.Range(0, spawnedItemPossiblePos.Length);
+            }
+
+            while (true)
+            {
+                if (spawnedItemSpawned[latestSpawnedItemPossiblePosIndex] == null)
+                {
+                    GameObject chest = Instantiate(treasureChestPrefab, spawnedItemPossiblePos[latestSpawnedItemPossiblePosIndex].position, Quaternion.identity, spawnedItemParent);
+                    spawnedItemSpawned[latestSpawnedItemPossiblePosIndex] = chest;
 
                     ChestContainer chestContainer = chest.GetComponent<ChestContainer>();
                     chestContainer.Initialize(teamType, fragment);
 
-                    treasureChestCount++;
+                    spawnedItemCount++;
 
                     return chestContainer;
                 }
 
-                latestTreasureChestPossiblePosIndex++;
-                latestTreasureChestPossiblePosIndex %= treasureChestPossiblePos.Length;
+                latestSpawnedItemPossiblePosIndex++;
+                latestSpawnedItemPossiblePosIndex %= spawnedItemPossiblePos.Length;
             }
         }
         return null;

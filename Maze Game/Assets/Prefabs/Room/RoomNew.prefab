@@ -250,7 +250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5806714018171336235}
   m_Layer: 0
-  m_Name: TreasuresPossiblePoint
+  m_Name: SpawnedItemPossiblePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -438,15 +438,17 @@ MonoBehaviour:
   rightDoor: {fileID: 4481372721896399263}
   bottomDoor: {fileID: 8020880537453923579}
   leftDoor: {fileID: 4481372722268609546}
-  treasureChestParent: {fileID: 4567047647877059338}
-  treasureChestPrefab: {fileID: 3836950654754379896, guid: c94c3cbf5709e6a4c96a868b92270da9,
-    type: 3}
-  treasureChestPossiblePos:
+  spawnedItemParent: {fileID: 4567047647877059338}
+  spawnedItemPossiblePos:
   - {fileID: 4618601051799312206}
   - {fileID: 3409359021663936372}
   - {fileID: 2228071287639619934}
   - {fileID: 7429417405129824560}
   - {fileID: 1776838757168125139}
+  treasureChestPrefab: {fileID: 3836950654754379896, guid: c94c3cbf5709e6a4c96a868b92270da9,
+    type: 3}
+  weaponOrbPrefab: {fileID: 3775917153467377673, guid: 59ae21e8238d672489529f74ccaf3925,
+    type: 3}
   bossParent: {fileID: 5124675353304063843}
   bossTypePrefab:
   - {fileID: 1870654661280673874, guid: 8976d40eb6cd66d40ba7afae6f2df007, type: 3}
@@ -942,7 +944,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4567047647877059338}
   m_Layer: 0
-  m_Name: TreasuresParent
+  m_Name: SpawnedItemParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1032,7 +1034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5230462483666567626}
   m_Layer: 0
-  m_Name: Treasures
+  m_Name: SpawnedItems
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
