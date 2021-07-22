@@ -34,7 +34,7 @@ public class GateManager : MonoBehaviour
                     gate.OpenGate();
                 }
                 else 
-    */
+                */
                 if (gate.CheckGateIsReadyReordering())
                 {
                     Debug.Log("open game Reordering now!");
