@@ -121,7 +121,7 @@ public class Room : MonoBehaviour
     {
         if (!topDoor.activeSelf)
         {
-            GameObject topGate = Instantiate(mainGatePrefab, topDoor.transform.position, Quaternion.Euler(0, 0, 90), mainGateParent);
+            GameObject topGate = Instantiate(mainGatePrefab, topDoor.transform.position, Quaternion.Euler(0, 0, 90 + 180), mainGateParent);
             Destroy(topDoor);
             topDoor = topGate;
 
@@ -131,7 +131,7 @@ public class Room : MonoBehaviour
 
         if (!rightDoor.activeSelf)
         {
-            GameObject rightGate = Instantiate(mainGatePrefab, rightDoor.transform.position, Quaternion.identity, mainGateParent);
+            GameObject rightGate = Instantiate(mainGatePrefab, rightDoor.transform.position, Quaternion.Euler(0, 0, 0 + 180), mainGateParent);
             Destroy(rightDoor);
             rightDoor = rightGate;
 
@@ -141,7 +141,7 @@ public class Room : MonoBehaviour
 
         if (!bottomDoor.activeSelf)
         {
-            GameObject bottomGate = Instantiate(mainGatePrefab, bottomDoor.transform.position, Quaternion.Euler(0, 0, 90), mainGateParent);
+            GameObject bottomGate = Instantiate(mainGatePrefab, bottomDoor.transform.position, Quaternion.Euler(0, 0, 90 + 180), mainGateParent);
             Destroy(bottomDoor);
             bottomDoor = bottomGate;
 
@@ -151,7 +151,7 @@ public class Room : MonoBehaviour
 
         if (!leftDoor.activeSelf)
         {
-            GameObject leftGate = Instantiate(mainGatePrefab, leftDoor.transform.position, Quaternion.identity, mainGateParent);
+            GameObject leftGate = Instantiate(mainGatePrefab, leftDoor.transform.position, Quaternion.Euler(0, 0, 0 + 180), mainGateParent);
             Destroy(leftDoor);
             leftDoor = leftGate;
 

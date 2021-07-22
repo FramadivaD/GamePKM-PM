@@ -5,7 +5,9 @@ using UnityEngine;
 public class Gate : MonoBehaviour
 {
     Animator gateAnim;
-    private bool open = false;
+
+    [SerializeField] private bool isOpened = false;
+    public bool IsOpened { get { return isOpened; } private set { isOpened = false; } }
 
     [SerializeField] private TeamType _teamType;
     public TeamType teamType { get { return _teamType; } private set { _teamType = value; } }
@@ -18,11 +20,13 @@ public class Gate : MonoBehaviour
     public void Initialize(TeamType teamType)
     {
         this.teamType = teamType;
+        IsOpened = false;
     }
 
     public void OpenGate()
     {
-        open = true;
+        Debug.Log("Opened Gate");
+        IsOpened = true;
         gateAnim.SetBool("isAnswer", true);
     }
 }

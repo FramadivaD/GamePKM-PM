@@ -12,6 +12,15 @@ public class GateManager : MonoBehaviour
 
     public void OpenGate(Gate gate)
     {
-
+        if (gate.teamType == player.teamType)
+        {
+            if (gate != null)
+            {
+                gate.OpenGate();
+            } else
+            {
+                Debug.Log("Inequal Team Type");
+            }
+        }
     }
 }

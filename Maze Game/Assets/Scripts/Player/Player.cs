@@ -187,8 +187,11 @@ public class Player : MonoBehaviour
         if (interactedObject.TryGetComponent(out Gate gate))
         {
             gateManager.OpenGate(gate);
+            if (gate.IsOpened)
+            {
+                OnInteract = null;
+            }
         }
-        OnInteract = null;
     }
 
     #endregion
