@@ -1,3 +1,89 @@
+---------------------------------------- Summary Report -----------------------------------------
+Game System and Mechanic
+[               ] [X] Perbaiki dan maintenance kode yang rusak
+[               ] [X] Sistem Team
+[               ] [ ] Sistem Health
+[               ] [ ] Sistem Player
+[               ] [ ] Sistem Enemy
+[               ] [ ] Sistem Dynamic Interaction
+[               ] [ ] Sistem Inventory
+[               ] [ ] Sistem Weapon
+[               ] [ ] Sistem Main Gate
+[               ] [ ] Sistem Chest
+[               ] [ ] Sistem Question
+[               ] [ ] Sistem Compass (penunjuk arah player ke boss room)
+[               ] [ ] Sistem Room Generator
+[               ] [ ] Sistem Enemy
+[               ] [ ] Sistem Boss Mode
+[               ] [ ] Sistem Flow Game (dari awal gameplay, sampai menang)
+[               ] [ ] Sistem Guru Bikin Soal
+[               ] [ ] Sistem Lobby Main Menu
+[               ] [ ] Sistem Multiplayer
+[               ] [ ] Sistem Online Multiplayer
+[               ] [ ] Sistem Port Android
+[               ] [ ] Sistem Audio Manager
+
+Design
+[               ] [ ] Design - Penataan UI yang sesuai layar dinamis
+
+Audio
+[               ] [ ] Audio - Main Theme
+[               ] [ ] Audio - Gameplay Theme
+[               ] [ ] Audio - Sound Effect
+
+Etc.
+[               ] [ ] Server - Penyiapan Backend
+[               ] [ ] Maintenance dan Revisi sampai project siap
+
+---------------------------------------- Laporan -----------------------------------------
+
+[20/07/2021]
+- Memperbaiki kode - kode yang rusak
+- Memperbaiki kode Health
+- Menambahkan PlayerHealth
+- Memperbaiki kode interaksi buka tutup pertanyaan dari chest
+- Memperbaiki Game Manager
+- Menambahkan Gate Manager untuk mengatur Main Gate
+- Menambahkan Question Manager untuk menjawab jawaban chest
+- Memperbaiki interaksi menjawab pertanyaan dari chest
+- Menambahkan pencocokan jawaban player dengan chest
+- Memperbaiki gerakan Player
+- Memperbaiki UI Button pada Player
+- Memperbaiki UI Button Interact pada Player
+- Memperbaiki UI Health pada Player
+- Menambahkan Data Team Player
+- Memperbaiki Game Manager
+
+[21/07/2021]
+- Menambahkan team data untuk menyimpan data team player.
+- Memisahkan Player dan Joystick
+- Menambahkan Fitur interact event pada Player
+- Membuat kode Room Generator untuk membuat map yang lebih bagus dan random.
+- Membuat kode Room untuk dispawn oleh Generator
+- Menambahkan Fitur penyebaran treasure chest yang berisi pertanyaan di seluruh map.
+
+[22/07/2021] 
+- Memperbaiki Room Generator agar tidak terjadi room yang duplikat di tempat yang sama.
+- Menambahkan Fitur Main Gate Key untuk membuka Main Gate
+- Menambahkan Fitur Main Gate Fragment untuk menyelesaikan pertanyaan Main Gate
+- Menambahkan Fitur Spawn Boss Room untuk masing - masing team.
+- Menambahkan interaksi Player untuk menjawab pertanyaan Main Gate.
+- Menambahkan interaksi Player untuk mengurutkan jawaban dari pertanyaan Main Gate.
+- Menambahkan interaksi Player untuk membuat Main Gate ketika urutan jawaban benar.
+- Membuat sistem Inventory baru untuk menyimpan item.
+- Menambahkan fitur Add item pada Inventory.
+- Menambahkan fitur Equip senjata pada inventory.
+- Sinkronisasi Player, Inventory dan Weapon Manager.
+- Menambahkan sistem menembak peluru dengan Weapon Basoka.
+- Menambahkan sistem cooldown pada Weapon Basoka.
+
+[23/07/2021] 
+- Menambahkan Fitur Drop Item untuk fragment jawaban dan weapon.
+- Menambahkan Fitur penyebaran item weapon di seluruh map.
+- Menambahkan fitur Musuh bisa mati ketika terkena peluru Player.
+
+---------------------------------------- Progress -----------------------------------------
+
 [X] Pahami code saat ini
 [X] Catat kode yang perlu diperbaiki
 
@@ -43,8 +129,11 @@
 [X] Fitur pasang pecahan jawaban per player di main gate
 [X] Fitur UI pasang pecahan jawaban di main gate
 
+[ ] Boss Level Compass
+
 [ ] Mechanic Boss Level
-[ ] Bisa bunuh musuh dan boss
+[X] Bisa bunuh musuh
+[ ] Bisa bunuh boss
 [ ] Fitur menang dan kalah ketika tim yang bunuh boss pertama kali
 
 [ ] Fitur Navigasi Scene dari main menu, lobby, ke gameplay, ke halaman result terus ke main menu lagi
