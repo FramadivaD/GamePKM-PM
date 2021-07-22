@@ -9,7 +9,7 @@
 [X] Fix Room Generator
 [X] Randomize treasure chest di setiap room
 [X] Chest untuk masing - masing tim player
-[ ] Bikin pencegahan kalo jumlah corner room kurang dari jumlah team (karena corner room untuk boss mode)
+[X] Bikin pencegahan kalo jumlah corner room kurang dari jumlah team (karena corner room untuk boss mode)
 
 [X] Interaksi Chest jawaban soal
 [X] Interaksi Chest quit
