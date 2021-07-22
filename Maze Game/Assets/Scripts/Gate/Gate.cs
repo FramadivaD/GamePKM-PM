@@ -7,11 +7,17 @@ public class Gate : MonoBehaviour
     Animator gateAnim;
     private bool open = false;
 
-    public TeamType teamType;
+    [SerializeField] private TeamType _teamType;
+    public TeamType teamType { get { return _teamType; } private set { _teamType = value; } }
     
     void Start()
     {
         gateAnim = GetComponent<Animator>();
+    }
+
+    public void Initialize(TeamType teamType)
+    {
+        this.teamType = teamType;
     }
 
     public void OpenGate()

@@ -119,6 +119,50 @@ public class Room : MonoBehaviour
 
     private void ChangeDoorToMainGate(TeamType teamType)
     {
+        if (!topDoor.activeSelf)
+        {
+            GameObject topGate = Instantiate(mainGatePrefab, topDoor.transform.position, Quaternion.Euler(0, 0, 90), mainGateParent);
+            Destroy(topDoor);
+            topDoor = topGate;
+
+            Gate gate = topGate.GetComponent<Gate>();
+            gate.Initialize(teamType);
+        }
+
+        if (!rightDoor.activeSelf)
+        {
+            GameObject rightGate = Instantiate(mainGatePrefab, rightDoor.transform.position, Quaternion.identity, mainGateParent);
+            Destroy(rightDoor);
+            rightDoor = rightGate;
+
+            Gate gate = rightGate.GetComponent<Gate>();
+            gate.Initialize(teamType);
+        }
+
+        if (!bottomDoor.activeSelf)
+        {
+            GameObject bottomGate = Instantiate(mainGatePrefab, bottomDoor.transform.position, Quaternion.Euler(0, 0, 90), mainGateParent);
+            Destroy(bottomDoor);
+            bottomDoor = bottomGate;
+
+            Gate gate = bottomGate.GetComponent<Gate>();
+            gate.Initialize(teamType);
+        }
+
+        if (!leftDoor.activeSelf)
+        {
+            GameObject leftGate = Instantiate(mainGatePrefab, leftDoor.transform.position, Quaternion.identity, mainGateParent);
+            Destroy(leftDoor);
+            leftDoor = leftGate;
+
+            Gate gate = leftGate.GetComponent<Gate>();
+            gate.Initialize(teamType);
+        }
+    }
+
+    [System.Obsolete()]
+    private void ChangeDoorToMainGateLegacy(TeamType teamType)
+    {
         GameObject topGate = Instantiate(mainGatePrefab, topDoor.transform.position, Quaternion.Euler(0, 0, 90), mainGateParent);
         GameObject rightGate = Instantiate(mainGatePrefab, rightDoor.transform.position, Quaternion.identity, mainGateParent);
         GameObject bottomGate = Instantiate(mainGatePrefab, bottomDoor.transform.position, Quaternion.Euler(0, 0, 90), mainGateParent);
