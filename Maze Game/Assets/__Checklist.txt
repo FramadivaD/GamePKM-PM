@@ -6,13 +6,18 @@
 [X] Perbaiki script kode yang rusak
 [X] Perbaiki script Health untuk Player, Enemy dan Boss
 
-[A] Fix Room Generator
+[X] Fix Room Generator
+[X] Randomize treasure chest di setiap room
+[X] Chest untuk masing - masing tim player
+[ ] Bikin pencegahan kalo jumlah corner room kurang dari jumlah team (karena corner room untuk boss mode)
 
 [X] Interaksi Chest jawaban soal
 [X] Interaksi Chest quit
 [X] Interaksi Chest success
 
 [X] Fix Enemy Movement
+
+[X] Bikin team data di game manager
 
 [ ] Fitur 4 jenis soal, aljabar dan pecahan, bangun datar dan ??
 [X] Fix Bug di ketika leave selesai interaksi dengan chest

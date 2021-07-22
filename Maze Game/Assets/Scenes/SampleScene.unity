@@ -217,7 +217,7 @@ RectTransform:
   - {fileID: 612647019816393145}
   - {fileID: 828393513}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -807,7 +807,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -1234,7 +1234,7 @@ Transform:
   m_Children:
   - {fileID: 776305415}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &624372305
 GameObject:
@@ -2287,7 +2287,7 @@ RectTransform:
   - {fileID: 1619802836}
   - {fileID: 532639373}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3761,36 +3761,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927996437}
   m_CullTransparentMesh: 1
---- !u!1 &1971741264
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1971741265}
-  m_Layer: 0
-  m_Name: Rooms
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1971741265
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1971741264}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2002126183
 GameObject:
   m_ObjectHideFlags: 0
@@ -3935,6 +3905,7 @@ MonoBehaviour:
   roomWalkIteration: 12
   roomPrefab: {fileID: 5138995550937514085, guid: e1b9403ec5c5e7b4d804e2f1adf3e62b,
     type: 3}
+  treasureChestPerTeamCount: 5
 --- !u!4 &2088515436
 Transform:
   m_ObjectHideFlags: 0
@@ -3948,7 +3919,7 @@ Transform:
   m_Children:
   - {fileID: 1008782289}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2143648506
 GameObject:
@@ -4860,6 +4831,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4115678027287425925, guid: eea3f130a4da6dd4ab31bb50f647b007,
         type: 3}
+      propertyPath: roomGenerator
+      value: 
+      objectReference: {fileID: 2088515435}
+    - target: {fileID: 4115678027287425925, guid: eea3f130a4da6dd4ab31bb50f647b007,
+        type: 3}
       propertyPath: treasureSprite
       value: 
       objectReference: {fileID: 21300000, guid: 198c085aa3d16b940a6f2ef4ec00279f,
@@ -5012,7 +4988,8 @@ PrefabInstance:
       propertyPath: inventorySlots.Array.data[5]
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: eea3f130a4da6dd4ab31bb50f647b007, type: 3}
 --- !u!1001 &6117276586263040083
 PrefabInstance:

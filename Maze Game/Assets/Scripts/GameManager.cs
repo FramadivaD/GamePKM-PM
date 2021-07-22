@@ -13,12 +13,24 @@ public class GameManager : MonoBehaviour
     public bool AllowEnemyMove { get; private set; } = true;
     public bool AllowPlayerMove { get; private set; } = true;
 
+    public RoomGenerator roomGenerator;
+
+    private Dictionary<TeamType, TeamData> playerTeam;
+    private List<Player> players;
+
+    private void Awake()
+    {
+        roomGenerator.RandomizeMap();
+    }
+
     private void Start()
     {
         Instance = this;
 
         AllowEntityMove = false;
         player.login.OnSubmitNameSuccess += EnableAllEntitiesMovement;
+
+        RegisterPlayer();
     }
 
     private void OnDestroy()
@@ -29,5 +41,25 @@ public class GameManager : MonoBehaviour
     public void EnableAllEntitiesMovement(string str)
     {
         AllowEntityMove = true;
+    }
+
+    public void RegisterPlayer()
+    {
+        // Make playerTeam
+        if (playerTeam == null) playerTeam = new Dictionary<TeamType, TeamData>();
+
+        if (playerTeam.TryGetValue(player.teamType, out TeamData teamData))
+        {
+            teamData.AddPlayer(player);
+        } else
+        {
+            TeamData newTeamData = new TeamData(player.teamType);
+            newTeamData.AddPlayer(player);
+            playerTeam[player.teamType] = newTeamData;
+        }
+
+        // make players
+        if (players == null) players = new List<Player>();
+        players.Add(player);
     }
 }

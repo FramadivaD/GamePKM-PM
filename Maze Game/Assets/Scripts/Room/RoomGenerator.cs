@@ -8,7 +8,9 @@ public class RoomGenerator : MonoBehaviour
     bool[,] roomMap;
     Room[,] roomMapRoom;
 
+    private List<Room> allRoom;
     private List<Room> cornerRoom;
+    private List<Room> notCornerRoom;
 
     public Vector2 roomWidthHeight = new Vector2(16, 10);
 
@@ -19,12 +21,10 @@ public class RoomGenerator : MonoBehaviour
     [Header("Configuration")]
     public Room roomPrefab;
 
-    private void Start()
-    {
-        RandomizeMap();
-    }
+    [Header("Treasure Chest")]
+    public int treasureChestPerTeamCount = 5;
 
-    private void RandomizeMap()
+    public void RandomizeMap()
     {
         // kalo genap, jadikan ganjil
         if (roomSize % 2 == 0) roomSize += 1;
@@ -37,13 +37,20 @@ public class RoomGenerator : MonoBehaviour
 
         roomMap[midPoint, midPoint] = true;
 
+        // Generate Array boolean to make path
         DrawMap(midPoint - 1, midPoint, roomWalkIteration);
         DrawMap(midPoint + 1, midPoint, roomWalkIteration);
         DrawMap(midPoint, midPoint - 1, roomWalkIteration);
         DrawMap(midPoint, midPoint + 1, roomWalkIteration);
 
+        // Instantiate Room
         BuildMap();
+
+        // Find outer room with 3 closed door
         FindAllCornerRoom();
+
+        // Spawn Random Treasure
+        SpawnTreasures();
     }
 
     private void DrawMap(int x, int y, int iter)
@@ -70,6 +77,10 @@ public class RoomGenerator : MonoBehaviour
 
     private void BuildMap()
     {
+        // make collection
+        if (allRoom == null) allRoom = new List<Room>();
+        allRoom.Clear();
+
         // y pos
         for (int y = 0;y < roomSize; y++)
         {
@@ -78,13 +89,16 @@ public class RoomGenerator : MonoBehaviour
             {
                 if (roomMap[y, x])
                 {
-                    Room room = Instantiate(roomPrefab.gameObject, GetRoomPos(x, y), Quaternion.identity).GetComponent<Room>();
+                    Room room = Instantiate(roomPrefab.gameObject, GetRoomPos(x, y), Quaternion.identity, transform).GetComponent<Room>();
 
-                    // pintu nyala kalo false
+                    // save room in collections
                     roomMapRoom[y, x] = room;
+                    allRoom.Add(room);
 
+                    // awalnya pintu locked semua
                     room.Initialize();
 
+                    // tapi nanti dinyalain satu persatu
                     if (y - 1 >= 0 && roomMap[y - 1, x])
                     {
                         roomMapRoom[y - 1, x].OpenTopDoor();
@@ -102,7 +116,12 @@ public class RoomGenerator : MonoBehaviour
 
     private void FindAllCornerRoom()
     {
-        cornerRoom = new List<Room>();
+        if (cornerRoom == null) cornerRoom = new List<Room>();
+        cornerRoom.Clear();
+
+        if (notCornerRoom == null) notCornerRoom = new List<Room>();
+        notCornerRoom.Clear();
+
         // y pos
         for (int y = 0; y < roomSize; y++)
         {
@@ -111,9 +130,12 @@ public class RoomGenerator : MonoBehaviour
             {
                 if (roomMap[y, x])
                 {
-                    if (roomMapRoom[y, x].GetUnlockedDoorCount() == 3)
+                    if (roomMapRoom[y, x].GetUnlockedDoorCount() >= 3)
                     {
                         cornerRoom.Add(roomMapRoom[y, x]);
+                    } else
+                    {
+                        notCornerRoom.Add(roomMapRoom[y, x]);
                     }
                 }
             }
@@ -126,5 +148,30 @@ public class RoomGenerator : MonoBehaviour
         Vector2 origin = Vector2.zero;
 
         return origin + new Vector2(roomWidthHeight.x * (x - midPoint), roomWidthHeight.y * (y - midPoint));
+    }
+
+    private void SpawnTreasures()
+    {
+        int teamNumber = TeamHelper.GetTeamCount();
+        for (int i = 0;i < teamNumber; i++)
+        {
+            for (int j = 0; j < treasureChestPerTeamCount; j++)
+            {
+                int ind = Random.Range(0, notCornerRoom.Count);
+                Room selectedRoom = notCornerRoom[ind];
+                if (selectedRoom)
+                {
+                    // limit biar gak infinite
+                    for (int k = 0; k < 10; k++)
+                    {
+                        ChestContainer chest = selectedRoom.SpawnTreasureChest(TeamHelper.TeamTypes[i]);
+                        if (chest)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

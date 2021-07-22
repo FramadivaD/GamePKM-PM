@@ -8,6 +8,16 @@ public class Room : MonoBehaviour
     [SerializeField] private GameObject bottomDoor;
     [SerializeField] private GameObject leftDoor;
 
+    [Header("Chest Treasure Config")]
+    [SerializeField] private Transform treasureChestParent;
+    [SerializeField] private GameObject treasureChestPrefab;
+
+    [SerializeField] private Transform[] treasureChestPossiblePos;
+    private GameObject[] treasureChestSpawned;
+
+    private int latestTreasureChestPossiblePosIndex = -1;
+    private int treasureChestCount = 0;
+
     public void Initialize()
     {
         topDoor.SetActive(true);
@@ -46,5 +56,37 @@ public class Room : MonoBehaviour
 
         return val;
 
+    }
+
+    public ChestContainer SpawnTreasureChest(TeamType teamType)
+    {
+        if (treasureChestCount < treasureChestPossiblePos.Length)
+        {
+            if (treasureChestSpawned == null) treasureChestSpawned = new GameObject[treasureChestPossiblePos.Length];
+            if (latestTreasureChestPossiblePosIndex == -1)
+            {
+                latestTreasureChestPossiblePosIndex = Random.Range(0, treasureChestPossiblePos.Length);
+            }
+
+            while (true)
+            {
+                if (treasureChestSpawned[latestTreasureChestPossiblePosIndex] == null)
+                {
+                    GameObject chest = Instantiate(treasureChestPrefab, treasureChestPossiblePos[latestTreasureChestPossiblePosIndex].position, Quaternion.identity, treasureChestParent);
+                    treasureChestSpawned[latestTreasureChestPossiblePosIndex] = chest;
+
+                    ChestContainer chestContainer = chest.GetComponent<ChestContainer>();
+                    chestContainer.Initialize(teamType);
+
+                    treasureChestCount++;
+
+                    return chestContainer;
+                }
+
+                latestTreasureChestPossiblePosIndex++;
+                latestTreasureChestPossiblePosIndex %= treasureChestPossiblePos.Length;
+            }
+        }
+        return null;
     }
 }

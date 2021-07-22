@@ -21,6 +21,17 @@ public static class TeamHelper
         new Color(0, 0, 255) // Blue
     };
 
+    public static readonly TeamType[] TeamTypes =
+    {
+        TeamType.Red,
+        TeamType.Blue
+    };
+
+    public static int GetTeamCount()
+    {
+        return TeamColor.Length;
+    }
+
     public static Color GetColorTeam(TeamType teamType)
     {
         return TeamColor[(int) teamType];
