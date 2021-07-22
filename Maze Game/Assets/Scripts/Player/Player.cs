@@ -81,6 +81,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         AnimationController();
+        ExecuteEquippedItem();
     }
 
     private void Die()
@@ -252,6 +253,9 @@ public class Player : MonoBehaviour
                 WeaponInventory weapon = EquippedItem as WeaponInventory;
                 weaponManager.ExecuteWeapon(weapon);
             }
+        } else
+        {
+            weaponManager.ExecuteWeapon(null);
         }
     }
 

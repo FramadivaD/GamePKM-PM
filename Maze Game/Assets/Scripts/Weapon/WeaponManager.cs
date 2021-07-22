@@ -16,23 +16,30 @@ public class WeaponManager : MonoBehaviour
     public void Initialize(Player player)
     {
         this.player = player;
+
+        RefreshGraphic(null);
     }
 
     public void ExecuteWeapon(WeaponInventory weapon)
     {
+        RefreshGraphic(weapon);
+
         if (weapon != null)
         {
-            if (weapon.weaponType == WeaponType.None)
+            if (Input.GetMouseButton(0)) {
+                if (weapon.weaponType == WeaponType.None)
+                {
+                    // gak ngapa ngapain
+                }
+                else if (weapon.weaponType == WeaponType.Basoka)
+                {
+                    // some logic
+                    AimWeapon();
+                    FireWeapon(weapon);
+                }
+            } else
             {
-                weaponGraphic.sprite = null;
-                // gak ngapa ngapain
-            }
-            else if (weapon.weaponType == WeaponType.Basoka)
-            {
-                // some logic
-                weaponGraphic.sprite = weaponSprites[0];
-                AimWeapon();
-                FireWeapon(weapon);
+                RefreshGraphic(null);
             }
         }
     }
@@ -40,7 +47,12 @@ public class WeaponManager : MonoBehaviour
     private void AimWeapon()
     {
         Vector3 aimPos = playerCamera.ScreenToWorldPoint(Input.mousePosition);
-        weaponControl.LookAt(aimPos);
+
+        Vector3 direction = aimPos - transform.position;
+        float rotationZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(0, 0, rotationZ);
+
+        weaponControl.rotation = rotation;
     }
 
     private void FireWeapon(WeaponInventory weapon)
@@ -48,6 +60,18 @@ public class WeaponManager : MonoBehaviour
         if (weapon.weaponType == WeaponType.Basoka)
         {
 
+        }
+    }
+
+    private void RefreshGraphic(WeaponInventory weapon)
+    {
+        if (weapon != null)
+        {
+            if (weapon.weaponType == WeaponType.None) weaponGraphic.sprite = null;
+            else if (weapon.weaponType == WeaponType.Basoka) weaponGraphic.sprite = weaponSprites[0];
+        } else
+        {
+            weaponGraphic.sprite = null;
         }
     }
 }
