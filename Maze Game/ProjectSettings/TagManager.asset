@@ -18,6 +18,7 @@ TagManager:
   - soal
   - WeaponOrb
   - PlayerProjectile
+  - FragmentOrb
   layers:
   - Default
   - TransparentFX

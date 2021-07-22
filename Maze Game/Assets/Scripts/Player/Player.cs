@@ -150,7 +150,14 @@ public class Player : MonoBehaviour
         {
             interactableButton.interactable = true;
             OnInteract = () => {
-                TakeWeapon(other.gameObject);
+                TakeWeaponOrb(other.gameObject);
+            };
+        }
+        else if (other.tag == "FragmentOrb")
+        {
+            interactableButton.interactable = true;
+            OnInteract = () => {
+                TakeFragmentOrb(other.gameObject);
             };
         }
         else if (other.tag == "damage")
@@ -181,6 +188,11 @@ public class Player : MonoBehaviour
             OnInteract = null;
         }
         else if (other.tag == "WeaponOrb")
+        {
+            interactableButton.interactable = false;
+            OnInteract = null;
+        }
+        else if (other.tag == "FragmentOrb")
         {
             interactableButton.interactable = false;
             OnInteract = null;
@@ -216,12 +228,24 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void TakeWeapon(GameObject interactedObject)
+    private void TakeWeaponOrb(GameObject interactedObject)
     {
         if (interactedObject.TryGetComponent(out WeaponOrb orb))
         {
             WeaponInventory weapon = orb.TakeWeapon(this);
             if (weapon != null)
+            {
+                OnInteract = null;
+            }
+        }
+    }
+
+    private void TakeFragmentOrb(GameObject interactedObject)
+    {
+        if (interactedObject.TryGetComponent(out MainGateFragmentOrb orb))
+        {
+            MainGateFragment fragment = orb.TakeFragment(this);
+            if (fragment != null)
             {
                 OnInteract = null;
             }

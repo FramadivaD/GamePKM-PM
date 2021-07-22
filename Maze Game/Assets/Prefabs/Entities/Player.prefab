@@ -666,6 +666,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8d0d9cb7087072a4ba45b2cf8c16dbac, type: 3}
   - {fileID: -5627257445014038000, guid: b1a54579d7bded44e913ab406736a650, type: 3}
   inventorySelectedItemCursor: {fileID: 0}
+  dropButton: {fileID: 0}
+  inventoryOrbPrefabs:
+  - {fileID: 8184859681172700516, guid: 10c47e156b8abad4d9983cf04c79ebe1, type: 3}
+  - {fileID: 3775917153467377673, guid: 59ae21e8238d672489529f74ccaf3925, type: 3}
 --- !u!114 &4593806189981459242
 MonoBehaviour:
   m_ObjectHideFlags: 0

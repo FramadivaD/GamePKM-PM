@@ -21,6 +21,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private Image inventorySelectedItemCursor;
     [SerializeField] private Button dropButton;
 
+    [SerializeField] private List<GameObject> inventoryOrbPrefabs;
+
     public bool IsFull
     {
         get
@@ -80,6 +82,8 @@ public class InventoryManager : MonoBehaviour
 
                 RefreshImageUI();
                 RefreshSelectionCursor(-1);
+
+                SpawnDroppedItem(item);
 
                 return temp;
             }
@@ -168,6 +172,30 @@ public class InventoryManager : MonoBehaviour
         {
             inventorySelectedItemCursor.enabled = false;
             dropButton.interactable = false;
+        }
+    }
+
+    private void SpawnDroppedItem(IInventoryAble item)
+    {
+        if (item != null) {
+            if (item is MainGateFragment)
+            {
+                MainGateFragment fragment = item as MainGateFragment;
+
+                GameObject ne = Instantiate(inventoryOrbPrefabs[0], player.transform.position, Quaternion.identity);
+                MainGateFragmentOrb orb = ne.GetComponent<MainGateFragmentOrb>();
+                orb.Initialize(fragment);
+
+            } else if (item is WeaponInventory)
+            {
+                WeaponInventory weapon = item as WeaponInventory;
+                if (weapon.weaponType == WeaponType.Basoka)
+                {
+                    GameObject ne = Instantiate(inventoryOrbPrefabs[1], player.transform.position, Quaternion.identity);
+                    WeaponOrb orb = ne.GetComponent<WeaponOrb>();
+                    orb.Initialize(weapon);
+                }
+            }
         }
     }
 }

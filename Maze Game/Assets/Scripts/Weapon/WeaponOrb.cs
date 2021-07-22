@@ -7,6 +7,11 @@ public class WeaponOrb : MonoBehaviour
 
     public WeaponInventory Weapon { get { return weapon; } }
 
+    public void Initialize(WeaponInventory weapon)
+    {
+        this.weapon = weapon;
+    }
+
     public WeaponInventory TakeWeapon(Player player)
     {
         if (!player.inventoryManager.IsFull)
