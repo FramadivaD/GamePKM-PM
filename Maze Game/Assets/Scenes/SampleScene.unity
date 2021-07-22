@@ -3707,7 +3707,6 @@ MonoBehaviour:
   roomWalkIteration: 12
   roomPrefab: {fileID: 5138995550937514085, guid: e1b9403ec5c5e7b4d804e2f1adf3e62b,
     type: 3}
-  treasureChestPerTeamCount: 5
 --- !u!4 &2088515436
 Transform:
   m_ObjectHideFlags: 0
@@ -4543,41 +4542,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4115678027287425925, guid: eea3f130a4da6dd4ab31bb50f647b007,
         type: 3}
-      propertyPath: login
-      value: 
-      objectReference: {fileID: 828393512}
-    - target: {fileID: 4115678027287425925, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 103842816}
-    - target: {fileID: 4115678027287425925, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 839668590}
     - target: {fileID: 4115678027287425925, guid: eea3f130a4da6dd4ab31bb50f647b007,
         type: 3}
-      propertyPath: Allowed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4115678027287425925, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
       propertyPath: roomGenerator
       value: 
       objectReference: {fileID: 2088515435}
-    - target: {fileID: 4115678027287425925, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: treasureSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 198c085aa3d16b940a6f2ef4ec00279f,
-        type: 3}
-    - target: {fileID: 4115678027287425925, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: soal2.Array.data[0]
-      value: 
-      objectReference: {fileID: 612647019840947201, guid: d14202dbc00743f42b3e14da1be1430d,
-        type: 3}
     - target: {fileID: 4115678027287425930, guid: eea3f130a4da6dd4ab31bb50f647b007,
         type: 3}
       propertyPath: m_RootOrder
@@ -4638,90 +4610,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: itemButton
-      value: 
-      objectReference: {fileID: 2064496863215187852, guid: c81d0cefd41529c46bcb5ef74846952c,
-        type: 3}
-    - target: {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: healthPoint
-      value: 
-      objectReference: {fileID: 4141237462199818951, guid: 418ce6e1dfba9474591a39e4ccf45581,
-        type: 3}
-    - target: {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: isFull.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: healthFull.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: healthImage.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: healthSlots.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: healthSlots.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: healthSlots.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: healthSlots.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: inventorySlots.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: inventorySlots.Array.data[0]
-      value: 
-      objectReference: {fileID: 1424563792}
-    - target: {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: inventorySlots.Array.data[1]
-      value: 
-      objectReference: {fileID: 1594244657}
-    - target: {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: inventorySlots.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: inventorySlots.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: inventorySlots.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007,
-        type: 3}
-      propertyPath: inventorySlots.Array.data[5]
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6228766882156087763, guid: eea3f130a4da6dd4ab31bb50f647b007, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eea3f130a4da6dd4ab31bb50f647b007, type: 3}
 --- !u!1001 &6117276586263040083
 PrefabInstance:

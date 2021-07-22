@@ -5,6 +5,7 @@ public class TeamData
 {
     public TeamType teamType { get; private set; }
     private readonly List<Player> players;
+    public MainGateKey FragmentsKey { get; }
 
     public int PlayersCount
     {
@@ -14,10 +15,12 @@ public class TeamData
         }
     }
 
-    public TeamData(TeamType teamType)
+    public TeamData(TeamType teamType, MainGateKey fragmentsKey)
     {
-        this.teamType = teamType;
         players = new List<Player>();
+        this.FragmentsKey = fragmentsKey;
+
+        this.teamType = teamType;
     }
 
     public void AddPlayer(Player player)

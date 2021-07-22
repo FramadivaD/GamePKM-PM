@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class RoomGenerator : MonoBehaviour
 {
-
     [Header("Settings")]
     bool[,] roomMap;
     Room[,] roomMapRoom;
@@ -24,9 +23,6 @@ public class RoomGenerator : MonoBehaviour
 
     [Header("Configuration")]
     public Room roomPrefab;
-
-    [Header("Treasure Chest")]
-    public int treasureChestPerTeamCount = 5;
 
     private void Update()
     {
@@ -275,22 +271,29 @@ public class RoomGenerator : MonoBehaviour
     private void SpawnTreasures()
     {
         int teamNumber = TeamHelper.GetTeamCount();
+
         for (int i = 0;i < teamNumber; i++)
         {
-            for (int j = 0; j < treasureChestPerTeamCount; j++)
-            {
-                int ind = Random.Range(0, notCornerRoom.Count);
-                if (ind < notCornerRoom.Count) {
-                    Room selectedRoom = notCornerRoom[ind];
-                    if (selectedRoom)
-                    {
-                        // limit biar gak infinite
-                        for (int k = 0; k < 10; k++)
+            // Team is Exist
+            if (GameManager.PlayersTeam.TryGetValue(TeamHelper.TeamTypes[i], out TeamData teamData)) {
+                MainGateKey key = teamData.FragmentsKey;
+                int chestTreasureCount = key.fragments.Count;
+
+                for (int j = 0; j < chestTreasureCount; j++)
+                {
+                    int ind = Random.Range(0, notCornerRoom.Count);
+                    if (ind < notCornerRoom.Count) {
+                        Room selectedRoom = notCornerRoom[ind];
+                        if (selectedRoom)
                         {
-                            ChestContainer chest = selectedRoom.SpawnTreasureChest(TeamHelper.TeamTypes[i]);
-                            if (chest)
+                            // limit biar gak infinite
+                            for (int k = 0; k < 10; k++)
                             {
-                                break;
+                                ChestContainer chest = selectedRoom.SpawnTreasureChest(TeamHelper.TeamTypes[i], key.fragments[j]);
+                                if (chest)
+                                {
+                                    break;
+                                }
                             }
                         }
                     }

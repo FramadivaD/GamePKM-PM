@@ -5,6 +5,7 @@ public class ChestContainer : MonoBehaviour
 {
     public Question question;
     public TeamType teamType;
+    public MainGateFragment fragmentKey;
 
     public GameObject unlockedGraphic;
     public GameObject lockedGraphic;
@@ -24,22 +25,21 @@ public class ChestContainer : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        Initialize(teamType);
-    }
+    public bool IsFragmentTaken { get; private set; }
 
     public void Initialize()
     {
         IsUnlocked = false;
+        IsFragmentTaken = false;
 
         this.question = new Question();
     }
 
-    public void Initialize(TeamType teamType)
+    public void Initialize(TeamType teamType, MainGateFragment fragment)
     {
         Initialize();
         this.teamType = teamType;
+        this.fragmentKey = fragment;
     }
 
     public bool CheckAnswer(string answer)
@@ -55,5 +55,31 @@ public class ChestContainer : MonoBehaviour
     public void UnlockChest()
     {
         IsUnlocked = true;
+    }
+
+    public MainGateFragment TryTakeFragmentKey(Player player)
+    {
+        if (!IsFragmentTaken)
+        {
+            if (fragmentKey != null)
+            {
+                if (player.teamType == teamType)
+                {
+                    // check inventory dulu harunya
+                    // player.inventory.Add(fragmentKey)
+                    fragmentKey = null;
+
+                    IsFragmentTaken = true;
+                }
+                else
+                {
+                    Debug.Log("Must be taken by other team.");
+                }
+            }
+        } else
+        {
+            Debug.Log("Fragment key has been taken.");
+        }
+        return null;
     }
 }

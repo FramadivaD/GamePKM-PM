@@ -71,7 +71,7 @@ public class Room : MonoBehaviour
 
     }
 
-    public ChestContainer SpawnTreasureChest(TeamType teamType)
+    public ChestContainer SpawnTreasureChest(TeamType teamType, MainGateFragment fragment)
     {
         if (treasureChestCount < treasureChestPossiblePos.Length)
         {
@@ -89,7 +89,7 @@ public class Room : MonoBehaviour
                     treasureChestSpawned[latestTreasureChestPossiblePosIndex] = chest;
 
                     ChestContainer chestContainer = chest.GetComponent<ChestContainer>();
-                    chestContainer.Initialize(teamType);
+                    chestContainer.Initialize(teamType, fragment);
 
                     treasureChestCount++;
 

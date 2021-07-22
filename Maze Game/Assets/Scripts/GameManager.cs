@@ -15,12 +15,16 @@ public class GameManager : MonoBehaviour
 
     public RoomGenerator roomGenerator;
 
-    private Dictionary<TeamType, TeamData> playerTeam;
+    public static Dictionary<TeamType, TeamData> PlayersTeam { get; private set; }
     private List<Player> players;
+    [SerializeField] private List<MainGateKey> fragmentsKey; //ada 2, sesuai dengan jumlah tim
 
     private void Awake()
     {
-        roomGenerator.RandomizeMap();
+        PlayersTeam = new Dictionary<TeamType, TeamData>();
+
+        RegisterTeam();
+        RegisterPlayer();
     }
 
     private void Start()
@@ -30,7 +34,7 @@ public class GameManager : MonoBehaviour
         AllowEntityMove = false;
         player.login.OnSubmitNameSuccess += EnableAllEntitiesMovement;
 
-        RegisterPlayer();
+        roomGenerator.RandomizeMap();
     }
 
     private void OnDestroy()
@@ -43,19 +47,23 @@ public class GameManager : MonoBehaviour
         AllowEntityMove = true;
     }
 
-    public void RegisterPlayer()
+    private void RegisterTeam()
     {
-        // Make playerTeam
-        if (playerTeam == null) playerTeam = new Dictionary<TeamType, TeamData>();
+        if (PlayersTeam == null) PlayersTeam = new Dictionary<TeamType, TeamData>();
 
-        if (playerTeam.TryGetValue(player.teamType, out TeamData teamData))
+        if (!PlayersTeam.ContainsKey(player.teamType)) {
+            MainGateKey key = fragmentsKey[(int)player.teamType];
+
+            TeamData newTeamData = new TeamData(player.teamType, key);
+            PlayersTeam[player.teamType] = newTeamData;
+        }
+    }
+
+    private void RegisterPlayer()
+    {
+        if (PlayersTeam.TryGetValue(player.teamType, out TeamData teamData))
         {
             teamData.AddPlayer(player);
-        } else
-        {
-            TeamData newTeamData = new TeamData(player.teamType);
-            newTeamData.AddPlayer(player);
-            playerTeam[player.teamType] = newTeamData;
         }
 
         // make players
