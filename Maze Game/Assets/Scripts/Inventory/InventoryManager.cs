@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public interface IInventoryAble
 {
@@ -10,7 +11,10 @@ public interface IInventoryAble
 public class InventoryManager : MonoBehaviour
 {
     public int maximumSlot = 2;
-    public IInventoryAble[] inventory;
+    public IInventoryAble[] inventory { get; private set; }
+
+    public List<Image> inventoryImage;
+    public List<Sprite> inventoryImageSprite;
 
     public bool IsFull
     {
@@ -55,6 +59,25 @@ public class InventoryManager : MonoBehaviour
             {
                 inventory[i] = null;
                 return item;
+            }
+        }
+        return null;
+    }
+
+    private void RefreshImageUI()
+    {
+        for (int i = 0; i < inventoryImage.Count && i < inventory.Length; i++)
+        {
+            inventoryImage[i].sprite = GetImageSprite(inventory[i]);
+        }
+    }
+
+    private Sprite GetImageSprite(IInventoryAble item)
+    {
+        if (item != null) {
+            if (item is MainGateFragment)
+            {
+                return inventoryImageSprite[0];
             }
         }
         return null;
