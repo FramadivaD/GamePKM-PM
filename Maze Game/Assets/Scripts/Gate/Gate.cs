@@ -15,7 +15,7 @@ public class Gate : MonoBehaviour
     [SerializeField] private MainGateKey mainKey;
     public MainGateKey MainKey { get { return mainKey; } private set { mainKey = value; } }
 
-    private List<MainGateFragment> collectedFragment = new List<MainGateFragment>();
+    public List<MainGateFragment> CollectedFragment { get; private set; } = new List<MainGateFragment>();
 
     void Start()
     {
@@ -46,7 +46,7 @@ public class Gate : MonoBehaviour
 
                     if (fragment.MainKey == mainKey)
                     {
-                        collectedFragment.Add(inventory.RemoveItem(fragment) as MainGateFragment);
+                        CollectedFragment.Add(inventory.RemoveItem(fragment) as MainGateFragment);
 
                         Debug.Log("Fragment Stored : " + fragment.Key);
                         PlayCollectAnimation();
@@ -65,7 +65,7 @@ public class Gate : MonoBehaviour
 
         for (int i = 0; i < mainKey.Fragments.Count; i++)
         {
-            if (collectedFragment[i] != mainKey.Fragments[i])
+            if (CollectedFragment[i] != mainKey.Fragments[i])
             {
                 return false;
             }
@@ -76,7 +76,12 @@ public class Gate : MonoBehaviour
 
     public bool CheckGateIsReadyReordering()
     {
-        return collectedFragment.Count == mainKey.Fragments.Count;
+        return CollectedFragment.Count == mainKey.Fragments.Count;
+    }
+
+    public void SetCollectedFragment(List<MainGateFragment> orderedFragments)
+    {
+        CollectedFragment = new List<MainGateFragment>(orderedFragments);
     }
 
     public void OpenGate()

@@ -74,7 +74,12 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < inventoryImage.Count && i < inventory.Length; i++)
         {
-            inventoryImage[i].sprite = GetImageSprite(inventory[i]);
+            Sprite image = GetImageSprite(inventory[i]);
+            if (image) {
+                inventoryImage[i].sprite = image;
+            } else {
+                inventoryImage[i].enabled = false;
+            }
         }
     }
 

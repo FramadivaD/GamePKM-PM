@@ -478,6 +478,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef04b3a842277744a862618b2f92e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questionContainer: {fileID: 0}
+  questionImage: {fileID: 0}
+  answerContainerParent: {fileID: 0}
+  answerImagePrefab: {fileID: 7518004546903871480, guid: 2ae7ce19de6860f45b876fda14e7463e,
+    type: 3}
 --- !u!114 &839668587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,6 +511,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximumSlot: 2
+  inventoryImage:
+  - {fileID: 0}
+  - {fileID: 0}
+  inventoryImageSprite:
+  - {fileID: 21300000, guid: 8d0d9cb7087072a4ba45b2cf8c16dbac, type: 3}
 --- !u!1 &6117276585659172069
 GameObject:
   m_ObjectHideFlags: 0

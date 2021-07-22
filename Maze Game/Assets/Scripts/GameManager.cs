@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         MainGateKey redTeamKey = new MainGateKey(player.teamType);
         redTeamKey.AddFragment(new MainGateFragment(redTeamKey, "red_01", "Kucing"));
         redTeamKey.AddFragment(new MainGateFragment(redTeamKey, "red_02", "Sapi"));
-        redTeamKey.AddFragment(new MainGateFragment(redTeamKey, "red_03", "Kuda"));
+        //redTeamKey.AddFragment(new MainGateFragment(redTeamKey, "red_03", "Kuda"));
         fragmentsKey.Add(redTeamKey);
     }
 }

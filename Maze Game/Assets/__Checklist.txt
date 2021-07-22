@@ -21,7 +21,7 @@
 
 [ ] Fitur 4 jenis soal, aljabar dan pecahan, bangun datar dan ??
 [X] Fix Bug di ketika leave selesai interaksi dengan chest
-[ ] Fix Bug musuh berhenti ketika interaksi dengan chest
+[X] Fix Bug musuh berhenti ketika interaksi dengan chest
 
 [ ] Mechanic nyari senjata di level, ngambil senjata dan ganti senjata
 
@@ -33,7 +33,7 @@
 [X] Ada 2 tim, jadi main gate ada 2 (tim merah, tim biru), pemain ada 8 - 10, masing tim 4 orang
 [X] Fitur buka Main Gate
 [X] ketika pecahan jawaban kekumpul, nanti dipasang di main gate
-[ ] Fitur pasang pecahan jawaban per player di main gate
+[X] Fitur pasang pecahan jawaban per player di main gate
 [ ] Fitur UI pasang pecahan jawaban di main gate
 
 [ ] Mechanic Boss Level
