@@ -23,10 +23,15 @@
 [X] Fix Bug di ketika leave selesai interaksi dengan chest
 [X] Fix Bug musuh berhenti ketika interaksi dengan chest
 
-[ ] Mechanic nyari senjata di level, ngambil senjata dan ganti senjata
+[X] Mechanic nyari senjata di level
+[X] Mechanic ngambil senjata
+[ ] Mechanic ganti senjata
 
 [ ] Mechanic item scattered di level
-[ ] Mechanic inventory ngambil senjata
+[X] Mechanic inventory ngambil senjata
+[X] Mechanic inventory equip item
+[X] Mechanic inventory change item
+[ ] Mechanic inventory drop item
 [ ] Mechanic nembak Senjata
 [ ] Peluru senjata infinite
 [ ] Mechanic Healthbar Enemy

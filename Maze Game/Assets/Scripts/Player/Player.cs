@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private string playerName = "Player";
 
-    [SerializeField] private WeaponType currentWeapon = WeaponType.None;
+    public IInventoryAble EquippedItem { get; private set; }
 
     public string PlayerName
     {
@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
 
         questionManager.Initialize(this);
         gateManager.Initialize(this);
+        inventoryManager.Initialize(this);
 
         SubscribeEvents();
     }
@@ -218,8 +219,43 @@ public class Player : MonoBehaviour
             WeaponInventory weapon = orb.TakeWeapon(this);
             if (weapon != null)
             {
-                currentWeapon = weapon.weaponType;
+                EquippedItem = weapon;
                 OnInteract = null;
+            }
+        }
+    }
+
+    public void EquipItem(IInventoryAble item)
+    {
+        if (item != null)
+        {
+            EquippedItem = item;
+        }
+    }
+
+    public void DropItem()
+    {
+        if (EquippedItem != null)
+        {
+            inventoryManager.DropItem(EquippedItem);
+        }
+    }
+
+    public void ExecuteEquippedItem()
+    {
+        if (EquippedItem != null)
+        {
+            if (EquippedItem is WeaponInventory)
+            {
+                WeaponInventory weapon = EquippedItem as WeaponInventory;
+                if (weapon.weaponType == WeaponType.None)
+                {
+                    // gak ngapa ngapain
+                }
+                else if (weapon.weaponType == WeaponType.Basoka)
+                {
+                    // some logic
+                }
             }
         }
     }

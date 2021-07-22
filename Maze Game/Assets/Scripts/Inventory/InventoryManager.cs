@@ -10,11 +10,15 @@ public interface IInventoryAble
 
 public class InventoryManager : MonoBehaviour
 {
-    public int maximumSlot = 2;
+    private Player player;
+
+    [SerializeField] private int maximumSlot = 2;
     public IInventoryAble[] inventory { get; private set; }
 
-    public List<Image> inventoryImage;
-    public List<Sprite> inventoryImageSprite;
+    [SerializeField] private List<Button> inventoryButton;
+    [SerializeField] private List<Sprite> inventoryImageSprite;
+
+    [SerializeField] private Image inventorySelectedItemCursor;
 
     public bool IsFull
     {
@@ -31,10 +35,55 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void Start()
+    public void Initialize(Player player)
     {
+        this.player = player;
+
         inventory = new IInventoryAble[maximumSlot];
+
+        for (int i = 0; i < inventoryButton.Count; i++)
+        {
+            int id = i;
+            Debug.Log("Register Slot : " + id);
+            inventoryButton[i].onClick.AddListener(() => { SelectItemOnIndex(id); });
+        }
+
         RefreshImageUI();
+    }
+
+    public void SelectItemOnIndex(int id)
+    {
+        Debug.Log("Try select item on index : " + id);
+        if (inventory[id] != null)
+        {
+            player.EquipItem(inventory[id]);
+            RefreshImageUI();
+
+            inventorySelectedItemCursor.enabled = true;
+            inventorySelectedItemCursor.rectTransform.position = inventoryButton[id].image.rectTransform.position;
+
+            Debug.Log("Item selected");
+        } else
+        {
+            Debug.Log("No item in this slot");
+        }
+    }
+
+    public IInventoryAble DropItem(IInventoryAble item)
+    {
+        for (int i = 0; i < inventory.Length; i++)
+        {
+            if (inventory[i] == item)
+            {
+                IInventoryAble temp = inventory[i];
+                inventory[i] = null;
+
+                RefreshImageUI();
+
+                return temp;
+            }
+        }
+        return null;
     }
 
     public bool AddItem(IInventoryAble item)
@@ -72,14 +121,18 @@ public class InventoryManager : MonoBehaviour
 
     private void RefreshImageUI()
     {
-        for (int i = 0; i < inventoryImage.Count && i < inventory.Length; i++)
+        inventorySelectedItemCursor.enabled = false;
+
+        for (int i = 0; i < inventoryButton.Count && i < inventory.Length; i++)
         {
             Sprite image = GetImageSprite(inventory[i]);
             if (inventory[i] != null) {
-                inventoryImage[i].enabled = true;
-                inventoryImage[i].sprite = image;
+                inventoryButton[i].interactable = true;
+                inventoryButton[i].image.enabled = true;
+                inventoryButton[i].image.sprite = image;
             } else {
-                inventoryImage[i].enabled = false;
+                inventoryButton[i].interactable = false;
+                inventoryButton[i].image.enabled = false;
             }
         }
     }

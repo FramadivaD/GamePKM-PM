@@ -511,11 +511,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maximumSlot: 2
-  inventoryImage:
-  - {fileID: 0}
-  - {fileID: 0}
+  inventoryButton: []
   inventoryImageSprite:
   - {fileID: 21300000, guid: 8d0d9cb7087072a4ba45b2cf8c16dbac, type: 3}
+  - {fileID: -5627257445014038000, guid: b1a54579d7bded44e913ab406736a650, type: 3}
+  inventorySelectedItemCursor: {fileID: 0}
 --- !u!1 &6117276585659172069
 GameObject:
   m_ObjectHideFlags: 0
