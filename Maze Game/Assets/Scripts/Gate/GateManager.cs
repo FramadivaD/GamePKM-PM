@@ -71,7 +71,7 @@ public class GateManager : MonoBehaviour
 
             if (Application.isEditor)
             {
-                button.GetComponent<Text>().text = fragment.Data;
+                button.GetComponentInChildren<Text>().text = fragment.Data;
             }
 
             button.onClick.AddListener(() =>

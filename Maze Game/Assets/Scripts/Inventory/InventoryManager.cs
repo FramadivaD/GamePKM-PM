@@ -76,6 +76,7 @@ public class InventoryManager : MonoBehaviour
         {
             Sprite image = GetImageSprite(inventory[i]);
             if (image) {
+                inventoryImage[i].enabled = true;
                 inventoryImage[i].sprite = image;
             } else {
                 inventoryImage[i].enabled = false;
