@@ -28,7 +28,7 @@ public class WeaponProjectile : MonoBehaviour
 
     private void Launch()
     {
-        Vector3 dir = direction * speed;
+        Vector3 dir = direction.normalized * speed;
         rb2.AddForce(dir, ForceMode2D.Impulse);
     }
 }

@@ -87,6 +87,7 @@ public class WeaponManager : MonoBehaviour
 
                 weaponTimer += basokaCooldown;
             }
+            weaponTimer -= Time.deltaTime;
         }
     }
 
