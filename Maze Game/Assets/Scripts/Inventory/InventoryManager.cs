@@ -75,7 +75,7 @@ public class InventoryManager : MonoBehaviour
         for (int i = 0; i < inventoryImage.Count && i < inventory.Length; i++)
         {
             Sprite image = GetImageSprite(inventory[i]);
-            if (image) {
+            if (inventory[i] != null) {
                 inventoryImage[i].enabled = true;
                 inventoryImage[i].sprite = image;
             } else {
@@ -90,6 +90,10 @@ public class InventoryManager : MonoBehaviour
             if (item is MainGateFragment)
             {
                 return inventoryImageSprite[0];
+            }
+            else if (item is WeaponInventory)
+            {
+                return inventoryImageSprite[1];
             }
         }
         return null;

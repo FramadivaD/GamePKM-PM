@@ -9,6 +9,7 @@ public enum WeaponType
     Pedang
 }
 
+[System.Serializable]
 public class WeaponInventory :  IInventoryAble
 {
     public WeaponType weaponType;

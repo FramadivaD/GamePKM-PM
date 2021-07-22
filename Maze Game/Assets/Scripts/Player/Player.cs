@@ -133,11 +133,19 @@ public class Player : MonoBehaviour
             OnInteract = () => {
                 OpenChest(other.gameObject);
             };
-        } else if (other.tag == "GateOpen")
+        }
+        else if (other.tag == "GateOpen")
         {
             interactableButton.interactable = true;
             OnInteract = () => {
                 OpenGate(other.gameObject);
+            };
+        }
+        else if (other.tag == "WeaponOrb")
+        {
+            interactableButton.interactable = true;
+            OnInteract = () => {
+                TakeWeapon(other.gameObject);
             };
         }
         else if (other.tag == "damage")
@@ -163,6 +171,11 @@ public class Player : MonoBehaviour
             OnInteract = null;
         }
         else if (other.tag == "GateOpen")
+        {
+            interactableButton.interactable = false;
+            OnInteract = null;
+        }
+        else if (other.tag == "WeaponOrb")
         {
             interactableButton.interactable = false;
             OnInteract = null;
@@ -205,6 +218,7 @@ public class Player : MonoBehaviour
             WeaponInventory weapon = orb.TakeWeapon(this);
             if (weapon != null)
             {
+                currentWeapon = weapon.weaponType;
                 OnInteract = null;
             }
         }
