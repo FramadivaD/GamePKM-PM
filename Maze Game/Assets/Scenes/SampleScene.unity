@@ -5842,6 +5842,11 @@ PrefabInstance:
       objectReference: {fileID: 612647019476044116}
     - target: {fileID: 3703510726965139056, guid: 20b9696fed033e140b87062bf6f3378c,
         type: 3}
+      propertyPath: dropButton
+      value: 
+      objectReference: {fileID: 1481647918}
+    - target: {fileID: 3703510726965139056, guid: 20b9696fed033e140b87062bf6f3378c,
+        type: 3}
       propertyPath: inventorySelectedItemCursor
       value: 
       objectReference: {fileID: 1780803038}
