@@ -29,7 +29,7 @@ public static class TeamHelper
 
     public static int GetTeamCount()
     {
-        return TeamColor.Length;
+        return TeamTypes.Length;
     }
 
     public static Color GetColorTeam(TeamType teamType)

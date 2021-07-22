@@ -34,7 +34,7 @@
 [X] Fitur buka Main Gate
 [X] ketika pecahan jawaban kekumpul, nanti dipasang di main gate
 [X] Fitur pasang pecahan jawaban per player di main gate
-[ ] Fitur UI pasang pecahan jawaban di main gate
+[X] Fitur UI pasang pecahan jawaban di main gate
 
 [ ] Mechanic Boss Level
 [ ] Bisa bunuh musuh dan boss

@@ -82,7 +82,7 @@ public class RoomGenerator : MonoBehaviour
         // Find outer room with 3 closed door
         FindAllCornerRoom();
 
-        FillNecessaryCornerRoom();
+        FillNecessaryCornerRoom(true);
 
         // Spawn Random Treasure
         SpawnTreasures();
@@ -174,7 +174,7 @@ public class RoomGenerator : MonoBehaviour
             {
                 if (roomMap[y, x])
                 {
-                    if (roomMapRoom[y, x].GetUnlockedDoorCount() >= 3)
+                    if (roomMapRoom[y, x].GetUnlockedDoorCount() == 3)
                     {
                         cornerRoom.Add(roomMapRoom[y, x]);
                     } else
@@ -186,9 +186,9 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
-    private void FillNecessaryCornerRoom()
+    private void FillNecessaryCornerRoom(bool forceFillAll = false)
     {
-        if (cornerRoom.Count < TeamHelper.GetTeamCount())
+        if (forceFillAll || cornerRoom.Count < TeamHelper.GetTeamCount())
         {
             int x = mostBorderRoom[0].x;
             int y = mostBorderRoom[0].y;
@@ -203,7 +203,7 @@ public class RoomGenerator : MonoBehaviour
             cornerRoom.Add(room);
             allRoom.Add(room);
         }
-        if (cornerRoom.Count < TeamHelper.GetTeamCount())
+        if (forceFillAll || cornerRoom.Count < TeamHelper.GetTeamCount())
         {
             {
                 int x = mostBorderRoom[1].x;
@@ -221,7 +221,7 @@ public class RoomGenerator : MonoBehaviour
             }
         }
 
-        if (cornerRoom.Count < TeamHelper.GetTeamCount())
+        if (forceFillAll || cornerRoom.Count < TeamHelper.GetTeamCount())
         {
             int x = mostBorderRoom[2].x;
             int y = mostBorderRoom[2].y;
@@ -237,7 +237,7 @@ public class RoomGenerator : MonoBehaviour
             allRoom.Add(room);
         }
 
-        if (cornerRoom.Count < TeamHelper.GetTeamCount())
+        if (forceFillAll || cornerRoom.Count < TeamHelper.GetTeamCount())
         {
             int x = mostBorderRoom[3].x;
             int y = mostBorderRoom[3].y;

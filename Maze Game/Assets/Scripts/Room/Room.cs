@@ -119,48 +119,48 @@ public class Room : MonoBehaviour
 
     private void ChangeDoorToMainGate(TeamType teamType)
     {
-        if (GameManager.PlayersTeam.TryGetValue(teamType, out TeamData teamData))
+        GameManager.PlayersTeam.TryGetValue(teamType, out TeamData teamData);
+        
+        MainGateKey mainKey = teamData != null ? teamData.FragmentsKey : new MainGateKey(teamType);
+
+        if (!topDoor.activeSelf)
         {
-            MainGateKey mainKey = teamData.FragmentsKey;
-            if (!topDoor.activeSelf)
-            {
-                GameObject topGate = Instantiate(mainGatePrefab, topDoor.transform.position, Quaternion.Euler(0, 0, 90), mainGateParent);
-                Destroy(topDoor);
-                topDoor = topGate;
+            GameObject topGate = Instantiate(mainGatePrefab, topDoor.transform.position, Quaternion.Euler(0, 0, 90), mainGateParent);
+            Destroy(topDoor);
+            topDoor = topGate;
 
-                Gate gate = topGate.GetComponent<Gate>();
-                gate.Initialize(teamType, mainKey);
-            }
+            Gate gate = topGate.GetComponent<Gate>();
+            gate.Initialize(teamType, mainKey);
+        }
 
-            if (!rightDoor.activeSelf)
-            {
-                GameObject rightGate = Instantiate(mainGatePrefab, rightDoor.transform.position, Quaternion.Euler(0, 0, 0 + 180), mainGateParent);
-                Destroy(rightDoor);
-                rightDoor = rightGate;
+        if (!rightDoor.activeSelf)
+        {
+            GameObject rightGate = Instantiate(mainGatePrefab, rightDoor.transform.position, Quaternion.Euler(0, 0, 0 + 180), mainGateParent);
+            Destroy(rightDoor);
+            rightDoor = rightGate;
 
-                Gate gate = rightGate.GetComponent<Gate>();
-                gate.Initialize(teamType, mainKey);
-            }
+            Gate gate = rightGate.GetComponent<Gate>();
+            gate.Initialize(teamType, mainKey);
+        }
 
-            if (!bottomDoor.activeSelf)
-            {
-                GameObject bottomGate = Instantiate(mainGatePrefab, bottomDoor.transform.position, Quaternion.Euler(0, 0, 90), mainGateParent);
-                Destroy(bottomDoor);
-                bottomDoor = bottomGate;
+        if (!bottomDoor.activeSelf)
+        {
+            GameObject bottomGate = Instantiate(mainGatePrefab, bottomDoor.transform.position, Quaternion.Euler(0, 0, 90), mainGateParent);
+            Destroy(bottomDoor);
+            bottomDoor = bottomGate;
 
-                Gate gate = bottomGate.GetComponent<Gate>();
-                gate.Initialize(teamType, mainKey);
-            }
+            Gate gate = bottomGate.GetComponent<Gate>();
+            gate.Initialize(teamType, mainKey);
+        }
 
-            if (!leftDoor.activeSelf)
-            {
-                GameObject leftGate = Instantiate(mainGatePrefab, leftDoor.transform.position, Quaternion.Euler(0, 0, 0 + 180), mainGateParent);
-                Destroy(leftDoor);
-                leftDoor = leftGate;
+        if (!leftDoor.activeSelf)
+        {
+            GameObject leftGate = Instantiate(mainGatePrefab, leftDoor.transform.position, Quaternion.Euler(0, 0, 0 + 180), mainGateParent);
+            Destroy(leftDoor);
+            leftDoor = leftGate;
 
-                Gate gate = leftGate.GetComponent<Gate>();
-                gate.Initialize(teamType, mainKey);
-            }
+            Gate gate = leftGate.GetComponent<Gate>();
+            gate.Initialize(teamType, mainKey);
         }
     }
 
