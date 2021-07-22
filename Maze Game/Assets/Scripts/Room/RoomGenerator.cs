@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 public class RoomGenerator : MonoBehaviour
@@ -26,6 +27,17 @@ public class RoomGenerator : MonoBehaviour
 
     [Header("Treasure Chest")]
     public int treasureChestPerTeamCount = 5;
+
+    private void Update()
+    {
+        if (Application.isEditor)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+        }
+    }
 
     public void RandomizeMap()
     {
@@ -121,9 +133,9 @@ public class RoomGenerator : MonoBehaviour
                     allRoom.Add(room);
 
                     // save most top, right, bottom, left room place
-                    if (y < mostBorderRoom[0].y) mostBorderRoom[0] = new Vector2Int(x, y);
+                    if (y > mostBorderRoom[0].y) mostBorderRoom[0] = new Vector2Int(x, y);
                     if (x > mostBorderRoom[1].x) mostBorderRoom[1] = new Vector2Int(x, y);
-                    if (y > mostBorderRoom[2].y) mostBorderRoom[2] = new Vector2Int(x, y);
+                    if (y < mostBorderRoom[2].y) mostBorderRoom[2] = new Vector2Int(x, y);
                     if (x < mostBorderRoom[3].x) mostBorderRoom[3] = new Vector2Int(x, y);
 
                     // awalnya pintu locked semua
@@ -186,7 +198,7 @@ public class RoomGenerator : MonoBehaviour
             room.Initialize();
 
             room.OpenBottomDoor();
-            roomMapRoom[x, y].OpenTopDoor();
+            roomMapRoom[y, x].OpenTopDoor();
             cornerRoom.Add(room);
             allRoom.Add(room);
         }
@@ -202,7 +214,7 @@ public class RoomGenerator : MonoBehaviour
             room.Initialize();
 
             room.OpenLeftDoor();
-            roomMapRoom[x, y].OpenRightDoor();
+            roomMapRoom[y, x].OpenRightDoor();
             cornerRoom.Add(room);
             allRoom.Add(room);
         }   
@@ -218,7 +230,7 @@ public class RoomGenerator : MonoBehaviour
             room.Initialize();
 
             room.OpenTopDoor();
-            roomMapRoom[x, y].OpenBottomDoor();
+            roomMapRoom[y, x].OpenBottomDoor();
             cornerRoom.Add(room);
             allRoom.Add(room);
         }
@@ -234,7 +246,7 @@ public class RoomGenerator : MonoBehaviour
             room.Initialize();
 
             room.OpenRightDoor();
-            roomMapRoom[x, y].OpenLeftDoor();
+            roomMapRoom[y, x].OpenLeftDoor();
             cornerRoom.Add(room);
             allRoom.Add(room);
         }
