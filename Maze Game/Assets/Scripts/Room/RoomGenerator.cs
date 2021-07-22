@@ -286,6 +286,7 @@ public class RoomGenerator : MonoBehaviour
         int teamNumber = TeamHelper.GetTeamCount();
         for (int i = 0; i < teamNumber && i < cornerRoom.Count; i++)
         {
+            Debug.Log("Spawning boss.");
             Room selectedRoom = cornerRoom[i];
             selectedRoom.SetToBossRoom(TeamHelper.TeamTypes[i]);
         }
