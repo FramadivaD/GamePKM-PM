@@ -31,9 +31,10 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public InventoryManager()
+    public void Start()
     {
         inventory = new IInventoryAble[maximumSlot];
+        RefreshImageUI();
     }
 
     public bool AddItem(IInventoryAble item)
@@ -43,11 +44,13 @@ public class InventoryManager : MonoBehaviour
             if (inventory[i] == null)
             {
                 inventory[i] = item;
+
+                RefreshImageUI();
+
                 return true;
             }
         }
 
-        //full
         return false;
     }
 
@@ -58,6 +61,9 @@ public class InventoryManager : MonoBehaviour
             if (inventory[i] == item)
             {
                 inventory[i] = null;
+
+                RefreshImageUI();
+
                 return item;
             }
         }
