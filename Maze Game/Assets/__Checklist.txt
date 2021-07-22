@@ -2,21 +2,21 @@
 Game System and Mechanic
 [               ] [X] Perbaiki dan maintenance kode yang rusak
 [               ] [X] Sistem Team
-[               ] [ ] Sistem Health
-[               ] [ ] Sistem Player
-[               ] [ ] Sistem Enemy
-[               ] [ ] Sistem Dynamic Interaction
-[               ] [ ] Sistem Inventory
-[               ] [ ] Sistem Weapon
-[               ] [ ] Sistem Main Gate
-[               ] [ ] Sistem Chest
+[               ] [X] Sistem Health
+[               ] [X] Sistem Player
+[               ] [X] Sistem Dynamic Interaction
+[               ] [X] Sistem Inventory
+[               ] [X] Sistem Weapon
+[               ] [X] Sistem Main Gate
+[               ] [X] Sistem Chest
 [               ] [ ] Sistem Question
 [               ] [ ] Sistem Compass (penunjuk arah player ke boss room)
-[               ] [ ] Sistem Room Generator
-[               ] [ ] Sistem Enemy
+[               ] [X] Sistem Room Generator
+[               ] [X] Sistem Enemy
 [               ] [ ] Sistem Boss Mode
 [               ] [ ] Sistem Flow Game (dari awal gameplay, sampai menang)
 [               ] [ ] Sistem Guru Bikin Soal
+[               ] [ ] Sistem Camera Device
 [               ] [ ] Sistem Lobby Main Menu
 [               ] [ ] Sistem Multiplayer
 [               ] [ ] Sistem Online Multiplayer
@@ -24,7 +24,7 @@ Game System and Mechanic
 [               ] [ ] Sistem Audio Manager
 
 Design
-[               ] [ ] Design - Penataan UI yang sesuai layar dinamis
+[               ] [X] Design - Penataan UI yang sesuai layar dinamis
 
 Audio
 [               ] [ ] Audio - Main Theme
