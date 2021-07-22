@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public QuestionManager questionManager;
     public GateManager gateManager;
     public InventoryManager inventoryManager;
+    public WeaponManager weaponManager;
 
     public JoystickController joystickController;
     public PlayerHealth health;
@@ -67,6 +68,7 @@ public class Player : MonoBehaviour
         questionManager.Initialize(this);
         gateManager.Initialize(this);
         inventoryManager.Initialize(this);
+        weaponManager.Initialize(this);
 
         SubscribeEvents();
     }
@@ -248,14 +250,7 @@ public class Player : MonoBehaviour
             if (EquippedItem is WeaponInventory)
             {
                 WeaponInventory weapon = EquippedItem as WeaponInventory;
-                if (weapon.weaponType == WeaponType.None)
-                {
-                    // gak ngapa ngapain
-                }
-                else if (weapon.weaponType == WeaponType.Basoka)
-                {
-                    // some logic
-                }
+                weaponManager.ExecuteWeapon(weapon);
             }
         }
     }
