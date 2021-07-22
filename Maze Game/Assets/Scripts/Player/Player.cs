@@ -31,6 +31,9 @@ public class Player : MonoBehaviour
     private event PlayerInteractEventHandler OnInteract;
 
     [SerializeField] private string playerName = "Player";
+
+    [SerializeField] private WeaponType currentWeapon = WeaponType.None;
+
     public string PlayerName
     {
         get { return playerName; }
@@ -189,6 +192,18 @@ public class Player : MonoBehaviour
         {
             gateManager.OpenGate(gate, inventoryManager);
             if (gate.IsOpened)
+            {
+                OnInteract = null;
+            }
+        }
+    }
+
+    private void TakeWeapon(GameObject interactedObject)
+    {
+        if (interactedObject.TryGetComponent(out WeaponOrb orb))
+        {
+            WeaponInventory weapon = orb.TakeWeapon(this);
+            if (weapon != null)
             {
                 OnInteract = null;
             }
