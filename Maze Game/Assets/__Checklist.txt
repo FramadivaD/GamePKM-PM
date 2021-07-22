@@ -34,8 +34,8 @@
 [ ] Mechanic inventory drop item
 [X] Mechanic nembak Senjata
 [X] Peluru senjata infinite
-[ ] Mechanic Healthbar Enemy
-[ ] Mechanic Enemy Mati
+[X] Mechanic Healthbar Enemy
+[X] Mechanic Enemy Mati
 
 [X] Ada 2 tim, jadi main gate ada 2 (tim merah, tim biru), pemain ada 8 - 10, masing tim 4 orang
 [X] Fitur buka Main Gate

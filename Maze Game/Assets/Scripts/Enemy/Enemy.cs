@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public float enemySpeed;
 
     public GameObject playerTarget;
+    public Health health;
 
     private bool isAttack = false;
     private float startTimeAttack, startTimeIdle;
@@ -24,10 +25,18 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         enemyAnim = GetComponent<Animator>();
+        health = GetComponent<Health>();
         startTimeIdle = timeIdle;
         startTimeAttack = timeAttack;
+
+        health.OnDied += OnDie;
     }
-    
+
+    private void OnDestroy()
+    {
+        health.OnDied -= OnDie;
+    }
+
     void Update()
     {
         if (playerTarget)
@@ -65,6 +74,23 @@ public class Enemy : MonoBehaviour
                 {
                     startTimeIdle -= Time.deltaTime;
                 }
+            }
+        }
+    }
+
+    private void OnDie()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "PlayerProjectile")
+        {
+            if (collision.TryGetComponent(out WeaponProjectile projectile))
+            {
+                health.CurrentHealth -= projectile.Damage;
+                Destroy(collision.gameObject);
             }
         }
     }

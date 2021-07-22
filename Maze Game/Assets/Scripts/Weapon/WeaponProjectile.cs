@@ -3,7 +3,11 @@ using System.Collections;
 
 public class WeaponProjectile : MonoBehaviour
 {
+    [SerializeField] protected float damage;
     [SerializeField] protected float speed;
+
+    public float Damage { get { return damage; } }
+    public float Speed { get { return damage; } }
 
     Rigidbody2D rb2;
 
