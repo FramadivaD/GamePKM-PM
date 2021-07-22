@@ -81,6 +81,10 @@ public class RoomGenerator : MonoBehaviour
 
         // Find outer room with 3 closed door
         FindAllCornerRoom();
+
+        FillNecessaryCornerRoom();
+        FillNecessaryCornerRoom();
+        FillNecessaryCornerRoom();
         FillNecessaryCornerRoom();
 
         // Spawn Random Treasure
@@ -189,66 +193,68 @@ public class RoomGenerator : MonoBehaviour
     {
         if (cornerRoom.Count < TeamHelper.GetTeamCount())
         {
-            int x = mostBorderRoom[0].x;
-            int y = mostBorderRoom[0].y;
+            int randoming = Random.Range(0, 4);
 
-            Room room = SpawnRoom(x, y);
-            room.transform.position += new Vector3(0, roomWidthHeight.y, 0);
-            room.gameObject.name = "AddonNecessaryRoomTop";
-            room.Initialize();
+            if (randoming == 0)
+            {
+                int x = mostBorderRoom[0].x;
+                int y = mostBorderRoom[0].y;
 
-            room.OpenBottomDoor();
-            roomMapRoom[y, x].OpenTopDoor();
-            cornerRoom.Add(room);
-            allRoom.Add(room);
-        }
+                Room room = SpawnRoom(x, y);
+                room.transform.position += new Vector3(0, roomWidthHeight.y, 0);
+                room.gameObject.name = "AddonNecessaryRoomTop";
+                room.Initialize();
 
-        if (cornerRoom.Count < TeamHelper.GetTeamCount())
-        {
-            int x = mostBorderRoom[1].x;
-            int y = mostBorderRoom[1].y;
+                room.OpenBottomDoor();
+                roomMapRoom[y, x].OpenTopDoor();
+                cornerRoom.Add(room);
+                allRoom.Add(room);
+            }
+            else if (randoming == 1)
+            {
+                int x = mostBorderRoom[1].x;
+                int y = mostBorderRoom[1].y;
 
-            Room room = SpawnRoom(x, y);
-            room.transform.position += new Vector3(roomWidthHeight.x, 0, 0);
-            room.gameObject.name = "AddonNecessaryRoomRight";
-            room.Initialize();
+                Room room = SpawnRoom(x, y);
+                room.transform.position += new Vector3(roomWidthHeight.x, 0, 0);
+                room.gameObject.name = "AddonNecessaryRoomRight";
+                room.Initialize();
 
-            room.OpenLeftDoor();
-            roomMapRoom[y, x].OpenRightDoor();
-            cornerRoom.Add(room);
-            allRoom.Add(room);
-        }   
+                room.OpenLeftDoor();
+                roomMapRoom[y, x].OpenRightDoor();
+                cornerRoom.Add(room);
+                allRoom.Add(room);
+            }
+            else if (randoming == 2)
+            {
+                int x = mostBorderRoom[2].x;
+                int y = mostBorderRoom[2].y;
 
-        if (cornerRoom.Count < TeamHelper.GetTeamCount())
-        {
-            int x = mostBorderRoom[2].x;
-            int y = mostBorderRoom[2].y;
+                Room room = SpawnRoom(x, y);
+                room.transform.position += new Vector3(0, -roomWidthHeight.y, 0);
+                room.gameObject.name = "AddonNecessaryRoomBottom";
+                room.Initialize();
 
-            Room room = SpawnRoom(x, y);
-            room.transform.position += new Vector3(0, -roomWidthHeight.y, 0);
-            room.gameObject.name = "AddonNecessaryRoomBottom";
-            room.Initialize();
+                room.OpenTopDoor();
+                roomMapRoom[y, x].OpenBottomDoor();
+                cornerRoom.Add(room);
+                allRoom.Add(room);
+            }
+            else if (randoming == 3)
+            {
+                int x = mostBorderRoom[3].x;
+                int y = mostBorderRoom[3].y;
 
-            room.OpenTopDoor();
-            roomMapRoom[y, x].OpenBottomDoor();
-            cornerRoom.Add(room);
-            allRoom.Add(room);
-        }
+                Room room = SpawnRoom(x, y);
+                room.transform.position += new Vector3(-roomWidthHeight.x, 0, 0);
+                room.gameObject.name = "AddonNecessaryRoomLeft";
+                room.Initialize();
 
-        if (cornerRoom.Count < TeamHelper.GetTeamCount())
-        {
-            int x = mostBorderRoom[3].x;
-            int y = mostBorderRoom[3].y;
-
-            Room room = SpawnRoom(x, y);
-            room.transform.position += new Vector3(-roomWidthHeight.x, 0, 0);
-            room.gameObject.name = "AddonNecessaryRoomLeft";
-            room.Initialize();
-
-            room.OpenRightDoor();
-            roomMapRoom[y, x].OpenLeftDoor();
-            cornerRoom.Add(room);
-            allRoom.Add(room);
+                room.OpenRightDoor();
+                roomMapRoom[y, x].OpenLeftDoor();
+                cornerRoom.Add(room);
+                allRoom.Add(room);
+            }
         }
     }
 
