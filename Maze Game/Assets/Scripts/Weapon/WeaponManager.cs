@@ -22,8 +22,6 @@ public class WeaponManager : MonoBehaviour
 
     public void ExecuteWeapon(WeaponInventory weapon)
     {
-        RefreshGraphic(weapon);
-
         if (weapon != null)
         {
             if (Input.GetMouseButton(0)) {
@@ -37,10 +35,15 @@ public class WeaponManager : MonoBehaviour
                     AimWeapon();
                     FireWeapon(weapon);
                 }
+
+                RefreshGraphic(weapon);
             } else
             {
                 RefreshGraphic(null);
             }
+        } else
+        {
+            RefreshGraphic(null);
         }
     }
 

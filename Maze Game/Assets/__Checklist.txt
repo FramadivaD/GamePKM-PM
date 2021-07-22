@@ -32,8 +32,8 @@
 [X] Mechanic inventory equip item
 [X] Mechanic inventory change item
 [ ] Mechanic inventory drop item
-[ ] Mechanic nembak Senjata
-[ ] Peluru senjata infinite
+[X] Mechanic nembak Senjata
+[X] Peluru senjata infinite
 [ ] Mechanic Healthbar Enemy
 [ ] Mechanic Enemy Mati
 

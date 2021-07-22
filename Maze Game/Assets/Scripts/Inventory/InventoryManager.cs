@@ -49,6 +49,7 @@ public class InventoryManager : MonoBehaviour
         }
 
         RefreshImageUI();
+        RefreshSelectionCursor(-1);
     }
 
     public void SelectItemOnIndex(int id)
@@ -58,9 +59,7 @@ public class InventoryManager : MonoBehaviour
         {
             player.EquipItem(inventory[id]);
             RefreshImageUI();
-
-            inventorySelectedItemCursor.enabled = true;
-            inventorySelectedItemCursor.rectTransform.position = inventoryButton[id].image.rectTransform.position;
+            RefreshSelectionCursor(id);
 
             Debug.Log("Item selected");
         } else
@@ -121,8 +120,6 @@ public class InventoryManager : MonoBehaviour
 
     private void RefreshImageUI()
     {
-        inventorySelectedItemCursor.enabled = false;
-
         for (int i = 0; i < inventoryButton.Count && i < inventory.Length; i++)
         {
             Sprite image = GetImageSprite(inventory[i]);
@@ -150,5 +147,22 @@ public class InventoryManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    private void RefreshSelectionCursor(int id)
+    {
+        if (id >= 0 && id < inventory.Length)
+        {
+            if (inventory[id] != null) {
+                inventorySelectedItemCursor.enabled = true;
+                inventorySelectedItemCursor.rectTransform.position = inventoryButton[id].image.rectTransform.position;
+            } else
+            {
+                inventorySelectedItemCursor.enabled = false;
+            }
+        } else
+        {
+            inventorySelectedItemCursor.enabled = false;
+        }
     }
 }

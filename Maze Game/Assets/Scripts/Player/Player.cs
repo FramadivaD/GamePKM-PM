@@ -81,6 +81,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         AnimationController();
+
         ExecuteEquippedItem();
     }
 
@@ -222,7 +223,6 @@ public class Player : MonoBehaviour
             WeaponInventory weapon = orb.TakeWeapon(this);
             if (weapon != null)
             {
-                EquippedItem = weapon;
                 OnInteract = null;
             }
         }
@@ -252,6 +252,9 @@ public class Player : MonoBehaviour
             {
                 WeaponInventory weapon = EquippedItem as WeaponInventory;
                 weaponManager.ExecuteWeapon(weapon);
+            } else
+            {
+                weaponManager.ExecuteWeapon(null);
             }
         } else
         {
