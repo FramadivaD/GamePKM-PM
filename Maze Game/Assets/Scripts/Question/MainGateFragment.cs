@@ -1,21 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-[System.Serializable]
 public class MainGateKey
 {
-    public TeamType team;
-    public List<MainGateFragment> fragments;
+    public TeamType Team { get; private set; }
+    public List<MainGateFragment> Fragments { get; private set; }
+
+    public MainGateKey(TeamType teamType)
+    {
+        Fragments = new List<MainGateFragment>();
+        Team = teamType;
+    }
+
+    public void AddFragment(MainGateFragment fragment)
+    {
+        Fragments.Add(fragment);
+    }
 }
 
-[System.Serializable]
 public class MainGateFragment : IInventoryAble
 {
+    [SerializeField] private MainGateFragment mainKey;
     [SerializeField] private string key;
     [SerializeField] private string data;
 
     public MainGateKey MainKey { get; }
-    public TeamType Team { get { return MainKey.team; } }
+    public TeamType Team { get { return MainKey.Team; } }
 
     public string Key { get { return key; } }
     public string Data { get { return data; } }

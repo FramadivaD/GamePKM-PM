@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     {
         PlayersTeam = new Dictionary<TeamType, TeamData>();
 
+        InitializeFragmentsKey();
+
         RegisterTeam();
         RegisterPlayer();
     }
@@ -69,5 +71,15 @@ public class GameManager : MonoBehaviour
         // make players
         if (players == null) players = new List<Player>();
         players.Add(player);
+    }
+
+    private void InitializeFragmentsKey()
+    {
+        fragmentsKey = new List<MainGateKey>();
+        MainGateKey redTeamKey = new MainGateKey(player.teamType);
+        redTeamKey.AddFragment(new MainGateFragment(redTeamKey, "red_01", "Kucing"));
+        redTeamKey.AddFragment(new MainGateFragment(redTeamKey, "red_02", "Sapi"));
+        redTeamKey.AddFragment(new MainGateFragment(redTeamKey, "red_03", "Kuda"));
+        fragmentsKey.Add(redTeamKey);
     }
 }

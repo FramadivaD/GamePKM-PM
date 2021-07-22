@@ -277,7 +277,7 @@ public class RoomGenerator : MonoBehaviour
             // Team is Exist
             if (GameManager.PlayersTeam.TryGetValue(TeamHelper.TeamTypes[i], out TeamData teamData)) {
                 MainGateKey key = teamData.FragmentsKey;
-                int chestTreasureCount = key.fragments.Count;
+                int chestTreasureCount = key.Fragments.Count;
 
                 for (int j = 0; j < chestTreasureCount; j++)
                 {
@@ -289,7 +289,7 @@ public class RoomGenerator : MonoBehaviour
                             // limit biar gak infinite
                             for (int k = 0; k < 10; k++)
                             {
-                                ChestContainer chest = selectedRoom.SpawnTreasureChest(TeamHelper.TeamTypes[i], key.fragments[j]);
+                                ChestContainer chest = selectedRoom.SpawnTreasureChest(TeamHelper.TeamTypes[i], key.Fragments[j]);
                                 if (chest)
                                 {
                                     break;

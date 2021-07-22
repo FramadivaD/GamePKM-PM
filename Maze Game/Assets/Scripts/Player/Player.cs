@@ -187,7 +187,7 @@ public class Player : MonoBehaviour
     {
         if (interactedObject.TryGetComponent(out Gate gate))
         {
-            gateManager.OpenGate(gate);
+            gateManager.OpenGate(gate, inventoryManager);
             if (gate.IsOpened)
             {
                 OnInteract = null;

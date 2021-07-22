@@ -65,13 +65,19 @@ public class ChestContainer : MonoBehaviour
             {
                 if (player.teamType == teamType)
                 {
-                    // check inventory dulu harunya
-                    player.inventoryManager.AddItem(fragmentKey);
-                    fragmentKey = null;
+                    // check inventory dulu, kalo penuh jangan di buang
+                    if (!player.inventoryManager.IsFull)
+                    {
+                        player.inventoryManager.AddItem(fragmentKey);
+                        fragmentKey = null;
 
-                    IsFragmentTaken = true;
+                        IsFragmentTaken = true;
 
-                    Debug.Log("Fragment Key saved in inventory.");
+                        Debug.Log("Fragment Key saved in inventory.");
+                    } else
+                    {
+                        Debug.Log("Inventory is FULL");
+                    }
                 }
                 else
                 {
