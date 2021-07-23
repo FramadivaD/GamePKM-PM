@@ -56,14 +56,17 @@ public class EnemyBossAttackManager : MonoBehaviour
 
     public void Attack(Transform target)
     {
-        if (timeToAttack <= 0)
+        if (target)
         {
-            RandomizeAttackType();
-        }
-        else
-        {
-            AttackTarget(target);
-            timeToAttack -= Time.deltaTime;
+            if (timeToAttack <= 0)
+            {
+                RandomizeAttackType();
+            }
+            else
+            {
+                AttackTarget(target);
+                timeToAttack -= Time.deltaTime;
+            }
         }
     }
 

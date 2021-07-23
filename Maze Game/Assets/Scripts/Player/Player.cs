@@ -187,7 +187,6 @@ public class Player : MonoBehaviour
             if (other.TryGetComponent(out EnemyBoss boss))
             {
                 health.CurrentHealth -= boss.TouchDamage;
-                Destroy(other.gameObject);
             }
         }
     }

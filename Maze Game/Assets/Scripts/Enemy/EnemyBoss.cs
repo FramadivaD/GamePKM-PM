@@ -60,23 +60,21 @@ public class EnemyBoss : MonoBehaviour
 
     void Update()
     {
-        if (playerTarget)
-        {
-            if (GameManager.Instance.AllowEntityMove
+        if (GameManager.Instance.AllowEntityMove
             && GameManager.Instance.AllowEnemyMove
             && AllowMove)
+        {
+            if (CheckBossModeReady == null || CheckBossModeReady.Invoke())
             {
-                if (CheckBossModeReady == null || CheckBossModeReady.Invoke()) {
-                    MoveController();
-
-                    if (BossModeStarted == false)
-                    {
-                        attackManager.ChangePlayerTarget();
-                        BossModeStarted = true;
-                    }
-
-                    attackManager.Attack(playerTarget);
+                if (BossModeStarted == false)
+                {
+                    attackManager.ChangePlayerTarget();
+                    BossModeStarted = true;
                 }
+
+                MoveController();
+
+                attackManager.Attack(playerTarget);
             }
         }
     }
