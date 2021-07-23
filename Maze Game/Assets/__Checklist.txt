@@ -19,6 +19,7 @@ Game System and Mechanic
 [3] [X] Sistem Winner Team
 [3] [ ] Sistem Flow Game (dari awal gameplay, sampai menang)
 [5] [ ] Sistem Guru Bikin Soal
+[3] [ ] Sistem Transfer data soal guru
 [5] [ ] Sistem Camera Device
 [5] [ ] Sistem Storage Save and Load Data
 [7] [ ] Sistem Lobby Main Menu

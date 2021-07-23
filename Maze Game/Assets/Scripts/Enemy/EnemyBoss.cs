@@ -39,6 +39,9 @@ public class EnemyBoss : MonoBehaviour
         MainGate = mainGate;
     }
 
+    [SerializeField] private float changeRoomTimeInterval = 5;
+    private float changeRoomTime = 5;
+
     void Start()
     {
         enemyAnim = GetComponent<Animator>();
@@ -89,26 +92,30 @@ public class EnemyBoss : MonoBehaviour
         }
     }
 
-    bool changeTargetRoomflag = false;
     private void MoveController(Transform target)
     {
         Vector3 distance = (target.transform.position - transform.position);
         rb2.velocity = distance.normalized * followSpeed;
 
-        // Change move Target
+        CheckUntilChangeRoom();
+    }
 
-        if (Vector3.Distance(target.transform.position, transform.position) < 3)
+    private void CheckUntilChangeRoom()
+    {
+        Transform target = moveTarget;
+        if (changeRoomTime <= 0)
         {
-            if (changeTargetRoomflag == false)
+            // Change move Target
+            if (Vector3.Distance(target.transform.position, transform.position) < 3)
             {
                 // isFollowPlayerInsteadOfMove = !isFollowPlayerInsteadOfMove;
 
+                Debug.Log("Proceed Change Target Room..");
                 ChangeTargetRoom();
-                changeTargetRoomflag = true;
+                changeRoomTime = changeRoomTimeInterval;
             }
-        } else
-        {
-            changeTargetRoomflag = false;
+        } else {
+            changeRoomTime -= Time.deltaTime;
         }
     }
 
@@ -146,7 +153,11 @@ public class EnemyBoss : MonoBehaviour
         {
             if (room)
             {
-                ChangeMoveTarget(room.transform);
+                Debug.Log("Actually Change move target to current room neighbor.");
+                Room neighbor = room.GetRandomNeighborRoom();
+                if (neighbor) {
+                    ChangeMoveTarget(neighbor.transform);
+                }
             }
         }
     }
