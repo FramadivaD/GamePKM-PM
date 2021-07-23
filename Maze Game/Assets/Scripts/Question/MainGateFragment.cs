@@ -49,10 +49,12 @@ public class MainGateFragment : IInventoryAble
 [System.Serializable]
 public class MainGateKeyRaw
 {
+    public string GateName { get; private set; }
     public List<MainGateFragmentRaw> Fragments { get; private set; }
 
-    public MainGateKeyRaw()
+    public MainGateKeyRaw(string gateName)
     {
+        GateName = gateName;
         Fragments = new List<MainGateFragmentRaw>();
     }
 

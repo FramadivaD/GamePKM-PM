@@ -3,70 +3,36 @@ using System.Collections;
 
 public class LaboratoryMenu : MonoBehaviour
 {
-    public static WebCamTexture camTexture;
-
-    private MainGateKeyRaw currentGateKey;
-    private MainGateFragmentRaw currentGateFragment;
-
-    public GameObject selectWindow;
-    public GameObject browseWindow;
-    public GameObject editorWindow;
+    public LaboratorySelectMenu selectWindow;
+    public LaboratoryBrowseMenu browseWindow;
+    public LaboratoryEditorMenu editorWindow;
 
     private void Start()
     {
         OpenSelectWindow();
     }
 
-    public void InitializeMainGateKey()
-    {
-        currentGateKey = new MainGateKeyRaw();
-    }
-
-    public void CreateFragmentData()
-    {
-        if (currentGateKey != null)
-        {
-            MainGateFragmentRaw fragment = new MainGateFragmentRaw("", "");
-        }
-    }
-
-    public void AddFragmentData(MainGateFragmentRaw fragment)
-    {
-        if (currentGateKey != null)
-        {
-            currentGateKey.AddFragment(fragment);
-        }
-    }
-
-    public void RemoveFragmentData(MainGateFragmentRaw fragment)
-    {
-        if (currentGateKey != null)
-        {
-            currentGateKey.RemoveFragment(fragment);
-        }
-    }
-
     #region All About Navigation
 
     public void OpenSelectWindow()
     {
-        selectWindow.SetActive(true);
-        browseWindow.SetActive(false);
-        editorWindow.SetActive(false);
+        selectWindow.gameObject.SetActive(true);
+        browseWindow.gameObject.SetActive(false);
+        editorWindow.gameObject.SetActive(false);
     }
 
     public void OpenBrowseWindow()
     {
-        selectWindow.SetActive(false);
-        browseWindow.SetActive(true);
-        editorWindow.SetActive(false);
+        selectWindow.gameObject.SetActive(false);
+        browseWindow.gameObject.SetActive(true);
+        editorWindow.gameObject.SetActive(false);
     }
 
     public void OpenEditorWindow()
     {
-        selectWindow.SetActive(false);
-        browseWindow.SetActive(false);
-        editorWindow.SetActive(true);
+        selectWindow.gameObject.SetActive(false);
+        browseWindow.gameObject.SetActive(false);
+        editorWindow.gameObject.SetActive(true);
     }
 
     #endregion
