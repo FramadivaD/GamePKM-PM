@@ -4,22 +4,16 @@ using System.Collections;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public void GotoMainMenu()
-    {
-        Debug.Log("Go to Main Menu");
-        SceneManager.LoadScene("MainMenu");
-    }
-
     public void GotoLobbyMenu()
     {
         Debug.Log("Go to Lobby");
         SceneManager.LoadScene("LobbyMenu");
     }
 
-    public void GotoCreateQuestion()
+    public void GotoLaboratory()
     {
-        Debug.Log("Go to Create Question Scene");
-        SceneManager.LoadScene("CreateQuestionScene");
+        Debug.Log("Go to Laboratory Scene");
+        SceneManager.LoadScene("Laboratory");
     }
 
     public void GotoGameplay()
