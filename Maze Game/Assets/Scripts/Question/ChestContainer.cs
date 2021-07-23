@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ChestContainer : MonoBehaviour
@@ -12,6 +13,11 @@ public class ChestContainer : MonoBehaviour
 
     public SpriteRenderer teamIndicator;
 
+    [Header("UI")]
+    public GameObject canvasUI;
+    public Image fragmentImage;
+    public Text fragmentDataText;
+
     private bool isUnlocked = false;
     public bool IsUnlocked {
         get {
@@ -22,6 +28,8 @@ public class ChestContainer : MonoBehaviour
             unlockedGraphic.SetActive(isUnlocked);
             lockedGraphic.SetActive(!isUnlocked);
             teamIndicator.color = TeamHelper.GetColorTeam(teamType);
+
+            canvasUI.SetActive(isUnlocked && !IsFragmentTaken);
         }
     }
 
@@ -33,6 +41,8 @@ public class ChestContainer : MonoBehaviour
         IsFragmentTaken = false;
 
         this.question = new Question();
+
+        canvasUI.SetActive(false);
     }
 
     public void Initialize(TeamType teamType, MainGateFragment fragment)
@@ -40,6 +50,9 @@ public class ChestContainer : MonoBehaviour
         Initialize();
         this.teamType = teamType;
         this.fragmentKey = fragment;
+
+        fragmentImage.sprite = null;
+        fragmentDataText.text = fragmentKey.Data;
     }
 
     public bool CheckAnswer(string answer)
@@ -72,6 +85,8 @@ public class ChestContainer : MonoBehaviour
                         fragmentKey = null;
 
                         IsFragmentTaken = true;
+
+                        canvasUI.SetActive(false);
 
                         Debug.Log("Fragment Key saved in inventory.");
                     } else

@@ -163,7 +163,7 @@ Etc.
 
 [X] Bullet ledakan saat kena tembok
 
-[ ] Add Pause Menu, isinya continue dan back to main menu.
+[X] Add Pause Menu, isinya continue dan back to main menu.
 
 [ ] Boss Level Compass
 
