@@ -136,9 +136,7 @@ public class EnemyBossAttackManager : MonoBehaviour
                 if (rb2)
                 {
                     // Calculate rotation to target
-                    Vector3 direction = target.position - transform.position;
-
-                    rb2.AddForce(direction * punchForce, ForceMode2D.Impulse);
+                    rb2.MovePosition(Vector2.MoveTowards(transform.position, target.position, Time.deltaTime * punchForce));
                 }
 
                 Debug.Log("Enemy Boss Proceed Punch");
@@ -198,11 +196,14 @@ public class EnemyBossAttackManager : MonoBehaviour
         if (players.Length > 0) {
             foreach (Collider2D player in players)
             {
-                float dist = Vector3.Distance(player.transform.position, transform.position);
-                if (dist < minDistance)
+                if (player.tag == "Player")
                 {
-                    dist = minDistance;
-                    nearestPlayer = player;
+                    float dist = Vector3.Distance(player.transform.position, transform.position);
+                    if (dist < minDistance)
+                    {
+                        dist = minDistance;
+                        nearestPlayer = player;
+                    }
                 }
             }
 

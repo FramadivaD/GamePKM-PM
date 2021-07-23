@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6391301603699240405}
-  - component: {fileID: 5302450574744535389}
+  - component: {fileID: 8026686875887393905}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -63,8 +63,8 @@ Transform:
   m_Father: {fileID: 5140858729371276322}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &5302450574744535389
-BoxCollider2D:
+--- !u!58 &8026686875887393905
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -77,18 +77,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.000553, y: 3.5620084}
-  m_EdgeRadius: 0
+  m_Radius: 1.3
 --- !u!1 &940899529323462994
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,7 +887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followSpeed: 1
-  touchDamage: 0
+  touchDamage: 1
   playerTarget: {fileID: 0}
   health: {fileID: 5262429376495144852}
   allowMove: 1
@@ -932,7 +922,7 @@ MonoBehaviour:
   timeLaunchProjectileBulletHell: 3
   timeAttackPunch: 2
   targetSearchRadius: 12
-  punchForce: 1
+  punchForce: 2
   bulletHellFirePerShootInterval: 0.2
   bulletHellAngleSpeed: 120
   projectileLaunchController: {fileID: 7947638784123356796}
