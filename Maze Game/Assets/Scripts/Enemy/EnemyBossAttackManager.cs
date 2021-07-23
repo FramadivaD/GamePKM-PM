@@ -117,7 +117,7 @@ public class EnemyBossAttackManager : MonoBehaviour
                 float rotationZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
                 // fire the projectile
-                FireProjectile(projectileLaunchPrefab, projectileBulletHellSpawnOrigin, rotationZ);
+                FireProjectile(projectileLaunchPrefab, projectileLaunchSpawnOrigin, rotationZ);
 
                 Debug.Log("Enemy Boss Proceed Projectile Launch");
             }
