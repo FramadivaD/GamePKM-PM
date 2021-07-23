@@ -99,9 +99,12 @@ Etc.
 - Menambahkan UI Health bar pada Boss Enemy
 - Menambahkan interface Tim Pemenang pada Gameplay setelah mengalahkan Boss Enemy
 - Menambahkan flow gameplay
-- Menambahkan AI pada Boss enemy
+- Menambahkan Movement AI pada Boss enemy
 - Menambahkan effect pada ledakan peluru Player
 - Menambahkan effect pada ledakan peluru Boss Enemy
+- Menambahkan Pause menu saat gameplay
+- Menambahkan Chest fragment key notification
+- Menambahkan navigasi scene pada game
 
 ---------------------------------------- Progress -----------------------------------------
 
