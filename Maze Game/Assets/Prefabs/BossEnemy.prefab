@@ -897,6 +897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followSpeed: 1
+  touchDamage: 0
   playerTarget: {fileID: 0}
   health: {fileID: 5262429376495144852}
   allowMove: 1
@@ -961,7 +962,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &2030982193325858391
 BoxCollider2D:
   m_ObjectHideFlags: 0
