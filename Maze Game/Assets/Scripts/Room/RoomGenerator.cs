@@ -93,6 +93,9 @@ public class RoomGenerator : MonoBehaviour
         // Spawn Random Items
         SpawnItems();
 
+        // Set Corner rooms neighboroom
+        SetCornerRoomNeighborRoom();
+
         // Spawn Random Boss on Corner Room
         SpawnBossRooms();
     }
@@ -208,6 +211,8 @@ public class RoomGenerator : MonoBehaviour
             roomMapRoom[y, x].OpenTopDoor();
             cornerRoom.Add(room);
             allRoom.Add(room);
+
+            room.SetNeighborRoom(null, null, roomMapRoom[y, x], null);
         }
         if (forceFillAll || cornerRoom.Count < TeamHelper.GetTeamCount())
         {
@@ -224,6 +229,8 @@ public class RoomGenerator : MonoBehaviour
                 roomMapRoom[y, x].OpenRightDoor();
                 cornerRoom.Add(room);
                 allRoom.Add(room);
+
+                room.SetNeighborRoom(null, null, null, roomMapRoom[y, x]);
             }
         }
 
@@ -241,6 +248,8 @@ public class RoomGenerator : MonoBehaviour
             roomMapRoom[y, x].OpenBottomDoor();
             cornerRoom.Add(room);
             allRoom.Add(room);
+
+            room.SetNeighborRoom(roomMapRoom[y, x], null, null, null);
         }
 
         if (forceFillAll || cornerRoom.Count < TeamHelper.GetTeamCount())
@@ -257,6 +266,8 @@ public class RoomGenerator : MonoBehaviour
             roomMapRoom[y, x].OpenLeftDoor();
             cornerRoom.Add(room);
             allRoom.Add(room);
+
+            room.SetNeighborRoom(null, roomMapRoom[y, x], null, null);
         }
     }
 
@@ -345,6 +356,29 @@ public class RoomGenerator : MonoBehaviour
 
                 selectedRoom.SetToBossRoom(TeamHelper.TeamTypes[i]);
                 bossRoom.Add(selectedRoom);
+            }
+        }
+    }
+
+    // FIXME : Fix error on some corner room cannot get neighbor room from boss room (fill necesaary)
+    private void SetCornerRoomNeighborRoom()
+    {
+        for (int y = 0; y < roomSize; y++)
+        {
+            for (int x = 0; x < roomSize; x++)
+            {
+                Room top = null;
+                Room right = null;
+                Room bottom = null;
+                Room left = null;
+
+                if (x + 1 < roomSize) right = roomMapRoom[y, x + 1];
+                if (x - 1 >= 0) left = roomMapRoom[y, x - 1];
+
+                if (y + 1 < roomSize) top = roomMapRoom[y + 1, x];
+                if (y - 1 >= 0) bottom = roomMapRoom[y - 1, x];
+
+                roomMapRoom[y, x].SetNeighborRoom(top, right, bottom, left);
             }
         }
     }

@@ -37,12 +37,37 @@ public class Room : MonoBehaviour
     [SerializeField] private Transform mainGateParent;
     [SerializeField] private GameObject mainGatePrefab;
 
+    [SerializeField] private Room[] neighborRoom;
+
+
     public void Initialize()
     {
         topDoor.SetActive(true);
         rightDoor.SetActive(true);
         bottomDoor.SetActive(true);
         leftDoor.SetActive(true);
+    }
+
+    public void SetNeighborRoom(Room topRoom, Room rightRoom, Room bottomRoom, Room leftRoom)
+    {
+        neighborRoom = new Room[4]{ topRoom, rightRoom, bottomRoom, leftRoom };
+    }
+
+    public Room GetRandomNeighborRoom()
+    {
+        int siz = 4;
+        int randomIndex = Random.Range(0, siz - 1);
+
+        for (int i = 0; i < siz;i++)
+        {
+            int ind = (i + randomIndex) % siz;
+            if (neighborRoom[ind] != null)
+            {
+                return neighborRoom[ind];
+            }
+        }
+
+        return null;
     }
 
     public void OpenTopDoor()
@@ -152,6 +177,7 @@ public class Room : MonoBehaviour
         ChangeDoorToMainGate(teamType);
 
         activeBossEnemy.Initialize(teamType, activeMainGate);
+        activeBossEnemy.ChangeMoveTarget(transform);
     }
 
     private void SpawnBoss(TeamType teamType)

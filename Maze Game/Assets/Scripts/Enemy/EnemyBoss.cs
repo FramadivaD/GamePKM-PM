@@ -9,6 +9,8 @@ public class EnemyBoss : MonoBehaviour
     [SerializeField] private float followSpeed;
     [SerializeField] private float touchDamage;
 
+    [SerializeField] private bool isFollowPlayerInsteadOfMove = false;
+    [SerializeField] private Transform moveTarget;
     [SerializeField] private Transform playerTarget;
     [SerializeField] private Health health;
 
@@ -72,7 +74,12 @@ public class EnemyBoss : MonoBehaviour
                     attackManager.ChangePlayerTarget();
                 }
 
-                MoveController();
+                if (isFollowPlayerInsteadOfMove) {
+                    MoveController(playerTarget);
+                } else
+                {
+                    MoveController(moveTarget);
+                }
 
                 attackManager.Attack(playerTarget);
             }
@@ -82,12 +89,16 @@ public class EnemyBoss : MonoBehaviour
         }
     }
 
-    private void MoveController()
+    private void MoveController(Transform target)
     {
-        //transform.position = Vector2.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * followSpeed);
-        //rb2.MovePosition(Vector2.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * followSpeed));
+        Vector3 distance = (target.transform.position - transform.position);
+        rb2.velocity = distance.normalized * followSpeed;
 
-        rb2.velocity = (playerTarget.transform.position - transform.position).normalized * followSpeed;
+        // Change move Target
+        if (Vector3.Distance(target.transform.position, transform.position) < 3)
+        {
+            ChangeTargetRoom();
+        }
     }
 
     private void OnDie()
@@ -118,8 +129,26 @@ public class EnemyBoss : MonoBehaviour
         }
     }
 
+    private void ChangeTargetRoom()
+    {
+        isFollowPlayerInsteadOfMove = !isFollowPlayerInsteadOfMove;
+
+        if (moveTarget.TryGetComponent(out Room room))
+        {
+            if (room)
+            {
+                ChangeMoveTarget(room.transform);
+            }
+        }
+    }
+
     public void ChangePlayerTarget(Transform target)
     {
         playerTarget = target;
+    }
+
+    public void ChangeMoveTarget(Transform target)
+    {
+        moveTarget = target;
     }
 }
