@@ -24,10 +24,23 @@ public class EnemyBoss : MonoBehaviour
         set { allowMove = value; }
     }
 
+    public bool BossModeStarted { get; private set; } = false;
+
     public float TouchDamage { get { return touchDamage; } }
+
+    public TeamType TeamType { get; private set; }
+    public Gate MainGate { get; private set; }
 
     public delegate bool CheckBossMModeReadyEventHandler();
     public event CheckBossMModeReadyEventHandler CheckBossModeReady = () => { return true; };
+
+    public void Initialize(TeamType teamType, Gate mainGate)
+    {
+        TeamType = teamType;
+        MainGate = mainGate;
+
+        CheckBossModeReady += MainGate.CheckIsOpened;
+    }
 
     void Start()
     {
@@ -56,6 +69,12 @@ public class EnemyBoss : MonoBehaviour
                 if (CheckBossModeReady == null || CheckBossModeReady.Invoke()) {
                     MoveController();
 
+                    if (BossModeStarted == false)
+                    {
+                        attackManager.ChangePlayerTarget();
+                        BossModeStarted = true;
+                    }
+
                     attackManager.Attack(playerTarget);
                 }
             }
@@ -83,5 +102,10 @@ public class EnemyBoss : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
+    }
+
+    public void ChangePlayerTarget(Transform target)
+    {
+        playerTarget = target;
     }
 }

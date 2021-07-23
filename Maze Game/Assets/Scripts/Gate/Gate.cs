@@ -95,4 +95,9 @@ public class Gate : MonoBehaviour
     {
         
     }
+
+    public bool CheckIsOpened()
+    {
+        return isOpened;
+    }
 }

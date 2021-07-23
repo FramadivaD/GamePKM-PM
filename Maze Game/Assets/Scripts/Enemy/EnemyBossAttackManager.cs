@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyBoss))]
 public class EnemyBossAttackManager : MonoBehaviour
 {
     private BossAttackType attackType;
@@ -14,6 +15,7 @@ public class EnemyBossAttackManager : MonoBehaviour
     [SerializeField] private float timeAttackPunch;
 
     [Header("Variable control")]
+    [SerializeField] private float targetSearchRadius;
     [SerializeField] private float punchForce;
     [SerializeField] private float bulletHellFirePerShootInterval;
     [SerializeField] private float bulletHellAngleSpeed;
@@ -37,11 +39,14 @@ public class EnemyBossAttackManager : MonoBehaviour
     private float bulletHellAngle = 0;
     private float bulletHellTime = 0;
 
+    private EnemyBoss enemyBoss;
+
     private Rigidbody2D rb2;
 
     private void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
+        enemyBoss = GetComponent<EnemyBoss>();
     }
 
     private void Update()
@@ -94,7 +99,10 @@ public class EnemyBossAttackManager : MonoBehaviour
             if (attackType == BossAttackType.None)
             {
                 attackDone = true;
-                Debug.Log("Enemy Boss Proceed Doing nothing");
+
+                ChangePlayerTarget();
+
+                Debug.Log("Enemy Boss Proceed Doing nothing, but changing player target.");
             }
             else if (attackType == BossAttackType.ProjectileLaunch)
             {
@@ -173,6 +181,28 @@ public class EnemyBossAttackManager : MonoBehaviour
         if (projectile)
         {
             projectile.Initialize(rotation);
+        }
+    }
+
+    public void ChangePlayerTarget()
+    {
+        Collider2D[] players = Physics2D.OverlapCircleAll(transform.position, targetSearchRadius);
+
+        float minDistance = float.MaxValue;
+        Collider2D nearestPlayer = null;
+
+        if (players.Length > 0) {
+            foreach (Collider2D player in players)
+            {
+                float dist = Vector3.Distance(player.transform.position, transform.position);
+                if (dist < minDistance)
+                {
+                    dist = minDistance;
+                    nearestPlayer = player;
+                }
+            }
+
+            enemyBoss.ChangePlayerTarget(nearestPlayer.transform);
         }
     }
 }

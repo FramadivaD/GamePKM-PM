@@ -27,7 +27,9 @@ public class Room : MonoBehaviour
     [SerializeField] private Transform bossParent;
     [SerializeField] private GameObject[] bossTypePrefab;
 
-    private GameObject activeBossEnemy;
+    private EnemyBoss activeBossEnemy;
+    private Gate activeMainGate;
+
     public bool IsBossRoom { get; private set; } = false;
     public TeamType BossTeamType { get; private set; } = TeamType.Red;
 
@@ -148,11 +150,15 @@ public class Room : MonoBehaviour
 
         SpawnBoss(teamType);
         ChangeDoorToMainGate(teamType);
+
+        activeBossEnemy.Initialize(teamType, activeMainGate);
     }
 
     private void SpawnBoss(TeamType teamType)
     {
-        activeBossEnemy = Instantiate(bossTypePrefab[(int)teamType], bossParent);
+        GameObject boss = Instantiate(bossTypePrefab[(int)teamType], bossParent);
+
+        activeBossEnemy = boss.GetComponent<EnemyBoss>();
     }
 
     private void ChangeDoorToMainGate(TeamType teamType)
@@ -169,6 +175,8 @@ public class Room : MonoBehaviour
 
             Gate gate = topGate.GetComponent<Gate>();
             gate.Initialize(teamType, mainKey);
+
+            activeMainGate = gate;
         }
 
         if (!rightDoor.activeSelf)
@@ -179,6 +187,8 @@ public class Room : MonoBehaviour
 
             Gate gate = rightGate.GetComponent<Gate>();
             gate.Initialize(teamType, mainKey);
+
+            activeMainGate = gate;
         }
 
         if (!bottomDoor.activeSelf)
@@ -189,6 +199,8 @@ public class Room : MonoBehaviour
 
             Gate gate = bottomGate.GetComponent<Gate>();
             gate.Initialize(teamType, mainKey);
+
+            activeMainGate = gate;
         }
 
         if (!leftDoor.activeSelf)
@@ -199,6 +211,8 @@ public class Room : MonoBehaviour
 
             Gate gate = leftGate.GetComponent<Gate>();
             gate.Initialize(teamType, mainKey);
+
+            activeMainGate = gate;
         }
     }
 
