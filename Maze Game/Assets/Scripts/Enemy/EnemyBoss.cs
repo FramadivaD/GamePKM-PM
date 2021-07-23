@@ -101,7 +101,7 @@ public class EnemyBoss : MonoBehaviour
         {
             if (changeTargetRoomflag == false)
             {
-                isFollowPlayerInsteadOfMove = !isFollowPlayerInsteadOfMove;
+                // isFollowPlayerInsteadOfMove = !isFollowPlayerInsteadOfMove;
 
                 ChangeTargetRoom();
                 changeTargetRoomflag = true;

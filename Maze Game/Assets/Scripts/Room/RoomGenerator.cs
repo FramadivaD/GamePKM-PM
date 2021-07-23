@@ -367,18 +367,21 @@ public class RoomGenerator : MonoBehaviour
         {
             for (int x = 0; x < roomSize; x++)
             {
-                Room top = null;
-                Room right = null;
-                Room bottom = null;
-                Room left = null;
+                if (roomMapRoom[y, x])
+                {
+                    Room top = null;
+                    Room right = null;
+                    Room bottom = null;
+                    Room left = null;
 
-                if (x + 1 < roomSize) right = roomMapRoom[y, x + 1];
-                if (x - 1 >= 0) left = roomMapRoom[y, x - 1];
+                    if (x + 1 < roomSize) right = roomMapRoom[y, x + 1];
+                    if (x - 1 >= 0) left = roomMapRoom[y, x - 1];
 
-                if (y + 1 < roomSize) top = roomMapRoom[y + 1, x];
-                if (y - 1 >= 0) bottom = roomMapRoom[y - 1, x];
+                    if (y + 1 < roomSize) top = roomMapRoom[y + 1, x];
+                    if (y - 1 >= 0) bottom = roomMapRoom[y - 1, x];
 
-                roomMapRoom[y, x].SetNeighborRoom(top, right, bottom, left);
+                    roomMapRoom[y, x].SetNeighborRoom(top, right, bottom, left);
+                }
             }
         }
     }

@@ -98,6 +98,9 @@ Etc.
 - Menambahkan UI Health bar pada Boss Enemy
 - Menambahkan interface Tim Pemenang pada Gameplay setelah mengalahkan Boss Enemy
 - Menambahkan flow gameplay
+- Menambahkan AI pada Boss enemy
+- Menambahkan effect pada ledakan peluru Player
+- Menambahkan effect pada ledakan peluru Boss Enemy
 
 ---------------------------------------- Progress -----------------------------------------
 
@@ -162,7 +165,7 @@ Etc.
 
 [ ] Fitur Notifikasi di atas chest yang unlocked tapi belum diambil.
 
-[ ] Fitur Enemy Follow Player AI
+[X] Fitur Boss Enemy Follow Player AI
 
 [ ] Fitur Navigasi Scene dari main menu, lobby, ke gameplay, ke halaman result terus ke main menu lagi
 
