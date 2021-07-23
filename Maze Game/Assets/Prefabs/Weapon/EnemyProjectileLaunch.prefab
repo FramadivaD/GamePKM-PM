@@ -131,6 +131,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   speed: 10
+  destroyAfter: 5
+  explosiveEffect: {fileID: 8021862887257837618, guid: 32c642817ae69224da572328adc34bf9,
+    type: 3}
 --- !u!61 &1202516131466650086
 BoxCollider2D:
   m_ObjectHideFlags: 0

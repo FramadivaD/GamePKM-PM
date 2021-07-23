@@ -154,7 +154,7 @@ Etc.
 [X] Bisa bunuh boss
 [X] Fitur menang dan kalah ketika tim yang bunuh boss pertama kali
 
-[ ] Bullet ledakan saat kena tembok
+[X] Bullet ledakan saat kena tembok
 
 [ ] Add Pause Menu, isinya continue dan back to main menu.
 
