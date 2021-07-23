@@ -166,6 +166,10 @@ Etc.
 
 [ ] Fitur Navigasi Scene dari main menu, lobby, ke gameplay, ke halaman result terus ke main menu lagi
 
+[ ] Check main menu scene
+
+[ ] Tampilan gate kalo fragment udah lengkap
+
 [ ] Fitur guru browse soal local
 [ ] Fitur guru camera soal
 [ ] Fitur guru upload soal
