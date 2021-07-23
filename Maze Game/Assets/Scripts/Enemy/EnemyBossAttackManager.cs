@@ -38,7 +38,6 @@ public class EnemyBossAttackManager : MonoBehaviour
 
     private void Update()
     {
-        ProjectileLaunchController();
         BulletHellController();
     }
 
@@ -50,7 +49,7 @@ public class EnemyBossAttackManager : MonoBehaviour
         }
         else
         {
-            AttackTarget();
+            AttackTarget(target);
             timeToAttack -= Time.deltaTime;
         }
     }
@@ -80,7 +79,7 @@ public class EnemyBossAttackManager : MonoBehaviour
         }
     }
 
-    private void AttackTarget()
+    private void AttackTarget(Transform target)
     {
         if (attackDone == false)
         {
@@ -94,7 +93,13 @@ public class EnemyBossAttackManager : MonoBehaviour
                 timeToAttack = timeLaunchProjectileLaunch;
                 attackDone = true;
 
-                FireProjectile(projectileLaunchPrefab, projectileBulletHellSpawnOrigin);
+                // Calculate rotation to target
+                Vector3 direction = target.position - transform.position;
+                float rotationZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+                // fire the projectile
+                FireProjectile(projectileLaunchPrefab, projectileBulletHellSpawnOrigin, rotationZ);
+
                 Debug.Log("Enemy Boss Proceed Projectile Launch");
             }
             else if (attackType == BossAttackType.ProjectileBulletHell)
@@ -114,11 +119,6 @@ public class EnemyBossAttackManager : MonoBehaviour
         }
     }
 
-    private void ProjectileLaunchController()
-    {
-        RotateProjectileOrigin(projectileLaunchController, bulletHellAngle);
-    }
-
     private void BulletHellController()
     {
         bulletHellAngle += bulletHellAngleSpeed * Time.deltaTime;
@@ -133,7 +133,7 @@ public class EnemyBossAttackManager : MonoBehaviour
         {
             if (bulletHellTime <= 0)
             {
-                FireProjectile(projectileBulletPrefab, projectileBulletHellSpawnOrigin);
+                FireProjectile(projectileBulletPrefab, projectileBulletHellSpawnOrigin, bulletHellAngle);
                 bulletHellTime += bulletHellFirePerShootInterval;
             } else
             {
@@ -148,9 +148,9 @@ public class EnemyBossAttackManager : MonoBehaviour
         originTransform.rotation = rotation;
     }
 
-    private void FireProjectile(GameObject projectilePrefab, Transform spawnerTransform)
+    private void FireProjectile(GameObject projectilePrefab, Transform spawnerTransform, float angle)
     {
-        Quaternion rotation = Quaternion.Euler(0, 0, bulletHellAngle);
+        Quaternion rotation = Quaternion.Euler(0, 0, angle);
 
         GameObject ne = Instantiate(projectilePrefab, spawnerTransform.position, Quaternion.identity);
         WeaponProjectile projectile = ne.GetComponent<WeaponProjectile>();
