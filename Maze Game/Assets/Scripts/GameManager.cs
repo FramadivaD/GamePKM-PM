@@ -100,6 +100,12 @@ public class GameManager : MonoBehaviour
         winnerTeamText.text = "TEAM " + winnerTeam.ToString();
         winnerStatusText.text = (winnerTeam == player.teamType) ? "WINNER" : "DEFEAT";
 
+        StartCoroutine(AnnounceWinnerUIAfter(winnerTeam, 3));
+    }
+
+    public IEnumerator AnnounceWinnerUIAfter(TeamType winnerTeam, float waitTime)
+    {
+        yield return new WaitForSecondsRealtime(waitTime);
         winnerUI.SetActive(true);
     }
 

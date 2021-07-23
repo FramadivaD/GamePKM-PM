@@ -18,7 +18,6 @@ public class EnemyBossHealthbar : MonoBehaviour
         slider.minValue = 0;
         slider.maxValue = health.MaxHealth;
 
-        health.OnHealthChanged += RefreshHealthBar;
         health.OnDied += OnDie;
 
         healthBarParent.SetActive(false);
@@ -26,28 +25,30 @@ public class EnemyBossHealthbar : MonoBehaviour
 
     private void OnDestroy()
     {
-        health.OnHealthChanged -= RefreshHealthBar;
         health.OnDied -= OnDie;
     }
 
     private void Update()
     {
-        if (!healthStarted)
+        if (enemyBoss.BossModeStarted)
         {
-            if (enemyBoss.BossModeStarted)
+            if (!healthStarted)
             {
-                // refresh health
                 health.CurrentHealth = health.MaxHealth;
+                slider.value = health.MaxHealth;
+
                 healthBarParent.SetActive(true);
 
                 healthStarted = true;
             }
+
+            RefreshHealthBar();
         }
     }
 
     void RefreshHealthBar()
     {
-        slider.value = health.CurrentHealth;
+        slider.value = Mathf.Lerp(slider.value, health.CurrentHealth, 0.2f);
     }
 
     void OnDie()

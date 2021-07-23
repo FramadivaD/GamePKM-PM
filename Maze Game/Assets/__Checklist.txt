@@ -149,6 +149,8 @@ Etc.
 [X] Bisa bunuh boss
 [X] Fitur menang dan kalah ketika tim yang bunuh boss pertama kali
 
+[ ] Fitur Notifikasi di atas chest yang unlocked tapi belum diambil.
+
 [ ] Fitur Enemy Follow Player AI
 
 [ ] Fitur Navigasi Scene dari main menu, lobby, ke gameplay, ke halaman result terus ke main menu lagi
