@@ -189,6 +189,7 @@ public class EnemyBossAttackManager : MonoBehaviour
 
     public void ChangePlayerTarget()
     {
+        Debug.Log("Begin searching player...");
         Collider2D[] players = Physics2D.OverlapCircleAll(transform.position, targetSearchRadius);
 
         float minDistance = float.MaxValue;

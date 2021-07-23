@@ -31,15 +31,10 @@ public class EnemyBoss : MonoBehaviour
     public TeamType TeamType { get; private set; }
     public Gate MainGate { get; private set; }
 
-    public delegate bool CheckBossMModeReadyEventHandler();
-    public event CheckBossMModeReadyEventHandler CheckBossModeReady = () => { return true; };
-
     public void Initialize(TeamType teamType, Gate mainGate)
     {
         TeamType = teamType;
         MainGate = mainGate;
-
-        CheckBossModeReady += MainGate.CheckIsOpened;
     }
 
     void Start()
@@ -55,7 +50,6 @@ public class EnemyBoss : MonoBehaviour
     private void OnDestroy()
     {
         health.OnDied -= OnDie;
-        CheckBossModeReady = null;
     }
 
     void Update()
@@ -64,12 +58,17 @@ public class EnemyBoss : MonoBehaviour
             && GameManager.Instance.AllowEnemyMove
             && AllowMove)
         {
-            if (CheckBossModeReady == null || CheckBossModeReady.Invoke())
+            if (MainGate.CheckIsOpened())
             {
                 if (BossModeStarted == false)
                 {
-                    attackManager.ChangePlayerTarget();
+                    Debug.Log("Starting following player..");
                     BossModeStarted = true;
+                }
+
+                if (playerTarget == null)
+                {
+                    attackManager.ChangePlayerTarget();
                 }
 
                 MoveController();

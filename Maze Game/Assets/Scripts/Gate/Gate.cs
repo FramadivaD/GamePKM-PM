@@ -7,7 +7,7 @@ public class Gate : MonoBehaviour
     Animator gateAnim;
 
     [SerializeField] private bool isOpened = false;
-    public bool IsOpened { get { return isOpened; } private set { isOpened = false; } }
+    public bool IsOpened { get { return isOpened; } private set { isOpened = value; } }
 
     [SerializeField] private TeamType _teamType;
     public TeamType teamType { get { return _teamType; } private set { _teamType = value; } }

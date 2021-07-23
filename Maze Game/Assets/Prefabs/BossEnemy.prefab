@@ -931,6 +931,7 @@ MonoBehaviour:
   timeLaunchProjectileLaunch: 1
   timeLaunchProjectileBulletHell: 3
   timeAttackPunch: 2
+  targetSearchRadius: 12
   punchForce: 1
   bulletHellFirePerShootInterval: 0.2
   bulletHellAngleSpeed: 120
