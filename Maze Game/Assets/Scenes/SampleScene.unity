@@ -6241,6 +6241,11 @@ PrefabInstance:
       objectReference: {fileID: 677508483}
     - target: {fileID: 4115678027287425925, guid: eea3f130a4da6dd4ab31bb50f647b007,
         type: 3}
+      propertyPath: gameplayUI
+      value: 
+      objectReference: {fileID: 1087816299}
+    - target: {fileID: 4115678027287425925, guid: eea3f130a4da6dd4ab31bb50f647b007,
+        type: 3}
       propertyPath: roomGenerator
       value: 
       objectReference: {fileID: 2088515435}

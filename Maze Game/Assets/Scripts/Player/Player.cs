@@ -99,6 +99,9 @@ public class Player : MonoBehaviour
         if (CheckAllowedMove())
         {
             rb.velocity = movement * movementSpeed * Time.deltaTime;
+        } else
+        {
+            rb.velocity = Vector2.zero;
         }
     }
 
@@ -287,19 +290,21 @@ public class Player : MonoBehaviour
 
     public void ExecuteEquippedItem()
     {
-        if (EquippedItem != null)
-        {
-            if (EquippedItem is WeaponInventory)
+        if (CheckAllowedMove()) {
+            if (EquippedItem != null)
             {
-                WeaponInventory weapon = EquippedItem as WeaponInventory;
-                weaponManager.ExecuteWeapon(weapon);
+                if (EquippedItem is WeaponInventory)
+                {
+                    WeaponInventory weapon = EquippedItem as WeaponInventory;
+                    weaponManager.ExecuteWeapon(weapon);
+                } else
+                {
+                    weaponManager.ExecuteWeapon(null);
+                }
             } else
             {
                 weaponManager.ExecuteWeapon(null);
             }
-        } else
-        {
-            weaponManager.ExecuteWeapon(null);
         }
     }
 

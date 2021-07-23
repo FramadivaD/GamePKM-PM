@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public bool WinnerWasAnnounced { get; private set; }
     public TeamType WinnerTeam { get; private set; }
 
+    [Header("All about UI")]
+    [SerializeField] private GameObject gameplayUI;
     [SerializeField] private GameObject winnerUI;
     [SerializeField] private Text winnerStatusText;
     [SerializeField] private Text winnerTeamText;
@@ -99,6 +101,8 @@ public class GameManager : MonoBehaviour
 
         winnerTeamText.text = "TEAM " + winnerTeam.ToString();
         winnerStatusText.text = (winnerTeam == player.teamType) ? "WINNER" : "DEFEAT";
+
+        gameplayUI.SetActive(false);
 
         StartCoroutine(AnnounceWinnerUIAfter(winnerTeam, 3));
     }
