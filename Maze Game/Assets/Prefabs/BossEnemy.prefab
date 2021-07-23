@@ -56,7 +56,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940899529323462994}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.65, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7947638784123356796}
@@ -416,7 +416,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4868162789578719405}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.65, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 378511606761107316}
@@ -777,6 +777,7 @@ GameObject:
   - component: {fileID: 2423320436784324540}
   - component: {fileID: 5262429376495144852}
   - component: {fileID: 1962611692178484812}
+  - component: {fileID: 6109504176078158156}
   m_Layer: 0
   m_Name: BossEnemy
   m_TagString: Untagged
@@ -870,7 +871,7 @@ MonoBehaviour:
   timeLaunchProjectileLaunch: 1
   timeLaunchProjectileBulletHell: 3
   timeAttackPunch: 2
-  punchForce: 10
+  punchForce: 0.5
   bulletHellFirePerShootInterval: 0.2
   bulletHellAngleSpeed: 120
   projectileLaunchController: {fileID: 7947638784123356796}
@@ -881,3 +882,24 @@ MonoBehaviour:
     type: 3}
   projectileBulletPrefab: {fileID: 8687706552621162461, guid: f2deb77ce7c8f424c8069a8b936451d0,
     type: 3}
+--- !u!50 &6109504176078158156
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8006803719243552604}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
