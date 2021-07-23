@@ -91,7 +91,7 @@ public class Enemy : MonoBehaviour
             if (collision.TryGetComponent(out WeaponProjectile projectile))
             {
                 health.CurrentHealth -= projectile.Damage;
-                Destroy(collision.gameObject);
+                projectile.TerminateProjectile();
             }
         }
     }

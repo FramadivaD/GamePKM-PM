@@ -21,6 +21,9 @@ TagManager:
   - FragmentOrb
   - EnemyProjectile
   - EnemyBoss
+  - RoomWall
+  - RoomDoor
+  - RoomGate
   layers:
   - Default
   - TransparentFX

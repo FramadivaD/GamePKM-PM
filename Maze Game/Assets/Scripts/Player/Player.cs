@@ -183,7 +183,7 @@ public class Player : MonoBehaviour
             if (other.TryGetComponent(out WeaponProjectile projectile))
             {
                 health.CurrentHealth -= projectile.Damage;
-                Destroy(other.gameObject);
+                projectile.TerminateProjectile();
             }
         }
         else if (other.tag == "EnemyBoss")

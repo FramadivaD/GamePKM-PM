@@ -92,7 +92,6 @@ public class EnemyBoss : MonoBehaviour
 
     private void OnDie()
     {
-        //Destroy(gameObject);
         PlayDieAnimation();
         attackManager.enabled = false;
 
@@ -113,7 +112,7 @@ public class EnemyBoss : MonoBehaviour
                 if (collision.TryGetComponent(out WeaponProjectile projectile))
                 {
                     health.CurrentHealth -= projectile.Damage;
-                    Destroy(collision.gameObject);
+                    projectile.TerminateProjectile();
                 }
             }
         }

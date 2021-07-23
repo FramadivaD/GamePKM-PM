@@ -1,40 +1,43 @@
 ---------------------------------------- Summary Report -----------------------------------------
 Game System and Mechanic
-[               ] [X] Perbaiki dan maintenance kode yang rusak
-[               ] [X] Sistem Team
-[               ] [X] Sistem Health
-[               ] [X] Sistem Player
-[               ] [X] Sistem Dynamic Interaction
-[               ] [X] Sistem Inventory
-[               ] [X] Sistem Weapon
-[               ] [X] Sistem Main Gate
-[               ] [X] Sistem Chest
-[               ] [ ] Sistem Question
-[               ] [ ] Sistem Compass (penunjuk arah player ke boss room)
-[               ] [X] Sistem Room Generator
-[               ] [X] Sistem Enemy
-[               ] [ ] Sistem Boss Mode
-[               ] [ ] Sistem Flow Game (dari awal gameplay, sampai menang)
-[               ] [ ] Sistem Guru Bikin Soal
-[               ] [ ] Sistem Camera Device
-[               ] [ ] Sistem Storage Save and Load Data
-[               ] [ ] Sistem Lobby Main Menu
-[               ] [ ] Sistem Multiplayer
-[               ] [ ] Sistem Online Multiplayer
-[               ] [ ] Sistem Port Android
-[               ] [ ] Sistem Audio Manager
+[7] [X] Perbaiki dan maintenance kode yang rusak
+[3] [X] Sistem Team
+[1] [X] Sistem Health
+[3] [X] Sistem Player
+[5] [X] Sistem Dynamic Interaction
+[7] [X] Sistem Inventory
+[5] [X] Sistem Weapon Mechanic
+[1] [X] Sistem Weapon Projectile
+[7] [X] Sistem Main Gate
+[1] [X] Sistem Chest
+[1] [ ] Sistem Question
+[1] [ ] Sistem Compass (penunjuk arah player ke boss room)
+[7] [X] Sistem Room Generator
+[3] [X] Sistem Enemy
+[5] [X] Sistem Boss Mode
+[7] [ ] Sistem AI Enemy Boss
+[3] [X] Sistem Winner Team
+[3] [ ] Sistem Flow Game (dari awal gameplay, sampai menang)
+[5] [ ] Sistem Guru Bikin Soal
+[5] [ ] Sistem Camera Device
+[5] [ ] Sistem Storage Save and Load Data
+[7] [ ] Sistem Lobby Main Menu
+[9] [ ] Sistem Multiplayer
+[5] [ ] Sistem Online Multiplayer
+[3] [ ] Sistem Port Android
+[1] [ ] Sistem Audio Manager
 
 Design
-[               ] [X] Design - Penataan UI yang sesuai layar dinamis
+[0] [X] Design - Penataan UI yang sesuai layar dinamis
 
 Audio
-[               ] [ ] Audio - Main Theme
-[               ] [ ] Audio - Gameplay Theme
-[               ] [ ] Audio - Sound Effect
+[1] [ ] Audio - Main Theme
+[1] [ ] Audio - Gameplay Theme
+[3] [ ] Audio - Sound Effect
 
 Etc.
-[               ] [ ] Server - Penyiapan Backend
-[               ] [ ] Maintenance dan Revisi sampai project siap
+[0] [ ] Server - Penyiapan Backend
+[5] [ ] Maintenance dan Revisi sampai project siap
 
 ---------------------------------------- Laporan -----------------------------------------
 
@@ -150,6 +153,10 @@ Etc.
 [X] Health bar boss
 [X] Bisa bunuh boss
 [X] Fitur menang dan kalah ketika tim yang bunuh boss pertama kali
+
+[ ] Bullet ledakan saat kena tembok
+
+[ ] Add Pause Menu, isinya continue dan back to main menu.
 
 [ ] Boss Level Compass
 
