@@ -171,7 +171,11 @@ Etc.
 
 [X] Fitur Boss Enemy Follow Player AI
 
-[ ] Fitur Navigasi Scene dari main menu, lobby, ke gameplay, ke halaman result terus ke main menu lagi
+[ ] Fitur Navigasi Scene main menu
+[ ] Fitur Navigasi Scene lobby
+[ ] Fitur Navigasi Scene create question
+[ ] Fitur Navigasi Scene ke gameplay
+[ ] Fitur Navigasi Scene ke halaman result terus ke main menu lagi
 
 [ ] Check main menu scene
 

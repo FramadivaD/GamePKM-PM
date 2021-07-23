@@ -11,11 +11,7 @@ public class MainMenuScript : MonoBehaviour
     public Sprite[] soundSprites;
     public bool isMute = false;
     public float lastSoundValue;
-    void Start()
-    {
-        
-    }
-
+   
     void Update()
     {
         //Sound Monitoring
@@ -46,14 +42,6 @@ public class MainMenuScript : MonoBehaviour
         menus[2].transform.localPosition = Vector2.zero;
     }
 
-    public void ExitGame(){
-        //Exit Game
-    }
-
-    public void StartGame(){
-        SceneManager.LoadScene("SampleScene");
-    }
-
     public void SoundSettings(){
         if(isMute){
             //GameObject.Find("Music Button").GetComponent<Image>().sprite = soundSprites[0];
@@ -71,5 +59,4 @@ public class MainMenuScript : MonoBehaviour
             isMute = true;
         }
     }
-    
 }
