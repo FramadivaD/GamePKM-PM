@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+#region Gameplay Data
+
 public class MainGateKey
 {
     public TeamType Team { get; private set; }
@@ -39,3 +41,48 @@ public class MainGateFragment : IInventoryAble
         this.data = data;
     }
 }
+
+#endregion
+
+#region Raw Laboratory Data
+
+[System.Serializable]
+public class MainGateKeyRaw
+{
+    public List<MainGateFragmentRaw> Fragments { get; private set; }
+
+    public MainGateKeyRaw()
+    {
+        Fragments = new List<MainGateFragmentRaw>();
+    }
+
+    public void AddFragment(MainGateFragmentRaw fragment)
+    {
+        Fragments.Add(fragment);
+    }
+
+    public void RemoveFragment(MainGateFragmentRaw fragment)
+    {
+        Fragments.Remove(fragment);
+    }
+}
+
+[System.Serializable]
+public class MainGateFragmentRaw
+{
+    [SerializeField] private string key;
+    [SerializeField] private string data;
+
+    public string Key { get { return key; } }
+    public string Data { get { return data; } }
+
+    public Sprite DataImage { get { return null; } }
+
+    public MainGateFragmentRaw(string key, string data)
+    {
+        this.key = key;
+        this.data = data;
+    }
+}
+
+#endregion
