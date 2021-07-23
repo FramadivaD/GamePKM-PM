@@ -137,6 +137,8 @@ Etc.
 [ ] Bisa bunuh boss
 [ ] Fitur menang dan kalah ketika tim yang bunuh boss pertama kali
 
+[ ] Fitur Enemy Follow Player AI
+
 [ ] Fitur Navigasi Scene dari main menu, lobby, ke gameplay, ke halaman result terus ke main menu lagi
 
 [ ] Fitur guru browse soal local

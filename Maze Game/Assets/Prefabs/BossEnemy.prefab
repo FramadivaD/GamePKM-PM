@@ -620,6 +620,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5140858729371276322}
   - component: {fileID: 1796141185684056360}
+  - component: {fileID: 2423320436784324540}
+  - component: {fileID: 5262429376495144852}
   m_Layer: 0
   m_Name: BossEnemy
   m_TagString: Untagged
@@ -666,3 +668,41 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2423320436784324540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8006803719243552604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a0d8bde13c96ab44b2e588d673a33b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeChangeTargetInterval: 5
+  timeLaunchProjectileLaunch: 1
+  timeLaunchProjectileBulletHell: 2
+  timeAttackPunch: 2
+  followSpeed: 5
+  playerTarget: {fileID: 0}
+  health: {fileID: 5262429376495144852}
+  allowMove: 0
+  projectileLaunch: {fileID: 8687706552621162461, guid: a9303fecb8058a64ea9be8d650d4595d,
+    type: 3}
+  projectileBullet: {fileID: 8687706552621162461, guid: 88c05a885a447834386bb2411a6c0be0,
+    type: 3}
+--- !u!114 &5262429376495144852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8006803719243552604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa85043e200cc54fa56553d644dc43a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
+  currentHealth: 0

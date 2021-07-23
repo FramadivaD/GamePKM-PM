@@ -14,6 +14,11 @@ public enum TeamType
     Red, Blue
 }
 
+public enum BossAttackType
+{
+    None, Punch, ProjectileLaunch, ProjectileBulletHell
+}
+
 public static class TeamHelper
 {
     public static readonly Color[] TeamColor = {
