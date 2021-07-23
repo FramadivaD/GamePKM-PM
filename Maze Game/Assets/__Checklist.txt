@@ -89,8 +89,12 @@ Etc.
 - Menambahkan fitur Boss Enemy bisa kalah.
 - Menambahkan fitur Boss Enemy Weapon / attack Type.
 - Sinkronisasi damage player dan boss enemy
-- Menambahkan f tur Boss Enemy untuk search dan mengejar player
+- Menambahkan fitur Boss Enemy untuk search dan mengejar player
 - Sinkronisasi Boss Enemy dengan Main Gate yang menjaga room
+- Menambahkan fitur health pada Boss Enemy
+- Menambahkan UI Health bar pada Boss Enemy
+- Menambahkan interface Tim Pemenang pada Gameplay setelah mengalahkan Boss Enemy
+- Menambahkan flow gameplay
 
 ---------------------------------------- Progress -----------------------------------------
 
@@ -139,8 +143,6 @@ Etc.
 [X] Fitur pasang pecahan jawaban per player di main gate
 [X] Fitur UI pasang pecahan jawaban di main gate
 
-[ ] Boss Level Compass
-
 [X] Mechanic Boss Level
 [X] Mechanic Boss Enemy dengan Gate sinkron
 [X] Mechanic Boss mengejar player dan ganti ganti target
@@ -148,6 +150,8 @@ Etc.
 [X] Health bar boss
 [X] Bisa bunuh boss
 [X] Fitur menang dan kalah ketika tim yang bunuh boss pertama kali
+
+[ ] Boss Level Compass
 
 [ ] Fitur Notifikasi di atas chest yang unlocked tapi belum diambil.
 
