@@ -106,12 +106,15 @@ public class EnemyBoss : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "PlayerProjectile")
+        if (BossModeStarted)
         {
-            if (collision.TryGetComponent(out WeaponProjectile projectile))
+            if (collision.tag == "PlayerProjectile")
             {
-                health.CurrentHealth -= projectile.Damage;
-                Destroy(collision.gameObject);
+                if (collision.TryGetComponent(out WeaponProjectile projectile))
+                {
+                    health.CurrentHealth -= projectile.Damage;
+                    Destroy(collision.gameObject);
+                }
             }
         }
     }
