@@ -30,6 +30,8 @@ public class MainGateFragment : IInventoryAble
     public string Key { get { return key; } }
     public string Data { get { return data; } }
 
+    public Sprite DataImage { get { return null; } }
+
     public MainGateFragment(MainGateKey mainKey, string key, string data)
     {
         MainKey = mainKey;

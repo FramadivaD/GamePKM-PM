@@ -14,9 +14,9 @@ public class ChestContainer : MonoBehaviour
     public SpriteRenderer teamIndicator;
 
     [Header("UI")]
-    public GameObject canvasUI;
-    public Image fragmentImage;
-    public Text fragmentDataText;
+    [SerializeField] private GameObject canvasUI;
+    [SerializeField] private Image fragmentImage;
+    [SerializeField] private Text fragmentDataText;
 
     private bool isUnlocked = false;
     public bool IsUnlocked {
@@ -51,7 +51,7 @@ public class ChestContainer : MonoBehaviour
         this.teamType = teamType;
         this.fragmentKey = fragment;
 
-        fragmentImage.sprite = null;
+        fragmentImage.sprite = fragmentKey.DataImage;
         fragmentDataText.text = fragmentKey.Data;
     }
 
