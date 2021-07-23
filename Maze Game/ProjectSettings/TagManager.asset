@@ -20,6 +20,7 @@ TagManager:
   - PlayerProjectile
   - FragmentOrb
   - EnemyProjectile
+  - EnemyBoss
   layers:
   - Default
   - TransparentFX

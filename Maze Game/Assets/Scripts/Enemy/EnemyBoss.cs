@@ -7,6 +7,7 @@ public class EnemyBoss : MonoBehaviour
 {
     [Header("All about Enemy Config")]
     [SerializeField] private float followSpeed;
+    [SerializeField] private float touchDamage;
 
     [SerializeField] private Transform playerTarget;
     [SerializeField] private Health health;
@@ -22,6 +23,8 @@ public class EnemyBoss : MonoBehaviour
         get { return allowMove; }
         set { allowMove = value; }
     }
+
+    public float TouchDamage { get { return touchDamage; } }
 
     public delegate bool CheckBossMModeReadyEventHandler();
     public event CheckBossMModeReadyEventHandler CheckBossModeReady = () => { return true; };

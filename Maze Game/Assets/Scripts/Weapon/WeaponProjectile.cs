@@ -5,6 +5,7 @@ public class WeaponProjectile : MonoBehaviour
 {
     [SerializeField] protected float damage;
     [SerializeField] protected float speed;
+    [SerializeField] protected float destroyAfter = 5;
 
     public float Damage { get { return damage; } }
     public float Speed { get { return damage; } }
@@ -18,7 +19,7 @@ public class WeaponProjectile : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject, 5);
+        Destroy(gameObject, destroyAfter);
     }
 
     public void Initialize(Quaternion rotation)

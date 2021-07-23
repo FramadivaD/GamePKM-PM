@@ -82,6 +82,13 @@ Etc.
 - Menambahkan Fitur Drop Item untuk fragment jawaban dan weapon.
 - Menambahkan Fitur penyebaran item weapon di seluruh map.
 - Menambahkan fitur Musuh bisa mati ketika terkena peluru Player.
+- Menambahkan fitur Mekanik Boss Mode.
+- Menambahkan fitur Boss Enemy Launch Projectile.
+- Menambahkan fitur Boss Enemy Bullet Hell.
+- Menambahkan fitur Boss Enemy Dash.
+- Menambahkan fitur Boss Enemy bisa kalah.
+- Menambahkan fitur Boss Enemy Weapon / attack Type.
+- Sinkronisasi damage player dan boss enemy
 
 ---------------------------------------- Progress -----------------------------------------
 
@@ -132,8 +139,9 @@ Etc.
 
 [ ] Boss Level Compass
 
-[ ] Mechanic Boss Level
+[X] Mechanic Boss Level
 [X] Bisa bunuh musuh
+[ ] Health bar boss
 [ ] Bisa bunuh boss
 [ ] Fitur menang dan kalah ketika tim yang bunuh boss pertama kali
 

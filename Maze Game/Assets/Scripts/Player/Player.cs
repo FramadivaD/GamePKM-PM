@@ -174,6 +174,22 @@ public class Player : MonoBehaviour
             }
             health.CurrentHealth -= 1;
         }
+        else if (other.tag == "EnemyProjectile")
+        {
+            if (other.TryGetComponent(out WeaponProjectile projectile))
+            {
+                health.CurrentHealth -= projectile.Damage;
+                Destroy(other.gameObject);
+            }
+        }
+        else if (other.tag == "EnemyBoss")
+        {
+            if (other.TryGetComponent(out EnemyBoss boss))
+            {
+                health.CurrentHealth -= boss.TouchDamage;
+                Destroy(other.gameObject);
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
