@@ -870,8 +870,9 @@ MonoBehaviour:
   timeLaunchProjectileLaunch: 1
   timeLaunchProjectileBulletHell: 3
   timeAttackPunch: 2
+  punchForce: 10
   bulletHellFirePerShootInterval: 0.2
-  bulletHellAngleSpeed: 60
+  bulletHellAngleSpeed: 120
   projectileLaunchController: {fileID: 7947638784123356796}
   projectileLaunchSpawnOrigin: {fileID: 7947638784123356796}
   projectileBulletHellController: {fileID: 378511606761107316}

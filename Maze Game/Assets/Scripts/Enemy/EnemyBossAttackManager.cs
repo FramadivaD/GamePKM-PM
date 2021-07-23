@@ -14,6 +14,7 @@ public class EnemyBossAttackManager : MonoBehaviour
     [SerializeField] private float timeAttackPunch;
 
     [Header("Variable control")]
+    [SerializeField] private float punchForce;
     [SerializeField] private float bulletHellFirePerShootInterval;
     [SerializeField] private float bulletHellAngleSpeed;
 
@@ -35,6 +36,13 @@ public class EnemyBossAttackManager : MonoBehaviour
 
     private float bulletHellAngle = 0;
     private float bulletHellTime = 0;
+
+    private Rigidbody2D rb2;
+
+    private void Start()
+    {
+        rb2 = GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {
@@ -113,6 +121,14 @@ public class EnemyBossAttackManager : MonoBehaviour
             {
                 timeToAttack = timeAttackPunch;
                 attackDone = true;
+
+                if (rb2)
+                {
+                    // Calculate rotation to target
+                    Vector3 direction = target.position - transform.position;
+
+                    rb2.AddForce(direction * punchForce, ForceMode2D.Impulse);
+                }
 
                 Debug.Log("Enemy Boss Proceed Punch");
             }

@@ -61,7 +61,8 @@ public class EnemyBoss : MonoBehaviour
 
     private void MoveController()
     {
-        transform.position = Vector2.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * followSpeed);
+        //transform.position = Vector2.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * followSpeed);
+        rb2.MovePosition(Vector2.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * followSpeed));
     }
 
     private void OnDie()
