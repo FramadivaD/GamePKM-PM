@@ -21,7 +21,7 @@ Game System and Mechanic
 [5] [ ] Sistem Guru Bikin Soal
 [1] [ ] Sistem Editor Gate Key soal guru
 [3] [ ] Sistem Transfer data soal guru
-[5] [ ] Sistem Camera Device
+[3] [ ] Sistem Camera Device
 [5] [ ] Sistem Storage Save and Load Data
 [7] [ ] Sistem Lobby Main Menu
 [3] [ ] Sistem Result Post Gameplay
@@ -111,6 +111,8 @@ Etc.
 - Menambahkan Layout Lobby Menu
 - Menambahkan Layout Laboratory
 - Menambahkan Gate Key Editor Laboratory
+- Menambahkan Gate Key Browse Laboratory
+- Menambahkan Gate Key Select Laboratory
 
 ---------------------------------------- Progress -----------------------------------------
 
@@ -179,9 +181,13 @@ Etc.
 
 [X] Fitur Navigasi Scene main menu
 [X] Fitur Navigasi Scene lobby
-[ ] Fitur Navigasi Scene create question
+[X] Fitur Navigasi Scene create question
 [ ] Fitur Navigasi Scene ke gameplay
 [ ] Fitur Navigasi Scene ke halaman result terus ke main menu lagi
+
+[ ] Lobby menu, nama player dan tim
+[ ] Lobby menu guru pilih main gate
+[ ] Lobby menu start game
 
 [ ] Tampilan gate kalo fragment udah lengkap
 
