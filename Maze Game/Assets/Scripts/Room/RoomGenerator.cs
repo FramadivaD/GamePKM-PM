@@ -212,26 +212,28 @@ public class RoomGenerator : MonoBehaviour
             cornerRoom.Add(room);
             allRoom.Add(room);
 
+            cornerRoom.Remove(roomMapRoom[y, x]);
+
             room.SetNeighborRoom(null, null, roomMapRoom[y, x], null);
         }
         if (forceFillAll || cornerRoom.Count < TeamHelper.GetTeamCount())
         {
-            {
-                int x = mostBorderRoom[1].x;
-                int y = mostBorderRoom[1].y;
+            int x = mostBorderRoom[1].x;
+            int y = mostBorderRoom[1].y;
 
-                Room room = SpawnRoom(x, y);
-                room.transform.position += new Vector3(roomWidthHeight.x, 0, 0);
-                room.gameObject.name = "AddonNecessaryRoomRight";
-                room.Initialize();
+            Room room = SpawnRoom(x, y);
+            room.transform.position += new Vector3(roomWidthHeight.x, 0, 0);
+            room.gameObject.name = "AddonNecessaryRoomRight";
+            room.Initialize();
 
-                room.OpenLeftDoor();
-                roomMapRoom[y, x].OpenRightDoor();
-                cornerRoom.Add(room);
-                allRoom.Add(room);
+            room.OpenLeftDoor();
+            roomMapRoom[y, x].OpenRightDoor();
+            cornerRoom.Add(room);
+            allRoom.Add(room);
 
-                room.SetNeighborRoom(null, null, null, roomMapRoom[y, x]);
-            }
+            cornerRoom.Remove(roomMapRoom[y, x]);
+
+            room.SetNeighborRoom(null, null, null, roomMapRoom[y, x]);
         }
 
         if (forceFillAll || cornerRoom.Count < TeamHelper.GetTeamCount())
@@ -248,6 +250,8 @@ public class RoomGenerator : MonoBehaviour
             roomMapRoom[y, x].OpenBottomDoor();
             cornerRoom.Add(room);
             allRoom.Add(room);
+
+            cornerRoom.Remove(roomMapRoom[y, x]);
 
             room.SetNeighborRoom(roomMapRoom[y, x], null, null, null);
         }
@@ -266,6 +270,8 @@ public class RoomGenerator : MonoBehaviour
             roomMapRoom[y, x].OpenLeftDoor();
             cornerRoom.Add(room);
             allRoom.Add(room);
+
+            cornerRoom.Remove(roomMapRoom[y, x]);
 
             room.SetNeighborRoom(null, roomMapRoom[y, x], null, null);
         }
