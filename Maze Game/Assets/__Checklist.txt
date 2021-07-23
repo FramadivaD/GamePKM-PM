@@ -19,6 +19,7 @@ Game System and Mechanic
 [3] [X] Sistem Winner Team
 [3] [X] Sistem Flow Game (dari awal gameplay, sampai menang)
 [5] [ ] Sistem Guru Bikin Soal
+[1] [ ] Sistem Editor Gate Key soal guru
 [3] [ ] Sistem Transfer data soal guru
 [5] [ ] Sistem Camera Device
 [5] [ ] Sistem Storage Save and Load Data
@@ -106,6 +107,10 @@ Etc.
 - Menambahkan Pause menu saat gameplay
 - Menambahkan Chest fragment key notification
 - Menambahkan navigasi scene pada game
+- Menambahkan Layout Main Menu
+- Menambahkan Layout Lobby Menu
+- Menambahkan Layout Laboratory
+- Menambahkan Gate Key Editor Laboratory
 
 ---------------------------------------- Progress -----------------------------------------
 

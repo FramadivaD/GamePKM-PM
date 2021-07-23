@@ -9,6 +9,10 @@ public class LaboratoryMenu : MonoBehaviour
 
     private void Start()
     {
+        selectWindow.Initialize(this);
+        browseWindow.Initialize(this);
+        editorWindow.Initialize(this);
+
         OpenSelectWindow();
     }
 
