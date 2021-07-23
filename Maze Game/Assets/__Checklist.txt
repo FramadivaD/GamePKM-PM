@@ -15,14 +15,15 @@ Game System and Mechanic
 [7] [X] Sistem Room Generator
 [3] [X] Sistem Enemy
 [5] [X] Sistem Boss Mode
-[7] [ ] Sistem AI Enemy Boss
+[7] [X] Sistem AI Enemy Boss
 [3] [X] Sistem Winner Team
-[3] [ ] Sistem Flow Game (dari awal gameplay, sampai menang)
+[3] [X] Sistem Flow Game (dari awal gameplay, sampai menang)
 [5] [ ] Sistem Guru Bikin Soal
 [3] [ ] Sistem Transfer data soal guru
 [5] [ ] Sistem Camera Device
 [5] [ ] Sistem Storage Save and Load Data
 [7] [ ] Sistem Lobby Main Menu
+[3] [ ] Sistem Result Post Gameplay
 [9] [ ] Sistem Multiplayer
 [5] [ ] Sistem Online Multiplayer
 [3] [ ] Sistem Port Android
@@ -171,13 +172,11 @@ Etc.
 
 [X] Fitur Boss Enemy Follow Player AI
 
-[ ] Fitur Navigasi Scene main menu
-[ ] Fitur Navigasi Scene lobby
+[X] Fitur Navigasi Scene main menu
+[X] Fitur Navigasi Scene lobby
 [ ] Fitur Navigasi Scene create question
 [ ] Fitur Navigasi Scene ke gameplay
 [ ] Fitur Navigasi Scene ke halaman result terus ke main menu lagi
-
-[ ] Check main menu scene
 
 [ ] Tampilan gate kalo fragment udah lengkap
 

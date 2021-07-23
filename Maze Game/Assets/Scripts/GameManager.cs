@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -144,11 +145,13 @@ public class GameManager : MonoBehaviour
     public void BackToLobby()
     {
         Debug.Log("Loading Lobby");
+        SceneManager.LoadScene("LobbyMenu");
     }
 
     public void BackToMainMenu()
     {
         Debug.Log("Loading Main Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ShowPauseMenu()

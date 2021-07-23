@@ -22,6 +22,14 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene("CreateQuestionScene");
     }
 
+    public void GotoGameplay()
+    {
+        Debug.Log("Go to Gameplay Scene");
+
+        // TODO : Rename SampleScene ke Gameplay
+        SceneManager.LoadScene("SampleScene");
+    }
+
     public void ExitGame()
     {
         Debug.Log("Exit Game");
