@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &383005063453023850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2030414613503981462}
+  m_Layer: 0
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2030414613503981462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383005063453023850}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.07527165, y: -0.0628672, z: -0.26479086}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 378511606761107316}
+  - {fileID: 7947638784123356796}
+  m_Father: {fileID: 5140858729371276322}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &940899529323462994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3866964380816207602}
+  m_Layer: 0
+  m_Name: ProjectileLaunchSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3866964380816207602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940899529323462994}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.65, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7947638784123356796}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1146482134382351959
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +392,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4868162789578719405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3832337356352523099}
+  m_Layer: 0
+  m_Name: BulletHellSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3832337356352523099
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4868162789578719405}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.65, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 378511606761107316}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5250444176339677888
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +587,68 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6007668315499610754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7947638784123356796}
+  m_Layer: 0
+  m_Name: ProjectileLaunchController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7947638784123356796
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6007668315499610754}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3866964380816207602}
+  m_Father: {fileID: 2030414613503981462}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6364265485822891155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 378511606761107316}
+  m_Layer: 0
+  m_Name: BulletHellController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &378511606761107316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6364265485822891155}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3832337356352523099}
+  m_Father: {fileID: 2030414613503981462}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7199342174139332999
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,6 +776,7 @@ GameObject:
   - component: {fileID: 1796141185684056360}
   - component: {fileID: 2423320436784324540}
   - component: {fileID: 5262429376495144852}
+  - component: {fileID: 1962611692178484812}
   m_Layer: 0
   m_Name: BossEnemy
   m_TagString: Untagged
@@ -646,6 +801,7 @@ Transform:
   - {fileID: 585046323215283900}
   - {fileID: 5090572372899736773}
   - {fileID: 9206015151153541560}
+  - {fileID: 2030414613503981462}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -680,18 +836,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a0d8bde13c96ab44b2e588d673a33b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeChangeTargetInterval: 5
-  timeLaunchProjectileLaunch: 1
-  timeLaunchProjectileBulletHell: 2
-  timeAttackPunch: 2
   followSpeed: 5
   playerTarget: {fileID: 0}
   health: {fileID: 5262429376495144852}
   allowMove: 0
-  projectileLaunch: {fileID: 8687706552621162461, guid: a9303fecb8058a64ea9be8d650d4595d,
-    type: 3}
-  projectileBullet: {fileID: 8687706552621162461, guid: 88c05a885a447834386bb2411a6c0be0,
-    type: 3}
 --- !u!114 &5262429376495144852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,3 +854,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   currentHealth: 0
+--- !u!114 &1962611692178484812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8006803719243552604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556b774dcd5265244b8abb4b6bd6e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeChangeTargetInterval: 1
+  timeLaunchProjectileLaunch: 0
+  timeLaunchProjectileBulletHell: 0
+  timeAttackPunch: 0
+  projectileLaunchSpawnOrigin: {fileID: 0}
+  projectileBulletHellController: {fileID: 378511606761107316}
+  projectileBulletHellSpawnOrigin: {fileID: 3832337356352523099}
+  projectileLaunchPrefab: {fileID: 8687706552621162461, guid: a9303fecb8058a64ea9be8d650d4595d,
+    type: 3}
+  projectileBulletPrefab: {fileID: 8687706552621162461, guid: 88c05a885a447834386bb2411a6c0be0,
+    type: 3}
