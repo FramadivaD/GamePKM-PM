@@ -5,17 +5,6 @@ using UnityEngine;
 
 public class EnemyBoss : MonoBehaviour
 {
-    private BossAttackType attackType;
-
-    [Header("All about time interval")]
-    [SerializeField] private float timeChangeTargetInterval;
-    [SerializeField] private float timeLaunchProjectileLaunch;
-    [SerializeField] private float timeLaunchProjectileBulletHell;
-    [SerializeField] private float timeAttackPunch;
-
-    private bool attackDone = false;
-    private float timeToAttack = 0;
-
     [Header("All about Enemy Config")]
     [SerializeField] private float followSpeed;
 
@@ -24,6 +13,8 @@ public class EnemyBoss : MonoBehaviour
 
     private Animator enemyAnim;
     private Rigidbody2D rb2;
+    private EnemyBossAttackManager attackManager;
+
 
     [SerializeField] private bool allowMove = false;
     public bool AllowMove
@@ -31,10 +22,6 @@ public class EnemyBoss : MonoBehaviour
         get { return allowMove; }
         set { allowMove = value; }
     }
-
-    [Header("All about Objects and Prefab")]
-    [SerializeField] private GameObject projectileLaunch;
-    [SerializeField] private GameObject projectileBullet;
 
     public delegate bool CheckBossMModeReadyEventHandler();
     public event CheckBossMModeReadyEventHandler CheckBossModeReady = () => { return true; };
@@ -44,6 +31,7 @@ public class EnemyBoss : MonoBehaviour
         enemyAnim = GetComponent<Animator>();
         health = GetComponent<Health>();
         rb2 = GetComponent<Rigidbody2D>();
+        attackManager = GetComponent<EnemyBossAttackManager>();
 
         health.OnDied += OnDie;
     }
@@ -63,68 +51,17 @@ public class EnemyBoss : MonoBehaviour
             && AllowMove)
             {
                 if (CheckBossModeReady == null || CheckBossModeReady.Invoke()) {
-                    transform.position = Vector2.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * followSpeed);
+                    MoveController();
 
-                    if (timeToAttack <= 0)
-                    {
-                        RandomizeAttackType();
-                    } else
-                    {
-                        AttackTarget();
-                    }
+                    attackManager.Attack(playerTarget);
                 }
             }
         }
     }
 
-    private void RandomizeAttackType()
+    private void MoveController()
     {
-        attackType = (BossAttackType) UnityEngine.Random.Range(0, Enum.GetValues(typeof(BossAttackType)).Length);
-
-        if (attackType == BossAttackType.None)
-        {
-
-        }
-        else if (attackType == BossAttackType.Punch)
-        {
-            attackDone = false;
-            timeToAttack = timeAttackPunch;
-        }
-        else if (attackType == BossAttackType.ProjectileLaunch)
-        {
-            attackDone = false;
-            timeToAttack = timeLaunchProjectileLaunch;
-        }
-        else if (attackType == BossAttackType.ProjectileBulletHell)
-        {
-            attackDone = false;
-            timeToAttack = timeLaunchProjectileBulletHell;
-        }
-    }
-
-    private void AttackTarget()
-    {
-        if (attackType == BossAttackType.None)
-        {
-
-        }
-        else if (attackType == BossAttackType.ProjectileLaunch)
-        {
-            timeToAttack = timeLaunchProjectileLaunch;
-            attackDone = true;
-
-            // GameObject ne = Instantiate(projectile, );
-        }
-        else if (attackType == BossAttackType.ProjectileBulletHell)
-        {
-            timeToAttack = timeLaunchProjectileBulletHell;
-            attackDone = true;
-        }
-        else if (attackType == BossAttackType.Punch)
-        {
-            timeToAttack = timeAttackPunch;
-            attackDone = true;
-        }
+        transform.position = Vector2.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * followSpeed);
     }
 
     private void OnDie()
