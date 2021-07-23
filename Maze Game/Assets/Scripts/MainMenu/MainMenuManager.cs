@@ -4,6 +4,12 @@ using System.Collections;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public void GotoMainMenu()
+    {
+        Debug.Log("Go to Main Menu");
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public void GotoLobbyMenu()
     {
         Debug.Log("Go to Lobby");
