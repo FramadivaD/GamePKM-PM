@@ -86,7 +86,16 @@ public class EnemyBoss : MonoBehaviour
 
     private void OnDie()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        PlayDieAnimation();
+        attackManager.enabled = false;
+
+        GameManager.Instance.AnnounceWinner(TeamType);
+    }
+
+    private void PlayDieAnimation()
+    {
+        Debug.Log("Boss is defeated.");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

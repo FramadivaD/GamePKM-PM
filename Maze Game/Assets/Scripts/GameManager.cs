@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     public bool AllowEntityMove { get; private set; } = true;
     public bool AllowEnemyMove { get; private set; } = true;
-    public bool AllowPlayerMove { get; private set; } = true;
+    public bool AllowPlayerMove { get { return !WinnerWasAnnounced; } }
 
     public RoomGenerator roomGenerator;
 
@@ -19,9 +19,18 @@ public class GameManager : MonoBehaviour
     private List<Player> players;
     [SerializeField] private List<MainGateKey> fragmentsKey; //ada 2, sesuai dengan jumlah tim
 
+    public bool WinnerWasAnnounced { get; private set; }
+    public TeamType WinnerTeam { get; private set; }
+
+    [SerializeField] private GameObject winnerUI;
+    [SerializeField] private Text winnerStatusText;
+    [SerializeField] private Text winnerTeamText;
+
     private void Awake()
     {
         PlayersTeam = new Dictionary<TeamType, TeamData>();
+
+        winnerUI.SetActive(false);
 
         InitializeFragmentsKey();
 
@@ -81,5 +90,26 @@ public class GameManager : MonoBehaviour
         redTeamKey.AddFragment(new MainGateFragment(redTeamKey, "red_02", "Sapi"));
         //redTeamKey.AddFragment(new MainGateFragment(redTeamKey, "red_03", "Kuda"));
         fragmentsKey.Add(redTeamKey);
+    }
+
+    public void AnnounceWinner(TeamType winnerTeam)
+    {
+        WinnerWasAnnounced = true;
+        WinnerTeam = winnerTeam;
+
+        winnerTeamText.text = "TEAM " + winnerTeam.ToString();
+        winnerStatusText.text = (winnerTeam == player.teamType) ? "WINNER" : "DEFEAT";
+
+        winnerUI.SetActive(true);
+    }
+
+    public void BackToLobby()
+    {
+
+    }
+
+    public void BackToMainMenu()
+    {
+
     }
 }

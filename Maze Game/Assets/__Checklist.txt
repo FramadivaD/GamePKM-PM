@@ -145,9 +145,9 @@ Etc.
 [X] Mechanic Boss Enemy dengan Gate sinkron
 [X] Mechanic Boss mengejar player dan ganti ganti target
 [X] Bisa bunuh musuh
-[ ] Health bar boss
-[ ] Bisa bunuh boss
-[ ] Fitur menang dan kalah ketika tim yang bunuh boss pertama kali
+[X] Health bar boss
+[X] Bisa bunuh boss
+[X] Fitur menang dan kalah ketika tim yang bunuh boss pertama kali
 
 [ ] Fitur Enemy Follow Player AI
 
