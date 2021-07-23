@@ -13,7 +13,12 @@ public class EnemyBossAttackManager : MonoBehaviour
     [SerializeField] private float timeLaunchProjectileBulletHell;
     [SerializeField] private float timeAttackPunch;
 
+    [Header("Variable control")]
+    [SerializeField] private float bulletHellFirePerShootInterval;
+    [SerializeField] private float bulletHellAngleSpeed;
+
     [Header("Weapon Control")]
+    [SerializeField] private Transform projectileLaunchController;
     [SerializeField] private Transform projectileLaunchSpawnOrigin;
     [SerializeField] private Transform projectileBulletHellController;
     [SerializeField] private Transform projectileBulletHellSpawnOrigin;
@@ -33,6 +38,7 @@ public class EnemyBossAttackManager : MonoBehaviour
 
     private void Update()
     {
+        ProjectileLaunchController();
         BulletHellController();
     }
 
@@ -45,6 +51,7 @@ public class EnemyBossAttackManager : MonoBehaviour
         else
         {
             AttackTarget();
+            timeToAttack -= Time.deltaTime;
         }
     }
 
@@ -54,7 +61,7 @@ public class EnemyBossAttackManager : MonoBehaviour
 
         if (attackType == BossAttackType.None)
         {
-
+            attackDone = false;
         }
         else if (attackType == BossAttackType.Punch)
         {
@@ -75,32 +82,46 @@ public class EnemyBossAttackManager : MonoBehaviour
 
     private void AttackTarget()
     {
-        if (attackType == BossAttackType.None)
+        if (attackDone == false)
         {
+            if (attackType == BossAttackType.None)
+            {
+                attackDone = true;
+                Debug.Log("Enemy Boss Proceed Doing nothing");
+            }
+            else if (attackType == BossAttackType.ProjectileLaunch)
+            {
+                timeToAttack = timeLaunchProjectileLaunch;
+                attackDone = true;
 
-        }
-        else if (attackType == BossAttackType.ProjectileLaunch)
-        {
-            timeToAttack = timeLaunchProjectileLaunch;
-            attackDone = true;
+                FireProjectile(projectileLaunchPrefab, projectileBulletHellSpawnOrigin);
+                Debug.Log("Enemy Boss Proceed Projectile Launch");
+            }
+            else if (attackType == BossAttackType.ProjectileBulletHell)
+            {
+                timeToAttack = timeLaunchProjectileBulletHell;
+                attackDone = true;
 
-            GameObject ne = Instantiate(projectileLaunchPrefab, projectileLaunchSpawnOrigin.position, Quaternion.identity);
+                Debug.Log("Enemy Boss Proceed Bullet Hell Launch");
+            }
+            else if (attackType == BossAttackType.Punch)
+            {
+                timeToAttack = timeAttackPunch;
+                attackDone = true;
+
+                Debug.Log("Enemy Boss Proceed Punch");
+            }
         }
-        else if (attackType == BossAttackType.ProjectileBulletHell)
-        {
-            timeToAttack = timeLaunchProjectileBulletHell;
-            attackDone = true;
-        }
-        else if (attackType == BossAttackType.Punch)
-        {
-            timeToAttack = timeAttackPunch;
-            attackDone = true;
-        }
+    }
+
+    private void ProjectileLaunchController()
+    {
+        RotateProjectileOrigin(projectileLaunchController, bulletHellAngle);
     }
 
     private void BulletHellController()
     {
-        bulletHellAngle += Time.deltaTime;
+        bulletHellAngle += bulletHellAngleSpeed * Time.deltaTime;
         if (bulletHellAngle >= 360)
         {
             bulletHellAngle -= 360;
@@ -113,7 +134,7 @@ public class EnemyBossAttackManager : MonoBehaviour
             if (bulletHellTime <= 0)
             {
                 FireProjectile(projectileBulletPrefab, projectileBulletHellSpawnOrigin);
-                bulletHellTime += timeLaunchProjectileBulletHell;
+                bulletHellTime += bulletHellFirePerShootInterval;
             } else
             {
                 bulletHellTime -= Time.deltaTime;

@@ -27,8 +27,8 @@ Transform:
   m_LocalPosition: {x: -0.07527165, y: -0.0628672, z: -0.26479086}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 378511606761107316}
   - {fileID: 7947638784123356796}
+  - {fileID: 378511606761107316}
   m_Father: {fileID: 5140858729371276322}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -616,7 +616,7 @@ Transform:
   m_Children:
   - {fileID: 3866964380816207602}
   m_Father: {fileID: 2030414613503981462}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6364265485822891155
 GameObject:
@@ -647,7 +647,7 @@ Transform:
   m_Children:
   - {fileID: 3832337356352523099}
   m_Father: {fileID: 2030414613503981462}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7199342174139332999
 GameObject:
@@ -836,10 +836,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a0d8bde13c96ab44b2e588d673a33b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followSpeed: 5
+  followSpeed: 1
   playerTarget: {fileID: 0}
   health: {fileID: 5262429376495144852}
-  allowMove: 0
+  allowMove: 1
 --- !u!114 &5262429376495144852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,11 +866,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556b774dcd5265244b8abb4b6bd6e247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeChangeTargetInterval: 1
-  timeLaunchProjectileLaunch: 0
-  timeLaunchProjectileBulletHell: 0
-  timeAttackPunch: 0
-  projectileLaunchSpawnOrigin: {fileID: 0}
+  timeChangeTargetInterval: 5
+  timeLaunchProjectileLaunch: 1
+  timeLaunchProjectileBulletHell: 3
+  timeAttackPunch: 2
+  bulletHellFirePerShootInterval: 0.5
+  bulletHellAngleSpeed: 5
+  projectileLaunchController: {fileID: 7947638784123356796}
+  projectileLaunchSpawnOrigin: {fileID: 3866964380816207602}
   projectileBulletHellController: {fileID: 378511606761107316}
   projectileBulletHellSpawnOrigin: {fileID: 3832337356352523099}
   projectileLaunchPrefab: {fileID: 8687706552621162461, guid: a9303fecb8058a64ea9be8d650d4595d,
