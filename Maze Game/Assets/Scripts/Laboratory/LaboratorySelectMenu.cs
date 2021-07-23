@@ -11,6 +11,9 @@ public class LaboratorySelectMenu : MonoBehaviour
     public void Initialize(LaboratoryMenu laboratoryMenu)
     {
         this.laboratoryMenu = laboratoryMenu;
+
+        browseMenu = laboratoryMenu.browseWindow;
+        editorMenu = laboratoryMenu.editorWindow;
     }
 
     public void OpenCreateNewKey()
