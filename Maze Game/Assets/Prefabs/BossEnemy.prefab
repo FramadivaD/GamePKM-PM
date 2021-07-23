@@ -870,13 +870,13 @@ MonoBehaviour:
   timeLaunchProjectileLaunch: 1
   timeLaunchProjectileBulletHell: 3
   timeAttackPunch: 2
-  bulletHellFirePerShootInterval: 0.5
-  bulletHellAngleSpeed: 5
+  bulletHellFirePerShootInterval: 0.2
+  bulletHellAngleSpeed: 20
   projectileLaunchController: {fileID: 7947638784123356796}
   projectileLaunchSpawnOrigin: {fileID: 3866964380816207602}
   projectileBulletHellController: {fileID: 378511606761107316}
   projectileBulletHellSpawnOrigin: {fileID: 3832337356352523099}
-  projectileLaunchPrefab: {fileID: 8687706552621162461, guid: a9303fecb8058a64ea9be8d650d4595d,
+  projectileLaunchPrefab: {fileID: 8687706552621162461, guid: 9566a4e443211104c9a58ec5e1a69cfb,
     type: 3}
-  projectileBulletPrefab: {fileID: 8687706552621162461, guid: 88c05a885a447834386bb2411a6c0be0,
+  projectileBulletPrefab: {fileID: 8687706552621162461, guid: f2deb77ce7c8f424c8069a8b936451d0,
     type: 3}
