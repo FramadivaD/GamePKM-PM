@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8264868042314669782}
   - component: {fileID: 4066773584939310163}
   - component: {fileID: 402532641887508340}
+  - component: {fileID: 7893647917232977674}
   m_Layer: 0
   m_Name: BasokaEffect
   m_TagString: Untagged
@@ -285,7 +286,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -866,7 +867,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 5
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4817,3 +4818,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a230b631d7c234a8828c3aabdb2dad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyAfter: 5
+--- !u!210 &7893647917232977674
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8021862887257837618}
+  m_Enabled: 1
+  m_SortingLayerID: 244595749
+  m_SortingLayer: 1
+  m_SortingOrder: 10

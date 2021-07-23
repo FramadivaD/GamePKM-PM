@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8264868042314669782}
   - component: {fileID: 4066773584939310163}
   - component: {fileID: 402532641887508340}
+  - component: {fileID: 2487171559957676676}
   m_Layer: 0
   m_Name: LauncherEffect
   m_TagString: Untagged
@@ -4818,3 +4819,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyAfter: 5
+--- !u!210 &2487171559957676676
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8021862887257837618}
+  m_Enabled: 1
+  m_SortingLayerID: 244595749
+  m_SortingLayer: 1
+  m_SortingOrder: 10
