@@ -1313,9 +1313,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followSpeed: 1
   touchDamage: 1
+  isFollowPlayerInsteadOfMove: 0
+  moveTarget: {fileID: 0}
   playerTarget: {fileID: 0}
   health: {fileID: 5262429376495144852}
   allowMove: 1
+  changeRoomTimeInterval: 5
 --- !u!114 &5262429376495144852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1370,7 +1373,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0

@@ -40,7 +40,7 @@ public class EnemyBoss : MonoBehaviour
     }
 
     [SerializeField] private float changeRoomTimeInterval = 5;
-    private float changeRoomTime = 5;
+    private float changeRoomTime = 0;
 
     void Start()
     {
