@@ -21,7 +21,7 @@ public class WeaponProjectile : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject, destroyAfter);
+        StartCoroutine(DestroyProjectile(destroyAfter));
     }
 
     public void Initialize(Quaternion rotation)
@@ -65,5 +65,12 @@ public class WeaponProjectile : MonoBehaviour
         {
             Instantiate(explosiveEffect, transform.position, Quaternion.identity);
         }
+    }
+
+    private IEnumerator DestroyProjectile(float destroyAfter)
+    {
+        yield return new WaitForSecondsRealtime(destroyAfter);
+
+        TerminateProjectile();
     }
 }

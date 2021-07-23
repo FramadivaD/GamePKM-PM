@@ -167,7 +167,7 @@ Etc.
 
 [ ] Boss Level Compass
 
-[ ] Fitur Notifikasi di atas chest yang unlocked tapi belum diambil.
+[X] Fitur Notifikasi di atas chest yang unlocked tapi belum diambil.
 
 [X] Fitur Boss Enemy Follow Player AI
 
