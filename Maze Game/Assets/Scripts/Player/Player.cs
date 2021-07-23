@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
     {
         return GameManager.Instance.AllowEntityMove
             && GameManager.Instance.AllowPlayerMove
+            && !GameManager.Instance.WinnerWasAnnounced
             && AllowMove
             && !questionManager.questionContainer.activeSelf;
     }

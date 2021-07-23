@@ -56,6 +56,7 @@ public class EnemyBoss : MonoBehaviour
     {
         if (GameManager.Instance.AllowEntityMove
             && GameManager.Instance.AllowEnemyMove
+            && !GameManager.Instance.WinnerWasAnnounced
             && AllowMove)
         {
             if (MainGate.CheckIsOpened())
@@ -75,13 +76,18 @@ public class EnemyBoss : MonoBehaviour
 
                 attackManager.Attack(playerTarget);
             }
+        } else
+        {
+            rb2.velocity = Vector2.zero;
         }
     }
 
     private void MoveController()
     {
         //transform.position = Vector2.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * followSpeed);
-        rb2.MovePosition(Vector2.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * followSpeed));
+        //rb2.MovePosition(Vector2.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * followSpeed));
+
+        rb2.velocity = (playerTarget.transform.position - transform.position).normalized * followSpeed;
     }
 
     private void OnDie()

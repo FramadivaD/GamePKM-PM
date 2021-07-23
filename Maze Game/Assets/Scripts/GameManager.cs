@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     public bool AllowEntityMove { get; private set; } = true;
     public bool AllowEnemyMove { get; private set; } = true;
-    public bool AllowPlayerMove { get { return !WinnerWasAnnounced; } }
+    public bool AllowPlayerMove { get; private set; } = true;
 
     public RoomGenerator roomGenerator;
 
@@ -105,11 +105,11 @@ public class GameManager : MonoBehaviour
 
     public void BackToLobby()
     {
-
+        Debug.Log("Loading Lobby");
     }
 
     public void BackToMainMenu()
     {
-
+        Debug.Log("Loading Main Menu");
     }
 }
