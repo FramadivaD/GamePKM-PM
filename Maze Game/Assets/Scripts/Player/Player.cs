@@ -54,7 +54,9 @@ public class Player : MonoBehaviour
 
     public bool CheckAllowedMove()
     {
-        return GameManager.Instance.AllowEntityMove
+        return
+            !GameManager.Instance.IsPaused
+            && GameManager.Instance.AllowEntityMove
             && GameManager.Instance.AllowPlayerMove
             && !GameManager.Instance.WinnerWasAnnounced
             && AllowMove

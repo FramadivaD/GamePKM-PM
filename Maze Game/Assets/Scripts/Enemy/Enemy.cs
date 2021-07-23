@@ -41,10 +41,11 @@ public class Enemy : MonoBehaviour
     {
         if (playerTarget)
         {
-            if (GameManager.Instance.AllowEntityMove
-            && GameManager.Instance.AllowEnemyMove
-            && !GameManager.Instance.WinnerWasAnnounced
-            && AllowMove)
+            if (!GameManager.Instance.IsPaused
+                && GameManager.Instance.AllowEntityMove
+                && GameManager.Instance.AllowEnemyMove
+                && !GameManager.Instance.WinnerWasAnnounced
+                && AllowMove)
             {
                 transform.position = Vector2.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * enemySpeed);
                 if (transform.position.x < playerTarget.transform.position.x && transform.rotation.y == 0)

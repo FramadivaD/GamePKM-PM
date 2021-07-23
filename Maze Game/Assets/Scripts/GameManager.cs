@@ -28,11 +28,39 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text winnerStatusText;
     [SerializeField] private Text winnerTeamText;
 
+    [SerializeField] private GameObject pauseUI;
+    [SerializeField] private Text pausePlayerAndTeamText;
+
+    private bool isPaused = false;
+    public bool IsPaused
+    {
+        get
+        {
+            return isPaused;
+        }
+        private set
+        {
+            isPaused = value;
+
+            pauseUI.SetActive(isPaused);
+            pausePlayerAndTeamText.text =
+                player.PlayerName
+                + " : "
+                + "<color=\"#" + ColorUtility.ToHtmlStringRGB(TeamHelper.GetColorTeam(player.teamType)) + "\">"
+                + player.teamType
+                + "</color>"
+                + " Team";
+        }
+    }
+
     private void Awake()
     {
         PlayersTeam = new Dictionary<TeamType, TeamData>();
 
         winnerUI.SetActive(false);
+        pauseUI.SetActive(false);
+
+        isPaused = false;
 
         InitializeFragmentsKey();
 
@@ -121,5 +149,15 @@ public class GameManager : MonoBehaviour
     public void BackToMainMenu()
     {
         Debug.Log("Loading Main Menu");
+    }
+
+    public void ShowPauseMenu()
+    {
+        IsPaused = true;
+    }
+
+    public void HidePauseMenu()
+    {
+        IsPaused = false;
     }
 }

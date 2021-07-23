@@ -31,7 +31,8 @@ public class JoystickController : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.AllowEntityMove
+        if (!GameManager.Instance.IsPaused
+            && GameManager.Instance.AllowEntityMove
             && GameManager.Instance.AllowPlayerMove)
         {
             Controller();

@@ -59,7 +59,9 @@ public class EnemyBoss : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.AllowEntityMove
+        if (
+            !GameManager.Instance.IsPaused
+            && GameManager.Instance.AllowEntityMove
             && GameManager.Instance.AllowEnemyMove
             && !GameManager.Instance.WinnerWasAnnounced
             && AllowMove)
