@@ -89,15 +89,26 @@ public class EnemyBoss : MonoBehaviour
         }
     }
 
+    bool changeTargetRoomflag = false;
     private void MoveController(Transform target)
     {
         Vector3 distance = (target.transform.position - transform.position);
         rb2.velocity = distance.normalized * followSpeed;
 
         // Change move Target
+
         if (Vector3.Distance(target.transform.position, transform.position) < 3)
         {
-            ChangeTargetRoom();
+            if (changeTargetRoomflag == false)
+            {
+                isFollowPlayerInsteadOfMove = !isFollowPlayerInsteadOfMove;
+
+                ChangeTargetRoom();
+                changeTargetRoomflag = true;
+            }
+        } else
+        {
+            changeTargetRoomflag = false;
         }
     }
 
@@ -131,8 +142,6 @@ public class EnemyBoss : MonoBehaviour
 
     private void ChangeTargetRoom()
     {
-        isFollowPlayerInsteadOfMove = !isFollowPlayerInsteadOfMove;
-
         if (moveTarget.TryGetComponent(out Room room))
         {
             if (room)
