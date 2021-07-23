@@ -17,8 +17,13 @@ public class LaboratoryBrowseMenu : MonoBehaviour
         this.laboratoryMenu = laboratoryMenu;
     }
 
-    private void LoadDirectory()
+    public void LoadDirectory()
     {
+        foreach (Transform t in browseButtonContainer)
+        {
+            Destroy(t.gameObject);
+        }
+
         AndroidHelper.CheckAndCreateDirectory(AndroidHelper.MainGateSavePath);
 
         string basePath = AndroidHelper.MainGateSavePath + "/Data";

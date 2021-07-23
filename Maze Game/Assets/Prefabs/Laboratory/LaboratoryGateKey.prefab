@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 2711469051184612110}
   - component: {fileID: 2711469051184612097}
   m_Layer: 5
-  m_Name: GateKey
+  m_Name: LaboratoryGateKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
