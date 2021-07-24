@@ -111,7 +111,9 @@ public class MainGateFragmentRaw
     public string Key;
     public string Data; //filename
 
-    public Sprite DataImage { get { return null; } }
+    public byte[] DataImage;
+    public int DataImageWidth;
+    public int DataImageHeight;
 
     public MainGateFragmentRaw(string key, string data)
     {

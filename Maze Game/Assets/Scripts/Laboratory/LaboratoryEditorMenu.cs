@@ -46,6 +46,8 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
         OpenMainEditor();
     }
+    
+    #region All About fragment data manipulation
 
     public void CreateFragmentData()
     {
@@ -70,6 +72,10 @@ public class LaboratoryEditorMenu : MonoBehaviour
             currentGateKey.RemoveFragment(fragment);
         }
     }
+
+    #endregion
+
+    #region All about main gate data save and load
 
     public void OpenMainGateKey(string filename)
     {
@@ -133,6 +139,8 @@ public class LaboratoryEditorMenu : MonoBehaviour
         Debug.Log("Add Fragment");
     }
 
+    #endregion
+
     public void BackToSelectMenu()
     {
         laboratoryMenu.OpenSelectWindow();
@@ -185,6 +193,20 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
         currentGateFragment = fragment;
         fragmentKeyName.text = fragment.Key;
+        fragmentKeyData.text = fragment.Data;
+
+        if (fragment.DataImage != null)
+        {
+            Texture2D texture = new Texture2D(fragment.DataImageWidth, fragment.DataImageHeight);
+            texture.LoadRawTextureData(fragment.DataImage);
+            texture.Apply();
+
+            Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+            fragmentImagePreview.sprite = sprite;
+
+            fragmentImageCamera.rectTransform.sizeDelta = new Vector2(500, texture.height * 500 / texture.width);
+            fragmentImagePreview.rectTransform.sizeDelta = new Vector2(500, texture.height * 500 / texture.width);
+        }
 
         // Sprite imageData
 
@@ -193,18 +215,21 @@ public class LaboratoryEditorMenu : MonoBehaviour
         Debug.Log("Open Fragment Key");
     }
 
-    #region About Fragment Editor
+    #region All About Fragment Editor
 
     // Update Button
     public void OpenCamera()
     {
         if (!camTexture)
         {
-            camTexture = new WebCamTexture(500, 500);
+            camTexture = new WebCamTexture(256, 256);
         }
 
         fragmentImageCamera.texture = camTexture;
         fragmentImageCamera.material.mainTexture = camTexture;
+
+        fragmentImageCamera.rectTransform.sizeDelta = new Vector2(500, camTexture.height * 500 / camTexture.width);
+        fragmentImagePreview.rectTransform.sizeDelta = new Vector2(500, camTexture.height * 500 / camTexture.width);
 
         camTexture.Play();
 
@@ -217,13 +242,39 @@ public class LaboratoryEditorMenu : MonoBehaviour
         if (camTexture)
         {
             Color[] colors = camTexture.GetPixels();
-            Texture2D texture = new Texture2D(camTexture.width, camTexture.height);
-            texture.SetPixels(colors);
-            texture.Apply();
+            Texture2D source = new Texture2D(camTexture.width, camTexture.height);
+            source.SetPixels(colors);
+            source.Apply();
 
-            Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+            // Resize
+            int alteredX = camTexture.width;
+            int alteredY = camTexture.height;
+
+            source.filterMode = FilterMode.Point;
+
+            RenderTexture rt = RenderTexture.GetTemporary(alteredX, alteredY);
+            rt.filterMode = FilterMode.Point;
+
+            RenderTexture.active = rt;
+            Graphics.Blit(source, rt);
+
+            Texture2D ntex = new Texture2D(alteredX, alteredY);
+            ntex.ReadPixels(new Rect(0, 0, alteredX, alteredY), 0, 0);
+            ntex.Apply();
+
+            RenderTexture.active = null;
+            RenderTexture.ReleaseTemporary(rt);
+
+            Sprite sprite = Sprite.Create(ntex, new Rect(0, 0, alteredX, alteredY), new Vector2(0.5f, 0.5f));
 
             fragmentImagePreview.sprite = sprite;
+
+            currentGateFragment.DataImage = ntex.GetRawTextureData();
+            currentGateFragment.DataImageWidth = ntex.width;
+            currentGateFragment.DataImageHeight = ntex.height;
+
+            fragmentImageCamera.rectTransform.sizeDelta = new Vector2(500, alteredY * 500 / alteredX);
+            fragmentImagePreview.rectTransform.sizeDelta = new Vector2(500, alteredY * 500 / alteredX);
 
             camTexture.Stop();
         }
@@ -235,7 +286,7 @@ public class LaboratoryEditorMenu : MonoBehaviour
     {
         if (camTexture)
         {
-
+            camTexture.Stop();
         }
 
         HideFragmentButtonCamera();
@@ -250,14 +301,16 @@ public class LaboratoryEditorMenu : MonoBehaviour
         OpenMainEditor();
     }
 
-    #endregion
-
     private void CloseFragmentKey()
     {
         currentGateFragment = null;
 
         OpenMainEditor();
     }
+
+    #endregion
+
+    #region All about window
 
     private void OpenMainEditor()
     {
@@ -294,4 +347,6 @@ public class LaboratoryEditorMenu : MonoBehaviour
         fragmentImagePreview.gameObject.SetActive(true);
         fragmentImageCamera.gameObject.SetActive(false);
     }
+
+    #endregion
 }
