@@ -194,6 +194,9 @@ Total
 
 [X] Fitur Boss Enemy Follow Player AI
 
+[ ] Musuh baru Gelembung
+[ ] Musuh baru Batu
+
 [X] Fitur Navigasi Scene main menu
 [X] Fitur Navigasi Scene lobby
 [X] Fitur Navigasi Scene create question

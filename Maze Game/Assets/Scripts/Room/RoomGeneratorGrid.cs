@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Room : MonoBehaviour
+public class RoomGeneratorGrid : MonoBehaviour
 {
     [Header("Door Objects")]
     [SerializeField] private GameObject topDoor;
@@ -37,7 +37,7 @@ public class Room : MonoBehaviour
     [SerializeField] private Transform mainGateParent;
     [SerializeField] private GameObject mainGatePrefab;
 
-    [SerializeField] private Room[] neighborRoom;
+    [SerializeField] private RoomGeneratorGrid[] neighborRoom;
 
 
     public void Initialize()
@@ -48,12 +48,12 @@ public class Room : MonoBehaviour
         leftDoor.SetActive(true);
     }
 
-    public void SetNeighborRoom(Room topRoom, Room rightRoom, Room bottomRoom, Room leftRoom)
+    public void SetNeighborRoom(RoomGeneratorGrid topRoom, RoomGeneratorGrid rightRoom, RoomGeneratorGrid bottomRoom, RoomGeneratorGrid leftRoom)
     {
-        neighborRoom = new Room[4]{ topRoom, rightRoom, bottomRoom, leftRoom };
+        neighborRoom = new RoomGeneratorGrid[4]{ topRoom, rightRoom, bottomRoom, leftRoom };
     }
 
-    public Room GetRandomNeighborRoom()
+    public RoomGeneratorGrid GetRandomNeighborRoom()
     {
         int siz = 4;
         int randomIndex = Random.Range(0, siz - 1);

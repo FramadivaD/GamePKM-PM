@@ -151,12 +151,12 @@ public class EnemyBoss : MonoBehaviour
 
     private void ChangeTargetRoom()
     {
-        if (moveTarget.TryGetComponent(out Room room))
+        if (moveTarget.TryGetComponent(out RoomGeneratorGrid room))
         {
             if (room)
             {
                 Debug.Log("Actually Change move target to current room neighbor.");
-                Room neighbor = room.GetRandomNeighborRoom();
+                RoomGeneratorGrid neighbor = room.GetRandomNeighborRoom();
                 if (neighbor) {
                     ChangeMoveTarget(neighbor.transform);
                 }

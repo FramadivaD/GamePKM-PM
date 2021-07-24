@@ -6,12 +6,12 @@ public class RoomGenerator : MonoBehaviour
 {
     [Header("Settings")]
     bool[,] roomMap;
-    Room[,] roomMapRoom;
+    RoomGeneratorGrid[,] roomMapRoom;
 
-    private List<Room> allRoom;
-    private List<Room> cornerRoom;
-    private List<Room> notCornerRoom;
-    private List<Room> bossRoom;
+    private List<RoomGeneratorGrid> allRoom;
+    private List<RoomGeneratorGrid> cornerRoom;
+    private List<RoomGeneratorGrid> notCornerRoom;
+    private List<RoomGeneratorGrid> bossRoom;
 
     // atas, kanan, bawah, kiri
     private Vector2Int[] mostBorderRoom = { Vector2Int.zero, Vector2Int.zero, Vector2Int.zero, Vector2Int.zero };
@@ -23,7 +23,7 @@ public class RoomGenerator : MonoBehaviour
     public int roomWalkIteration = 20;
 
     [Header("Configuration")]
-    public Room roomPrefab;
+    public RoomGeneratorGrid roomPrefab;
 
     [Header("Item Configuration")]
     public int weaponItemCount = 3;
@@ -46,19 +46,19 @@ public class RoomGenerator : MonoBehaviour
 
         // generate map
         roomMap = new bool[roomSize, roomSize];
-        roomMapRoom = new Room[roomSize, roomSize];
+        roomMapRoom = new RoomGeneratorGrid[roomSize, roomSize];
 
         // make collection
-        if (allRoom == null) allRoom = new List<Room>();
+        if (allRoom == null) allRoom = new List<RoomGeneratorGrid>();
         allRoom.Clear();
 
-        if (notCornerRoom == null) notCornerRoom = new List<Room>();
+        if (notCornerRoom == null) notCornerRoom = new List<RoomGeneratorGrid>();
         notCornerRoom.Clear();
 
-        if (cornerRoom == null) cornerRoom = new List<Room>();
+        if (cornerRoom == null) cornerRoom = new List<RoomGeneratorGrid>();
         cornerRoom.Clear();
 
-        if (bossRoom == null) bossRoom = new List<Room>();
+        if (bossRoom == null) bossRoom = new List<RoomGeneratorGrid>();
         bossRoom.Clear();
 
         int midPoint = roomSize / 2;
@@ -125,7 +125,7 @@ public class RoomGenerator : MonoBehaviour
     private void BuildMap()
     {
         // make collection
-        if (allRoom == null) allRoom = new List<Room>();
+        if (allRoom == null) allRoom = new List<RoomGeneratorGrid>();
         allRoom.Clear();
 
         // y pos
@@ -136,7 +136,7 @@ public class RoomGenerator : MonoBehaviour
             {
                 if (roomMap[y, x])
                 {
-                    Room room = SpawnRoom(x, y);
+                    RoomGeneratorGrid room = SpawnRoom(x, y);
 
                     // save room in collections
                     roomMapRoom[y, x] = room;
@@ -169,10 +169,10 @@ public class RoomGenerator : MonoBehaviour
 
     private void FindAllCornerRoom()
     {
-        if (cornerRoom == null) cornerRoom = new List<Room>();
+        if (cornerRoom == null) cornerRoom = new List<RoomGeneratorGrid>();
         cornerRoom.Clear();
 
-        if (notCornerRoom == null) notCornerRoom = new List<Room>();
+        if (notCornerRoom == null) notCornerRoom = new List<RoomGeneratorGrid>();
         notCornerRoom.Clear();
 
         // y pos
@@ -202,7 +202,7 @@ public class RoomGenerator : MonoBehaviour
             int x = mostBorderRoom[0].x;
             int y = mostBorderRoom[0].y;
 
-            Room room = SpawnRoom(x, y);
+            RoomGeneratorGrid room = SpawnRoom(x, y);
             room.transform.position += new Vector3(0, roomWidthHeight.y, 0);
             room.gameObject.name = "AddonNecessaryRoomTop";
             room.Initialize();
@@ -221,7 +221,7 @@ public class RoomGenerator : MonoBehaviour
             int x = mostBorderRoom[1].x;
             int y = mostBorderRoom[1].y;
 
-            Room room = SpawnRoom(x, y);
+            RoomGeneratorGrid room = SpawnRoom(x, y);
             room.transform.position += new Vector3(roomWidthHeight.x, 0, 0);
             room.gameObject.name = "AddonNecessaryRoomRight";
             room.Initialize();
@@ -241,7 +241,7 @@ public class RoomGenerator : MonoBehaviour
             int x = mostBorderRoom[2].x;
             int y = mostBorderRoom[2].y;
 
-            Room room = SpawnRoom(x, y);
+            RoomGeneratorGrid room = SpawnRoom(x, y);
             room.transform.position += new Vector3(0, -roomWidthHeight.y, 0);
             room.gameObject.name = "AddonNecessaryRoomBottom";
             room.Initialize();
@@ -261,7 +261,7 @@ public class RoomGenerator : MonoBehaviour
             int x = mostBorderRoom[3].x;
             int y = mostBorderRoom[3].y;
 
-            Room room = SpawnRoom(x, y);
+            RoomGeneratorGrid room = SpawnRoom(x, y);
             room.transform.position += new Vector3(-roomWidthHeight.x, 0, 0);
             room.gameObject.name = "AddonNecessaryRoomLeft";
             room.Initialize();
@@ -277,9 +277,9 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
-    private Room SpawnRoom(int x, int y)
+    private RoomGeneratorGrid SpawnRoom(int x, int y)
     {
-        Room room = Instantiate(roomPrefab.gameObject, GetRoomPos(x, y), Quaternion.identity, transform).GetComponent<Room>();
+        RoomGeneratorGrid room = Instantiate(roomPrefab.gameObject, GetRoomPos(x, y), Quaternion.identity, transform).GetComponent<RoomGeneratorGrid>();
         return room;
     }
 
@@ -306,7 +306,7 @@ public class RoomGenerator : MonoBehaviour
                 {
                     int ind = Random.Range(0, notCornerRoom.Count);
                     if (ind < notCornerRoom.Count) {
-                        Room selectedRoom = notCornerRoom[ind];
+                        RoomGeneratorGrid selectedRoom = notCornerRoom[ind];
                         if (selectedRoom)
                         {
                             // limit biar gak infinite
@@ -334,7 +334,7 @@ public class RoomGenerator : MonoBehaviour
             int ind = Random.Range(0, notCornerRoom.Count);
             if (ind < notCornerRoom.Count)
             {
-                Room selectedRoom = notCornerRoom[ind];
+                RoomGeneratorGrid selectedRoom = notCornerRoom[ind];
                 if (selectedRoom)
                 {
                     // limit biar gak infinite
@@ -358,7 +358,7 @@ public class RoomGenerator : MonoBehaviour
         {
             if (!bossRoom.Contains(cornerRoom[i])) {
                 Debug.Log("Spawning boss.");
-                Room selectedRoom = cornerRoom[i];
+                RoomGeneratorGrid selectedRoom = cornerRoom[i];
 
                 selectedRoom.SetToBossRoom(TeamHelper.TeamTypes[i]);
                 bossRoom.Add(selectedRoom);
@@ -375,10 +375,10 @@ public class RoomGenerator : MonoBehaviour
             {
                 if (roomMapRoom[y, x])
                 {
-                    Room top = null;
-                    Room right = null;
-                    Room bottom = null;
-                    Room left = null;
+                    RoomGeneratorGrid top = null;
+                    RoomGeneratorGrid right = null;
+                    RoomGeneratorGrid bottom = null;
+                    RoomGeneratorGrid left = null;
 
                     if (x + 1 < roomSize) right = roomMapRoom[y, x + 1];
                     if (x - 1 >= 0) left = roomMapRoom[y, x - 1];
