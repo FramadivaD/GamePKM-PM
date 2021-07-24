@@ -120,7 +120,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2964524986214151357}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8103874621386081716}
+        m_TargetAssemblyTypeName: LaboratoryFragmentButton, Assembly-CSharp
+        m_MethodName: OrderDownFragment
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2711469050814242657
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +224,7 @@ GameObject:
   - component: {fileID: 2711469051184612111}
   - component: {fileID: 2711469051184612110}
   - component: {fileID: 2711469051184612097}
+  - component: {fileID: 8103874621386081716}
   m_Layer: 5
   m_Name: LaboratoryGateFragment
   m_TagString: Untagged
@@ -323,19 +336,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2711469051184612110}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LaboratoryMenu, Assembly-CSharp
-        m_MethodName: OpenBrowseWindow
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &8103874621386081716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2711469051184612099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76447256c5df71499553131666b23ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainKey:
+    GateName: 
+    Fragments: []
+  fragment:
+    Key: 
+    Data: 
+  deleteButton: {fileID: 5065607754678259329}
+  orderUpButton: {fileID: 6849326715415235906}
+  orderDownButton: {fileID: 3657012768479942021}
+  openFragmentButton: {fileID: 2711469051184612097}
 --- !u!1 &3865007605923347557
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,7 +716,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3655030210816396633}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8103874621386081716}
+        m_TargetAssemblyTypeName: LaboratoryFragmentButton, Assembly-CSharp
+        m_MethodName: OrderUpFragment
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5836673413815452616
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,4 +849,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8982064553550500496}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8103874621386081716}
+        m_TargetAssemblyTypeName: LaboratoryFragmentButton, Assembly-CSharp
+        m_MethodName: DeleteFragment
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -116,6 +116,10 @@ Total
 - Menambahkan Gate Key Browse Laboratory
 - Menambahkan Gate Key Select Laboratory
 
+[23/07/2021]
+- Menambahkan Fragment Button pada Editor Laboratory
+
+
 ---------------------------------------- Progress -----------------------------------------
 
 [X] Pahami code saat ini

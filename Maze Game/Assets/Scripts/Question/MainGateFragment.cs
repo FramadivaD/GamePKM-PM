@@ -49,8 +49,8 @@ public class MainGateFragment : IInventoryAble
 [System.Serializable]
 public class MainGateKeyRaw
 {
-    public string GateName { get; private set; }
-    public List<MainGateFragmentRaw> Fragments { get; private set; }
+    public string GateName;
+    public List<MainGateFragmentRaw> Fragments;
 
     public MainGateKeyRaw(string gateName)
     {
@@ -67,23 +67,56 @@ public class MainGateKeyRaw
     {
         Fragments.Remove(fragment);
     }
+
+    public void OrderUpFragment(MainGateFragmentRaw fragment)
+    {
+        for (int i = 0;i < Fragments.Count; i++)
+        {
+            if (i > 0)
+            {
+                if (Fragments[i] == fragment)
+                {
+                    MainGateFragmentRaw temp = Fragments[i];
+                    Fragments[i] = Fragments[i - 1];
+                    Fragments[i - 1] = temp;
+
+                    return;
+                }
+            }
+        }
+    }
+
+    public void OrderDownFragment(MainGateFragmentRaw fragment)
+    {
+        for (int i = 0; i < Fragments.Count; i++)
+        {
+            if (i < Fragments.Count - 1)
+            {
+                if (Fragments[i] == fragment)
+                {
+                    MainGateFragmentRaw temp = Fragments[i];
+                    Fragments[i] = Fragments[i + 1];
+                    Fragments[i + 1] = temp;
+
+                    return;
+                }
+            }
+        }
+    }
 }
 
 [System.Serializable]
 public class MainGateFragmentRaw
 {
-    [SerializeField] private string key;
-    [SerializeField] private string data;
-
-    public string Key { get { return key; } }
-    public string Data { get { return data; } }
+    public string Key;
+    public string Data;
 
     public Sprite DataImage { get { return null; } }
 
     public MainGateFragmentRaw(string key, string data)
     {
-        this.key = key;
-        this.data = data;
+        Key = key;
+        Data = data;
     }
 }
 

@@ -19,6 +19,7 @@ public class LaboratorySelectMenu : MonoBehaviour
     public void OpenCreateNewKey()
     {
         laboratoryMenu.OpenEditorWindow();
+        editorMenu.InitializeMainGateKey();
     }
 
     public void EditExistKey()
