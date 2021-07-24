@@ -7,15 +7,30 @@ public class LaboratoryEditorMenu : MonoBehaviour
 {
     LaboratoryMenu laboratoryMenu;
 
+    public GameObject mainEditor;
+    public GameObject fragmentEditor;
+
     public static WebCamTexture camTexture;
 
     private MainGateKeyRaw currentGateKey;
     private MainGateFragmentRaw currentGateFragment;
 
+    [Header("Main Editor")]
     [SerializeField] private GameObject fragmentButtonPrefab;
     [SerializeField] private Transform fragmentContainer;
 
     [SerializeField] private InputField mainGateKeyName;
+
+    [Header("Fragment Editor")]
+    [SerializeField] private InputField fragmentKeyName;
+    [SerializeField] private InputField fragmentKeyData;
+    [SerializeField] private Image fragmentImagePreview;
+
+    [SerializeField] private Button cameraUpdateButton;
+    [SerializeField] private Button cameraSaveButton;
+
+    [SerializeField] private Button cameraSnapButton;
+    [SerializeField] private Button cameraCancelButton;
 
     public void Initialize(LaboratoryMenu laboratoryMenu)
     {
@@ -27,6 +42,8 @@ public class LaboratoryEditorMenu : MonoBehaviour
     public void InitializeMainGateKey()
     {
         currentGateKey = new MainGateKeyRaw("");
+
+        OpenMainEditor();
     }
 
     public void CreateFragmentData()
@@ -69,6 +86,8 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
             RefreshFragmentContainer();
 
+            OpenMainEditor();
+
             Debug.Log("Open Main Gate Key Success");
         } else
         {
@@ -92,6 +111,8 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
             File.WriteAllBytes(filename, data);
 
+            OpenMainEditor();
+
             Debug.Log("Save Main Gate Key");
         } else
         {
@@ -114,6 +135,8 @@ public class LaboratoryEditorMenu : MonoBehaviour
     public void BackToSelectMenu()
     {
         laboratoryMenu.OpenSelectWindow();
+
+        OpenMainEditor();
     }
 
     private void ChangeGateKeyName(string x)
@@ -157,6 +180,105 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
     private void OpenFragmentKey(MainGateFragmentRaw fragment)
     {
+        OpenFragmentEditor();
+
+        currentGateFragment = fragment;
+        fragmentKeyName.text = fragment.Key;
+
+        // Sprite imageData
+
         Debug.Log("Open Fragment Key");
+    }
+
+    #region About Fragment Editor
+
+    private void ShowFragmentButtonCamera()
+    {
+        cameraUpdateButton.gameObject.SetActive(false);
+        cameraSaveButton.gameObject.SetActive(false);
+
+        cameraSnapButton.gameObject.SetActive(true);
+        cameraCancelButton.gameObject.SetActive(true);
+    }
+
+    private void HideFragmentButtonCamera()
+    {
+        cameraUpdateButton.gameObject.SetActive(true);
+        cameraSaveButton.gameObject.SetActive(true);
+
+        cameraSnapButton.gameObject.SetActive(false);
+        cameraCancelButton.gameObject.SetActive(false);
+    }
+
+    // Update Button
+    public void OpenCamera()
+    {
+        if (!camTexture)
+        {
+            camTexture = new WebCamTexture(500, 500);
+
+            camTexture.Play();
+        }
+
+        ShowFragmentButtonCamera();
+    }
+
+    // Snap Button
+    public void SnapCamera()
+    {
+        if (camTexture)
+        {
+            Color[] colors = camTexture.GetPixels();
+            Texture2D texture = new Texture2D(500, 500);
+            texture.SetPixels(colors);
+            texture.Apply();
+
+            Sprite sprite = Sprite.Create(texture, new Rect(0, 0, 500, 500), new Vector2(0.5f, 0.5f));
+
+            fragmentImagePreview.sprite = sprite;
+
+            camTexture.Stop();
+        }
+
+        HideFragmentButtonCamera();
+    }
+
+    public void CancelCamera()
+    {
+        if (camTexture)
+        {
+
+        }
+
+        HideFragmentButtonCamera();
+    }
+
+    public void SaveFragment()
+    {
+        currentGateFragment.Key = fragmentKeyName.text;
+        currentGateFragment.Data = fragmentKeyData.text;
+
+        HideFragmentButtonCamera();
+    }
+
+    #endregion
+
+    private void CloseFragmentKey()
+    {
+        currentGateFragment = null;
+
+        OpenMainEditor();
+    }
+
+    private void OpenMainEditor()
+    {
+        mainEditor.SetActive(true);
+        fragmentEditor.SetActive(false);
+    }
+
+    private void OpenFragmentEditor()
+    {
+        mainEditor.SetActive(false);
+        fragmentEditor.SetActive(true);
     }
 }

@@ -109,7 +109,7 @@ public class MainGateKeyRaw
 public class MainGateFragmentRaw
 {
     public string Key;
-    public string Data;
+    public string Data; //filename
 
     public Sprite DataImage { get { return null; } }
 

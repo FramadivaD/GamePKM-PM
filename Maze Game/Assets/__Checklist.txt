@@ -43,7 +43,7 @@ Etc.
 [5] [ ] Maintenance dan Revisi sampai project siap
 
 Total
-[175]
+[125]
 ---------------------------------------- Laporan -----------------------------------------
 
 [20/07/2021]
@@ -118,7 +118,12 @@ Total
 
 [23/07/2021]
 - Menambahkan Fragment Button pada Editor Laboratory
-
+- Menambahkan Save Data soal pada Editor Laboratory
+- Menambahkan Open Data soal pada Editor Laboratory
+- Sinkronisasi Browse menu dengan Editor Laboratory
+- Menambahkan Create soal data pada Editor Laboratory
+- Menambahkan Fitur Guru bisa foto dengan camera di Editor Laboratory
+- Menambahkan Fitur Guru bisa simpan fragment dan key di Editor Laboratory
 
 ---------------------------------------- Progress -----------------------------------------
 
@@ -195,12 +200,12 @@ Total
 [ ] Lobby menu guru pilih main gate
 [ ] Lobby menu start game
 
-[ ] Tampilan gate kalo fragment udah lengkap
+[X] Tampilan gate kalo fragment udah lengkap
 
-[ ] Fitur guru browse soal local
+[X] Fitur guru browse soal local
 [ ] Fitur guru camera soal
 [ ] Fitur guru upload soal
-[ ] Fitur guru bikin save save an data soal
+[X] Fitur guru bikin save save an data soal
 
 [ ] Implement Photon Main Menu
 [ ] Implement Photon Lobby
