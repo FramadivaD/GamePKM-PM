@@ -18,6 +18,33 @@ public class MainGateKey
     {
         Fragments.Add(fragment);
     }
+
+    public static MainGateKey ConvertFromRawData(TeamType team, MainGateKeyRaw mainGateRaw)
+    {
+        MainGateKey mainGate = new MainGateKey(team);
+        foreach (MainGateFragmentRaw fragmentRaw in mainGateRaw.Fragments)
+        {
+            MainGateFragment fragment = new MainGateFragment(mainGate, fragmentRaw.Key, fragmentRaw.Data);
+
+            // Read image data by convert from bytes to Sprite
+            if (fragmentRaw.DataImage != null && fragmentRaw.DataImage.Length > 0)
+            {
+                Texture2D texture = new Texture2D(fragmentRaw.DataImageWidth, fragmentRaw.DataImageHeight);
+                texture.LoadRawTextureData(fragmentRaw.DataImage);
+                texture.Apply();
+
+                Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+                fragment.SetDataImage(sprite);
+            } else
+            {
+                fragment.SetDataImage(null);
+            }
+
+            mainGate.AddFragment(fragment);
+        }
+
+        return mainGate;
+    }
 }
 
 public class MainGateFragment : IInventoryAble
@@ -25,6 +52,7 @@ public class MainGateFragment : IInventoryAble
     [SerializeField] private MainGateFragment mainKey;
     [SerializeField] private string key;
     [SerializeField] private string data;
+    [SerializeField] private Sprite dataImage;
 
     public MainGateKey MainKey { get; }
     public TeamType Team { get { return MainKey.Team; } }
@@ -32,13 +60,18 @@ public class MainGateFragment : IInventoryAble
     public string Key { get { return key; } }
     public string Data { get { return data; } }
 
-    public Sprite DataImage { get { return null; } }
+    public Sprite DataImage { get { return dataImage; } }
 
     public MainGateFragment(MainGateKey mainKey, string key, string data)
     {
         MainKey = mainKey;
         this.key = key;
         this.data = data;
+    }
+
+    public void SetDataImage(Sprite sprite)
+    {
+        dataImage = sprite;
     }
 }
 
