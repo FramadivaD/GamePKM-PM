@@ -195,42 +195,18 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
     #region About Fragment Editor
 
-    private void ShowFragmentButtonCamera()
-    {
-        cameraUpdateButton.gameObject.SetActive(false);
-        cameraSaveButton.gameObject.SetActive(false);
-
-        cameraSnapButton.gameObject.SetActive(true);
-        cameraCancelButton.gameObject.SetActive(true);
-
-        fragmentImagePreview.gameObject.SetActive(false);
-        fragmentImageCamera.gameObject.SetActive(true);
-    }
-
-    private void HideFragmentButtonCamera()
-    {
-        cameraUpdateButton.gameObject.SetActive(true);
-        cameraSaveButton.gameObject.SetActive(true);
-
-        cameraSnapButton.gameObject.SetActive(false);
-        cameraCancelButton.gameObject.SetActive(false);
-
-        fragmentImagePreview.gameObject.SetActive(true);
-        fragmentImageCamera.gameObject.SetActive(false);
-    }
-
     // Update Button
     public void OpenCamera()
     {
         if (!camTexture)
         {
             camTexture = new WebCamTexture(500, 500);
-
-            fragmentImageCamera.texture = camTexture;
-            fragmentImageCamera.material.mainTexture = camTexture;
-
-            camTexture.Play();
         }
+
+        fragmentImageCamera.texture = camTexture;
+        fragmentImageCamera.material.mainTexture = camTexture;
+
+        camTexture.Play();
 
         ShowFragmentButtonCamera();
     }
@@ -241,11 +217,11 @@ public class LaboratoryEditorMenu : MonoBehaviour
         if (camTexture)
         {
             Color[] colors = camTexture.GetPixels();
-            Texture2D texture = new Texture2D(500, 500);
+            Texture2D texture = new Texture2D(camTexture.width, camTexture.height);
             texture.SetPixels(colors);
             texture.Apply();
 
-            Sprite sprite = Sprite.Create(texture, new Rect(0, 0, 500, 500), new Vector2(0.5f, 0.5f));
+            Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
 
             fragmentImagePreview.sprite = sprite;
 
@@ -271,6 +247,7 @@ public class LaboratoryEditorMenu : MonoBehaviour
         currentGateFragment.Data = fragmentKeyData.text;
 
         HideFragmentButtonCamera();
+        OpenMainEditor();
     }
 
     #endregion
@@ -292,5 +269,29 @@ public class LaboratoryEditorMenu : MonoBehaviour
     {
         mainEditor.SetActive(false);
         fragmentEditor.SetActive(true);
+    }
+
+    private void ShowFragmentButtonCamera()
+    {
+        cameraUpdateButton.gameObject.SetActive(false);
+        cameraSaveButton.gameObject.SetActive(false);
+
+        cameraSnapButton.gameObject.SetActive(true);
+        cameraCancelButton.gameObject.SetActive(true);
+
+        fragmentImagePreview.gameObject.SetActive(false);
+        fragmentImageCamera.gameObject.SetActive(true);
+    }
+
+    private void HideFragmentButtonCamera()
+    {
+        cameraUpdateButton.gameObject.SetActive(true);
+        cameraSaveButton.gameObject.SetActive(true);
+
+        cameraSnapButton.gameObject.SetActive(false);
+        cameraCancelButton.gameObject.SetActive(false);
+
+        fragmentImagePreview.gameObject.SetActive(true);
+        fragmentImageCamera.gameObject.SetActive(false);
     }
 }
