@@ -37,27 +37,32 @@ public class LaboratoryBrowseMenu : MonoBehaviour
         {
             for (int i = 0; i < dir.Length; i++)
             {
-                Debug.Log(dir[i]);
+                int x = i;
 
-                FileInfo info = new FileInfo(basePath + "/" + dir[i]);
-                if (info.Extension == ".soal") {
-                    int x = i;
+                Debug.Log(dir[x]);
 
-                    GameObject ne = Instantiate(browseButtonPrefab, browseButtonContainer);
-                    Button button = ne.GetComponent<Button>();
-
-                    if (button)
+                if (File.Exists(dir[x]))
+                {
+                    FileInfo info = new FileInfo(dir[x]);
+                    if (info.Extension == ".soal")
                     {
-                        button.onClick.AddListener(() => { OpenEditor(basePath + "/" + dir[x]); });
+
+                        GameObject ne = Instantiate(browseButtonPrefab, browseButtonContainer);
+                        Button button = ne.GetComponent<Button>();
+
+                        if (button)
+                        {
+                            button.onClick.AddListener(() => { OpenEditor(dir[x]); });
+                        }
                     }
                 }
             }
 
-            noFilesText.SetActive(true);
+            noFilesText.SetActive(false);
         }
         else
         {
-            noFilesText.SetActive(false);
+            noFilesText.SetActive(true);
         }
     }
 

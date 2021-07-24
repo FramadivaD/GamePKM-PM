@@ -57,11 +57,15 @@ public class LaboratoryEditorMenu : MonoBehaviour
     {
         if (File.Exists(filename))
         {
+            string fileBaseName = new FileInfo(filename).Name;
+
             byte[] data = File.ReadAllBytes(filename);
 
             string content = System.Text.Encoding.ASCII.GetString(data);
 
             currentGateKey = JsonUtility.FromJson<MainGateKeyRaw>(content);
+
+            mainGateKeyName.text = fileBaseName;
 
             RefreshFragmentContainer();
 
