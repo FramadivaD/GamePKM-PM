@@ -17,6 +17,8 @@ public class LaboratoryFragmentButton : MonoBehaviour
     {
         this.mainKey = mainKey;
         this.fragment = fragment;
+
+        openFragmentButton.GetComponentInChildren<Text>().text = fragment.Key;
     }
 
     public void DeleteFragment()

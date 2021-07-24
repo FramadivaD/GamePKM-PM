@@ -18,11 +18,11 @@ Game System and Mechanic
 [7] [X] Sistem AI Enemy Boss
 [3] [X] Sistem Winner Team
 [3] [X] Sistem Flow Game (dari awal gameplay, sampai menang)
-[5] [ ] Sistem Guru Bikin Soal
-[1] [ ] Sistem Editor Gate Key soal guru
+[5] [X] Sistem Guru Bikin Soal
+[1] [X] Sistem Editor Gate Key soal guru
 [3] [ ] Sistem Transfer data soal guru
-[3] [ ] Sistem Camera Device
-[5] [ ] Sistem Storage Save and Load Data
+[3] [X] Sistem Camera Device
+[5] [X] Sistem Storage Save and Load Data
 [7] [ ] Sistem Lobby Main Menu
 [3] [ ] Sistem Result Post Gameplay
 [9] [ ] Sistem Multiplayer
@@ -124,6 +124,9 @@ Total
 - Menambahkan Create soal data pada Editor Laboratory
 - Menambahkan Fitur Guru bisa foto dengan camera di Editor Laboratory
 - Menambahkan Fitur Guru bisa simpan fragment dan key di Editor Laboratory
+- Menambahkan fitur foto camera di pembuatan soal Editor Laboratory
+- Menambahkan fitur Simpan foto soal Editor Laboratory.
+- Menambahkan fitur Load foto soal Editor Laboratory.
 
 ---------------------------------------- Progress -----------------------------------------
 
@@ -203,7 +206,7 @@ Total
 [X] Tampilan gate kalo fragment udah lengkap
 
 [X] Fitur guru browse soal local
-[ ] Fitur guru camera soal
+[X] Fitur guru camera soal
 [ ] Fitur guru upload soal
 [X] Fitur guru bikin save save an data soal
 

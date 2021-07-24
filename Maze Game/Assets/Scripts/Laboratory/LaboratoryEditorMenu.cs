@@ -43,6 +43,13 @@ public class LaboratoryEditorMenu : MonoBehaviour
     public void InitializeMainGateKey()
     {
         currentGateKey = new MainGateKeyRaw("");
+        currentGateFragment = null;
+
+        mainGateKeyName.text = "";
+        fragmentKeyName.text = "";
+        fragmentKeyData.text = "";
+
+        RefreshFragmentContainer();
 
         OpenMainEditor();
     }
@@ -195,7 +202,7 @@ public class LaboratoryEditorMenu : MonoBehaviour
         fragmentKeyName.text = fragment.Key;
         fragmentKeyData.text = fragment.Data;
 
-        if (fragment.DataImage != null)
+        if (fragment.DataImage != null && fragment.DataImage.Length > 0)
         {
             Texture2D texture = new Texture2D(fragment.DataImageWidth, fragment.DataImageHeight);
             texture.LoadRawTextureData(fragment.DataImage);
@@ -206,6 +213,9 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
             fragmentImageCamera.rectTransform.sizeDelta = new Vector2(500, texture.height * 500 / texture.width);
             fragmentImagePreview.rectTransform.sizeDelta = new Vector2(500, texture.height * 500 / texture.width);
+        } else
+        {
+            fragmentImagePreview.sprite = null;
         }
 
         // Sprite imageData
