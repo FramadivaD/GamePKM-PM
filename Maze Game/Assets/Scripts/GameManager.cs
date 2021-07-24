@@ -116,10 +116,25 @@ public class GameManager : MonoBehaviour
     private void InitializeFragmentsKey()
     {
         fragmentsKey = new List<MainGateKey>();
-        MainGateKey redTeamKey = new MainGateKey(player.teamType);
-        redTeamKey.AddFragment(new MainGateFragment(redTeamKey, "red_01", "Kucing"));
+
+        MainGateKey redTeamKey = null;
+
+        //MainGateKey redTeamKey = new MainGateKey(player.teamType);
+        //redTeamKey.AddFragment(new MainGateFragment(redTeamKey, "red_01", "Kucing"));
         //redTeamKey.AddFragment(new MainGateFragment(redTeamKey, "red_02", "Sapi"));
         //redTeamKey.AddFragment(new MainGateFragment(redTeamKey, "red_03", "Kuda"));
+
+        if (Application.isEditor)
+        {
+            string filename = "D:/Music/MathGame/Data/bidang panjang.soal";
+
+            byte[] data = System.IO.File.ReadAllBytes(filename);
+            string content = System.Text.Encoding.ASCII.GetString(data);
+            MainGateKeyRaw currentGateKey = JsonUtility.FromJson<MainGateKeyRaw>(content);
+
+            redTeamKey = MainGateKey.ConvertFromRawData(player.teamType, currentGateKey);
+        }
+
         fragmentsKey.Add(redTeamKey);
     }
 

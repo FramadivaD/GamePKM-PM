@@ -51,7 +51,20 @@ public class ChestContainer : MonoBehaviour
         this.teamType = teamType;
         this.fragmentKey = fragment;
 
-        fragmentImage.sprite = fragmentKey.DataImage;
+        Sprite sprite = fragmentKey.DataImage;
+
+        if (sprite != null)
+        {
+            int width = sprite.texture.width;
+            int height = sprite.texture.height;
+
+            float alterWidth = fragmentImage.rectTransform.sizeDelta.x;
+            float alterHeight = fragmentImage.rectTransform.sizeDelta.y * width / height;
+
+            fragmentImage.rectTransform.sizeDelta = new Vector2(alterWidth, alterHeight);
+        }
+
+        fragmentImage.sprite = sprite;
         fragmentDataText.text = fragmentKey.Data;
     }
 

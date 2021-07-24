@@ -17,7 +17,21 @@ public class MainGateFragmentOrb : MonoBehaviour
         this.fragment = fragment;
 
         canvasUI.SetActive(true);
-        fragmentImage.sprite = fragment.DataImage;
+
+        Sprite sprite = fragment.DataImage;
+
+        if (sprite != null)
+        {
+            int width = sprite.texture.width;
+            int height = sprite.texture.height;
+
+            float alterWidth = fragmentImage.rectTransform.sizeDelta.x;
+            float alterHeight = fragmentImage.rectTransform.sizeDelta.y * width / height;
+
+            fragmentImage.rectTransform.sizeDelta = new Vector2(alterWidth, alterHeight);
+        }
+
+        fragmentImage.sprite = sprite;
         fragmentDataText.text = fragment.Data;
     }
 
