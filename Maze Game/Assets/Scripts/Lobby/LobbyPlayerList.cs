@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class LobbyPlayerList : Photon.PunBehaviour
 {
+    [SerializeField] private PhotonView photonView;
+
     [SerializeField] private Transform playerSelection;
 
     [SerializeField] private string[] playersJoinedID;
@@ -85,13 +87,13 @@ public class LobbyPlayerList : Photon.PunBehaviour
             playersJoinedName[4 + blueTeam] = null;
         }
 
-        Debug.Log("This Room Master ID : " + playerMasterID);
-        Debug.Log("This Room Master Name : " + playerMasterName);
+        Debug.Log("This Room Master Player ID : " + playerMasterID);
+        Debug.Log("This Room Master Player Name : " + playerMasterName);
     }
 
     private void RefreshPreview()
     {
-        for (int i = 0; i < 8;i++)
+        for (int i = 0; i < 8; i++)
         {
             playersPreviewList[i].Initialize(playersJoinedID[i], playersJoinedName[i]);
         }
@@ -136,8 +138,15 @@ public class LobbyPlayerList : Photon.PunBehaviour
             {
                 PhotonNetwork.player.SetTeam(PunTeams.Team.blue);
             }
-            Initialize();
+
+            photonView.RPC("BroadcastChangeTeam", PhotonTargets.AllBufferedViaServer);
         }
+    }
+
+    [PunRPC]
+    private void BroadcastChangeTeam()
+    {
+        Initialize();
     }
 
     public void ChangeRedTeam()

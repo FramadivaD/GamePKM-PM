@@ -595,7 +595,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 188481586}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2016174602}
+        m_TargetAssemblyTypeName: LobbyPlayerList, Assembly-CSharp
+        m_MethodName: ChangeRedTeam
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &228876356
 GameObject:
   m_ObjectHideFlags: 0
@@ -4101,7 +4113,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1775377271}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2016174602}
+        m_TargetAssemblyTypeName: LobbyPlayerList, Assembly-CSharp
+        m_MethodName: ChangeBlueTeam
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1829463563
 GameObject:
   m_ObjectHideFlags: 0
@@ -5004,6 +5028,7 @@ GameObject:
   - component: {fileID: 2016174598}
   - component: {fileID: 2016174601}
   - component: {fileID: 2016174602}
+  - component: {fileID: 2016174603}
   m_Layer: 0
   m_Name: UI Manager
   m_TagString: Untagged
@@ -5082,6 +5107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2a99cfce9900041b2bb1f3bee3aea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  photonView: {fileID: 2016174603}
   playerSelection: {fileID: 138092038}
   playersJoinedID:
   - 00000
@@ -5112,6 +5138,33 @@ MonoBehaviour:
   - {fileID: 2001039306}
   changeRedTeamButton: {fileID: 188481588}
   changeBlueTeamButton: {fileID: 1775377273}
+--- !u!114 &2016174603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016174597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 2016174602}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 1
+  instantiationId: 1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &2044289655
 GameObject:
   m_ObjectHideFlags: 0
