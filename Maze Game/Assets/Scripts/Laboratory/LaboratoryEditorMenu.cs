@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class LaboratoryEditorMenu : MonoBehaviour
@@ -9,6 +10,11 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
     private MainGateKeyRaw currentGateKey;
     private MainGateFragmentRaw currentGateFragment;
+
+    [SerializeField] private GameObject fragmentButtonPrefab;
+    [SerializeField] private Transform fragmentContainer;
+
+    [SerializeField] private InputField mainGateKeyName;
 
     public void Initialize(LaboratoryMenu laboratoryMenu)
     {
@@ -42,5 +48,15 @@ public class LaboratoryEditorMenu : MonoBehaviour
         {
             currentGateKey.RemoveFragment(fragment);
         }
+    }
+
+    public void SaveMainGateKey()
+    {
+        Debug.Log("Save Main Gate Key");
+    }
+
+    public void AddFragment()
+    {
+        Debug.Log("Add Fragment");
     }
 }
