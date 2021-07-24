@@ -20,7 +20,7 @@ Game System and Mechanic
 [3] [X] Sistem Flow Game (dari awal gameplay, sampai menang)
 [5] [X] Sistem Guru Bikin Soal
 [1] [X] Sistem Editor Gate Key soal guru
-[3] [ ] Sistem Transfer data soal guru
+[3] [X] Sistem Transfer data soal guru
 [3] [X] Sistem Camera Device
 [5] [X] Sistem Storage Save and Load Data
 [7] [ ] Sistem Lobby Main Menu
@@ -127,6 +127,7 @@ Total
 - Menambahkan fitur foto camera di pembuatan soal Editor Laboratory
 - Menambahkan fitur Simpan foto soal Editor Laboratory.
 - Menambahkan fitur Load foto soal Editor Laboratory.
+- Menambahkan fitur untuk konversi data soal raw ke data soal gameplay.
 
 ---------------------------------------- Progress -----------------------------------------
 
