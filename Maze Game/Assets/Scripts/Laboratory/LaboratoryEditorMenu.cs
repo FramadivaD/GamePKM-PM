@@ -57,7 +57,7 @@ public class LaboratoryEditorMenu : MonoBehaviour
     {
         if (File.Exists(filename))
         {
-            string fileBaseName = new FileInfo(filename).Name;
+            string fileBaseName = Path.GetFileNameWithoutExtension(new FileInfo(filename).Name);
 
             byte[] data = File.ReadAllBytes(filename);
 

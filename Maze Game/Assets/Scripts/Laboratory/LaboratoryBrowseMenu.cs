@@ -50,6 +50,8 @@ public class LaboratoryBrowseMenu : MonoBehaviour
                         GameObject ne = Instantiate(browseButtonPrefab, browseButtonContainer);
                         Button button = ne.GetComponent<Button>();
 
+                        ne.GetComponentInChildren<Text>().text = Path.GetFileNameWithoutExtension(info.Name);
+
                         if (button)
                         {
                             button.onClick.AddListener(() => { OpenEditor(dir[x]); });
