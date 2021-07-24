@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class LobbyPlayerPreview : MonoBehaviour
 {
+    [SerializeField] private TeamType teamType;
+
     [SerializeField] private string playerID;
     [SerializeField] private string playerName;
 
