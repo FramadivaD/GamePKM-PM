@@ -7,7 +7,6 @@ public class LobbyPlayerList : Photon.PunBehaviour
 {
     [SerializeField] private Transform playerSelection;
 
-    [SerializeField] private string[] playersJoinedID;
     [SerializeField] private string[] playersJoinedName;
 
     [SerializeField] private LobbyPlayerPreview[] playersPreviewList;
@@ -59,13 +58,11 @@ public class LobbyPlayerList : Photon.PunBehaviour
             }
             else if (photonPlayers[i].GetTeam() == PunTeams.Team.red)
             {
-                playersJoinedID[redTeam] = photonPlayers[i].UserId;
                 playersJoinedName[redTeam] = photonPlayers[i].NickName;
                 redTeam++;
             }
             else if (photonPlayers[i].GetTeam() == PunTeams.Team.blue)
             {
-                playersJoinedID[4 + blueTeam] = photonPlayers[i].UserId;
                 playersJoinedName[4 + blueTeam] = photonPlayers[i].NickName;
                 blueTeam++;
             }
@@ -78,13 +75,11 @@ public class LobbyPlayerList : Photon.PunBehaviour
         {
             if (redTeam < 4 && redTeam <= blueTeam) {
                 PhotonNetwork.player.SetTeam(PunTeams.Team.red);
-                playersJoinedID[redTeam] = PhotonNetwork.player.UserId;
                 playersJoinedName[redTeam] = PhotonNetwork.player.NickName;
                 redTeam++;
             } else if (blueTeam < 4)
             {
                 PhotonNetwork.player.SetTeam(PunTeams.Team.blue);
-                playersJoinedID[4 + blueTeam] = PhotonNetwork.player.UserId;
                 playersJoinedName[4 + blueTeam] = PhotonNetwork.player.NickName;
                 blueTeam++;
             }
@@ -93,13 +88,11 @@ public class LobbyPlayerList : Photon.PunBehaviour
         // Fill up the rest with null player
         for (; redTeam < 4; redTeam++)
         {
-            playersJoinedID[redTeam] = "";
             playersJoinedName[redTeam] = "";
         }
 
         for (; blueTeam < 4; blueTeam++)
         {
-            playersJoinedID[4 + blueTeam] = "";
             playersJoinedName[4 + blueTeam] = "";
         }
 
@@ -109,13 +102,10 @@ public class LobbyPlayerList : Photon.PunBehaviour
 
     private void RefreshPreview()
     {
-        Debug.Log("Refresh Preview");
         for (int i = 0; i < 8; i++)
         {
-            Debug.Log("ID : " + playersJoinedName[i] + " : " + playersJoinedName[i]);
-            playersPreviewList[i].Initialize(playersJoinedID[i], playersJoinedName[i]);
+            playersPreviewList[i].Initialize(playersJoinedName[i]);
         }
-        Debug.Log("End of Refresh Preview");
     }
 
     private void RefreshChangeTeamButton()
