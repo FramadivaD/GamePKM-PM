@@ -1518,6 +1518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b53e9dd2f5f314409378a628bc39c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laboratoryEditor: {fileID: 859611899}
   browseButtonPrefab: {fileID: 2711469051184612099, guid: 98c2e29d14821a34da0c33c79327b9f8,
     type: 3}
   browseButtonContainer: {fileID: 1760801167}

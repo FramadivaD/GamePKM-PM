@@ -6,7 +6,7 @@ using System.IO;
 public class LaboratoryBrowseMenu : MonoBehaviour
 {
     LaboratoryMenu laboratoryMenu;
-    LaboratoryEditorMenu laboratoryEditor;
+    public LaboratoryEditorMenu laboratoryEditor;
 
     public GameObject browseButtonPrefab;
     public Transform browseButtonContainer;
@@ -57,7 +57,7 @@ public class LaboratoryBrowseMenu : MonoBehaviour
         }
         else
         {
-            noFilesText.SetActive(true);
+            noFilesText.SetActive(false);
         }
     }
 
