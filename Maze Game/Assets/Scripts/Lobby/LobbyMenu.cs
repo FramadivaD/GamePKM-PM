@@ -8,6 +8,7 @@ public class LobbyMenu : MonoBehaviour
 
     [SerializeField] private InputField createGameInput;
     [SerializeField] private InputField joinGameInput;
+    [SerializeField] private InputField usernameInput;
 
     public void CreateNewGame()
     {
@@ -15,6 +16,8 @@ public class LobbyMenu : MonoBehaviour
         if (roomID.Length == 5)
         {
             Debug.Log("Creating New Game on : " + roomID);
+
+            lobbyNetwork.CreateNewGame(roomID);
         } else
         {
             Debug.Log("Invalid ID. Must 5 characters.");
@@ -27,7 +30,25 @@ public class LobbyMenu : MonoBehaviour
         if (roomID.Length == 5)
         {
             Debug.Log("Joining Game on : " + roomID);
-        } else
+
+            lobbyNetwork.JoinGame(roomID);
+        }
+        else
+        {
+            Debug.Log("Invalid ID. Must 5 characters.");
+        }
+    }
+
+    public void JoinLobbyGame()
+    {
+        string username = usernameInput.text;
+        if (username.Length == 5)
+        {
+            Debug.Log("Joining Game on : " + username);
+
+            lobbyNetwork.JoinLobbyGame(username);
+        }
+        else
         {
             Debug.Log("Invalid ID. Must 5 characters.");
         }
