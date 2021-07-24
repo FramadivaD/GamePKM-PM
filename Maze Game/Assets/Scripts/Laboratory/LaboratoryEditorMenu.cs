@@ -82,11 +82,11 @@ public class LaboratoryEditorMenu : MonoBehaviour
             string basePath = AndroidHelper.MainGateSavePath + "/Data";
             AndroidHelper.CheckAndCreateDirectory(basePath);
 
-            string filename = basePath + "/" + mainGateKeyName.text;
+            string filename = basePath + "/" + mainGateKeyName.text + ".soal";
 
             byte[] data = System.Text.Encoding.ASCII.GetBytes(content);
 
-            File.WriteAllBytes(basePath, data);
+            File.WriteAllBytes(filename, data);
 
             Debug.Log("Save Main Gate Key");
         } else

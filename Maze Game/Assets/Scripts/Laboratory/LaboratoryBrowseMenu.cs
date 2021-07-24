@@ -6,6 +6,7 @@ using System.IO;
 public class LaboratoryBrowseMenu : MonoBehaviour
 {
     LaboratoryMenu laboratoryMenu;
+    LaboratoryEditorMenu laboratoryEditor;
 
     public GameObject browseButtonPrefab;
     public Transform browseButtonContainer;
@@ -36,14 +37,19 @@ public class LaboratoryBrowseMenu : MonoBehaviour
         {
             for (int i = 0; i < dir.Length; i++)
             {
-                GameObject ne = Instantiate(browseButtonPrefab, browseButtonContainer);
-                Button button = ne.GetComponent<Button>();
-
                 Debug.Log(dir[i]);
 
-                if (button)
-                {
-                    //button.
+                FileInfo info = new FileInfo(basePath + "/" + dir[i]);
+                if (info.Extension == ".soal") {
+                    int x = i;
+
+                    GameObject ne = Instantiate(browseButtonPrefab, browseButtonContainer);
+                    Button button = ne.GetComponent<Button>();
+
+                    if (button)
+                    {
+                        button.onClick.AddListener(() => { OpenEditor(basePath + "/" + dir[x]); });
+                    }
                 }
             }
 
@@ -55,8 +61,9 @@ public class LaboratoryBrowseMenu : MonoBehaviour
         }
     }
 
-    private void OpenEditor()
+    private void OpenEditor(string filename)
     {
         laboratoryMenu.OpenEditorWindow();
+        laboratoryEditor.OpenMainGateKey(filename);
     }
 }
