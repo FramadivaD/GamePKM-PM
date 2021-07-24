@@ -26,7 +26,8 @@ public class MainGateFragmentOrb : MonoBehaviour
             int height = sprite.texture.height;
 
             float alterWidth = fragmentImage.rectTransform.sizeDelta.x;
-            float alterHeight = fragmentImage.rectTransform.sizeDelta.y * width / height;
+            //float alterHeight = fragmentImage.rectTransform.sizeDelta.y * width / height;
+            float alterHeight = fragmentImage.rectTransform.sizeDelta.x * height / width;
 
             fragmentImage.rectTransform.sizeDelta = new Vector2(alterWidth, alterHeight);
         }
