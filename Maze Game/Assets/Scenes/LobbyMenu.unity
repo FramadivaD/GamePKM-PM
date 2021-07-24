@@ -4823,6 +4823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e68ce056a9873e34ebc855888ddf81ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lobbyPlayerList: {fileID: 2016174602}
   joinLobbyMenu: {fileID: 383025379}
   usernameLobbyMenu: {fileID: 494840402}
   playerLobbyMenu: {fileID: 2133202784}
@@ -4839,6 +4840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2a99cfce9900041b2bb1f3bee3aea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSelection: {fileID: 138092038}
   playersJoinedID:
   - 00000
   - 00001

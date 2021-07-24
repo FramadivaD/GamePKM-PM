@@ -42,7 +42,7 @@ public class LobbyMenu : MonoBehaviour
     public void JoinLobbyGame()
     {
         string username = usernameInput.text;
-        if (username.Length == 5)
+        if (username.Length >= 3)
         {
             Debug.Log("Joining Game on : " + username);
 
@@ -50,7 +50,7 @@ public class LobbyMenu : MonoBehaviour
         }
         else
         {
-            Debug.Log("Invalid ID. Must 5 characters.");
+            Debug.Log("Invalid Username. Must at least 3 characters.");
         }
     }
 }

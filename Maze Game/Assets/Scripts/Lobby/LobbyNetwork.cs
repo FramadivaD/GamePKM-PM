@@ -2,9 +2,11 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class LobbyNetwork : MonoBehaviour
+public class LobbyNetwork : Photon.PunBehaviour
 {
     private string GameVersion { get { return Application.version; } }
+
+    [SerializeField] LobbyPlayerList lobbyPlayerList;
 
     [SerializeField] private GameObject joinLobbyMenu;
     [SerializeField] private GameObject usernameLobbyMenu;
@@ -26,20 +28,13 @@ public class LobbyNetwork : MonoBehaviour
         PhotonNetwork.ConnectUsingSettings(GameVersion);
     }
 
-    private void OnConnectedToMaster()
-    {
-        Debug.Log("Connected Master");
-
-        connected = true;
-    }
-
     public void CreateNewGame(string roomID)
     {
         if (connected)
         {
             if (roomID.Length == 5)
             {
-                OpenUsernameLobby();
+                PhotonNetwork.CreateRoom(roomID, new RoomOptions() { MaxPlayers = 9 }, null);
             } else
             {
                 Debug.Log("RoomID must 5 characters.");
@@ -53,7 +48,7 @@ public class LobbyNetwork : MonoBehaviour
         {
             if (roomID.Length == 5)
             {
-                OpenUsernameLobby();
+                PhotonNetwork.JoinRoom(roomID);
             }
             else
             {
@@ -66,6 +61,9 @@ public class LobbyNetwork : MonoBehaviour
     {
         if (connected)
         {
+            PhotonNetwork.playerName = username;
+            
+            lobbyPlayerList.Initialize();
             OpenPlayerLobby();
         }
     }
@@ -74,9 +72,39 @@ public class LobbyNetwork : MonoBehaviour
     {
         if (connected)
         {
-            OpenJoinLobby();
+            PhotonNetwork.LeaveRoom();
         }
     }
+
+    #region Photon Callbacks
+
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("Connected Master");
+
+        connected = true;
+    }
+
+    public override void OnJoinedRoom()
+    {
+        Debug.Log("Create or Join Room Success");
+
+        OpenUsernameLobby();
+    }
+
+    public override void OnLeftRoom()
+    {
+        OpenJoinLobby();
+    }
+
+    public override void OnPhotonJoinRoomFailed(object[] codeAndMsg)
+    {
+        Debug.Log("Create or Join Room Failed");
+    }
+
+    #endregion
+
+    #region About Window Menu
 
     public void OpenJoinLobby()
     {
@@ -98,4 +126,6 @@ public class LobbyNetwork : MonoBehaviour
         playerLobbyMenu.SetActive(false);
         usernameLobbyMenu.SetActive(true);
     }
+
+    #endregion
 }
