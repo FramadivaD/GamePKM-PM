@@ -29,11 +29,6 @@ public class LaboratoryEditorMenu : MonoBehaviour
         currentGateKey = new MainGateKeyRaw("");
     }
 
-    public void OpenMainGateKey()
-    {
-        currentGateKey = new MainGateKeyRaw("");
-    }
-
     public void CreateFragmentData()
     {
         if (currentGateKey != null)
@@ -58,17 +53,56 @@ public class LaboratoryEditorMenu : MonoBehaviour
         }
     }
 
+    public void OpenMainGateKey(string filename)
+    {
+        if (File.Exists(filename))
+        {
+            byte[] data = File.ReadAllBytes(filename);
+
+            string content = System.Text.Encoding.ASCII.GetString(data);
+
+            currentGateKey = JsonUtility.FromJson<MainGateKeyRaw>(content);
+
+            RefreshFragmentContainer();
+
+            Debug.Log("Open Main Gate Key Success");
+        } else
+        {
+            Debug.Log("File not exist");
+        }
+    }
+
     public void SaveMainGateKey()
     {
-        Debug.Log("Save Main Gate Key");
+        if (mainGateKeyName.text.Length > 0) {
+            string content = JsonUtility.ToJson(currentGateKey);
+
+            // Create directory
+            AndroidHelper.CheckAndCreateDirectory(AndroidHelper.MainGateSavePath);
+            string basePath = AndroidHelper.MainGateSavePath + "/Data";
+            AndroidHelper.CheckAndCreateDirectory(basePath);
+
+            string filename = basePath + "/" + mainGateKeyName.text;
+
+            byte[] data = System.Text.Encoding.ASCII.GetBytes(content);
+
+            File.WriteAllBytes(basePath, data);
+
+            Debug.Log("Save Main Gate Key");
+        } else
+        {
+            Debug.Log("Please insert file name");
+        }
     }
 
     public void AddFragment()
     {
         if (currentGateKey != null)
         {
-            currentGateKey.AddFragment(new MainGateFragmentRaw("1", "X"));
+            currentGateKey.AddFragment(new MainGateFragmentRaw("Key " + currentGateKey.Fragments.Count, "Answer"));
         }
+
+        RefreshFragmentContainer();
 
         Debug.Log("Add Fragment");
     }
