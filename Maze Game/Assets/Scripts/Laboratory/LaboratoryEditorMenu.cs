@@ -25,6 +25,7 @@ public class LaboratoryEditorMenu : MonoBehaviour
     [SerializeField] private InputField fragmentKeyName;
     [SerializeField] private InputField fragmentKeyData;
     [SerializeField] private Image fragmentImagePreview;
+    [SerializeField] private RawImage fragmentImageCamera;
 
     [SerializeField] private Button cameraUpdateButton;
     [SerializeField] private Button cameraSaveButton;
@@ -187,6 +188,8 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
         // Sprite imageData
 
+        HideFragmentButtonCamera();
+
         Debug.Log("Open Fragment Key");
     }
 
@@ -199,6 +202,9 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
         cameraSnapButton.gameObject.SetActive(true);
         cameraCancelButton.gameObject.SetActive(true);
+
+        fragmentImagePreview.gameObject.SetActive(false);
+        fragmentImageCamera.gameObject.SetActive(true);
     }
 
     private void HideFragmentButtonCamera()
@@ -208,6 +214,9 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
         cameraSnapButton.gameObject.SetActive(false);
         cameraCancelButton.gameObject.SetActive(false);
+
+        fragmentImagePreview.gameObject.SetActive(true);
+        fragmentImageCamera.gameObject.SetActive(false);
     }
 
     // Update Button
@@ -216,6 +225,9 @@ public class LaboratoryEditorMenu : MonoBehaviour
         if (!camTexture)
         {
             camTexture = new WebCamTexture(500, 500);
+
+            fragmentImageCamera.texture = camTexture;
+            fragmentImageCamera.material.mainTexture = camTexture;
 
             camTexture.Play();
         }
