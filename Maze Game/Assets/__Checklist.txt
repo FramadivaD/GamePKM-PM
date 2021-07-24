@@ -23,7 +23,7 @@ Game System and Mechanic
 [3] [X] Sistem Transfer data soal guru
 [3] [X] Sistem Camera Device
 [5] [X] Sistem Storage Save and Load Data
-[7] [ ] Sistem Lobby Main Menu
+[7] [X] Sistem Lobby Main Menu
 [3] [ ] Sistem Result Post Gameplay
 [9] [ ] Sistem Multiplayer
 [5] [ ] Sistem Online Multiplayer
@@ -128,6 +128,9 @@ Total
 - Menambahkan fitur Simpan foto soal Editor Laboratory.
 - Menambahkan fitur Load foto soal Editor Laboratory.
 - Menambahkan fitur untuk konversi data soal raw ke data soal gameplay.
+- Membuat sistem lobby room
+- Membuat sistem lobby untuk guru
+- membuat sistem lobby untuk siswa
 
 ---------------------------------------- Progress -----------------------------------------
 
@@ -214,8 +217,8 @@ Total
 [ ] Fitur guru upload soal
 [X] Fitur guru bikin save save an data soal
 
-[ ] Implement Photon Main Menu
-[ ] Implement Photon Lobby
+[X] Implement Photon Main Menu
+[X] Implement Photon Lobby
 [ ] Implement Photon Gameplay Multiplier
 [ ] Implement Photon Logout Lobby
 

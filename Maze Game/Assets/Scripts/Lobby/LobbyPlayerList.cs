@@ -5,8 +5,6 @@ using System.Collections.Generic;
 
 public class LobbyPlayerList : Photon.PunBehaviour
 {
-    [SerializeField] private PhotonView photonView;
-
     [SerializeField] private Transform playerSelection;
 
     [SerializeField] private string[] playersJoinedID;
@@ -19,6 +17,17 @@ public class LobbyPlayerList : Photon.PunBehaviour
 
     private string playerMasterID;
     private string playerMasterName;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Initialize();
+        } else if (Input.GetKeyDown(KeyCode.G))
+        {
+            RefreshPreview();
+        }
+    }
 
     public void Initialize()
     {
@@ -37,9 +46,18 @@ public class LobbyPlayerList : Photon.PunBehaviour
         int redTeam = 0;
         int blueTeam = 0;
 
+        Debug.Log("Printing players..");
+
         for (int i = 0; i < photonPlayers.Length; i++)
         {
-            if (photonPlayers[i].GetTeam() == PunTeams.Team.red)
+            Debug.Log("Player : " + photonPlayers[i].NickName);
+
+            if (photonPlayers[i].IsMasterClient)
+            {
+                playerMasterID = photonPlayers[i].UserId;
+                playerMasterName = photonPlayers[i].NickName;
+            }
+            else if (photonPlayers[i].GetTeam() == PunTeams.Team.red)
             {
                 playersJoinedID[redTeam] = photonPlayers[i].UserId;
                 playersJoinedName[redTeam] = photonPlayers[i].NickName;
@@ -51,23 +69,21 @@ public class LobbyPlayerList : Photon.PunBehaviour
                 playersJoinedName[4 + blueTeam] = photonPlayers[i].NickName;
                 blueTeam++;
             }
-            else if (photonPlayers[i].IsMasterClient)
-            {
-                playerMasterID = photonPlayers[i].UserId;
-                playerMasterName = photonPlayers[i].NickName;
-            }
         }
+
+        Debug.Log("End of Printing players..");
 
         // if connected and not a master client and has no team then fill up
         if (!PhotonNetwork.player.IsMasterClient && PhotonNetwork.player.GetTeam() == PunTeams.Team.none)
         {
-            if (redTeam < 4 && redTeam < blueTeam) {
+            if (redTeam < 4 && redTeam <= blueTeam) {
                 PhotonNetwork.player.SetTeam(PunTeams.Team.red);
                 playersJoinedID[redTeam] = PhotonNetwork.player.UserId;
                 playersJoinedName[redTeam] = PhotonNetwork.player.NickName;
                 redTeam++;
             } else if (blueTeam < 4)
             {
+                PhotonNetwork.player.SetTeam(PunTeams.Team.blue);
                 playersJoinedID[4 + blueTeam] = PhotonNetwork.player.UserId;
                 playersJoinedName[4 + blueTeam] = PhotonNetwork.player.NickName;
                 blueTeam++;
@@ -77,14 +93,14 @@ public class LobbyPlayerList : Photon.PunBehaviour
         // Fill up the rest with null player
         for (; redTeam < 4; redTeam++)
         {
-            playersJoinedID[redTeam] = null;
-            playersJoinedName[redTeam] = null;
+            playersJoinedID[redTeam] = "";
+            playersJoinedName[redTeam] = "";
         }
 
         for (; blueTeam < 4; blueTeam++)
         {
-            playersJoinedID[4 + blueTeam] = null;
-            playersJoinedName[4 + blueTeam] = null;
+            playersJoinedID[4 + blueTeam] = "";
+            playersJoinedName[4 + blueTeam] = "";
         }
 
         Debug.Log("This Room Master Player ID : " + playerMasterID);
@@ -93,10 +109,13 @@ public class LobbyPlayerList : Photon.PunBehaviour
 
     private void RefreshPreview()
     {
+        Debug.Log("Refresh Preview");
         for (int i = 0; i < 8; i++)
         {
+            Debug.Log("ID : " + playersJoinedName[i] + " : " + playersJoinedName[i]);
             playersPreviewList[i].Initialize(playersJoinedID[i], playersJoinedName[i]);
         }
+        Debug.Log("End of Refresh Preview");
     }
 
     private void RefreshChangeTeamButton()
@@ -120,11 +139,15 @@ public class LobbyPlayerList : Photon.PunBehaviour
 
     public override void OnPhotonPlayerConnected(PhotonPlayer newPlayer)
     {
+        Debug.Log("A Player Connected");
+
         Initialize();
     }
 
     public override void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer)
     {
+        Debug.Log("A Player Disconnected");
+
         Initialize();
     }
 
@@ -139,15 +162,17 @@ public class LobbyPlayerList : Photon.PunBehaviour
                 PhotonNetwork.player.SetTeam(PunTeams.Team.blue);
             }
 
-            photonView.RPC("BroadcastChangeTeam", PhotonTargets.AllBufferedViaServer);
+            // photonView.RPC("BroadcastChangeTeam", PhotonTargets.AllBufferedViaServer);
         }
     }
 
+    /*
     [PunRPC]
     private void BroadcastChangeTeam()
     {
         Initialize();
     }
+    */
 
     public void ChangeRedTeam()
     {

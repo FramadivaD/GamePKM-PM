@@ -17,7 +17,7 @@ public class LobbyPlayerPreview : MonoBehaviour
         this.playerID = playerID;
         this.playerName = playerName;
 
-        if (playerID == null || playerName == null)
+        if (playerID == null || playerName == null || playerID.Length == 0 || playerName.Length == 0)
         {
             playerPreview.SetActive(false);
         } else

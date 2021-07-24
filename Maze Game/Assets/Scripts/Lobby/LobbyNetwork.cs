@@ -89,7 +89,13 @@ public class LobbyNetwork : Photon.PunBehaviour
     {
         Debug.Log("Create or Join Room Success");
 
-        OpenUsernameLobby();
+        if (PhotonNetwork.player.IsMasterClient)
+        {
+            JoinLobbyGame("MASTER");
+        } else
+        {
+            OpenUsernameLobby();
+        }
     }
 
     public override void OnLeftRoom()
