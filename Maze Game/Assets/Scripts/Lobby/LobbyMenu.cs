@@ -4,8 +4,10 @@ using System.Collections;
 
 public class LobbyMenu : MonoBehaviour
 {
-    public InputField createGameInput;
-    public InputField joinGameInput;
+    [SerializeField] private LobbyNetwork lobbyNetwork;
+
+    [SerializeField] private InputField createGameInput;
+    [SerializeField] private InputField joinGameInput;
 
     public void CreateNewGame()
     {

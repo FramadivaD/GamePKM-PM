@@ -431,7 +431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -37.3, y: -2.3}
+  m_AnchoredPosition: {x: -28.599997, y: -10.299999}
   m_SizeDelta: {x: 455.675, y: 59.547997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &357907990
@@ -456,10 +456,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 54
+    m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 4
     m_MaxSize: 54
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -1688,7 +1688,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -36.7, y: 29.1}
+  m_AnchoredPosition: {x: -28.6, y: 21.9}
   m_SizeDelta: {x: 455.675, y: 59.547997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1949881939
@@ -1713,11 +1713,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 54
+    m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 54
+    m_MinSize: 4
+    m_MaxSize: 300
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 0
@@ -1744,6 +1744,7 @@ GameObject:
   - component: {fileID: 2016174599}
   - component: {fileID: 2016174600}
   - component: {fileID: 2016174598}
+  - component: {fileID: 2016174601}
   m_Layer: 0
   m_Name: UI Manager
   m_TagString: Untagged
@@ -1763,6 +1764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659660450937b314b9172f496491c37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lobbyNetwork: {fileID: 2016174601}
   createGameInput: {fileID: 2044289657}
   joinGameInput: {fileID: 438673599}
 --- !u!4 &2016174599
@@ -1789,6 +1791,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e05b1c768d284c44a1efc432ece0b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2016174601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016174597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e68ce056a9873e34ebc855888ddf81ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2044289655
