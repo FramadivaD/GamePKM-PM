@@ -21,7 +21,7 @@ public class FirebaseManager : MonoBehaviour
     public delegate void FirebaseDownloadSuccessCallback(string downloadURL);
     public delegate void FirebaseDownloadFailedCallback();
 
-    public delegate void FirebaseUploadSuccessCallback(string uploadURL);
+    public delegate void FirebaseUploadSuccessCallback();
     public delegate void FirebaseUploadFailedCallback();
 
     private bool isInitialized = false;
@@ -75,7 +75,7 @@ public class FirebaseManager : MonoBehaviour
             else
             {
                 Debug.Log("Upload data success");
-                onSuccess?.Invoke(Convert.ToString(task.Result));
+                onSuccess?.Invoke();
             }
         });
     }

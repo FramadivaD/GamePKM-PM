@@ -49,9 +49,8 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
         string filename = SystemInfo.deviceUniqueIdentifier + "/" + LobbyTeacherRoomMainGate.CurrentMainGateKey.GateName;
         string data = LobbyTeacherRoomMainGate.CurrentMainGateKeyJson;
         firebaseManager.UploadData(filename, System.Text.Encoding.ASCII.GetBytes(data),
-            (string url) => {
+            () => {
                 Debug.Log("Upload Success. So the Game will starting.");
-                Debug.Log("Generated URL : " + url);
                 StartGame();
             },
             () => {
