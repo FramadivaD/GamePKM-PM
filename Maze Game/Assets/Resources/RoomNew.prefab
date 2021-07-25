@@ -395,6 +395,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9052686003985560676}
   - component: {fileID: 5138995550937514085}
+  - component: {fileID: 3975869141725617192}
   m_Layer: 0
   m_Name: RoomNew
   m_TagString: Untagged
@@ -456,6 +457,35 @@ MonoBehaviour:
   mainGateParent: {fileID: 8834405245449930351}
   mainGatePrefab: {fileID: 2830248482729328609, guid: 2092ef8a657394043b37cb94eadfba85,
     type: 3}
+  neighborRoom: []
+  pv: {fileID: 3975869141725617192}
+--- !u!114 &3975869141725617192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165781595712665562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &3547787880218295141
 GameObject:
   m_ObjectHideFlags: 0

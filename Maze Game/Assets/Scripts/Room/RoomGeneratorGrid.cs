@@ -118,18 +118,22 @@ public class RoomGeneratorGrid : MonoBehaviour
             {
                 if (spawnedItemSpawned[latestSpawnedItemPossiblePosIndex] == null)
                 {
-                    GameObject weapon = Instantiate(weaponOrbPrefab, spawnedItemPossiblePos[latestSpawnedItemPossiblePosIndex].position, Quaternion.identity, spawnedItemParent);
+                    GameObject weapon;
+
+                    if (PhotonNetwork.connected)
+                    {
+                        weapon = PhotonNetwork.Instantiate(weaponOrbPrefab.name, spawnedItemPossiblePos[latestSpawnedItemPossiblePosIndex].position, Quaternion.identity, 0);
+                    } else
+                    {
+                        weapon = Instantiate(weaponOrbPrefab, spawnedItemPossiblePos[latestSpawnedItemPossiblePosIndex].position, Quaternion.identity, spawnedItemParent);
+                    }
+
                     spawnedItemSpawned[latestSpawnedItemPossiblePosIndex] = weapon;
 
                     WeaponOrb weaponOrb = weapon.GetComponent<WeaponOrb>();
 
                     // Saat ini hanya random Basoka
                     weaponOrb.Initialize(new WeaponInventory() { weaponType = WeaponType.Basoka });
-
-                    if (PhotonNetwork.player.IsMasterClient)
-                    {
-                        pv.RPC("SpawnWeaponItemOrbOnClient", PhotonTargets.AllBuffered, weaponOrb.transform.position);
-                    }
 
                     spawnedItemCount++;
 
@@ -157,16 +161,19 @@ public class RoomGeneratorGrid : MonoBehaviour
             {
                 if (spawnedItemSpawned[latestSpawnedItemPossiblePosIndex] == null)
                 {
-                    GameObject chest = Instantiate(treasureChestPrefab, spawnedItemPossiblePos[latestSpawnedItemPossiblePosIndex].position, Quaternion.identity, spawnedItemParent);
+                    GameObject chest;
+                    if (PhotonNetwork.connected)
+                    {
+                        chest = PhotonNetwork.Instantiate(treasureChestPrefab.name, spawnedItemPossiblePos[latestSpawnedItemPossiblePosIndex].position, Quaternion.identity, 0);
+                    } else
+                    {
+                        chest = Instantiate(treasureChestPrefab, spawnedItemPossiblePos[latestSpawnedItemPossiblePosIndex].position, Quaternion.identity, spawnedItemParent);
+                    }
+
                     spawnedItemSpawned[latestSpawnedItemPossiblePosIndex] = chest;
 
                     ChestContainer chestContainer = chest.GetComponent<ChestContainer>();
                     chestContainer.Initialize(teamType, fragment);
-
-                    if (PhotonNetwork.player.IsMasterClient)
-                    {
-                        pv.RPC("SpawnTreasureOnClient", PhotonTargets.AllBuffered, (int)teamType, fragment.Key, chest.transform.position);
-                    }
 
                     spawnedItemCount++;
 
@@ -272,34 +279,4 @@ public class RoomGeneratorGrid : MonoBehaviour
         bottomDoor = bottomGate;
         leftDoor = leftGate;
     }
-
-    #region All about Networking
-
-    [PunRPC]
-    private void SpawnChestOnClient(int teamType, string key, Vector3 pos)
-    {
-        if (!PhotonNetwork.player.IsMasterClient)
-        {
-            GameObject chest = Instantiate(treasureChestPrefab, pos, Quaternion.identity);
-
-            ChestContainer chestContainer = chest.GetComponent<ChestContainer>();
-
-            chestContainer.Initialize((TeamType)teamType, null);
-        }
-    }
-
-    [PunRPC]
-    private void SpawnWeaponItemOrbOnClient(Vector3 pos)
-    {
-        if (!PhotonNetwork.player.IsMasterClient)
-        {
-            GameObject weapon = Instantiate(weaponOrbPrefab, pos, Quaternion.identity);
-
-            WeaponOrb weaponOrb = weapon.GetComponent<WeaponOrb>();
-
-            weaponOrb.Initialize(new WeaponInventory() { weaponType = WeaponType.Basoka });
-        }
-    }
-
-    #endregion
 }

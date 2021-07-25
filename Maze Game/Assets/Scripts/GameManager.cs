@@ -62,6 +62,21 @@ public class GameManager : MonoBehaviour
         pauseUI.SetActive(false);
 
         isPaused = false;
+
+        if (!PhotonNetwork.connected)
+        {
+            player.login.OnSubmitNameSuccess += EnableAllEntitiesMovement;
+
+            roomGenerator.RandomizeMap();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (!PhotonNetwork.connected)
+        {
+            player.login.OnSubmitNameSuccess -= EnableAllEntitiesMovement;
+        }
     }
 
     private void Start()

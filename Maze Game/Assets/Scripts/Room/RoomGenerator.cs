@@ -284,7 +284,17 @@ public class RoomGenerator : MonoBehaviour
 
     private RoomGeneratorGrid SpawnRoom(int x, int y)
     {
-        RoomGeneratorGrid room = Instantiate(roomPrefab.gameObject, GetRoomPos(x, y), Quaternion.identity, transform).GetComponent<RoomGeneratorGrid>();
+        GameObject roomObject;
+        if (PhotonNetwork.connected)
+        {
+            roomObject = PhotonNetwork.Instantiate(roomPrefab.name, GetRoomPos(x, y), Quaternion.identity, 0);
+        } else
+        {
+            roomObject = Instantiate(roomPrefab.gameObject, GetRoomPos(x, y), Quaternion.identity, transform);
+        }
+
+        RoomGeneratorGrid room = roomObject.GetComponent<RoomGeneratorGrid>();
+
         return room;
     }
 
