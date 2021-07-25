@@ -46,20 +46,6 @@ public class LobbyPlayerList : Photon.PunBehaviour
     private string playerMasterID;
     private string playerMasterName;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Initialize();
-        } else if (Input.GetKeyDown(KeyCode.G))
-        {
-            RefreshPreview();
-        } else if (Input.GetKeyDown(KeyCode.H))
-        {
-            UpdateAllClientsPlayersData();
-        }
-    }
-
     public void Initialize()
     {
         // Reset players.players

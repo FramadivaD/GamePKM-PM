@@ -107,7 +107,12 @@ public class GameManager : MonoBehaviour
 
     public void LoadQuestionDifficulty(QuestionDifficulty difficulty)
     {
-        
+        // TODO : Tambahi untuk check difficulty question
+    }
+
+    public void GenerateLevel()
+    {
+        roomGenerator.RandomizeMap();
     }
 
     public void BeginPlayer(TeamType teamType)

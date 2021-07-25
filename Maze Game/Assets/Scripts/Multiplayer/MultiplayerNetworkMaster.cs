@@ -47,7 +47,7 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
     private void ReceiveMainGateKeyAndQuestionDifficultyData(string diffJson, string keyJson)
     {
-        Debug.Log("Meskipun master / client akan menerima data");
+        Debug.Log("Meskipun master / client akan menerima data.");
 
         questionDifficulty = JsonUtility.FromJson<QuestionDifficulty>(diffJson);
         mainGateRaw = JsonUtility.FromJson<MainGateKeyRaw>(keyJson);
@@ -56,13 +56,15 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
         if (PhotonNetwork.player.IsMasterClient)
         {
-            Debug.Log("Karena master maka akan main sebagai spectator");
+            Debug.Log("Karena master maka dia yang generate level, biar client bisa menyesuaikan.");
+            GameManager.Instance.GenerateLevel();
 
+            Debug.Log("Karena master maka akan main sebagai spectator.");
             PlayAsSpectator();
         }
         else
         {
-            Debug.Log("Karena client maka akan main sebagai player");
+            Debug.Log("Karena client maka akan main sebagai player.");
 
             PlayAsPlayer();
         }
