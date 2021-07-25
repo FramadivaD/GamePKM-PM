@@ -18,7 +18,7 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
                 if (!questionDifficultyMenu.SelectedDifficulty.CheckAllInactive())
                 {
                     int redTeam = GetRedTeamCount();
-                    int blueTeam = GetRedTeamCount();
+                    int blueTeam = GetBlueTeamCount();
 
                     if (redTeam <= 0 || blueTeam <= 0)
                     {
