@@ -10,18 +10,48 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
     [SerializeField] private FirebaseManager firebaseManager;
 
+    private int playerSceneCount = 0;
+    private bool masterClientInitialized = false;
+
     private void Start()
+    {
+        if (!PhotonNetwork.player.IsMasterClient)
+        {
+            pv.RPC("AddClientPlayer", PhotonTargets.MasterClient);
+        } else
+        {
+            Debug.Log("Waiting Player Count : " + playerSceneCount + "/" + PhotonNetwork.playerList.Length);
+            AddClientPlayer();
+        }
+    }
+
+    [PunRPC]
+    private void AddClientPlayer()
     {
         if (PhotonNetwork.player.IsMasterClient)
         {
-            string diffJson = LobbyTeacherRoomQuestionDifficulty.SelectedDifficultyJson;
-            //string keyJson = LobbyTeacherRoomMainGate.CurrentMainGateKeyJson;
-            string keyJsonDownloadURL = LobbyTeacherRoom.MainGateDownloadURL;
+            playerSceneCount++;
 
-            Debug.Log("Karena master jadi akan ngirim data");
+            Debug.Log("A Player Joined Scene.");
+            Debug.Log("Waiting Player Count : " + playerSceneCount + "/" + PhotonNetwork.playerList.Length);
 
-            pv.RPC("ReceiveMainGateKeyDownloadURLAndQuestionDifficultyData", PhotonTargets.AllBuffered, diffJson, keyJsonDownloadURL);
+            if (playerSceneCount >= PhotonNetwork.playerList.Length)
+            {
+                Debug.Log("Player Count Satisfied, Initialize Master Client.");
+
+                InitializeMasterClient();
+            }
         }
+    }
+
+    private void InitializeMasterClient()
+    {
+        string diffJson = LobbyTeacherRoomQuestionDifficulty.SelectedDifficultyJson;
+        string keyJsonDownloadURL = LobbyTeacherRoom.MainGateDownloadURL;
+
+        Debug.Log("Karena master jadi akan ngirim data");
+
+        pv.RPC("ReceiveMainGateKeyDownloadURLAndQuestionDifficultyData", PhotonTargets.AllBuffered, diffJson, keyJsonDownloadURL);
     }
 
     [PunRPC]

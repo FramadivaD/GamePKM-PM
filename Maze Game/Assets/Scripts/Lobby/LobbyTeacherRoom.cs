@@ -54,7 +54,7 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
             () => {
                 Debug.Log("Upload Success. So the Game will starting.");
                 MainGateDownloadURL = filename;
-                StartGame();
+                MasterStartGame();
             },
             () => {
                 Debug.Log("Upload failed. So the Game not starting.");
@@ -62,10 +62,23 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
             );
     }
 
-    private void StartGame()
+    private void MasterStartGame()
     {
-        // pv.RPC();
-        PhotonNetwork.LoadLevel("GameplayScene");
+        if (PhotonNetwork.player.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel("GameplayScene");
+
+            pv.RPC("ClientJoinGame", PhotonTargets.Others);
+        }
+    }
+
+    [PunRPC]
+    private void ClientJoinGame()
+    {
+        if (!PhotonNetwork.player.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel("GameplayScene");
+        }
     }
 
     private int GetRedTeamCount()

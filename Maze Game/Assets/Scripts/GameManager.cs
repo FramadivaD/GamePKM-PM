@@ -65,7 +65,10 @@ public class GameManager : MonoBehaviour
 
         if (!PhotonNetwork.connected)
         {
-            player.login.OnSubmitNameSuccess += EnableAllEntitiesMovement;
+            if (!PhotonNetwork.player.IsMasterClient)
+            {
+                player.login.OnSubmitNameSuccess += EnableAllEntitiesMovement;
+            }
 
             roomGenerator.RandomizeMap();
         }
@@ -75,7 +78,10 @@ public class GameManager : MonoBehaviour
     {
         if (!PhotonNetwork.connected)
         {
-            player.login.OnSubmitNameSuccess -= EnableAllEntitiesMovement;
+            if (!PhotonNetwork.player.IsMasterClient)
+            {
+                player.login.OnSubmitNameSuccess -= EnableAllEntitiesMovement;
+            }
         }
     }
 
