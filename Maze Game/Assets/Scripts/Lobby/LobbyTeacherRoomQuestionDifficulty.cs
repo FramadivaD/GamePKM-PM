@@ -12,7 +12,7 @@ public class LobbyTeacherRoomQuestionDifficulty : MonoBehaviour
     [SerializeField] private Toggle togglePerkalian;
     [SerializeField] private Toggle togglePersamaan;
 
-    public QuestionDifficulty SelectedDifficulty = new QuestionDifficulty()
+    public static QuestionDifficulty SelectedDifficulty = new QuestionDifficulty()
     {
         bangunDatar = true,
         pecahan = true,
@@ -20,6 +20,7 @@ public class LobbyTeacherRoomQuestionDifficulty : MonoBehaviour
         perkalian = true,
         persamaan = true
     };
+    public static string SelectedDifficultyJson { get { return JsonUtility.ToJson(SelectedDifficulty); } }
 
     private void Awake()
     {

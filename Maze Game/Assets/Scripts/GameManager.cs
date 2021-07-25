@@ -62,26 +62,11 @@ public class GameManager : MonoBehaviour
         pauseUI.SetActive(false);
 
         isPaused = false;
-
-        InitializeFragmentsKey();
-
-        RegisterTeam();
-        RegisterPlayer();
     }
 
     private void Start()
     {
         Instance = this;
-
-        AllowEntityMove = false;
-        player.login.OnSubmitNameSuccess += EnableAllEntitiesMovement;
-
-        roomGenerator.RandomizeMap();
-    }
-
-    private void OnDestroy()
-    {
-        player.login.OnSubmitNameSuccess -= EnableAllEntitiesMovement;
     }
 
     public void EnableAllEntitiesMovement(string str)
@@ -113,29 +98,29 @@ public class GameManager : MonoBehaviour
         players.Add(player);
     }
 
-    private void InitializeFragmentsKey()
+    public void LoadFragmentsKey(MainGateKey mainGateKey)
     {
         fragmentsKey = new List<MainGateKey>();
+        fragmentsKey.Add(mainGateKey);
+        fragmentsKey.Add(mainGateKey);
+    }
 
-        MainGateKey redTeamKey = null;
+    public void LoadQuestionDifficulty(QuestionDifficulty difficulty)
+    {
+        
+    }
 
-        //MainGateKey redTeamKey = new MainGateKey(player.teamType);
-        //redTeamKey.AddFragment(new MainGateFragment(redTeamKey, "red_01", "Kucing"));
-        //redTeamKey.AddFragment(new MainGateFragment(redTeamKey, "red_02", "Sapi"));
-        //redTeamKey.AddFragment(new MainGateFragment(redTeamKey, "red_03", "Kuda"));
+    public void BeginPlayer(TeamType teamType)
+    {
+        // Spawn player dulu, karena pas baru mulai gaada player
 
-        if (Application.isEditor)
-        {
-            string filename = "D:/Music/MathGame/Data/bidang panjang.soal";
+        RegisterTeam();
+        RegisterPlayer();
+    }
 
-            byte[] data = System.IO.File.ReadAllBytes(filename);
-            string content = System.Text.Encoding.ASCII.GetString(data);
-            MainGateKeyRaw currentGateKey = JsonUtility.FromJson<MainGateKeyRaw>(content);
-
-            redTeamKey = MainGateKey.ConvertFromRawData(player.teamType, currentGateKey);
-        }
-
-        fragmentsKey.Add(redTeamKey);
+    public void BeginSpectator()
+    {
+        // Untuk si Guru nanti jadi spectator
     }
 
     public void AnnounceWinner(TeamType winnerTeam)

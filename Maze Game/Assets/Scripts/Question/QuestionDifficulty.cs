@@ -2,7 +2,7 @@
 using System.Collections;
 
 [System.Serializable]
-public struct QuestionDifficulty
+public class QuestionDifficulty
 {
     public bool persamaan;
     public bool pecahan;

@@ -20,12 +20,23 @@ public class PlayerLogin : MonoBehaviour
     public void SubmitName()
     {
         string name = inputName.text.Trim();
+
+        loginUI.SetActive(false);
+
+        OnSubmitNameSuccess?.Invoke(PhotonNetwork.player.NickName);
+    }
+
+    [System.Obsolete]
+    public void SubmitNameLegacy()
+    {
+        string name = inputName.text.Trim();
         if (name != "" && name.Length >= 3)
         {
             loginUI.SetActive(false);
 
             OnSubmitNameSuccess?.Invoke(inputName.text);
-        } else
+        }
+        else
         {
             OnSubmitNameFailed?.Invoke(inputName.text);
             Debug.Log("Nama setidaknya harus 3 karakter!");

@@ -41,4 +41,16 @@ public static class TeamHelper
     {
         return TeamColor[(int) teamType];
     }
+
+    public static TeamType FromPhotonTeam(PunTeams.Team team)
+    {
+        if (team == PunTeams.Team.red)
+        {
+            return TeamType.Red;
+        } else if (team == PunTeams.Team.blue)
+        {
+            return TeamType.Blue;
+        }
+        return TeamType.Red;
+    }
 }

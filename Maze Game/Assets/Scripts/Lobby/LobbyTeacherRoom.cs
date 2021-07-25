@@ -13,14 +13,16 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
     public void CheckStartGame()
     {
         if (PhotonNetwork.player.IsMasterClient) {
-            if (mainGateMenu.CurrentMainGateKey != null)
+            if (LobbyTeacherRoomMainGate.CurrentMainGateKey != null)
             {
-                if (!questionDifficultyMenu.SelectedDifficulty.CheckAllInactive())
+                if (!LobbyTeacherRoomQuestionDifficulty.SelectedDifficulty.CheckAllInactive())
                 {
                     int redTeam = GetRedTeamCount();
                     int blueTeam = GetBlueTeamCount();
 
-                    if (redTeam <= 0 || blueTeam <= 0)
+                    bool skip = true;
+
+                    if (!skip && (redTeam <= 0 || blueTeam <= 0))
                     {
                         Debug.Log("Each team must have at least 1 player.");
                     }

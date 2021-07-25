@@ -206,9 +206,9 @@ Total
 [ ] Fitur Navigasi Scene ke gameplay
 [ ] Fitur Navigasi Scene ke halaman result terus ke main menu lagi
 
-[ ] Lobby menu, nama player dan tim
-[ ] Lobby menu guru pilih main gate
-[ ] Lobby menu start game
+[X] Lobby menu, nama player dan tim
+[X] Lobby menu guru pilih main gate
+[X] Lobby menu start game
 
 [X] Tampilan gate kalo fragment udah lengkap
 
