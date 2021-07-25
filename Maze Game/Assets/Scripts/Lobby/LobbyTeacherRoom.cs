@@ -10,6 +10,8 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
 
     [SerializeField] private LobbyPlayerList playerList;
 
+    [SerializeField] private FirebaseManager firebaseManager;
+
     public void CheckStartGame()
     {
         if (PhotonNetwork.player.IsMasterClient) {
@@ -28,7 +30,8 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
                     }
                     else
                     {
-                        StartGame();
+                        //StartGame();
+                        UploadMainGateKeyFile();
                     }
                 } else
                 {
@@ -41,7 +44,23 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
         }
     }
 
-    public void StartGame()
+    private void UploadMainGateKeyFile()
+    {
+        string filename = SystemInfo.deviceUniqueIdentifier + "/" + LobbyTeacherRoomMainGate.CurrentMainGateKey.GateName;
+        string data = LobbyTeacherRoomMainGate.CurrentMainGateKeyJson;
+        firebaseManager.UploadData(filename, System.Text.Encoding.ASCII.GetBytes(data),
+            (string url) => {
+                Debug.Log("Upload Success. So the Game will starting.");
+                Debug.Log("Generated URL : " + url);
+                StartGame();
+            },
+            () => {
+                Debug.Log("Upload failed. So the Game not starting.");
+            }
+            );
+    }
+
+    private void StartGame()
     {
         // pv.RPC();
         PhotonNetwork.LoadLevel("GameplayScene");
