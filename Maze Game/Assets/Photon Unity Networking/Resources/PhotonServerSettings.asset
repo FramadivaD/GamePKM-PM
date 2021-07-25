@@ -51,4 +51,6 @@ MonoBehaviour:
   - ReceiveMainGateKeyDownloadURLAndQuestionDifficultyData
   - SpawnChestOnClient
   - SpawnWeaponItemOrbOnClient
+  - AddClientPlayer
+  - ClientJoinGame
   DisableAutoOpenWizard: 1
