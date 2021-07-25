@@ -36,6 +36,7 @@ public class LobbyPlayerList : Photon.PunBehaviour
     [SerializeField] private Transform playerSelection;
 
     [SerializeField] private PlayerListContainer players;
+    public PlayerListContainer Players { get { return players; } }
 
     [SerializeField] private LobbyPlayerPreview[] playersPreviewList;
 
