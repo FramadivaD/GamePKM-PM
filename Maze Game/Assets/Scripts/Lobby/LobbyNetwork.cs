@@ -34,7 +34,7 @@ public class LobbyNetwork : Photon.PunBehaviour
         {
             if (roomID.Length == 5)
             {
-                PhotonNetwork.CreateRoom(roomID, new RoomOptions() { MaxPlayers = 9 }, null);
+                PhotonNetwork.CreateRoom(roomID, new RoomOptions() { MaxPlayers = 9, PublishUserId = true }, null);
             } else
             {
                 Debug.Log("RoomID must 5 characters.");

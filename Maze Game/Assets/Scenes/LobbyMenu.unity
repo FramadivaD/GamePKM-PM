@@ -5385,6 +5385,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pv: {fileID: 2016174603}
   playerSelection: {fileID: 138092038}
+  players:
+  - playerExist: 0
+    playerID: 
+    playerName: 
+  - playerExist: 0
+    playerID: 
+    playerName: 
+  - playerExist: 0
+    playerID: 
+    playerName: 
+  - playerExist: 0
+    playerID: 
+    playerName: 
+  - playerExist: 0
+    playerID: 
+    playerName: 
+  - playerExist: 0
+    playerID: 
+    playerName: 
+  - playerExist: 0
+    playerID: 
+    playerName: 
+  - playerExist: 0
+    playerID: 
+    playerName: 
   playersPreviewList:
   - {fileID: 1279515013526896158}
   - {fileID: 2048753403}

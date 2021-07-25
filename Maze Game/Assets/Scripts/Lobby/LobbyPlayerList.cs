@@ -3,13 +3,39 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
+public class PlayerListContainer
+{
+    public List<PlayerListDetails> players;
+
+    public PlayerListContainer()
+    {
+        players = new List<PlayerListDetails>();
+    }
+}
+
+[System.Serializable]
+public class PlayerListDetails
+{
+    public bool playerExist = false;
+    public string playerID;
+    public string playerName;
+
+    public PlayerListDetails(bool playerExist, string playerID = "", string playerName = "")
+    {
+        this.playerExist = playerExist;
+        this.playerID = playerID;
+        this.playerName = playerName;
+    }
+}
+
 public class LobbyPlayerList : Photon.PunBehaviour
 {
     [SerializeField] private PhotonView pv;
 
     [SerializeField] private Transform playerSelection;
 
-    [SerializeField] private PhotonPlayer[] players;
+    [SerializeField] private PlayerListContainer players;
 
     [SerializeField] private LobbyPlayerPreview[] playersPreviewList;
 
@@ -21,7 +47,12 @@ public class LobbyPlayerList : Photon.PunBehaviour
 
     private void Awake()
     {
-        players = new PhotonPlayer[8];
+        for (int i = 0;i < 8; i++)
+        {
+            playersPreviewList[i].Initialize(null);
+        }
+
+        players = CreatePlayers();
     }
 
     private void Update()
@@ -32,111 +63,125 @@ public class LobbyPlayerList : Photon.PunBehaviour
         } else if (Input.GetKeyDown(KeyCode.G))
         {
             RefreshPreview();
+        } else if (Input.GetKeyDown(KeyCode.H))
+        {
+            UpdateAllClientsPlayersData();
         }
     }
 
     public void Initialize()
     {
-        if (PhotonNetwork.player.IsMasterClient)
+        // Kalau client maka, beritahu master kalo si client ini berhasil login
+        if (!PhotonNetwork.player.IsMasterClient)
         {
-            LoadConnectedPlayers();
-        }
-
-        RefreshPreview();
-
-        RefreshChangeTeamButton();
-    }
-
-    // Master only
-    private void LoadConnectedPlayers()
-    {
-        if (PhotonNetwork.player.IsMasterClient)
+            OnPlayerSendingUsernameAsClient();
+        } else
         {
-            // retrieve network connected players
-            PhotonPlayer[] photonPlayers = PhotonNetwork.playerList;
-
-            int redTeam = 0;
-            int blueTeam = 0;
-
-            Debug.Log("Printing players..");
-
-            for (int i = 0; i < photonPlayers.Length; i++)
-            {
-                Debug.Log("Player : " + photonPlayers[i].NickName);
-
-                if (photonPlayers[i].IsMasterClient)
-                {
-                    playerMasterID = photonPlayers[i].UserId;
-                    playerMasterName = photonPlayers[i].NickName;
-                }
-                else if (photonPlayers[i].GetTeam() == PunTeams.Team.red)
-                {
-                    players[redTeam] = photonPlayers[i];
-                    redTeam++;
-                }
-                else if (photonPlayers[i].GetTeam() == PunTeams.Team.blue)
-                {
-                    players[4 + blueTeam] = photonPlayers[i];
-                    blueTeam++;
-                }
-            }
-
-            Debug.Log("End of Printing players..");
-
-            Debug.Log("This Room Master Player ID : " + playerMasterID);
-            Debug.Log("This Room Master Player Name : " + playerMasterName);
+            RefreshPreview();
+            RefreshChangeTeamButton();
         }
     }
 
     // Called from master into all clients
     private void UpdateAllClientsPlayersData()
     {
+        Debug.Log("Try to send player list from master to all clients");
         if (PhotonNetwork.player.IsMasterClient)
         {
-            pv.RPC("RetrievePlayersData", PhotonTargets.AllBuffered, players);
+            Debug.Log("Because we are master so proceed.");
+
+            if (players == null) players = CreatePlayers();
+
+            string content = JsonUtility.ToJson(players);
+
+            Debug.Log("Player JSON : ");
+            Debug.Log(content);
+
+            Debug.Log("Start sending data.");
+            pv.RPC("RetrievePlayersData", PhotonTargets.AllBuffered, content);
 
             RefreshPreview();
             RefreshChangeTeamButton();
+        }
+        else
+        {
+            Debug.Log("Because we are not master (client) so don't proceed.");
         }
     }
 
     // Called into all clients from master
     [PunRPC]
-    private void RetrievePlayersData(PhotonPlayer[] photonPlayers)
+    private void RetrievePlayersData(string playerListDetailsListJson)
     {
         // if is client
+        Debug.Log("Try to receive master rpc request.");
         if (!PhotonNetwork.player.IsMasterClient)
         {
-            players = photonPlayers;
+            Debug.Log("Because we are client so proceed.");
+
+            if (players == null) players = CreatePlayers();
+            players = JsonUtility.FromJson<PlayerListContainer>(playerListDetailsListJson);
+
+            Debug.Log("Player data received.");
 
             RefreshPreview();
             RefreshChangeTeamButton();
+        } else
+        {
+            Debug.Log("Because we are not client (master) so don't proceed.");
         }
     }
 
     // When a player connected to room
     private void RegisterPlayerTeam(PhotonPlayer player)
     {
+        if (players == null) players = CreatePlayers();
         if (PhotonNetwork.player.IsMasterClient) {
             // if connected and not a master client and has no team then fill up
-            if (!player.IsMasterClient && player.GetTeam() == PunTeams.Team.none)
-            {
-                for (int i = 0; i < 8; i++)
+            if (!player.IsMasterClient) {
+                if (player.GetTeam() == PunTeams.Team.none)
                 {
-                    if (i % 2 == 0)
+                    for (int i = 0; i < 8; i++)
                     {
-                        // red
-                        if (players[i / 2] == null) {
-                            players[i / 2] = player;
+                        if (i % 2 == 0)
+                        {
+                            // red
+                            if (players.players[i / 2] == null || players.players[i / 2].playerExist == false) {
+                                players.players[i / 2] = new PlayerListDetails(true, player.UserId, player.NickName);
+                                player.SetTeam(PunTeams.Team.red);
+                                break;
+                            }
+                        } else
+                        {
+                            // blue
+                            if (players.players[4 + i / 2] == null || players.players[4 + i / 2].playerExist == false)
+                            {
+                                players.players[4 + i / 2] = new PlayerListDetails(true, player.UserId, player.NickName);
+                                player.SetTeam(PunTeams.Team.blue);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (player.GetTeam() == PunTeams.Team.red)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (players.players[i] == null || players.players[i].playerExist == false)
+                        {
+                            players.players[i] = new PlayerListDetails(true, player.UserId, player.NickName);
                             player.SetTeam(PunTeams.Team.red);
                             break;
                         }
-                    } else
+                    }
+                }
+                else if (player.GetTeam() == PunTeams.Team.blue)
+                {
+                    for (int i = 0; i < 4; i++)
                     {
-                        // blue
-                        if (players[4 + i / 2] == null)
+                        if (players.players[4 + i] == null || players.players[4 + i].playerExist == false)
                         {
-                            players[4 + i / 2] = player;
+                            players.players[4 + i] = new PlayerListDetails(true, player.UserId, player.NickName);
                             player.SetTeam(PunTeams.Team.blue);
                             break;
                         }
@@ -149,6 +194,7 @@ public class LobbyPlayerList : Photon.PunBehaviour
     // When a player disconnected from room
     private void UnregisterPlayerTeam(PhotonPlayer player)
     {
+        if (players == null) players = CreatePlayers();
         if (PhotonNetwork.player.IsMasterClient)
         {
             // if connected and not a master client and has no team then fill up
@@ -156,9 +202,9 @@ public class LobbyPlayerList : Photon.PunBehaviour
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    if (players[i] == player)
+                    if (players.players[i].playerID == player.UserId)
                     {
-                        players[i] = null;
+                        players.players[i] = null;
                     }
                 }
             }
@@ -168,17 +214,20 @@ public class LobbyPlayerList : Photon.PunBehaviour
     private void RefreshPreview()
     {
         Debug.Log("Refresh Preview");
+        if (players == null) players = CreatePlayers();
         for (int i = 0; i < 8; i++)
         {
-            if (players[i] != null)
+            if (players.players[i] != null && players.players[i].playerExist)
             {
-                Debug.Log("ID : " + players[i].ID + " : " + players[i].NickName);
-                playersPreviewList[i].Initialize(players[i]);
+                Debug.Log("ID : " + players.players[i].playerID + " : " + players.players[i].playerName);
+                playersPreviewList[i].Initialize(players.players[i]);
             } else
             {
+                players.players[i] = new PlayerListDetails(false);
                 playersPreviewList[i].Initialize(null);
             }
         }
+
         Debug.Log("End of Refresh Preview");
     }
 
@@ -201,14 +250,31 @@ public class LobbyPlayerList : Photon.PunBehaviour
         }
     }
 
+    public void OnPlayerSendingUsernameAsClient()
+    {
+        // jika client maka
+        if (!PhotonNetwork.player.IsMasterClient)
+        {
+            // lakukan register player ini ke server
+            pv.RPC("SendPlayerFromClientToMaster", PhotonTargets.AllBuffered, PhotonNetwork.player);
+        }
+    }
+
+    [PunRPC]
+    private void SendPlayerFromClientToMaster(PhotonPlayer player)
+    {
+        if (PhotonNetwork.player.IsMasterClient)
+        {
+            RegisterPlayerTeam(player);
+            UpdateAllClientsPlayersData();
+        }
+    }
+
     public override void OnPhotonPlayerConnected(PhotonPlayer newPlayer)
     {
         if (PhotonNetwork.player.IsMasterClient)
         {
             Debug.Log("A Player Connected");
-
-            RegisterPlayerTeam(newPlayer);
-            UpdateAllClientsPlayersData();
         }
     }
 
@@ -244,5 +310,17 @@ public class LobbyPlayerList : Photon.PunBehaviour
     public void ChangeBlueTeam()
     {
         ChangeMyTeam(TeamType.Blue);
+    }
+
+    private PlayerListContainer CreatePlayers()
+    {
+        PlayerListContainer c = new PlayerListContainer();        
+
+        for (int i = 0;i < 8; i++)
+        {
+            c.players.Add(new PlayerListDetails(false));
+        }
+
+        return c;
     }
 }
