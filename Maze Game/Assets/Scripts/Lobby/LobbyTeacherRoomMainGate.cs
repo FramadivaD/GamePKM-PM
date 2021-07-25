@@ -16,6 +16,11 @@ public class LobbyTeacherRoomMainGate : MonoBehaviour
 
     public MainGateKeyRaw CurrentMainGateKey { get; private set; } = null;
 
+    private void Awake()
+    {
+        CloseMainGateKeyBrowseMenu();
+    }
+
     public void OpenMainGateKeyBrowseMenu()
     {
         browseMenu.SetActive(true);
