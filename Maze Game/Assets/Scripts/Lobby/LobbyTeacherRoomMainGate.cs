@@ -90,7 +90,7 @@ public class LobbyTeacherRoomMainGate : MonoBehaviour
 
             CurrentMainGateKey = JsonUtility.FromJson<MainGateKeyRaw>(content);
 
-            mainGateKeyName.text = fileBaseName;
+            mainGateKeyName.text = "Soal terpilih :\n" + fileBaseName;
 
             CloseMainGateKeyBrowseMenu();
 

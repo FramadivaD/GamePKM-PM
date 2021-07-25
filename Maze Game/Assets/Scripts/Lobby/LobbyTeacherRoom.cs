@@ -36,7 +36,7 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
     public void StartGame()
     {
         // pv.RPC();
-        PhotonNetwork.LoadLevel("SampleScene");
+        PhotonNetwork.LoadLevel("GameplayScene");
     }
 
     private int GetRedTeamCount()
