@@ -46,4 +46,5 @@ MonoBehaviour:
   - BroadcastChangeTeam
   - RetrievePlayersData
   - SendPlayerFromClientToMaster
+  - SendChangeTeamFromClientToMaster
   DisableAutoOpenWizard: 1

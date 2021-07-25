@@ -4238,7 +4238,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.0674, y: 216.715}
+  m_AnchoredPosition: {x: -6, y: -199}
   m_SizeDelta: {x: 345.5938, y: 1006.9825}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1775377271
@@ -5386,30 +5386,7 @@ MonoBehaviour:
   pv: {fileID: 2016174603}
   playerSelection: {fileID: 138092038}
   players:
-  - playerExist: 0
-    playerID: 
-    playerName: 
-  - playerExist: 0
-    playerID: 
-    playerName: 
-  - playerExist: 0
-    playerID: 
-    playerName: 
-  - playerExist: 0
-    playerID: 
-    playerName: 
-  - playerExist: 0
-    playerID: 
-    playerName: 
-  - playerExist: 0
-    playerID: 
-    playerName: 
-  - playerExist: 0
-    playerID: 
-    playerName: 
-  - playerExist: 0
-    playerID: 
-    playerName: 
+    players: []
   playersPreviewList:
   - {fileID: 1279515013526896158}
   - {fileID: 2048753403}
