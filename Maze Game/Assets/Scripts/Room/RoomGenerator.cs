@@ -136,32 +136,7 @@ public class RoomGenerator : MonoBehaviour
             {
                 if (roomMap[y, x])
                 {
-                    RoomGeneratorGrid room = SpawnRoom(x, y);
-
-                    // save room in collections
-                    roomMapRoom[y, x] = room;
-                    allRoom.Add(room);
-
-                    // save most top, right, bottom, left room place
-                    if (y > mostBorderRoom[0].y) mostBorderRoom[0] = new Vector2Int(x, y);
-                    if (x > mostBorderRoom[1].x) mostBorderRoom[1] = new Vector2Int(x, y);
-                    if (y < mostBorderRoom[2].y) mostBorderRoom[2] = new Vector2Int(x, y);
-                    if (x < mostBorderRoom[3].x) mostBorderRoom[3] = new Vector2Int(x, y);
-
-                    // awalnya pintu locked semua
-                    room.Initialize();
-
-                    // tapi nanti dinyalain satu persatu
-                    if (y - 1 >= 0 && roomMap[y - 1, x])
-                    {
-                        roomMapRoom[y - 1, x].OpenTopDoor();
-                        room.OpenBottomDoor();
-                    }
-                    if (x - 1 >= 0 && roomMap[y, x - 1])
-                    {
-                        roomMapRoom[y, x - 1].OpenRightDoor();
-                        room.OpenLeftDoor();
-                    }
+                    BuildRoomGrid(x, y);
                 }
             }
         }
@@ -277,6 +252,36 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
+    private void BuildRoomGrid(int x, int y)
+    {
+        RoomGeneratorGrid room = SpawnRoom(x, y);
+
+        // save room in collections
+        roomMapRoom[y, x] = room;
+        allRoom.Add(room);
+
+        // save most top, right, bottom, left room place
+        if (y > mostBorderRoom[0].y) mostBorderRoom[0] = new Vector2Int(x, y);
+        if (x > mostBorderRoom[1].x) mostBorderRoom[1] = new Vector2Int(x, y);
+        if (y < mostBorderRoom[2].y) mostBorderRoom[2] = new Vector2Int(x, y);
+        if (x < mostBorderRoom[3].x) mostBorderRoom[3] = new Vector2Int(x, y);
+
+        // awalnya pintu locked semua
+        room.Initialize();
+
+        // tapi nanti dinyalain satu persatu
+        if (y - 1 >= 0 && roomMap[y - 1, x])
+        {
+            roomMapRoom[y - 1, x].OpenTopDoor();
+            room.OpenBottomDoor();
+        }
+        if (x - 1 >= 0 && roomMap[y, x - 1])
+        {
+            roomMapRoom[y, x - 1].OpenRightDoor();
+            room.OpenLeftDoor();
+        }
+    }
+
     private RoomGeneratorGrid SpawnRoom(int x, int y)
     {
         RoomGeneratorGrid room = Instantiate(roomPrefab.gameObject, GetRoomPos(x, y), Quaternion.identity, transform).GetComponent<RoomGeneratorGrid>();
@@ -313,6 +318,7 @@ public class RoomGenerator : MonoBehaviour
                             for (int k = 0; k < 10; k++)
                             {
                                 ChestContainer chest = selectedRoom.SpawnTreasureChest(TeamHelper.TeamTypes[i], key.Fragments[j]);
+
                                 if (chest)
                                 {
                                     break;

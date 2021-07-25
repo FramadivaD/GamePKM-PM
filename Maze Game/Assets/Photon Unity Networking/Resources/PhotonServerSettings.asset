@@ -49,4 +49,6 @@ MonoBehaviour:
   - SendChangeTeamFromClientToMaster
   - ReceiveMainGateKeyAndQuestionDifficultyData
   - ReceiveMainGateKeyDownloadURLAndQuestionDifficultyData
+  - SpawnChestOnClient
+  - SpawnWeaponItemOrbOnClient
   DisableAutoOpenWizard: 1

@@ -39,6 +39,8 @@ public class RoomGeneratorGrid : MonoBehaviour
 
     [SerializeField] private RoomGeneratorGrid[] neighborRoom;
 
+    [Header("Network")]
+    [SerializeField] private PhotonView pv;
 
     public void Initialize()
     {
@@ -124,6 +126,11 @@ public class RoomGeneratorGrid : MonoBehaviour
                     // Saat ini hanya random Basoka
                     weaponOrb.Initialize(new WeaponInventory() { weaponType = WeaponType.Basoka });
 
+                    if (PhotonNetwork.player.IsMasterClient)
+                    {
+                        pv.RPC("SpawnWeaponItemOrbOnClient", PhotonTargets.AllBuffered, weaponOrb.transform.position);
+                    }
+
                     spawnedItemCount++;
 
                     return weaponOrb;
@@ -155,6 +162,11 @@ public class RoomGeneratorGrid : MonoBehaviour
 
                     ChestContainer chestContainer = chest.GetComponent<ChestContainer>();
                     chestContainer.Initialize(teamType, fragment);
+
+                    if (PhotonNetwork.player.IsMasterClient)
+                    {
+                        pv.RPC("SpawnTreasureOnClient", PhotonTargets.AllBuffered, (int)teamType, fragment.Key, chest.transform.position);
+                    }
 
                     spawnedItemCount++;
 
@@ -260,4 +272,34 @@ public class RoomGeneratorGrid : MonoBehaviour
         bottomDoor = bottomGate;
         leftDoor = leftGate;
     }
+
+    #region All about Networking
+
+    [PunRPC]
+    private void SpawnChestOnClient(int teamType, string key, Vector3 pos)
+    {
+        if (!PhotonNetwork.player.IsMasterClient)
+        {
+            GameObject chest = Instantiate(treasureChestPrefab, pos, Quaternion.identity);
+
+            ChestContainer chestContainer = chest.GetComponent<ChestContainer>();
+
+            chestContainer.Initialize((TeamType)teamType, null);
+        }
+    }
+
+    [PunRPC]
+    private void SpawnWeaponItemOrbOnClient(Vector3 pos)
+    {
+        if (!PhotonNetwork.player.IsMasterClient)
+        {
+            GameObject weapon = Instantiate(weaponOrbPrefab, pos, Quaternion.identity);
+
+            WeaponOrb weaponOrb = weapon.GetComponent<WeaponOrb>();
+
+            weaponOrb.Initialize(new WeaponInventory() { weaponType = WeaponType.Basoka });
+        }
+    }
+
+    #endregion
 }
