@@ -14,6 +14,8 @@ public class LobbyNetwork : Photon.PunBehaviour
 
     [SerializeField] private InputField usernameInputField;
 
+    [SerializeField] private GameObject teacherDashboardMenu;
+
     private bool connected = false;
 
     private void Awake()
@@ -62,7 +64,9 @@ public class LobbyNetwork : Photon.PunBehaviour
         if (connected)
         {
             PhotonNetwork.playerName = username;
-            
+
+            teacherDashboardMenu.SetActive(PhotonNetwork.player.IsMasterClient);
+
             lobbyPlayerList.Initialize();
             OpenPlayerLobby();
         }
