@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "262089893306",
+    "project_id": "pkmgamemath",
+    "storage_bucket": "pkmgamemath.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262089893306:android:6dc5cc3d6fd483b7446983",
+        "android_client_info": {
+          "package_name": "com.syqscode.mathmazegame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "262089893306-88d1j7t410dnoou5phndnlltbuqp3sj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqHaaRccnxgiUBPFAAAACXd7-o7yjrEeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "262089893306-88d1j7t410dnoou5phndnlltbuqp3sj2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
