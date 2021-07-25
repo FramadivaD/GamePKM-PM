@@ -130,7 +130,11 @@ Total
 - Menambahkan fitur untuk konversi data soal raw ke data soal gameplay.
 - Membuat sistem lobby room
 - Membuat sistem lobby untuk guru
-- membuat sistem lobby untuk siswa
+- Membuat sistem lobby untuk siswa
+- Membuat sistem upload dan download soal ke server
+- Membuat sistem prototype online
+- Membuat sistem Level Generator online.
+- Membuat sistem spawner Generator online.
 
 ---------------------------------------- Progress -----------------------------------------
 
@@ -214,13 +218,13 @@ Total
 
 [X] Fitur guru browse soal local
 [X] Fitur guru camera soal
-[ ] Fitur guru upload soal
+[X] Fitur guru upload soal
 [X] Fitur guru bikin save save an data soal
 
 [X] Implement Photon Main Menu
 [X] Implement Photon Lobby
 [ ] Implement Photon Gameplay Multiplier
-[ ] Implement Photon Logout Lobby
+[X] Implement Photon Logout Lobby
 
 [ ] Test Multiplayer 
 [ ] Convert Android Test

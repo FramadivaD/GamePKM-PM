@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MultiplayerNetworkMaster : Photon.PunBehaviour
 {
+    public static MultiplayerNetworkMaster Instance { get; private set; }
+
     public PhotonView pv;
 
     public QuestionDifficulty questionDifficulty;
@@ -13,15 +15,56 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     private int playerSceneCount = 0;
     private bool masterClientInitialized = false;
 
+    public bool testClientSingle;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    private void TestClientSingle()
+    {
+        if (testClientSingle)
+        {
+            // PhotonNetwork.ConnectUsingSettings(Application.version);
+            GameManager.Instance.GenerateLevel();
+        }
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        if (testClientSingle)
+        {
+            PhotonNetwork.CreateRoom("aaaaa");
+        }
+    }
+
+    public override void OnJoinedRoom()
+    {
+        if (testClientSingle)
+        {
+            GameManager.Instance.GenerateLevel();
+
+            PlayAsPlayer();
+        }
+    }
+
     private void Start()
     {
-        if (!PhotonNetwork.player.IsMasterClient)
+        if (!testClientSingle)
         {
-            pv.RPC("AddClientPlayer", PhotonTargets.MasterClient);
+            if (!PhotonNetwork.player.IsMasterClient)
+            {
+                pv.RPC("AddClientPlayer", PhotonTargets.MasterClient);
+            }
+            else
+            {
+                Debug.Log("Waiting Player Count : " + playerSceneCount + "/" + PhotonNetwork.playerList.Length);
+                AddClientPlayer();
+            }
         } else
         {
-            Debug.Log("Waiting Player Count : " + playerSceneCount + "/" + PhotonNetwork.playerList.Length);
-            AddClientPlayer();
+            Invoke("TestClientSingle", 1);
         }
     }
 

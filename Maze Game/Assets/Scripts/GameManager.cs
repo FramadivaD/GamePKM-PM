@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public Player player;
+    public Player playerPrefab;
 
     public bool AllowEntityMove { get; private set; } = true;
     public bool AllowEnemyMove { get; private set; } = true;
@@ -56,6 +57,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+
         PlayersTeam = new Dictionary<TeamType, TeamData>();
 
         winnerUI.SetActive(false);
@@ -63,36 +66,49 @@ public class GameManager : MonoBehaviour
 
         isPaused = false;
 
-        if (!PhotonNetwork.connected)
-        {
-            if (!PhotonNetwork.player.IsMasterClient)
+        if (MultiplayerNetworkMaster.Instance) {
+            if (!MultiplayerNetworkMaster.Instance.testClientSingle)
             {
-                player.login.OnSubmitNameSuccess += EnableAllEntitiesMovement;
-            }
+                if (!PhotonNetwork.connected)
+                {
+                    if (!PhotonNetwork.player.IsMasterClient)
+                    {
+                        player.login.OnSubmitNameSuccess += EnableAllEntitiesMovement;
+                    }
 
+                    roomGenerator.RandomizeMap();
+                }
+            }
+        } else
+        {
             roomGenerator.RandomizeMap();
         }
     }
 
     private void OnDestroy()
     {
-        if (!PhotonNetwork.connected)
+        if (MultiplayerNetworkMaster.Instance && !MultiplayerNetworkMaster.Instance.testClientSingle)
         {
-            if (!PhotonNetwork.player.IsMasterClient)
+            if (!PhotonNetwork.connected)
             {
-                player.login.OnSubmitNameSuccess -= EnableAllEntitiesMovement;
+                if (!PhotonNetwork.player.IsMasterClient)
+                {
+                    player.login.OnSubmitNameSuccess -= EnableAllEntitiesMovement;
+                }
             }
         }
-    }
-
-    private void Start()
-    {
-        Instance = this;
     }
 
     public void EnableAllEntitiesMovement(string str)
     {
         AllowEntityMove = true;
+    }
+
+    private void SpawnPlayer(TeamType teamType)
+    {
+        GameObject p = PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(), Quaternion.identity, 0);
+        player = p.GetComponent<Player>();
+        player.Initialize(teamType);
     }
 
     private void RegisterTeam()
@@ -139,6 +155,8 @@ public class GameManager : MonoBehaviour
     public void BeginPlayer(TeamType teamType)
     {
         // Spawn player dulu, karena pas baru mulai gaada player
+
+        SpawnPlayer(teamType);
 
         RegisterTeam();
         RegisterPlayer();

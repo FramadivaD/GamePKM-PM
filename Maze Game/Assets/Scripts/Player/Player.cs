@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [Header("Network")]
+    public PhotonView pv;
+
     [Header("Player Config")]
     public TeamType teamType;
 
@@ -63,6 +66,11 @@ public class Player : MonoBehaviour
             && !questionManager.questionContainer.activeSelf;
     }
 
+    public void Initialize(TeamType team)
+    {
+        teamType = team;
+    }
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -97,13 +105,18 @@ public class Player : MonoBehaviour
 
     private void MovementController(Vector2 movement)
     {
-        //Player Move
-        if (CheckAllowedMove())
+        //if (pv.isMine || MultiplayerNetworkMaster.Instance.testClientSingle)
+        if (true)
         {
-            rb.velocity = movement * movementSpeed * Time.deltaTime;
-        } else
-        {
-            rb.velocity = Vector2.zero;
+            //Player Move
+            if (CheckAllowedMove())
+            {
+                rb.velocity = movement * movementSpeed * Time.deltaTime;
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
+            }
         }
     }
 

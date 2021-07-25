@@ -445,6 +445,7 @@ GameObject:
   - component: {fileID: 839668587}
   - component: {fileID: 3703510726965139056}
   - component: {fileID: 4593806189981459242}
+  - component: {fileID: 9073236876983084820}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -538,6 +539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0e950c79cb19a4990e500e0327b1f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pv: {fileID: 9073236876983084820}
   teamType: 0
   questionManager: {fileID: 839668587}
   gateManager: {fileID: 839668586}
@@ -690,6 +692,33 @@ MonoBehaviour:
   - {fileID: 8687706552621162461, guid: a9303fecb8058a64ea9be8d650d4595d, type: 3}
   weaponControl: {fileID: 1672847131}
   weaponProjectileOrigin: {fileID: 2962693582260253500}
+--- !u!114 &9073236876983084820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6117276585491530554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1 &6117276585659172069
 GameObject:
   m_ObjectHideFlags: 0
