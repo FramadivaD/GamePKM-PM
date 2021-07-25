@@ -12,6 +12,8 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
 
     [SerializeField] private FirebaseManager firebaseManager;
 
+    public static string MainGateDownloadURL;
+
     public void CheckStartGame()
     {
         if (PhotonNetwork.player.IsMasterClient) {
@@ -46,11 +48,12 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
 
     private void UploadMainGateKeyFile()
     {
-        string filename = SystemInfo.deviceUniqueIdentifier + "/" + LobbyTeacherRoomMainGate.CurrentMainGateKey.GateName;
+        string filename = SystemInfo.deviceUniqueIdentifier + "/" + AndroidHelper.Base64Encode(LobbyTeacherRoomMainGate.CurrentMainGateKey.GateName);
         string data = LobbyTeacherRoomMainGate.CurrentMainGateKeyJson;
         firebaseManager.UploadData(filename, System.Text.Encoding.ASCII.GetBytes(data),
             () => {
                 Debug.Log("Upload Success. So the Game will starting.");
+                MainGateDownloadURL = filename;
                 StartGame();
             },
             () => {

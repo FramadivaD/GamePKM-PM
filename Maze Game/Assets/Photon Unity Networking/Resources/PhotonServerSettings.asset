@@ -48,4 +48,5 @@ MonoBehaviour:
   - SendPlayerFromClientToMaster
   - SendChangeTeamFromClientToMaster
   - ReceiveMainGateKeyAndQuestionDifficultyData
+  - ReceiveMainGateKeyDownloadURLAndQuestionDifficultyData
   DisableAutoOpenWizard: 1

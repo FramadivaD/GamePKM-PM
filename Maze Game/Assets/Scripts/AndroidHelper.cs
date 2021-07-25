@@ -26,4 +26,16 @@ public class AndroidHelper
             Directory.CreateDirectory(path);
         }
     }
+
+    public static string Base64Encode(string str)
+    {
+        string val = System.Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(str));
+        return val;
+    }
+
+    public static string Base64Decode(string b64)
+    {
+        string val = System.Text.Encoding.ASCII.GetString(System.Convert.FromBase64String(b64));
+        return val;
+    }
 }

@@ -8,20 +8,43 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     public QuestionDifficulty questionDifficulty;
     public MainGateKeyRaw mainGateRaw;
 
+    [SerializeField] private FirebaseManager firebaseManager;
+
     private void Start()
     {
         if (PhotonNetwork.player.IsMasterClient)
         {
             string diffJson = LobbyTeacherRoomQuestionDifficulty.SelectedDifficultyJson;
-            string keyJson = LobbyTeacherRoomMainGate.CurrentMainGateKeyJson;
+            //string keyJson = LobbyTeacherRoomMainGate.CurrentMainGateKeyJson;
+            string keyJsonDownloadURL = LobbyTeacherRoom.MainGateDownloadURL;
 
             Debug.Log("Karena master jadi akan ngirim data");
 
-            pv.RPC("ReceiveMainGateKeyAndQuestionDifficultyData", PhotonTargets.AllBuffered, diffJson, keyJson);
+            pv.RPC("ReceiveMainGateKeyDownloadURLAndQuestionDifficultyData", PhotonTargets.AllBuffered, diffJson, keyJsonDownloadURL);
         }
     }
 
     [PunRPC]
+    private void ReceiveMainGateKeyDownloadURLAndQuestionDifficultyData(string diffJson, string keyJsonDownloadURL)
+    {
+        firebaseManager.DownloadData(keyJsonDownloadURL, 
+            (byte[] data) => {
+                string keyJson = System.Text.Encoding.ASCII.GetString(data);
+
+                Debug.Log("Download MainGateKey Data Success!");
+
+                Debug.Log("Download URL : " + keyJsonDownloadURL);
+
+                ReceiveMainGateKeyAndQuestionDifficultyData(diffJson, keyJson);
+            }, 
+            () => {
+                Debug.Log("Download MainGateKey Data Failed.. Sadge.");
+
+                Debug.Log("Download URL : " + keyJsonDownloadURL);
+            }
+        );
+    }
+
     private void ReceiveMainGateKeyAndQuestionDifficultyData(string diffJson, string keyJson)
     {
         Debug.Log("Meskipun master / client akan menerima data");
@@ -36,7 +59,8 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
             Debug.Log("Karena master maka akan main sebagai spectator");
 
             PlayAsSpectator();
-        } else 
+        }
+        else
         {
             Debug.Log("Karena client maka akan main sebagai player");
 
