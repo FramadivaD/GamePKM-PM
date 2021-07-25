@@ -60,3 +60,5 @@ crashlytics-build.properties
 
 Assets/google-services.json
 Assets/google-services.json.meta
+
+Assets/Firebase/
