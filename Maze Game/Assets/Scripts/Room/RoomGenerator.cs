@@ -180,8 +180,7 @@ public class RoomGenerator : MonoBehaviour
             int x = mostBorderRoom[0].x;
             int y = mostBorderRoom[0].y;
 
-            RoomGeneratorGrid room = SpawnRoom(x, y);
-            room.transform.position += new Vector3(0, roomWidthHeight.y, 0);
+            RoomGeneratorGrid room = SpawnRoom(GetRoomPos(x, y) + new Vector2(0, roomWidthHeight.y));
             room.gameObject.name = "AddonNecessaryRoomTop";
             room.Initialize();
 
@@ -199,8 +198,7 @@ public class RoomGenerator : MonoBehaviour
             int x = mostBorderRoom[1].x;
             int y = mostBorderRoom[1].y;
 
-            RoomGeneratorGrid room = SpawnRoom(x, y);
-            room.transform.position += new Vector3(roomWidthHeight.x, 0, 0);
+            RoomGeneratorGrid room = SpawnRoom(GetRoomPos(x, y) + new Vector2(roomWidthHeight.x, 0));
             room.gameObject.name = "AddonNecessaryRoomRight";
             room.Initialize();
 
@@ -219,8 +217,7 @@ public class RoomGenerator : MonoBehaviour
             int x = mostBorderRoom[2].x;
             int y = mostBorderRoom[2].y;
 
-            RoomGeneratorGrid room = SpawnRoom(x, y);
-            room.transform.position += new Vector3(0, -roomWidthHeight.y, 0);
+            RoomGeneratorGrid room = SpawnRoom(GetRoomPos(x, y) + new Vector2(0, -roomWidthHeight.y));
             room.gameObject.name = "AddonNecessaryRoomBottom";
             room.Initialize();
 
@@ -239,8 +236,7 @@ public class RoomGenerator : MonoBehaviour
             int x = mostBorderRoom[3].x;
             int y = mostBorderRoom[3].y;
 
-            RoomGeneratorGrid room = SpawnRoom(x, y);
-            room.transform.position += new Vector3(-roomWidthHeight.x, 0, 0);
+            RoomGeneratorGrid room = SpawnRoom(GetRoomPos(x, y) + new Vector2(-roomWidthHeight.x, 0));
             room.gameObject.name = "AddonNecessaryRoomLeft";
             room.Initialize();
 
@@ -292,9 +288,28 @@ public class RoomGenerator : MonoBehaviour
         if (PhotonNetwork.connected)
         {
             roomObject = PhotonNetwork.Instantiate(roomPrefab.name, GetRoomPos(x, y), Quaternion.identity, 0);
-        } else
+        }
+        else
         {
             roomObject = Instantiate(roomPrefab.gameObject, GetRoomPos(x, y), Quaternion.identity, transform);
+        }
+
+        RoomGeneratorGrid room = roomObject.GetComponent<RoomGeneratorGrid>();
+
+        return room;
+    }
+
+    private RoomGeneratorGrid SpawnRoom(Vector3 pos)
+    {
+        GameObject roomObject;
+
+        if (PhotonNetwork.connected)
+        {
+            roomObject = PhotonNetwork.Instantiate(roomPrefab.name, pos, Quaternion.identity, 0);
+        }
+        else
+        {
+            roomObject = Instantiate(roomPrefab.gameObject, pos, Quaternion.identity, transform);
         }
 
         RoomGeneratorGrid room = roomObject.GetComponent<RoomGeneratorGrid>();

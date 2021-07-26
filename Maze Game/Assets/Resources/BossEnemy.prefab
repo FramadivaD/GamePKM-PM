@@ -1320,6 +1320,7 @@ MonoBehaviour:
   playerTarget: {fileID: 0}
   health: {fileID: 5262429376495144852}
   allowMove: 1
+  pv: {fileID: 4320361549883593441}
   changeRoomTimeInterval: 5
 --- !u!114 &5262429376495144852
 MonoBehaviour:
