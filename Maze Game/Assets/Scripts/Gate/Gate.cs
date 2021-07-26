@@ -72,6 +72,9 @@ public class Gate : MonoBehaviour
                     {
                         CollectedFragmentIndex.Add((inventory.RemoveItem(fragment) as MainGateFragment).FragmentIndex);
 
+                        // Refresh ke semua clients
+                        SetCollectedFragment(CollectedFragmentIndex);
+
                         Debug.Log("Fragment Stored : " + fragment.Key);
                         PlayCollectAnimation();
                     }

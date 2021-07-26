@@ -27,14 +27,6 @@ public class GateManager : MonoBehaviour
         {
             if (gate != null)
             {
-                /*
-                if (gate.CheckGateShouldBeOpen())
-                {
-                    Debug.Log("its match. Open Gate Now!");
-                    gate.OpenGate();
-                }
-                else 
-                */
                 if (gate.CheckGateIsReadyReordering())
                 {
                     Debug.Log("open game Reordering now!");

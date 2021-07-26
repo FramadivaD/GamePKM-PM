@@ -15,6 +15,20 @@ public class MainGateFragmentOrb : MonoBehaviour
 
     public void Initialize(TeamType teamType, int fragmentIndex)
     {
+        if (PhotonNetwork.connected)
+        {
+            pv.RPC("InitializeRPC", PhotonTargets.AllBuffered, (int)teamType, fragmentIndex);
+        } else
+        {
+            InitializeRPC((int)teamType, fragmentIndex);
+        }
+    }
+
+    [PunRPC]
+    private void InitializeRPC(int team, int fragmentIndex)
+    {
+        TeamType teamType = (TeamType)team;
+
         this.fragment = GameManager.PlayersTeam[teamType].FragmentsKey.Fragments[fragmentIndex];
 
         canvasUI.SetActive(true);

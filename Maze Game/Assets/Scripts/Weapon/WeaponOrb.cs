@@ -9,9 +9,21 @@ public class WeaponOrb : MonoBehaviour
 
     public WeaponInventory Weapon { get { return weapon; } }
 
-    public void Initialize(WeaponInventory weapon)
+    public void Initialize(int weaponType)
     {
-        this.weapon = weapon;
+        if (PhotonNetwork.connected)
+        {
+            pv.RPC("InitializeRPC", PhotonTargets.AllBuffered, weaponType);
+        } else
+        {
+            InitializeRPC(weaponType);
+        }
+    }
+
+    [PunRPC]
+    private void InitializeRPC(int weaponType)
+    {
+        weapon = new WeaponInventory() { weaponType = (WeaponType) weaponType };
     }
 
     public WeaponInventory TakeWeapon(Player player)

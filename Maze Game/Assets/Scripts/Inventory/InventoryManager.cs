@@ -207,7 +207,7 @@ public class InventoryManager : MonoBehaviour
                     {
                         ne = Instantiate(inventoryOrbPrefabs[1], player.transform.position, Quaternion.identity);
                         WeaponOrb orb = ne.GetComponent<WeaponOrb>();
-                        orb.Initialize(weapon);
+                        orb.Initialize((int)weapon.weaponType);
                     }
                 }
             }
@@ -225,11 +225,9 @@ public class InventoryManager : MonoBehaviour
     [PunRPC]
     private void SpawnWeaponOrbMaster(Vector3 pos, int weaponType)
     {
-        WeaponInventory weapon = new WeaponInventory() { weaponType = (WeaponType) weaponType };
-
         GameObject ne = PhotonNetwork.Instantiate(inventoryOrbPrefabs[1].name, pos, Quaternion.identity, 0);
-        WeaponOrb orb = ne.GetComponent<WeaponOrb>();
 
-        orb.Initialize(weapon);
+        WeaponOrb orb = ne.GetComponent<WeaponOrb>();
+        orb.Initialize(weaponType);
     }
 }

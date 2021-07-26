@@ -153,7 +153,7 @@ public class RoomGeneratorGrid : MonoBehaviour
                     WeaponOrb weaponOrb = weapon.GetComponent<WeaponOrb>();
 
                     // Saat ini hanya random Basoka
-                    weaponOrb.Initialize(new WeaponInventory() { weaponType = WeaponType.Basoka });
+                    weaponOrb.Initialize((int) WeaponType.Basoka);
 
                     spawnedItemCount++;
 

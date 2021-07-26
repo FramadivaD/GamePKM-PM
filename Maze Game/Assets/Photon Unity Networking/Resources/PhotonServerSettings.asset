@@ -67,4 +67,8 @@ MonoBehaviour:
   - UnlockChestRPCAll
   - OnSubmitNameSuccess
   - ChangeDisplayName
+  - OpenGate
+  - OpenGateRPC
+  - SetCollectedFragmentRPC
+  - InitializeRPC
   DisableAutoOpenWizard: 1
