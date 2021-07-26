@@ -75,29 +75,41 @@ public class RoomGeneratorGrid : MonoBehaviour
     [PunRPC]
     public void OpenTopDoor()
     {
-        topDoor.SetActive(false);
-        pv.RPC("OpenTopDoor", PhotonTargets.OthersBuffered);
+        if (PhotonNetwork.player.IsMasterClient)
+        {
+            topDoor.SetActive(false);
+            pv.RPC("OpenTopDoor", PhotonTargets.OthersBuffered);
+        }
     }
 
     [PunRPC]
     public void OpenRightDoor()
     {
-        rightDoor.SetActive(false);
-        pv.RPC("OpenRightDoor", PhotonTargets.OthersBuffered);
+        if (PhotonNetwork.player.IsMasterClient)
+        {
+            rightDoor.SetActive(false);
+            pv.RPC("OpenRightDoor", PhotonTargets.OthersBuffered);
+        }
     }
 
     [PunRPC]
     public void OpenBottomDoor()
     {
-        bottomDoor.SetActive(false);
-        pv.RPC("OpenBottomDoor", PhotonTargets.OthersBuffered);
+        if (PhotonNetwork.player.IsMasterClient)
+        {
+            bottomDoor.SetActive(false);
+            pv.RPC("OpenBottomDoor", PhotonTargets.OthersBuffered);
+        }
     }
 
     [PunRPC]
     public void OpenLeftDoor()
     {
-        leftDoor.SetActive(false);
-        pv.RPC("OpenLeftDoor", PhotonTargets.OthersBuffered);
+        if (PhotonNetwork.player.IsMasterClient)
+        {
+            leftDoor.SetActive(false);
+            pv.RPC("OpenLeftDoor", PhotonTargets.OthersBuffered);
+        }
     }
 
     public int GetUnlockedDoorCount()

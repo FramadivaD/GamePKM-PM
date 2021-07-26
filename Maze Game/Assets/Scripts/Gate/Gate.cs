@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour
 {
+    [SerializeField] private PhotonView pv;
+
     Animator gateAnim;
 
     [SerializeField] private bool isOpened = false;

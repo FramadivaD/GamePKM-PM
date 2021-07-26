@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 #region Gameplay Data
 
+[System.Serializable]
 public class MainGateKey
 {
     public TeamType Team { get; private set; }
@@ -50,7 +51,7 @@ public class MainGateKey
 [System.Serializable]
 public class MainGateFragment : IInventoryAble
 {
-    [SerializeField] private MainGateFragment mainKey;
+    [SerializeField] private MainGateFragment mainKey { get; set; }
     [SerializeField] private string key;
     [SerializeField] private string data;
     [SerializeField] private Sprite dataImage;
