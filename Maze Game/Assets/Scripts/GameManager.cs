@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
 
     public static Dictionary<TeamType, TeamData> PlayersTeam { get; private set; }
     private List<Player> players;
-    [SerializeField] private List<MainGateKey> fragmentsKey; //ada 2, sesuai dengan jumlah tim
 
     public bool WinnerWasAnnounced { get; private set; }
     public TeamType WinnerTeam { get; private set; }
@@ -92,40 +91,18 @@ public class GameManager : MonoBehaviour
         player.Initialize(teamType);
     }
 
-    private void RegisterTeam(TeamType teamType)
+    private void RegisterTeam(TeamType teamType, MainGateKey key)
     {
         if (PlayersTeam == null) PlayersTeam = new Dictionary<TeamType, TeamData>();
 
         if (!PlayersTeam.ContainsKey(teamType)) {
-            MainGateKey key = fragmentsKey[(int)teamType];
-
-            TeamData newTeamData = new TeamData(teamType, key);
-            PlayersTeam[teamType] = newTeamData;
+            PlayersTeam[teamType] = new TeamData(teamType, key);
         }
     }
 
-    /*
-    private void RegisterPlayer()
+    public void LoadFragmentsKey(TeamType teamType, MainGateKey mainGateKey)
     {
-        if (PlayersTeam.TryGetValue(player.teamType, out TeamData teamData))
-        {
-            teamData.AddPlayer(player);
-        }
-
-        // make players
-        if (players == null) players = new List<Player>();
-        players.Add(player);
-    }
-    */
-
-    public void LoadFragmentsKey(MainGateKey mainGateKey)
-    {
-        fragmentsKey = new List<MainGateKey>();
-        fragmentsKey.Add(mainGateKey);
-        fragmentsKey.Add(mainGateKey);
-
-        RegisterTeam(TeamType.Red);
-        RegisterTeam(TeamType.Blue);
+        RegisterTeam(teamType, mainGateKey);
     }
 
     public void LoadQuestionDifficulty(QuestionDifficulty difficulty)

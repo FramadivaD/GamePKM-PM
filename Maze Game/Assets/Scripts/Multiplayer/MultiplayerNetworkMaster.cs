@@ -171,7 +171,9 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     private void LoadMainGateKeyAndQuestionDifficultyData(QuestionDifficulty questionDifficulty, MainGateKeyRaw mainGateRaw)
     {
         TeamType team = TeamHelper.FromPhotonTeam(PhotonNetwork.player.GetTeam());
-        GameManager.Instance.LoadFragmentsKey(MainGateKey.ConvertFromRawData(team, mainGateRaw));
+        // GameManager.Instance.LoadFragmentsKey(MainGateKey.ConvertFromRawData(team, mainGateRaw));
+        GameManager.Instance.LoadFragmentsKey(TeamType.Red, MainGateKey.ConvertFromRawData(TeamType.Red, mainGateRaw));
+        GameManager.Instance.LoadFragmentsKey(TeamType.Blue, MainGateKey.ConvertFromRawData(TeamType.Blue, mainGateRaw));
 
         GameManager.Instance.LoadQuestionDifficulty(questionDifficulty);
     }
