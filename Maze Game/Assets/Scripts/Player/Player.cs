@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public TeamType teamType;
 
     [Header("Player Manager")]
+    public PlayerGameManagerReference gameManagerReference;
     public QuestionManager questionManager;
     public GateManager gateManager;
     public InventoryManager inventoryManager;
@@ -96,6 +97,8 @@ public class Player : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        gameManagerReference.Initialize(this);
 
         questionManager.Initialize(this);
         gateManager.Initialize(this);
