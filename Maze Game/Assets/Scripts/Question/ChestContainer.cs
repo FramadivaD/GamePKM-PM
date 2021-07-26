@@ -47,21 +47,21 @@ public class ChestContainer : MonoBehaviour
         canvasUI.SetActive(false);
     }
 
-    public void Initialize(TeamType teamType, MainGateFragment fragment)
+    public void Initialize(TeamType teamType, int fragmentIndex)
     {
         if (PhotonNetwork.connected)
         {
-            pv.RPC("InitializeRPCAll", PhotonTargets.AllBuffered, (int)teamType, JsonUtility.ToJson(fragment));
+            pv.RPC("InitializeRPCAll", PhotonTargets.AllBuffered, (int)teamType, fragmentIndex);
         } else
         {
-            InitializeDirect(teamType, fragment);
+            InitializeDirect(teamType, fragmentIndex);
         }
     }
 
-    private void InitializeDirect(TeamType teamType, MainGateFragment fragment)
+    private void InitializeDirect(TeamType teamType, int fragmentIndex)
     {
         this.teamType = teamType;
-        this.fragmentKey = fragment;
+        this.fragmentKey = GameManager.PlayersTeam[teamType].FragmentsKey.Fragments[fragmentIndex];
 
         Initialize();
 
@@ -150,12 +150,11 @@ public class ChestContainer : MonoBehaviour
     }
 
     [PunRPC]
-    private void InitializeRPCAll(int team, string fragmentJson)
+    private void InitializeRPCAll(int team, int fragmentIndex)
     {
         TeamType teamType = (TeamType)team;
-        MainGateFragment fragment = JsonUtility.FromJson<MainGateFragment>(fragmentJson);
 
-        InitializeDirect(teamType, fragment);
+        InitializeDirect(teamType, fragmentIndex);
     }
 
     [PunRPC]

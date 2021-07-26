@@ -349,7 +349,7 @@ public class RoomGenerator : MonoBehaviour
                             // limit biar gak infinite
                             for (int k = 0; k < 10; k++)
                             {
-                                ChestContainer chest = selectedRoom.SpawnTreasureChest(TeamHelper.TeamTypes[i], key.Fragments[j]);
+                                ChestContainer chest = selectedRoom.SpawnTreasureChest(TeamHelper.TeamTypes[i], j);
 
                                 if (chest)
                                 {

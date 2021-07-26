@@ -77,9 +77,9 @@ public class RoomGeneratorGrid : MonoBehaviour
     {
         if (PhotonNetwork.player.IsMasterClient)
         {
-            topDoor.SetActive(false);
             pv.RPC("OpenTopDoor", PhotonTargets.OthersBuffered);
         }
+        topDoor.SetActive(false);
     }
 
     [PunRPC]
@@ -87,9 +87,9 @@ public class RoomGeneratorGrid : MonoBehaviour
     {
         if (PhotonNetwork.player.IsMasterClient)
         {
-            rightDoor.SetActive(false);
             pv.RPC("OpenRightDoor", PhotonTargets.OthersBuffered);
         }
+        rightDoor.SetActive(false);
     }
 
     [PunRPC]
@@ -97,9 +97,9 @@ public class RoomGeneratorGrid : MonoBehaviour
     {
         if (PhotonNetwork.player.IsMasterClient)
         {
-            bottomDoor.SetActive(false);
             pv.RPC("OpenBottomDoor", PhotonTargets.OthersBuffered);
         }
+        bottomDoor.SetActive(false);
     }
 
     [PunRPC]
@@ -107,9 +107,9 @@ public class RoomGeneratorGrid : MonoBehaviour
     {
         if (PhotonNetwork.player.IsMasterClient)
         {
-            leftDoor.SetActive(false);
             pv.RPC("OpenLeftDoor", PhotonTargets.OthersBuffered);
         }
+        leftDoor.SetActive(false);
     }
 
     public int GetUnlockedDoorCount()
@@ -121,7 +121,6 @@ public class RoomGeneratorGrid : MonoBehaviour
         val += leftDoor.activeSelf ? 1 : 0;
 
         return val;
-
     }
 
     public WeaponOrb SpawnWeaponItemOrb()
@@ -143,7 +142,8 @@ public class RoomGeneratorGrid : MonoBehaviour
                     if (PhotonNetwork.connected)
                     {
                         weapon = PhotonNetwork.Instantiate(weaponOrbPrefab.name, spawnedItemPossiblePos[latestSpawnedItemPossiblePosIndex].position, Quaternion.identity, 0);
-                    } else
+                    }
+                    else
                     {
                         weapon = Instantiate(weaponOrbPrefab, spawnedItemPossiblePos[latestSpawnedItemPossiblePosIndex].position, Quaternion.identity, spawnedItemParent);
                     }
@@ -167,7 +167,7 @@ public class RoomGeneratorGrid : MonoBehaviour
         return null;
     }
 
-    public ChestContainer SpawnTreasureChest(TeamType teamType, MainGateFragment fragment)
+    public ChestContainer SpawnTreasureChest(TeamType teamType, int fragmentIndex)
     {
         if (spawnedItemCount < spawnedItemPossiblePos.Length)
         {
@@ -193,7 +193,7 @@ public class RoomGeneratorGrid : MonoBehaviour
                     spawnedItemSpawned[latestSpawnedItemPossiblePosIndex] = chest;
 
                     ChestContainer chestContainer = chest.GetComponent<ChestContainer>();
-                    chestContainer.Initialize(teamType, fragment);
+                    chestContainer.Initialize(teamType, fragmentIndex);
 
                     spawnedItemCount++;
 
