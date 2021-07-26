@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da3fdd0623aca2141b3a5e46485169a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pv: {fileID: 4889405277535929318}
   teamType: 0
   unlockedGraphic: {fileID: 3836950655389887356}
   lockedGraphic: {fileID: 3836950655007671386}

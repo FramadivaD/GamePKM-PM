@@ -59,4 +59,7 @@ MonoBehaviour:
   - OpenLeftDoor
   - OpenRightDoor
   - OpenTopDoor
+  - DestroyOrb
+  - SpawnFragmentOrbMaster
+  - SpawnWeaponOrbMaster
   DisableAutoOpenWizard: 1

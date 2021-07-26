@@ -487,6 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c8df03399c2ae84181a6f18daa3dd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pv: {fileID: 3678626785020164573}
   canvasUI: {fileID: 2738107037573283419}
   fragmentImage: {fileID: 8197650652175736611}
   fragmentDataText: {fileID: 3066607266762825854}

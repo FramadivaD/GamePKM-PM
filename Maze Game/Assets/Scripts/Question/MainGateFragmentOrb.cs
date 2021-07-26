@@ -3,8 +3,9 @@ using UnityEngine.UI;
 
 public class MainGateFragmentOrb : MonoBehaviour
 {
-    [SerializeField] private MainGateFragment fragment;
+    [SerializeField] private PhotonView pv;
 
+    [SerializeField] private MainGateFragment fragment;
     public MainGateFragment Fragment { get { return fragment; } }
 
     [Header("UI")]
@@ -42,9 +43,27 @@ public class MainGateFragmentOrb : MonoBehaviour
         {
             canvasUI.SetActive(false);
             player.inventoryManager.AddItem(Fragment);
-            Destroy(gameObject);
+
+            if (PhotonNetwork.connected)
+            {
+                pv.RPC("DestroyOrb", PhotonTargets.MasterClient);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
             return fragment;
         }
         return null;
+    }
+
+    [PunRPC]
+    private void DestroyOrb()
+    {
+        if (PhotonNetwork.player.IsMasterClient)
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
     }
 }

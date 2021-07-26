@@ -4,6 +4,8 @@ using System.Collections;
 
 public class ChestContainer : MonoBehaviour
 {
+    [SerializeField] private PhotonView pv;
+
     public Question question;
     public TeamType teamType;
     public MainGateFragment fragmentKey;

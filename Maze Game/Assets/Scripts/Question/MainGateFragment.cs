@@ -47,6 +47,7 @@ public class MainGateKey
     }
 }
 
+[System.Serializable]
 public class MainGateFragment : IInventoryAble
 {
     [SerializeField] private MainGateFragment mainKey;
