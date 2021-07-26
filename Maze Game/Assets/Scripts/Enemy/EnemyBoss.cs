@@ -131,6 +131,19 @@ public class EnemyBoss : MonoBehaviour
 
     private void OnDie()
     {
+        if (PhotonNetwork.connected)
+        {
+            pv.RPC("OnDieRPC", PhotonTargets.AllBuffered);
+        }
+        else
+        {
+            OnDieRPC();
+        }
+    }
+
+    [PunRPC]
+    private void OnDieRPC()
+    {
         PlayDieAnimation();
         attackManager.enabled = false;
 
@@ -150,7 +163,8 @@ public class EnemyBoss : MonoBehaviour
             {
                 if (collision.TryGetComponent(out WeaponProjectile projectile))
                 {
-                    health.CurrentHealth -= projectile.Damage;
+                    DamagedByProjectile(projectile.Damage);
+
                     projectile.TerminateProjectile();
                 }
             }
@@ -180,5 +194,25 @@ public class EnemyBoss : MonoBehaviour
     public void ChangeMoveTarget(Transform target)
     {
         moveTarget = target;
+    }
+
+    private void DamagedByProjectile(float damage)
+    {
+        health.CurrentHealth -= damage;
+
+        if (PhotonNetwork.connected)
+        {
+            pv.RPC("SyncEnemyBossHealthRPC", PhotonTargets.AllBuffered, health.CurrentHealth);
+        }
+        else
+        {
+            SyncEnemyBossHealthRPC(damage);
+        }
+    }
+
+    [PunRPC]
+    private void SyncEnemyBossHealthRPC(float currentHealth)
+    {
+        health.CurrentHealth = currentHealth;
     }
 }
