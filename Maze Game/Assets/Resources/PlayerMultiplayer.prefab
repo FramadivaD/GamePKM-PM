@@ -1361,7 +1361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cs: 10
-  Player: {fileID: 0}
+  Player: {fileID: 6117276585491530554}
   originPos: {x: 0, y: 0, z: 0}
 --- !u!1 &519462610
 GameObject:

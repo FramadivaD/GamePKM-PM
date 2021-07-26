@@ -44,19 +44,20 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     {
         if (testClientSingle)
         {
-            // MainGateKey testKey = new MainGateKey(TeamType.Red);
+            // MainGateKeyRaw testKey = new MainGateKeyRaw("test offlen singleplayer");
+            // testKey.AddFragment(new MainGateFragmentRaw("Kucing", "Data1"));
+            // testKey.AddFragment(new MainGateFragmentRaw("Sapi", "Data2"));
+            // testKey.AddFragment(new MainGateFragmentRaw("Kadal", "Data3"));
 
-            // testKey.AddFragment(new MainGateFragment(testKey, "Kucing", "Data1"));
-            // testKey.AddFragment(new MainGateFragment(testKey, "Sapi", "Data2"));
-            // testKey.AddFragment(new MainGateFragment(testKey, "Kadal", "Data3"));
+            string filename = "D:/Music/MathGame/Data/gajah.soal";
 
-            // GameManager.Instance.LoadFragmentsKey(testKey);
-            // GameManager.Instance.LoadQuestionDifficulty(new QuestionDifficulty() { bangunDatar = true, pecahan = true, penjumlahan = true, perkalian = true, persamaan = true });
+            string fileBaseName = System.IO.Path.GetFileNameWithoutExtension(new System.IO.FileInfo(filename).Name);
 
-            MainGateKeyRaw testKey = new MainGateKeyRaw("test offlen singleplayer");
-            testKey.AddFragment(new MainGateFragmentRaw("Kucing", "Data1"));
-            testKey.AddFragment(new MainGateFragmentRaw("Sapi", "Data2"));
-            testKey.AddFragment(new MainGateFragmentRaw("Kadal", "Data3"));
+            byte[] data = System.IO.File.ReadAllBytes(filename);
+
+            string content = System.Text.Encoding.ASCII.GetString(data);
+
+            MainGateKeyRaw testKey = JsonUtility.FromJson<MainGateKeyRaw>(content);
 
             LobbyTeacherRoomMainGate.CurrentMainGateKey = testKey;
 
