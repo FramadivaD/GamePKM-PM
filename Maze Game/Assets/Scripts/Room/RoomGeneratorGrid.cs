@@ -230,7 +230,17 @@ public class RoomGeneratorGrid : MonoBehaviour
 
         if (!topDoor.activeSelf)
         {
-            GameObject topGate = Instantiate(mainGatePrefab, topDoor.transform.position, Quaternion.Euler(0, 0, -90), mainGateParent);
+            GameObject topGate;
+
+            if (PhotonNetwork.connected)
+            {
+                topGate = PhotonNetwork.Instantiate(mainGatePrefab.name, topDoor.transform.position, Quaternion.Euler(0, 0, -90), 0);
+            }
+            else
+            {
+                topGate = Instantiate(mainGatePrefab, topDoor.transform.position, Quaternion.Euler(0, 0, -90), mainGateParent);
+            }
+
             Destroy(topDoor);
             topDoor = topGate;
 
@@ -242,7 +252,17 @@ public class RoomGeneratorGrid : MonoBehaviour
 
         if (!rightDoor.activeSelf)
         {
-            GameObject rightGate = Instantiate(mainGatePrefab, rightDoor.transform.position, Quaternion.Euler(0, 0, 180), mainGateParent);
+            GameObject rightGate;
+
+            if (PhotonNetwork.connected)
+            {
+                rightGate = PhotonNetwork.Instantiate(mainGatePrefab.name, rightDoor.transform.position, Quaternion.Euler(0, 0, 180), 0);
+            }
+            else
+            {
+                rightGate = Instantiate(mainGatePrefab, rightDoor.transform.position, Quaternion.Euler(0, 0, 180), mainGateParent);
+            }
+
             Destroy(rightDoor);
             rightDoor = rightGate;
 
@@ -254,7 +274,17 @@ public class RoomGeneratorGrid : MonoBehaviour
 
         if (!bottomDoor.activeSelf)
         {
-            GameObject bottomGate = Instantiate(mainGatePrefab, bottomDoor.transform.position, Quaternion.Euler(0, 0, 90), mainGateParent);
+            GameObject bottomGate;
+
+            if (PhotonNetwork.connected)
+            {
+                bottomGate = PhotonNetwork.Instantiate(mainGatePrefab.name, bottomDoor.transform.position, Quaternion.Euler(0, 0, 90), 0);
+            }
+            else
+            {
+                bottomGate = Instantiate(mainGatePrefab, bottomDoor.transform.position, Quaternion.Euler(0, 0, 90), mainGateParent);
+            }
+
             Destroy(bottomDoor);
             bottomDoor = bottomGate;
 
@@ -266,7 +296,17 @@ public class RoomGeneratorGrid : MonoBehaviour
 
         if (!leftDoor.activeSelf)
         {
-            GameObject leftGate = Instantiate(mainGatePrefab, leftDoor.transform.position, Quaternion.Euler(0, 0, 0), mainGateParent);
+            GameObject leftGate;
+
+            if (PhotonNetwork.connected)
+            {
+                leftGate = PhotonNetwork.Instantiate(mainGatePrefab.name, leftDoor.transform.position, Quaternion.Euler(0, 0, 0), 0);
+            }
+            else
+            {
+                leftGate = Instantiate(mainGatePrefab, leftDoor.transform.position, Quaternion.Euler(0, 0, 0), mainGateParent);
+            }
+
             Destroy(leftDoor);
             leftDoor = leftGate;
 
