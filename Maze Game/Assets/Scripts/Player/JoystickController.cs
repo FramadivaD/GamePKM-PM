@@ -42,7 +42,7 @@ public class JoystickController : MonoBehaviour
     private void Controller()
     {
         //Joystick Control
-        if (!PhotonNetwork.connected || !PhotonNetwork.isMasterClient) {
+        if (!PhotonNetwork.connected || !PhotonNetwork.isMasterClient || MultiplayerNetworkMaster.Instance.testClientSingle) {
             if (active && OnCheckConditionJoystick.Invoke())
             {
                 if (Application.isMobilePlatform)

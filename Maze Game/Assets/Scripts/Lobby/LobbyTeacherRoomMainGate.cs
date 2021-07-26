@@ -14,7 +14,7 @@ public class LobbyTeacherRoomMainGate : MonoBehaviour
 
     [SerializeField] private Text mainGateKeyName;
 
-    public static MainGateKeyRaw CurrentMainGateKey { get; private set; } = null;
+    public static MainGateKeyRaw CurrentMainGateKey { get; set; } = null;
     public static string CurrentMainGateKeyJson { get { return JsonUtility.ToJson(CurrentMainGateKey); } }
 
     private void Awake()

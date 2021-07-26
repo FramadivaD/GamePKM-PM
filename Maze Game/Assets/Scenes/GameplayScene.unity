@@ -272,7 +272,7 @@ MonoBehaviour:
     GateName: 
     Fragments: []
   firebaseManager: {fileID: 222803896}
-  testClientSingle: 0
+  testClientSingle: 1
 --- !u!4 &222803895
 Transform:
   m_ObjectHideFlags: 0
@@ -368,7 +368,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 3.5
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

@@ -28,17 +28,7 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     {
         if (testClientSingle)
         {
-            MainGateKey testKey = new MainGateKey(TeamType.Red);
-
-            testKey.AddFragment(new MainGateFragment(testKey, "Kucing", "Data1"));
-            testKey.AddFragment(new MainGateFragment(testKey, "Sapi", "Data2"));
-            testKey.AddFragment(new MainGateFragment(testKey, "Kadal", "Data3"));
-
-            GameManager.Instance.LoadFragmentsKey(testKey);
-            GameManager.Instance.LoadQuestionDifficulty(new QuestionDifficulty() { bangunDatar = true, pecahan = true, penjumlahan = true, perkalian = true, persamaan = true });
-
             PhotonNetwork.ConnectUsingSettings(Application.version);
-            GameManager.Instance.GenerateLevel();
         }
     }
 
@@ -54,9 +44,32 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     {
         if (testClientSingle)
         {
-            GameManager.Instance.GenerateLevel();
+            // MainGateKey testKey = new MainGateKey(TeamType.Red);
 
-            PlayAsPlayer();
+            // testKey.AddFragment(new MainGateFragment(testKey, "Kucing", "Data1"));
+            // testKey.AddFragment(new MainGateFragment(testKey, "Sapi", "Data2"));
+            // testKey.AddFragment(new MainGateFragment(testKey, "Kadal", "Data3"));
+
+            // GameManager.Instance.LoadFragmentsKey(testKey);
+            // GameManager.Instance.LoadQuestionDifficulty(new QuestionDifficulty() { bangunDatar = true, pecahan = true, penjumlahan = true, perkalian = true, persamaan = true });
+
+            MainGateKeyRaw testKey = new MainGateKeyRaw("test offlen singleplayer");
+            testKey.AddFragment(new MainGateFragmentRaw("Kucing", "Data1"));
+            testKey.AddFragment(new MainGateFragmentRaw("Sapi", "Data2"));
+            testKey.AddFragment(new MainGateFragmentRaw("Kadal", "Data3"));
+
+            LobbyTeacherRoomMainGate.CurrentMainGateKey = testKey;
+
+            LoadMainGateKeyAndQuestionDifficultyData(LobbyTeacherRoomQuestionDifficulty.SelectedDifficulty, LobbyTeacherRoomMainGate.CurrentMainGateKey);
+
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                Debug.Log("Karena master maka dia yang generate level, biar client bisa menyesuaikan.");
+                GameManager.Instance.GenerateLevel();
+
+                Debug.Log("Karena client maka akan main sebagai player.");
+                PlayAsPlayer();
+            }
         }
     }
 
