@@ -81,7 +81,13 @@ public class WeaponManager : MonoBehaviour
         {
             if (weaponTimer <= 0)
             {
-                GameObject ne = Instantiate(weaponProjectiles[0], weaponProjectileOrigin.position, Quaternion.identity);
+                GameObject ne;
+                if (PhotonNetwork.connected) {
+                    ne = PhotonNetwork.Instantiate(weaponProjectiles[0].name, weaponProjectileOrigin.position, Quaternion.identity, 0);
+                } else
+                {
+                    ne = Instantiate(weaponProjectiles[0], weaponProjectileOrigin.position, Quaternion.identity);
+                }
 
                 WeaponProjectile bullet = ne.GetComponent<WeaponProjectile>();
                 bullet.Initialize(GetAimRotation());

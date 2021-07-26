@@ -71,4 +71,5 @@ MonoBehaviour:
   - OpenGateRPC
   - SetCollectedFragmentRPC
   - InitializeRPC
+  - TerminateProjectileRPC
   DisableAutoOpenWizard: 1
