@@ -28,6 +28,7 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     {
         if (testClientSingle)
         {
+            PhotonNetwork.player.NickName = "Anak Pintar";
             PhotonNetwork.ConnectUsingSettings(Application.version);
         }
     }
@@ -44,11 +45,6 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     {
         if (testClientSingle)
         {
-            // MainGateKeyRaw testKey = new MainGateKeyRaw("test offlen singleplayer");
-            // testKey.AddFragment(new MainGateFragmentRaw("Kucing", "Data1"));
-            // testKey.AddFragment(new MainGateFragmentRaw("Sapi", "Data2"));
-            // testKey.AddFragment(new MainGateFragmentRaw("Kadal", "Data3"));
-
             string filename = "D:/Music/MathGame/Data/gajah.soal";
 
             string fileBaseName = System.IO.Path.GetFileNameWithoutExtension(new System.IO.FileInfo(filename).Name);

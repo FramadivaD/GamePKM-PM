@@ -65,4 +65,5 @@ MonoBehaviour:
   - InitializeRPCAll
   - TakeFragmentKeyRPCAll
   - UnlockChestRPCAll
+  - OnSubmitNameSuccess
   DisableAutoOpenWizard: 1

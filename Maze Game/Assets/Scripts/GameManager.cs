@@ -86,6 +86,8 @@ public class GameManager : MonoBehaviour
         pausePlayerAndTeamText = player.PauseTeamText;
         gameplayUI = player.GameplayUI;
 
+        player.ChangeDisplayName(PhotonNetwork.player.NickName);
+
         pauseUI.SetActive(false);
 
         player.Initialize(teamType);

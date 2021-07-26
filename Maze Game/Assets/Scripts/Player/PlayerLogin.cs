@@ -17,13 +17,18 @@ public class PlayerLogin : MonoBehaviour
     public event SubmitEventHandler OnSubmitNameSuccess;
     public event SubmitEventHandler OnSubmitNameFailed;
 
+    public void ChangeName(string str)
+    {
+        OnSubmitNameSuccess?.Invoke(str);
+    }
+
     public void SubmitName()
     {
         string name = inputName.text.Trim();
 
         loginUI.SetActive(false);
 
-        OnSubmitNameSuccess?.Invoke(PhotonNetwork.player.NickName);
+        OnSubmitNameSuccess?.Invoke(name);
     }
 
     [System.Obsolete]

@@ -368,10 +368,32 @@ public class Player : MonoBehaviour
         OnInteract = null;
     }
 
+    [PunRPC]
+    public void ChangeDisplayName(string displayName)
+    {
+        if (PhotonNetwork.connected)
+        {
+            if (pv.isMine)
+            {
+                PlayerName = displayName;
+                AllowMove = true;
+
+                pv.RPC("ChangeDisplayName", PhotonTargets.OthersBuffered, displayName);
+            }
+            else
+            {
+                PlayerName = displayName;
+            }
+        }
+        else
+        {
+            PlayerName = displayName;
+        }
+    }
+
     private void OnSubmitNameSuccess(string playerName)
     {
         PlayerName = playerName;
-        AllowMove = true;
     }
 
     #endregion
