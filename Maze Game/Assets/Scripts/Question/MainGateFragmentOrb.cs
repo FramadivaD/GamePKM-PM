@@ -13,9 +13,9 @@ public class MainGateFragmentOrb : MonoBehaviour
     [SerializeField] private Image fragmentImage;
     [SerializeField] private Text fragmentDataText;
 
-    public void Initialize(MainGateFragment fragment)
+    public void Initialize(TeamType teamType, int fragmentIndex)
     {
-        this.fragment = fragment;
+        this.fragment = GameManager.PlayersTeam[teamType].FragmentsKey.Fragments[fragmentIndex];
 
         canvasUI.SetActive(true);
 

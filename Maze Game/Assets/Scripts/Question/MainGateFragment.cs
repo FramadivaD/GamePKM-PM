@@ -23,9 +23,10 @@ public class MainGateKey
     public static MainGateKey ConvertFromRawData(TeamType team, MainGateKeyRaw mainGateRaw)
     {
         MainGateKey mainGate = new MainGateKey(team);
+        int fragmentIndex = 0;
         foreach (MainGateFragmentRaw fragmentRaw in mainGateRaw.Fragments)
         {
-            MainGateFragment fragment = new MainGateFragment(mainGate, fragmentRaw.Key, fragmentRaw.Data);
+            MainGateFragment fragment = new MainGateFragment(mainGate, fragmentIndex, fragmentRaw.Key, fragmentRaw.Data);
 
             // Read image data by convert from bytes to Sprite
             if (fragmentRaw.DataImage != null && fragmentRaw.DataImage.Length > 0)
@@ -42,6 +43,7 @@ public class MainGateKey
             }
 
             mainGate.AddFragment(fragment);
+            fragmentIndex++;
         }
 
         return mainGate;
@@ -64,9 +66,13 @@ public class MainGateFragment : IInventoryAble
 
     public Sprite DataImage { get { return dataImage; } }
 
-    public MainGateFragment(MainGateKey mainKey, string key, string data)
+    public int FragmentIndex { get; }
+
+    public MainGateFragment(MainGateKey mainKey, int fragmentIndex, string key, string data)
     {
         MainKey = mainKey;
+        FragmentIndex = fragmentIndex;
+
         this.key = key;
         this.data = data;
     }

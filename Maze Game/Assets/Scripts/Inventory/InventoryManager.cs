@@ -186,12 +186,12 @@ public class InventoryManager : MonoBehaviour
 
                 if (PhotonNetwork.connected)
                 {
-                    player.pv.RPC("SpawnFragmentOrbMaster", PhotonTargets.MasterClient, player.transform.position, JsonUtility.ToJson(fragment));
+                    player.pv.RPC("SpawnFragmentOrbMaster", PhotonTargets.MasterClient, player.transform.position, (int)fragment.Team, fragment.FragmentIndex);
                 } else
                 {
                     ne = Instantiate(inventoryOrbPrefabs[0], player.transform.position, Quaternion.identity);
                     MainGateFragmentOrb orb = ne.GetComponent<MainGateFragmentOrb>();
-                    orb.Initialize(fragment);
+                    orb.Initialize(fragment.Team, fragment.FragmentIndex);
                 }
             } else if (item is WeaponInventory)
             {
@@ -201,7 +201,7 @@ public class InventoryManager : MonoBehaviour
                     GameObject ne;
                     if (PhotonNetwork.connected)
                     {
-                        player.pv.RPC("SpawnWeaponOrbMaster", PhotonTargets.MasterClient, player.transform.position, JsonUtility.ToJson(weapon));
+                        player.pv.RPC("SpawnWeaponOrbMaster", PhotonTargets.MasterClient, player.transform.position, (int)weapon.weaponType);
                     }
                     else
                     {
@@ -215,22 +215,21 @@ public class InventoryManager : MonoBehaviour
     }
 
     [PunRPC]
-    private void SpawnFragmentOrbMaster(Vector3 pos, string fragmentJson)
+    private void SpawnFragmentOrbMaster(Vector3 pos, int teamType, int fragmentIndex)
     {
-        MainGateFragment fragment = JsonUtility.FromJson<MainGateFragment>(fragmentJson);
-
         GameObject ne = PhotonNetwork.Instantiate(inventoryOrbPrefabs[0].name, pos, Quaternion.identity, 0);
         MainGateFragmentOrb orb = ne.GetComponent<MainGateFragmentOrb>();
-        orb.Initialize(fragment);
+        orb.Initialize((TeamType)teamType, fragmentIndex);
     }
 
     [PunRPC]
-    private void SpawnWeaponOrbMaster(Vector3 pos, string weaponJson)
+    private void SpawnWeaponOrbMaster(Vector3 pos, int weaponType)
     {
-        WeaponInventory weapon = JsonUtility.FromJson<WeaponInventory>(weaponJson);
+        WeaponInventory weapon = new WeaponInventory() { weaponType = (WeaponType) weaponType };
 
         GameObject ne = PhotonNetwork.Instantiate(inventoryOrbPrefabs[1].name, pos, Quaternion.identity, 0);
         WeaponOrb orb = ne.GetComponent<WeaponOrb>();
+
         orb.Initialize(weapon);
     }
 }
