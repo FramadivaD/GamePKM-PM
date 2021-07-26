@@ -28,6 +28,9 @@ public class RoomGenerator : MonoBehaviour
     [Header("Item Configuration")]
     public int weaponItemCount = 3;
 
+    [Header("Network")]
+    public PhotonView pv;
+
     private void Update()
     {
         if (Application.isEditor)
@@ -285,6 +288,7 @@ public class RoomGenerator : MonoBehaviour
     private RoomGeneratorGrid SpawnRoom(int x, int y)
     {
         GameObject roomObject;
+
         if (PhotonNetwork.connected)
         {
             roomObject = PhotonNetwork.Instantiate(roomPrefab.name, GetRoomPos(x, y), Quaternion.identity, 0);

@@ -54,4 +54,9 @@ MonoBehaviour:
   - AddClientPlayer
   - ClientJoinGame
   - DisableEtcObjects
+  - SpawnRoomByGenerationData
+  - OpenBottomDoor
+  - OpenLeftDoor
+  - OpenRightDoor
+  - OpenTopDoor
   DisableAutoOpenWizard: 1

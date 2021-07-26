@@ -33,6 +33,8 @@ public class EnemyBoss : MonoBehaviour
     public TeamType TeamType { get; private set; }
     public Gate MainGate { get; private set; }
 
+    public PhotonView pv;
+
     public void Initialize(TeamType teamType, Gate mainGate)
     {
         TeamType = teamType;
@@ -59,38 +61,44 @@ public class EnemyBoss : MonoBehaviour
 
     void Update()
     {
-        if (
-            !GameManager.Instance.IsPaused
-            && GameManager.Instance.AllowEntityMove
-            && GameManager.Instance.AllowEnemyMove
-            && !GameManager.Instance.WinnerWasAnnounced
-            && AllowMove)
+        if (pv.isMine)
         {
-            if (MainGate.CheckIsOpened())
+            if (
+                !GameManager.Instance.IsPaused
+                && GameManager.Instance.AllowEntityMove
+                && GameManager.Instance.AllowEnemyMove
+                && !GameManager.Instance.WinnerWasAnnounced
+                && AllowMove)
             {
-                if (BossModeStarted == false)
+                if (MainGate && MainGate.CheckIsOpened())
                 {
-                    Debug.Log("Starting following player..");
-                    BossModeStarted = true;
-                }
+                    if (BossModeStarted == false)
+                    {
+                        Debug.Log("Starting following player..");
+                        BossModeStarted = true;
+                    }
 
-                if (playerTarget == null)
-                {
-                    attackManager.ChangePlayerTarget();
-                }
+                    if (playerTarget == null)
+                    {
+                        attackManager.ChangePlayerTarget();
+                    }
 
-                if (isFollowPlayerInsteadOfMove) {
-                    MoveController(playerTarget);
-                } else
-                {
-                    MoveController(moveTarget);
-                }
+                    if (isFollowPlayerInsteadOfMove)
+                    {
+                        MoveController(playerTarget);
+                    }
+                    else
+                    {
+                        MoveController(moveTarget);
+                    }
 
-                attackManager.Attack(playerTarget);
+                    attackManager.Attack(playerTarget);
+                }
             }
-        } else
-        {
-            rb2.velocity = Vector2.zero;
+            else
+            {
+                rb2.velocity = Vector2.zero;
+            }
         }
     }
 

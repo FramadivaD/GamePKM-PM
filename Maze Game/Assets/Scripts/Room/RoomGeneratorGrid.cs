@@ -72,24 +72,32 @@ public class RoomGeneratorGrid : MonoBehaviour
         return null;
     }
 
+    [PunRPC]
     public void OpenTopDoor()
     {
         topDoor.SetActive(false);
+        pv.RPC("OpenTopDoor", PhotonTargets.OthersBuffered);
     }
 
+    [PunRPC]
     public void OpenRightDoor()
     {
         rightDoor.SetActive(false);
+        pv.RPC("OpenRightDoor", PhotonTargets.OthersBuffered);
     }
 
+    [PunRPC]
     public void OpenBottomDoor()
     {
         bottomDoor.SetActive(false);
+        pv.RPC("OpenBottomDoor", PhotonTargets.OthersBuffered);
     }
 
+    [PunRPC]
     public void OpenLeftDoor()
     {
         leftDoor.SetActive(false);
+        pv.RPC("OpenLeftDoor", PhotonTargets.OthersBuffered);
     }
 
     public int GetUnlockedDoorCount()
@@ -201,7 +209,15 @@ public class RoomGeneratorGrid : MonoBehaviour
 
     private void SpawnBoss(TeamType teamType)
     {
-        GameObject boss = Instantiate(bossTypePrefab[(int)teamType], bossParent);
+        GameObject boss;
+        if (PhotonNetwork.connected)
+        {
+            boss = PhotonNetwork.Instantiate(bossTypePrefab[(int)teamType].name, bossParent.position, Quaternion.identity, 0);
+        }
+        else
+        {
+            boss = Instantiate(bossTypePrefab[(int)teamType], bossParent);
+        }
 
         activeBossEnemy = boss.GetComponent<EnemyBoss>();
     }
