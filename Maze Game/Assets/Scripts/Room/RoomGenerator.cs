@@ -333,6 +333,9 @@ public class RoomGenerator : MonoBehaviour
         {
             // Team is Exist
             if (GameManager.PlayersTeam.TryGetValue(TeamHelper.TeamTypes[i], out TeamData teamData)) {
+
+                Debug.Log("Spawning team chest : " + TeamHelper.TeamTypes[i]);
+
                 MainGateKey key = teamData.FragmentsKey;
                 int chestTreasureCount = key.Fragments.Count;
 

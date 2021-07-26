@@ -47,9 +47,10 @@ public class ChestContainer : MonoBehaviour
 
     public void Initialize(TeamType teamType, MainGateFragment fragment)
     {
-        Initialize();
         this.teamType = teamType;
         this.fragmentKey = fragment;
+
+        Initialize();
 
         Sprite sprite = fragmentKey.DataImage;
 

@@ -92,18 +92,19 @@ public class GameManager : MonoBehaviour
         player.Initialize(teamType);
     }
 
-    private void RegisterTeam()
+    private void RegisterTeam(TeamType teamType)
     {
         if (PlayersTeam == null) PlayersTeam = new Dictionary<TeamType, TeamData>();
 
-        if (!PlayersTeam.ContainsKey(player.teamType)) {
-            MainGateKey key = fragmentsKey[(int)player.teamType];
+        if (!PlayersTeam.ContainsKey(teamType)) {
+            MainGateKey key = fragmentsKey[(int)teamType];
 
-            TeamData newTeamData = new TeamData(player.teamType, key);
-            PlayersTeam[player.teamType] = newTeamData;
+            TeamData newTeamData = new TeamData(teamType, key);
+            PlayersTeam[teamType] = newTeamData;
         }
     }
 
+    /*
     private void RegisterPlayer()
     {
         if (PlayersTeam.TryGetValue(player.teamType, out TeamData teamData))
@@ -115,12 +116,16 @@ public class GameManager : MonoBehaviour
         if (players == null) players = new List<Player>();
         players.Add(player);
     }
+    */
 
     public void LoadFragmentsKey(MainGateKey mainGateKey)
     {
         fragmentsKey = new List<MainGateKey>();
         fragmentsKey.Add(mainGateKey);
         fragmentsKey.Add(mainGateKey);
+
+        RegisterTeam(TeamType.Red);
+        RegisterTeam(TeamType.Blue);
     }
 
     public void LoadQuestionDifficulty(QuestionDifficulty difficulty)
@@ -138,9 +143,6 @@ public class GameManager : MonoBehaviour
         // Spawn player dulu, karena pas baru mulai gaada player
 
         SpawnPlayer(teamType);
-
-        RegisterTeam();
-        RegisterPlayer();
     }
 
     public void BeginSpectator()
