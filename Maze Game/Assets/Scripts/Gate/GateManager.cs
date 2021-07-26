@@ -14,7 +14,7 @@ public class GateManager : MonoBehaviour
     public RectTransform answerContainerParent;
     public GameObject answerImagePrefab;
 
-    private List<MainGateFragment> fragmentProgress;
+    private List<int> fragmentProgress;
 
     public void Initialize(Player player)
     {
@@ -61,22 +61,22 @@ public class GateManager : MonoBehaviour
             Destroy(tr.gameObject);
         }
 
-        if (fragmentProgress ==  null) fragmentProgress = new List<MainGateFragment>();
+        if (fragmentProgress ==  null) fragmentProgress = new List<int>();
         fragmentProgress.Clear();
 
-        foreach (MainGateFragment fragment in selectedGate.CollectedFragment)
+        foreach (int fragmentIndex in selectedGate.CollectedFragmentIndex)
         {
             GameObject buttonAnswer = Instantiate(answerImagePrefab, answerContainerParent);
             Button button = buttonAnswer.GetComponent<Button>();
 
             if (Application.isEditor)
             {
-                button.GetComponentInChildren<Text>().text = fragment.Data;
+                button.GetComponentInChildren<Text>().text = GameManager.PlayersTeam[gate.teamType].FragmentsKey.Fragments[fragmentIndex].Data;
             }
 
             button.onClick.AddListener(() =>
             {
-                SelectAnswerStep(fragment);
+                SelectAnswerStep(fragmentIndex);
                 Destroy(buttonAnswer.gameObject);
             });
         }
@@ -84,7 +84,7 @@ public class GateManager : MonoBehaviour
         questionContainer.SetActive(true);
     }
 
-    private void SelectAnswerStep(MainGateFragment fragment)
+    private void SelectAnswerStep(int fragment)
     {
         if (selectedGate != null)
         {

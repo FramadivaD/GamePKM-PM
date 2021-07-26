@@ -66,4 +66,5 @@ MonoBehaviour:
   - TakeFragmentKeyRPCAll
   - UnlockChestRPCAll
   - OnSubmitNameSuccess
+  - ChangeDisplayName
   DisableAutoOpenWizard: 1

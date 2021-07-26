@@ -2,6 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class GateFragmentOrder
+{
+    public List<int> order;
+
+    public GateFragmentOrder(List<int> order)
+    {
+        this.order = new List<int>(order);
+    }
+}
+
 public class Gate : MonoBehaviour
 {
     [SerializeField] private PhotonView pv;
@@ -17,17 +28,28 @@ public class Gate : MonoBehaviour
     [SerializeField] private MainGateKey mainKey;
     public MainGateKey MainKey { get { return mainKey; } private set { mainKey = value; } }
 
-    public List<MainGateFragment> CollectedFragment { get; private set; } = new List<MainGateFragment>();
+    public List<int> CollectedFragmentIndex { get; private set; } = new List<int>();
 
     void Start()
     {
         gateAnim = GetComponent<Animator>();
     }
 
-    public void Initialize(TeamType teamType, MainGateKey mainKey)
+    public void Initialize(TeamType teamType)
     {
-        this.teamType = teamType;
-        this.MainKey = mainKey;
+        if (PhotonNetwork.connected) {
+            pv.RPC("InitializeRPC", PhotonTargets.AllBuffered, (int)teamType);
+        } else
+        {
+            InitializeRPC((int)teamType);
+        }
+    }
+
+    [PunRPC]
+    private void InitializeRPC(int teamType)
+    {
+        this.teamType = (TeamType) teamType;
+        this.MainKey = GameManager.PlayersTeam[this.teamType].FragmentsKey;
         IsOpened = false;
     }
 
@@ -48,7 +70,7 @@ public class Gate : MonoBehaviour
 
                     if (fragment.MainKey == mainKey)
                     {
-                        CollectedFragment.Add(inventory.RemoveItem(fragment) as MainGateFragment);
+                        CollectedFragmentIndex.Add((inventory.RemoveItem(fragment) as MainGateFragment).FragmentIndex);
 
                         Debug.Log("Fragment Stored : " + fragment.Key);
                         PlayCollectAnimation();
@@ -67,7 +89,7 @@ public class Gate : MonoBehaviour
 
         for (int i = 0; i < mainKey.Fragments.Count; i++)
         {
-            if (CollectedFragment[i] != mainKey.Fragments[i])
+            if (CollectedFragmentIndex[i] != mainKey.Fragments[i].FragmentIndex)
             {
                 return false;
             }
@@ -78,15 +100,43 @@ public class Gate : MonoBehaviour
 
     public bool CheckGateIsReadyReordering()
     {
-        return CollectedFragment.Count == mainKey.Fragments.Count;
+        return CollectedFragmentIndex.Count == mainKey.Fragments.Count;
     }
 
-    public void SetCollectedFragment(List<MainGateFragment> orderedFragments)
+    public void SetCollectedFragment(List<int> orderedFragments)
     {
-        CollectedFragment = new List<MainGateFragment>(orderedFragments);
+        GateFragmentOrder newOrder = new GateFragmentOrder(orderedFragments);
+
+        string orderJson = JsonUtility.ToJson(newOrder);
+        if (PhotonNetwork.connected)
+        {
+            pv.RPC("SetCollectedFragmentRPC", PhotonTargets.AllBuffered, orderJson);
+        } else
+        {
+            SetCollectedFragmentRPC(orderJson);
+        }
+    }
+
+    [PunRPC]
+    private void SetCollectedFragmentRPC(string gateFragmentOrderJson)
+    {
+        GateFragmentOrder order = JsonUtility.FromJson<GateFragmentOrder>(gateFragmentOrderJson);
+
+        CollectedFragmentIndex = order.order;
     }
 
     public void OpenGate()
+    {
+        if (PhotonNetwork.connected) {
+            pv.RPC("OpenGateRPC", PhotonTargets.AllBuffered);
+        } else
+        {
+            OpenGateRPC();
+        }
+    }
+
+    [PunRPC]
+    private void OpenGateRPC()
     {
         Debug.Log("Opened Gate");
         IsOpened = true;

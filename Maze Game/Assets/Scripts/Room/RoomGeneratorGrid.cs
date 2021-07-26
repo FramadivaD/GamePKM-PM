@@ -257,7 +257,7 @@ public class RoomGeneratorGrid : MonoBehaviour
             topDoor = topGate;
 
             Gate gate = topGate.GetComponent<Gate>();
-            gate.Initialize(teamType, mainKey);
+            gate.Initialize(teamType);
 
             activeMainGate = gate;
         }
@@ -279,7 +279,7 @@ public class RoomGeneratorGrid : MonoBehaviour
             rightDoor = rightGate;
 
             Gate gate = rightGate.GetComponent<Gate>();
-            gate.Initialize(teamType, mainKey);
+            gate.Initialize(teamType);
 
             activeMainGate = gate;
         }
@@ -301,7 +301,7 @@ public class RoomGeneratorGrid : MonoBehaviour
             bottomDoor = bottomGate;
 
             Gate gate = bottomGate.GetComponent<Gate>();
-            gate.Initialize(teamType, mainKey);
+            gate.Initialize(teamType);
 
             activeMainGate = gate;
         }
@@ -323,7 +323,7 @@ public class RoomGeneratorGrid : MonoBehaviour
             leftDoor = leftGate;
 
             Gate gate = leftGate.GetComponent<Gate>();
-            gate.Initialize(teamType, mainKey);
+            gate.Initialize(teamType);
 
             activeMainGate = gate;
         }
