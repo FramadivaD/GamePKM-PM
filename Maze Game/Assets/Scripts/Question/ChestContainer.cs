@@ -49,6 +49,17 @@ public class ChestContainer : MonoBehaviour
 
     public void Initialize(TeamType teamType, MainGateFragment fragment)
     {
+        if (PhotonNetwork.connected)
+        {
+            pv.RPC("InitializeRPCAll", PhotonTargets.AllBuffered, (int)teamType, JsonUtility.ToJson(fragment));
+        } else
+        {
+            InitializeDirect(teamType, fragment);
+        }
+    }
+
+    private void InitializeDirect(TeamType teamType, MainGateFragment fragment)
+    {
         this.teamType = teamType;
         this.fragmentKey = fragment;
 
@@ -84,6 +95,18 @@ public class ChestContainer : MonoBehaviour
 
     public void UnlockChest()
     {
+        if (PhotonNetwork.connected)
+        {
+            pv.RPC("UnlockChestRPCAll", PhotonTargets.AllBuffered);
+        } else
+        {
+            UnlockChestRPCAll();
+        }
+    }
+
+    [PunRPC]
+    private void UnlockChestRPCAll()
+    {
         IsUnlocked = true;
     }
 
@@ -99,11 +122,14 @@ public class ChestContainer : MonoBehaviour
                     if (!player.inventoryManager.IsFull)
                     {
                         player.inventoryManager.AddItem(fragmentKey);
-                        fragmentKey = null;
 
-                        IsFragmentTaken = true;
-
-                        canvasUI.SetActive(false);
+                        if (PhotonNetwork.connected)
+                        {
+                            pv.RPC("TakeFragmentKeyRPCAll", PhotonTargets.AllBuffered);
+                        } else
+                        {
+                            TakeFragmentKeyRPCAll();
+                        }
 
                         Debug.Log("Fragment Key saved in inventory.");
                     } else
@@ -121,5 +147,24 @@ public class ChestContainer : MonoBehaviour
             Debug.Log("Fragment key has been taken.");
         }
         return null;
+    }
+
+    [PunRPC]
+    private void InitializeRPCAll(int team, string fragmentJson)
+    {
+        TeamType teamType = (TeamType)team;
+        MainGateFragment fragment = JsonUtility.FromJson<MainGateFragment>(fragmentJson);
+
+        InitializeDirect(teamType, fragment);
+    }
+
+    [PunRPC]
+    private void TakeFragmentKeyRPCAll()
+    {
+        fragmentKey = null;
+
+        IsFragmentTaken = true;
+
+        canvasUI.SetActive(false);
     }
 }

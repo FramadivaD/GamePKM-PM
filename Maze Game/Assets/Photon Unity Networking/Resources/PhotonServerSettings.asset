@@ -62,4 +62,7 @@ MonoBehaviour:
   - DestroyOrb
   - SpawnFragmentOrbMaster
   - SpawnWeaponOrbMaster
+  - InitializeRPCAll
+  - TakeFragmentKeyRPCAll
+  - UnlockChestRPCAll
   DisableAutoOpenWizard: 1
