@@ -53,4 +53,5 @@ MonoBehaviour:
   - SpawnWeaponItemOrbOnClient
   - AddClientPlayer
   - ClientJoinGame
+  - DisableEtcObjects
   DisableAutoOpenWizard: 1

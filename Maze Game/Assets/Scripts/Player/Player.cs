@@ -22,8 +22,17 @@ public class Player : MonoBehaviour
     public PlayerLogin login;
 
     [Header("UI Element")]
+    [SerializeField] private GameObject etcObjects;
+
     [SerializeField] private Text nameTag;
     [SerializeField] private Button interactableButton;
+    [SerializeField] private GameObject gameplayUI;
+    [SerializeField] private GameObject pauseUI;
+    [SerializeField] private Text pauseTeamText;
+
+    public GameObject GameplayUI { get { return gameplayUI; } }
+    public GameObject PauseUI { get { return pauseUI; } }
+    public Text PauseTeamText { get { return pauseTeamText; } }
 
     [Header("Config")]
     [SerializeField] private float movementSpeed;
@@ -68,7 +77,19 @@ public class Player : MonoBehaviour
 
     public void Initialize(TeamType team)
     {
-        teamType = team;
+        if (pv.isMine)
+        {
+            teamType = team;
+            login.SubmitName();
+
+            pv.RPC("DisableEtcObjects", PhotonTargets.OthersBuffered);
+        }
+    }
+
+    [PunRPC]
+    private void DisableEtcObjects()
+    {
+        etcObjects.SetActive(false);
     }
 
     void Start()

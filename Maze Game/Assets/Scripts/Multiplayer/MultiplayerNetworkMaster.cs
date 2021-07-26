@@ -5,6 +5,8 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 {
     public static MultiplayerNetworkMaster Instance { get; private set; }
 
+    public Camera masterCamera;
+
     public PhotonView pv;
 
     public QuestionDifficulty questionDifficulty;
@@ -26,7 +28,16 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     {
         if (testClientSingle)
         {
-            // PhotonNetwork.ConnectUsingSettings(Application.version);
+            MainGateKey testKey = new MainGateKey(TeamType.Red);
+
+            testKey.AddFragment(new MainGateFragment(testKey, "Kucing", "Data1"));
+            testKey.AddFragment(new MainGateFragment(testKey, "Sapi", "Data2"));
+            testKey.AddFragment(new MainGateFragment(testKey, "Kadal", "Data3"));
+
+            GameManager.Instance.LoadFragmentsKey(testKey);
+            GameManager.Instance.LoadQuestionDifficulty(new QuestionDifficulty() { bangunDatar = true, pecahan = true, penjumlahan = true, perkalian = true, persamaan = true });
+
+            PhotonNetwork.ConnectUsingSettings(Application.version);
             GameManager.Instance.GenerateLevel();
         }
     }
@@ -153,6 +164,8 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
     private void PlayAsPlayer()
     {
+        masterCamera.gameObject.SetActive(false);
+
         TeamType team = TeamHelper.FromPhotonTeam(PhotonNetwork.player.GetTeam());
         GameManager.Instance.BeginPlayer(team);
     }

@@ -42,27 +42,30 @@ public class JoystickController : MonoBehaviour
     private void Controller()
     {
         //Joystick Control
-        if (active && OnCheckConditionJoystick.Invoke())
-        {
-            if (Application.isMobilePlatform)
+        if (!PhotonNetwork.connected || !PhotonNetwork.isMasterClient) {
+            if (active && OnCheckConditionJoystick.Invoke())
             {
-                if (Input.touchCount > 0)
+                if (Application.isMobilePlatform)
                 {
-                    bool tapCondition = Input.GetTouch(0).phase == TouchPhase.Began;
-                    bool holdCondition = 
-                        Input.GetTouch(0).phase == TouchPhase.Moved 
-                        || Input.GetTouch(0).phase == TouchPhase.Stationary;
-                    bool releaseCondition = Input.GetTouch(0).phase == TouchPhase.Ended;
+                    if (Input.touchCount > 0)
+                    {
+                        bool tapCondition = Input.GetTouch(0).phase == TouchPhase.Began;
+                        bool holdCondition =
+                            Input.GetTouch(0).phase == TouchPhase.Moved
+                            || Input.GetTouch(0).phase == TouchPhase.Stationary;
+                        bool releaseCondition = Input.GetTouch(0).phase == TouchPhase.Ended;
+
+                        Controlling(tapCondition, holdCondition, releaseCondition);
+                    }
+                }
+                else
+                {
+                    bool tapCondition = Input.GetMouseButtonDown(0);
+                    bool holdCondition = Input.GetMouseButton(0);
+                    bool releaseCondition = Input.GetMouseButtonUp(0);
 
                     Controlling(tapCondition, holdCondition, releaseCondition);
                 }
-            } else
-            {
-                bool tapCondition = Input.GetMouseButtonDown(0);
-                bool holdCondition = Input.GetMouseButton(0);
-                bool releaseCondition = Input.GetMouseButtonUp(0);
-
-                Controlling(tapCondition, holdCondition, releaseCondition);
             }
         }
     }

@@ -62,40 +62,14 @@ public class GameManager : MonoBehaviour
         PlayersTeam = new Dictionary<TeamType, TeamData>();
 
         winnerUI.SetActive(false);
-        pauseUI.SetActive(false);
 
         isPaused = false;
 
         if (MultiplayerNetworkMaster.Instance) {
-            if (!MultiplayerNetworkMaster.Instance.testClientSingle)
-            {
-                if (!PhotonNetwork.connected)
-                {
-                    if (!PhotonNetwork.player.IsMasterClient)
-                    {
-                        player.login.OnSubmitNameSuccess += EnableAllEntitiesMovement;
-                    }
-
-                    roomGenerator.RandomizeMap();
-                }
-            }
+            EnableAllEntitiesMovement(null);
         } else
         {
             roomGenerator.RandomizeMap();
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (MultiplayerNetworkMaster.Instance && !MultiplayerNetworkMaster.Instance.testClientSingle)
-        {
-            if (!PhotonNetwork.connected)
-            {
-                if (!PhotonNetwork.player.IsMasterClient)
-                {
-                    player.login.OnSubmitNameSuccess -= EnableAllEntitiesMovement;
-                }
-            }
         }
     }
 
@@ -108,6 +82,13 @@ public class GameManager : MonoBehaviour
     {
         GameObject p = PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(), Quaternion.identity, 0);
         player = p.GetComponent<Player>();
+
+        pauseUI = player.PauseUI;
+        pausePlayerAndTeamText = player.PauseTeamText;
+        gameplayUI = player.GameplayUI;
+
+        pauseUI.SetActive(false);
+
         player.Initialize(teamType);
     }
 
