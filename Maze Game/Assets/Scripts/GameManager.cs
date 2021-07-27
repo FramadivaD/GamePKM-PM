@@ -134,10 +134,18 @@ public class GameManager : MonoBehaviour
         WinnerWasAnnounced = true;
         WinnerTeam = winnerTeam;
 
-        winnerTeamText.text = "TEAM " + winnerTeam.ToString();
-        winnerStatusText.text = (winnerTeam == player.teamType) ? "WINNER" : "DEFEAT";
+        if (PhotonNetwork.player.IsMasterClient)
+        {
+            winnerTeamText.text = "TEAM " + winnerTeam.ToString();
+            winnerStatusText.text = "WINNER";
+        }
+        else
+        {
+            winnerTeamText.text = "TEAM " + winnerTeam.ToString();
+            winnerStatusText.text = (winnerTeam == player.teamType) ? "WINNER" : "DEFEAT";
 
-        gameplayUI.SetActive(false);
+            gameplayUI.SetActive(false);
+        }
 
         StartCoroutine(AnnounceWinnerUIAfter(winnerTeam, 3));
     }

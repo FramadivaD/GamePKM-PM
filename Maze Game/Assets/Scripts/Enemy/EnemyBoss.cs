@@ -184,13 +184,24 @@ public class EnemyBoss : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!PhotonNetwork.connected || PhotonNetwork.player.IsMasterClient)
+        if (BossModeStarted)
         {
-            if (BossModeStarted)
+            if (collision.tag == "PlayerProjectile")
             {
-                if (collision.tag == "PlayerProjectile")
+                if (collision.TryGetComponent(out WeaponProjectile projectile))
                 {
-                    if (collision.TryGetComponent(out WeaponProjectile projectile))
+                    if (PhotonNetwork.connected)
+                    {
+                        if (PhotonNetwork.player.IsMasterClient)
+                        {
+                            DamagedByProjectile(projectile.Damage);
+
+                            projectile.TerminateProjectile();
+                        } else
+                        {
+                            projectile.TerminateProjectile();
+                        }
+                    } else
                     {
                         DamagedByProjectile(projectile.Damage);
 
