@@ -8038,6 +8038,8 @@ MonoBehaviour:
   usernameInputField: {fileID: 454054786}
   teacherDashboardMenu: {fileID: 1047016020}
   studentDashboardMenu: {fileID: 1799766521}
+  createGameButton: {fileID: 111216781}
+  joinGameButton: {fileID: 783265725}
 --- !u!114 &2016174602
 MonoBehaviour:
   m_ObjectHideFlags: 0

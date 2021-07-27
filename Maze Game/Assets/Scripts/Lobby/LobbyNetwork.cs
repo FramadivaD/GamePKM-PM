@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
+using Extensione.Window;
+
 public class LobbyNetwork : Photon.PunBehaviour
 {
     private string GameVersion { get { return Application.version; } }
@@ -17,11 +19,17 @@ public class LobbyNetwork : Photon.PunBehaviour
     [SerializeField] private GameObject teacherDashboardMenu;
     [SerializeField] private GameObject studentDashboardMenu;
 
+    [SerializeField] private Button createGameButton;
+    [SerializeField] private Button joinGameButton;
+
     private bool connected = false;
 
     private void Awake()
     {
         OpenJoinLobby();
+
+        createGameButton.interactable = false;
+        joinGameButton.interactable = false;
 
         InitializePhotonNetwork();
     }
@@ -50,6 +58,8 @@ public class LobbyNetwork : Photon.PunBehaviour
             } else
             {
                 Debug.Log("RoomID must 5 characters.");
+
+                WindowMaster.Instance.Show("RoomID harus terdiri atas 5 karakter!");
             }
         }
     }
@@ -65,6 +75,8 @@ public class LobbyNetwork : Photon.PunBehaviour
             else
             {
                 Debug.Log("RoomID must 5 characters.");
+
+                WindowMaster.Instance.Show("RoomID harus terdiri atas 5 karakter!");
             }
         }
     }
@@ -97,6 +109,9 @@ public class LobbyNetwork : Photon.PunBehaviour
     {
         Debug.Log("Connected Master");
 
+        createGameButton.interactable = true;
+        joinGameButton.interactable = true;
+
         connected = true;
     }
 
@@ -116,6 +131,9 @@ public class LobbyNetwork : Photon.PunBehaviour
     public override void OnLeftRoom()
     {
         OpenJoinLobby();
+
+        createGameButton.interactable = false;
+        joinGameButton.interactable = false;
     }
 
     public override void OnPhotonJoinRoomFailed(object[] codeAndMsg)
@@ -123,6 +141,8 @@ public class LobbyNetwork : Photon.PunBehaviour
         Debug.Log("Create or Join Room Failed");
 
         Debug.Log("Room might full or ingame progress");
+
+        WindowMaster.Instance.Show("Join Room Gagal!\nRoom telah penuh atau sedang dimulai!");
     }
 
     #endregion

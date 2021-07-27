@@ -62,6 +62,8 @@ namespace Extensione.Window
             {
                 closeButton.onClick.AddListener(Hide);
             }
+
+            Hide();
         }
 
         private void Update()
@@ -123,7 +125,10 @@ namespace Extensione.Window
             subtitleText?.gameObject.SetActive(active);
             closeButton?.gameObject.SetActive(active);
 
-            ChangeOpacity(active ? 1 : 0);
+            if (autoFade)
+            {
+                ChangeOpacity(active ? 1 : 0);
+            }
         }
 
         private void ChangeOpacity(float opacity)
