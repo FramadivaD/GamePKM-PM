@@ -263,6 +263,7 @@ Total
 
 [ ] About masih belum.
 
+[ ] Add android permission
+
 [X] Test Multiplayer 
 [ ] Convert Android Test
-

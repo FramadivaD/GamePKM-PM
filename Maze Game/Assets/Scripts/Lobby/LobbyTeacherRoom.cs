@@ -32,6 +32,8 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
                     if (!skip && (redTeam <= 0 || blueTeam <= 0))
                     {
                         Debug.Log("Each team must have at least 1 player.");
+
+                        WindowMaster.Instance.Show("Setidaknya harus terdapat 1 pemain di masing - masing team.");
                     }
                     else
                     {
@@ -40,10 +42,14 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
                 } else
                 {
                     Debug.Log("At least must has 1 difficulty.");
+
+                    WindowMaster.Instance.Show("Setidaknya harus terdapat 1 jenis soal!");
                 }
             } else
             {
                 Debug.Log("Teacher Must select 1 Question for Main Gate");
+
+                WindowMaster.Instance.Show("Harus memilih Soal untuk Main Gate!");
             }
         }
     }
