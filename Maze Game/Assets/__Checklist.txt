@@ -25,8 +25,8 @@ Game System and Mechanic
 [5] [X] Sistem Storage Save and Load Data
 [7] [X] Sistem Lobby Main Menu
 [3] [ ] Sistem Result Post Gameplay
-[9] [ ] Sistem Multiplayer
-[5] [ ] Sistem Online Multiplayer
+[9] [X] Sistem Multiplayer
+[5] [X] Sistem Online Multiplayer
 [3] [ ] Sistem Port Android
 [1] [ ] Sistem Audio Manager
 
@@ -39,7 +39,7 @@ Audio
 [3] [ ] Audio - Sound Effect
 
 Etc.
-[0] [ ] Server - Penyiapan Backend
+[0] [X] Server - Penyiapan Backend - (sementara pinjem punyaku)
 [5] [ ] Maintenance dan Revisi sampai project siap
 
 Total
@@ -116,7 +116,7 @@ Total
 - Menambahkan Gate Key Browse Laboratory
 - Menambahkan Gate Key Select Laboratory
 
-[23/07/2021]
+[24/07/2021]
 - Menambahkan Fragment Button pada Editor Laboratory
 - Menambahkan Save Data soal pada Editor Laboratory
 - Menambahkan Open Data soal pada Editor Laboratory
@@ -135,6 +135,25 @@ Total
 - Membuat sistem prototype online
 - Membuat sistem Level Generator online.
 - Membuat sistem spawner Generator online.
+
+[25/07/2021]
+- Menambahkan sinkronisasi multiplayer pada master client
+- Menambahkan sinkronisasi multiplayer pada player clients
+- Menambahkan sinkronisasi multiplayer pada weapon orb
+- Menambahkan sinkronisasi multiplayer pada chest container
+
+[26/07/2021]
+- Melanjutkan sinkronisasi multiplayer pada boss enemy
+- Melanjutkan sinkronisasi multiplayer pada gate
+- Melanjutkan sinkronisasi multiplayer pada question
+- Melanjutkan sinkronisasi multiplayer pada fragment orb
+- Melanjutkan sinkronisasi multiplayer pada main gate key
+- Melanjutkan sinkronisasi multiplayer pada fragment key
+
+[27/07/2021]
+- Melanjutkan sinkronisasi multiplayer pada projectile
+- Melanjutkan sinkronisasi multiplayer pada winner
+- Melanjutkan sinkronisasi multiplayer pada effect projectile
 
 ---------------------------------------- Progress -----------------------------------------
 
@@ -207,7 +226,7 @@ Total
 [X] Fitur Navigasi Scene main menu
 [X] Fitur Navigasi Scene lobby
 [X] Fitur Navigasi Scene create question
-[ ] Fitur Navigasi Scene ke gameplay
+[X] Fitur Navigasi Scene ke gameplay
 [ ] Fitur Navigasi Scene ke halaman result terus ke main menu lagi
 
 [X] Lobby menu, nama player dan tim
@@ -223,9 +242,9 @@ Total
 
 [X] Implement Photon Main Menu
 [X] Implement Photon Lobby
-[ ] Implement Photon Gameplay Multiplier
+[X] Implement Photon Gameplay Multiplier
 [X] Implement Photon Logout Lobby
 
-[ ] Test Multiplayer 
+[X] Test Multiplayer 
 [ ] Convert Android Test
 
