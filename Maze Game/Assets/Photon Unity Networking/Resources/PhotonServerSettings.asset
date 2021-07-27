@@ -72,4 +72,7 @@ MonoBehaviour:
   - SetCollectedFragmentRPC
   - InitializeRPC
   - TerminateProjectileRPC
+  - OnDieRPC
+  - SyncEnemyBossHealthRPC
+  - InitializeProjectileRPC
   DisableAutoOpenWizard: 1

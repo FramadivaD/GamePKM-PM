@@ -177,7 +177,16 @@ public class EnemyBossAttackManager : MonoBehaviour
     {
         Quaternion rotation = Quaternion.Euler(0, 0, angle);
 
-        GameObject ne = Instantiate(projectilePrefab, spawnerTransform.position, Quaternion.identity);
+        GameObject ne;
+
+        if (PhotonNetwork.connected)
+        {
+            ne = PhotonNetwork.Instantiate(projectilePrefab.name, spawnerTransform.position, Quaternion.identity, 0);
+        } else
+        {
+            ne = Instantiate(projectilePrefab, spawnerTransform.position, Quaternion.identity);
+        }
+
         WeaponProjectile projectile = ne.GetComponent<WeaponProjectile>();
         if (projectile)
         {

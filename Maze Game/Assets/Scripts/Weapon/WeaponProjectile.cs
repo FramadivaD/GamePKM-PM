@@ -30,17 +30,17 @@ public class WeaponProjectile : MonoBehaviour
     {
         if (PhotonNetwork.connected)
         {
-            pv.RPC("InitializeRPC", PhotonTargets.AllBuffered, rotation);
-        }
-        else
+            pv.RPC("InitializeRPC", PhotonTargets.AllBuffered, transform.position, rotation);
+        } else
         {
-            InitializeRPC(rotation);
+            InitializeRPC(transform.position, rotation);
         }
     }
 
     [PunRPC]
-    private void InitializeRPC(Quaternion rotation)
+    private void InitializeRPC(Vector3 pos, Quaternion rotation)
     {
+        transform.position = pos;
         transform.rotation = rotation;
 
         Launch();
@@ -54,14 +54,9 @@ public class WeaponProjectile : MonoBehaviour
 
     public void TerminateProjectile()
     {
-        SpawnExplosiveEffect();
-
         if (PhotonNetwork.connected)
         {
-            if (pv.isMine)
-            {
-                pv.RPC("TerminateProjectileRPC", PhotonTargets.AllBuffered);
-            }
+            pv.RPC("TerminateProjectileRPC", PhotonTargets.AllBuffered);
         }
         else
         {
@@ -73,7 +68,16 @@ public class WeaponProjectile : MonoBehaviour
     private void TerminateProjectileRPC()
     {
         SpawnExplosiveEffect();
-        Destroy(gameObject);
+        if (PhotonNetwork.connected)
+        {
+            if (pv.isMine)
+            {
+                PhotonNetwork.Destroy(gameObject);
+            }
+        } else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
