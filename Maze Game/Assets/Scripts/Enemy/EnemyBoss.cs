@@ -155,13 +155,16 @@ public class EnemyBoss : MonoBehaviour
 
     private void OnDie()
     {
-        if (PhotonNetwork.connected)
+        if (PhotonNetwork.player.IsMasterClient)
         {
-            pv.RPC("OnDieRPC", PhotonTargets.AllBuffered);
-        }
-        else
-        {
-            OnDieRPC();
+            if (PhotonNetwork.connected)
+            {
+                pv.RPC("OnDieRPC", PhotonTargets.AllBuffered);
+            }
+            else
+            {
+                OnDieRPC();
+            }
         }
     }
 
@@ -181,15 +184,18 @@ public class EnemyBoss : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (BossModeStarted)
+        if (!PhotonNetwork.connected || PhotonNetwork.player.IsMasterClient)
         {
-            if (collision.tag == "PlayerProjectile")
+            if (BossModeStarted)
             {
-                if (collision.TryGetComponent(out WeaponProjectile projectile))
+                if (collision.tag == "PlayerProjectile")
                 {
-                    DamagedByProjectile(projectile.Damage);
+                    if (collision.TryGetComponent(out WeaponProjectile projectile))
+                    {
+                        DamagedByProjectile(projectile.Damage);
 
-                    projectile.TerminateProjectile();
+                        projectile.TerminateProjectile();
+                    }
                 }
             }
         }
@@ -222,14 +228,18 @@ public class EnemyBoss : MonoBehaviour
 
     private void DamagedByProjectile(float damage)
     {
-        health.CurrentHealth -= damage;
 
         if (PhotonNetwork.connected)
         {
-            pv.RPC("SyncEnemyBossHealthRPC", PhotonTargets.AllBuffered, health.CurrentHealth);
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                health.CurrentHealth -= damage;
+                pv.RPC("SyncEnemyBossHealthRPC", PhotonTargets.AllBuffered, health.CurrentHealth);
+            }
         }
         else
         {
+            health.CurrentHealth -= damage;
             SyncEnemyBossHealthRPC(damage);
         }
     }

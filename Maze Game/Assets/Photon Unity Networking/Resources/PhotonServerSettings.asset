@@ -75,4 +75,5 @@ MonoBehaviour:
   - OnDieRPC
   - SyncEnemyBossHealthRPC
   - InitializeProjectileRPC
+  - CheckBossModeStartedRPC
   DisableAutoOpenWizard: 1

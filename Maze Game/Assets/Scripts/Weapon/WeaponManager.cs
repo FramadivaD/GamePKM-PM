@@ -81,16 +81,16 @@ public class WeaponManager : MonoBehaviour
         {
             if (weaponTimer <= 0)
             {
-                GameObject ne;
-                if (PhotonNetwork.connected) {
-                    ne = PhotonNetwork.Instantiate(weaponProjectiles[0].name, weaponProjectileOrigin.position, Quaternion.identity, 0);
-                } else
+                if (PhotonNetwork.connected)
                 {
-                    ne = Instantiate(weaponProjectiles[0], weaponProjectileOrigin.position, Quaternion.identity);
+                    player.pv.RPC("SpawnProjectile", 
+                        PhotonTargets.AllBuffered, 
+                        weaponProjectileOrigin.position, GetAimRotation());
                 }
-
-                WeaponProjectile bullet = ne.GetComponent<WeaponProjectile>();
-                bullet.Initialize(GetAimRotation());
+                else
+                {
+                    SpawnProjectile(weaponProjectileOrigin.position, GetAimRotation());
+                }
 
                 weaponTimer += basokaCooldown;
             }
@@ -100,13 +100,37 @@ public class WeaponManager : MonoBehaviour
 
     private void RefreshGraphic(WeaponInventory weapon)
     {
-        if (weapon != null)
+        int weaponType = weapon == null ? -1 : (int) weapon.weaponType;
+
+        if (PhotonNetwork.connected)
         {
-            if (weapon.weaponType == WeaponType.None) weaponGraphic.sprite = null;
-            else if (weapon.weaponType == WeaponType.Basoka) weaponGraphic.sprite = weaponSprites[0];
+            player.pv.RPC("RefreshGraphicRPC", PhotonTargets.AllBuffered, weaponType);
         } else
+        {
+            RefreshGraphicRPC(weaponType);
+        }
+    }
+
+    [PunRPC]
+    private void RefreshGraphicRPC(int weaponType)
+    {
+        if (weaponType != -1)
+        {
+            if (weaponType == 0) weaponGraphic.sprite = null;
+            else if (weaponType == 1) weaponGraphic.sprite = weaponSprites[0];
+        }
+        else
         {
             weaponGraphic.sprite = null;
         }
+    }
+
+    [PunRPC]
+    private void SpawnProjectile(Vector3 pos, Quaternion rot)
+    {
+        GameObject ne = Instantiate(weaponProjectiles[0], pos, Quaternion.identity);
+
+        WeaponProjectile bullet = ne.GetComponent<WeaponProjectile>();
+        bullet.Initialize(rot);
     }
 }

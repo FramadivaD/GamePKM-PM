@@ -117,7 +117,7 @@ public class EnemyBossAttackManager : MonoBehaviour
                 float rotationZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
                 // fire the projectile
-                FireProjectile(projectileLaunchPrefab, projectileLaunchSpawnOrigin, rotationZ);
+                FireProjectile(0, projectileLaunchSpawnOrigin, rotationZ);
 
                 Debug.Log("Enemy Boss Proceed Projectile Launch");
             }
@@ -158,7 +158,7 @@ public class EnemyBossAttackManager : MonoBehaviour
         {
             if (bulletHellTime <= 0)
             {
-                FireProjectile(projectileBulletPrefab, projectileBulletHellSpawnOrigin, bulletHellAngle);
+                FireProjectile(1, projectileBulletHellSpawnOrigin, bulletHellAngle);
                 bulletHellTime += bulletHellFirePerShootInterval;
             } else
             {
@@ -173,24 +173,17 @@ public class EnemyBossAttackManager : MonoBehaviour
         originTransform.rotation = rotation;
     }
 
-    private void FireProjectile(GameObject projectilePrefab, Transform spawnerTransform, float angle)
+    private void FireProjectile(int projectileIndex, Transform spawnerTransform, float angle)
     {
         Quaternion rotation = Quaternion.Euler(0, 0, angle);
 
-        GameObject ne;
-
         if (PhotonNetwork.connected)
         {
-            ne = PhotonNetwork.Instantiate(projectilePrefab.name, spawnerTransform.position, Quaternion.identity, 0);
-        } else
-        {
-            ne = Instantiate(projectilePrefab, spawnerTransform.position, Quaternion.identity);
+            enemyBoss.pv.RPC("SpawnProjectile", PhotonTargets.AllBuffered, projectileIndex, spawnerTransform.position, rotation);
         }
-
-        WeaponProjectile projectile = ne.GetComponent<WeaponProjectile>();
-        if (projectile)
+        else
         {
-            projectile.Initialize(rotation);
+            SpawnProjectile(projectileIndex, spawnerTransform.position, rotation);
         }
     }
 
@@ -217,6 +210,31 @@ public class EnemyBossAttackManager : MonoBehaviour
             }
 
             enemyBoss.ChangePlayerTarget(nearestPlayer.transform);
+        }
+    }
+
+    [PunRPC]
+    private void SpawnProjectile(int projectileIndex, Vector3 pos, Quaternion rot)
+    {
+        GameObject projectilePrefab = null;
+
+        if (projectileIndex == 0)
+        {
+            projectilePrefab = projectileLaunchPrefab;
+        } else if (projectileIndex == 1)
+        {
+            projectilePrefab = projectileBulletPrefab;
+        }
+
+        if (projectilePrefab)
+        {
+            GameObject ne = Instantiate(projectilePrefab, pos, Quaternion.identity);
+
+            WeaponProjectile projectile = ne.GetComponent<WeaponProjectile>();
+            if (projectile)
+            {
+                projectile.Initialize(rot);
+            }
         }
     }
 }
