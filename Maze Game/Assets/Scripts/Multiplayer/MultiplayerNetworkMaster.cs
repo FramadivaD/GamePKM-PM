@@ -15,6 +15,7 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     [SerializeField] private FirebaseManager firebaseManager;
 
     private int playerSceneCount = 0;
+    private int playerReadyCount = 0;
     private bool masterClientInitialized = false;
 
     public bool testClientSingle;
@@ -150,17 +151,45 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
         if (PhotonNetwork.player.IsMasterClient)
         {
-            Debug.Log("Karena master maka dia yang generate level, biar client bisa menyesuaikan.");
-            GameManager.Instance.GenerateLevel();
+            Debug.Log("Sabar, nunggu download semua selesai");
 
-            Debug.Log("Karena master maka akan main sebagai spectator.");
-            PlayAsSpectator();
+            TellMasterThatClientReadyToPlay();
         }
         else
         {
             Debug.Log("Karena client maka akan main sebagai player.");
 
             PlayAsPlayer();
+
+            Debug.Log("Sabar, nunggu client selesai download semua");
+
+            pv.RPC("TellMasterThatClientReadyToPlay", PhotonTargets.MasterClient);
+        }
+    }
+
+    [PunRPC]
+    private void TellMasterThatClientReadyToPlay()
+    {
+
+        if (PhotonNetwork.player.IsMasterClient)
+        {
+            Debug.Log("Cuman berjalan di Master, bakal nunggu sampai semua client siap generate level");
+
+            Debug.Log("Waiting Player Count : " + playerReadyCount + "/" + PhotonNetwork.playerList.Length);
+
+            playerReadyCount++;
+
+            if (playerReadyCount >= PhotonNetwork.playerList.Length)
+            {
+
+                Debug.Log("Kalau player udah siap semua maka lanjut generate level dan main sebagai spectator");
+
+                Debug.Log("Karena master maka dia yang generate level, biar client bisa menyesuaikan.");
+                GameManager.Instance.GenerateLevel();
+
+                Debug.Log("Karena master maka akan main sebagai spectator.");
+                PlayAsSpectator();
+            }
         }
     }
 

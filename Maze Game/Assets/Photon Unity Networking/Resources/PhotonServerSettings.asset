@@ -78,4 +78,5 @@ MonoBehaviour:
   - CheckBossModeStartedRPC
   - SpawnProjectile
   - RefreshGraphicRPC
+  - TellMasterThatClientReadyToPlay
   DisableAutoOpenWizard: 1

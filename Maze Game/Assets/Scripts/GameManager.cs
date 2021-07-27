@@ -136,7 +136,11 @@ public class GameManager : MonoBehaviour
 
         if (PhotonNetwork.player.IsMasterClient)
         {
-            winnerTeamText.text = "TEAM " + winnerTeam.ToString();
+            winnerTeamText.text = "TEAM "
+                + "<color=\"#" + ColorUtility.ToHtmlStringRGB(TeamHelper.GetColorTeam(winnerTeam)) + "\">"
+                + winnerTeam.ToString()
+                + "</color>";
+
             winnerStatusText.text = "WINNER";
         }
         else

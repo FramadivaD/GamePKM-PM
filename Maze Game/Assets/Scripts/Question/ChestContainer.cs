@@ -51,7 +51,9 @@ public class ChestContainer : MonoBehaviour
     {
         if (PhotonNetwork.connected)
         {
-            pv.RPC("InitializeRPCAll", PhotonTargets.AllBuffered, (int)teamType, fragmentIndex);
+            if (PhotonNetwork.player.IsMasterClient) {
+                pv.RPC("InitializeRPCAll", PhotonTargets.AllBuffered, (int)teamType, fragmentIndex);
+            }
         } else
         {
             InitializeDirect(teamType, fragmentIndex);
