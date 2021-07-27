@@ -72,11 +72,7 @@ public class EnemyBoss : MonoBehaviour
             {
                 if (MainGate && MainGate.CheckIsOpened())
                 {
-                    if (BossModeStarted == false)
-                    {
-                        Debug.Log("Starting following player..");
-                        BossModeStarted = true;
-                    }
+                    CheckBossModeStarted();
 
                     if (playerTarget == null)
                     {
@@ -99,6 +95,34 @@ public class EnemyBoss : MonoBehaviour
             {
                 rb2.velocity = Vector2.zero;
             }
+        }
+    }
+
+    private void CheckBossModeStarted()
+    {
+        if (BossModeStarted == false)
+        {
+            if (PhotonNetwork.connected)
+            {
+                if (PhotonNetwork.player.IsMasterClient)
+                {
+                    pv.RPC("CheckBossModeStartedRPC", PhotonTargets.AllBuffered);
+                }
+            }
+            else
+            {
+                CheckBossModeStartedRPC();
+            }
+        }
+    }
+
+    [PunRPC]
+    private void CheckBossModeStartedRPC()
+    {
+        if (BossModeStarted == false)
+        {
+            Debug.Log("Starting following player..");
+            BossModeStarted = true;
         }
     }
 
