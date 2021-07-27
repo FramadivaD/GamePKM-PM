@@ -46,7 +46,7 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     {
         if (testClientSingle)
         {
-            string filename = "D:/Music/MathGame/Data/Contoh soal 1.soal";
+            string filename = "D:/Music/MathGame/Data/JPG Test.soal";
 
             string fileBaseName = System.IO.Path.GetFileNameWithoutExtension(new System.IO.FileInfo(filename).Name);
 

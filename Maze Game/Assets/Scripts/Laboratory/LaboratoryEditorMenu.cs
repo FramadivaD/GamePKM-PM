@@ -144,14 +144,9 @@ public class LaboratoryEditorMenu : MonoBehaviour
             ex.SetPixels(new Color[] {new Color(255, 255, 255) });
             ex.Apply();
 
-            raw.DataImage = ex.GetRawTextureData();
+            raw.DataImage = ex.EncodeToJPG();
             raw.DataImageWidth = ex.width;
             raw.DataImageHeight = ex.height;
-
-            for (int i = 0; i < raw.DataImage.Length;i++)
-            {
-                Debug.Log(raw.DataImage[i]);
-            }
 
             currentGateKey.AddFragment(raw);
         }
@@ -220,7 +215,8 @@ public class LaboratoryEditorMenu : MonoBehaviour
         if (fragment.DataImage != null && fragment.DataImage.Length > 0)
         {
             Texture2D texture = new Texture2D(fragment.DataImageWidth, fragment.DataImageHeight);
-            texture.LoadRawTextureData(fragment.DataImage);
+            //texture.LoadRawTextureData(fragment.DataImage);
+            texture.LoadImage(fragment.DataImage);
             texture.Apply();
 
             Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
@@ -294,7 +290,8 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
             fragmentImagePreview.sprite = sprite;
 
-            currentGateFragment.DataImage = ntex.GetRawTextureData();
+            // currentGateFragment.DataImage = ntex.GetRawTextureData();
+            currentGateFragment.DataImage = ntex.EncodeToJPG();
             currentGateFragment.DataImageWidth = ntex.width;
             currentGateFragment.DataImageHeight = ntex.height;
 

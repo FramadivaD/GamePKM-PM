@@ -32,7 +32,8 @@ public class MainGateKey
             if (fragmentRaw.DataImage != null && fragmentRaw.DataImage.Length > 0)
             {
                 Texture2D texture = new Texture2D(fragmentRaw.DataImageWidth, fragmentRaw.DataImageHeight);
-                texture.LoadRawTextureData(fragmentRaw.DataImage);
+                //texture.LoadRawTextureData(fragmentRaw.DataImage);
+                texture.LoadImage(fragmentRaw.DataImage);
                 texture.Apply();
 
                 Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));

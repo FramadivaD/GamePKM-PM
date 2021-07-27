@@ -269,6 +269,8 @@ Total
 
 [X] Bug di lab editor ketika nambah fragment
 
+[ ] WEapon shoot delay bug
+
 [ ] Sprite ordering bug on gameplay
 
 [X] Test Multiplayer 
