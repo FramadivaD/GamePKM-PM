@@ -13,12 +13,26 @@ public class GateManager : MonoBehaviour
 
     public RectTransform answerContainerParent;
     public GameObject answerImagePrefab;
+    public GameObject answerNotifWarning;
+
+    public Button nextButton;
 
     private List<int> fragmentProgress;
+
+    private float questionImageTargetWidth;
+    private float questionImageTargetHeight;
 
     public void Initialize(Player player)
     {
         this.player = player;
+
+        nextButton.interactable = false;
+        answerNotifWarning.SetActive(true);
+
+        questionImageTargetWidth = questionImage.rectTransform.sizeDelta.x;
+        questionImageTargetHeight = questionImage.rectTransform.sizeDelta.y;
+
+        questionImage.gameObject.SetActive(false);
     }
 
     public void OpenGate(Gate gate, InventoryManager inventory)
@@ -68,12 +82,53 @@ public class GateManager : MonoBehaviour
 
             button.onClick.AddListener(() =>
             {
-                SelectAnswerStep(fragmentIndex);
-                Destroy(buttonAnswer.gameObject);
+                ShowAnswerStep(fragmentIndex, buttonAnswer.gameObject);
             });
         }
 
         questionContainer.SetActive(true);
+    }
+
+    private int selectedFragmentIndex = -1;
+    private GameObject selectedButtonAnswer = null;
+
+    private void ShowAnswerStep(int fragmentIndex, GameObject buttonAnswer)
+    {
+        selectedFragmentIndex = fragmentIndex;
+        selectedButtonAnswer = buttonAnswer;
+
+        answerNotifWarning.SetActive(false);
+        questionImage.gameObject.SetActive(true);
+        nextButton.interactable = true;
+
+        Sprite fragmentImage = GameManager.PlayersTeam[player.teamType].FragmentsKey.Fragments[fragmentIndex].DataImage;
+        ChangeFragmentImage(fragmentImage);
+    }
+
+    private void ChangeFragmentImage(Sprite fragmentImage)
+    {
+        float originalX = fragmentImage.texture.width;
+        float originalY = fragmentImage.texture.height;
+
+        questionImage.sprite = fragmentImage;
+
+        questionImage.rectTransform.sizeDelta = new Vector2(questionImageTargetWidth, originalY * questionImageTargetHeight / originalX);
+    }
+
+    // dipencet tombol next
+    public void NextAnswerStep()
+    {
+        if (selectedFragmentIndex >= 0) {
+            SelectAnswerStep(selectedFragmentIndex);
+            Destroy(selectedButtonAnswer.gameObject);
+
+            selectedFragmentIndex = -1;
+            selectedButtonAnswer = null;
+
+            answerNotifWarning.SetActive(true);
+            questionImage.gameObject.SetActive(false);
+            nextButton.interactable = false;
+        }
     }
 
     private void SelectAnswerStep(int fragment)
