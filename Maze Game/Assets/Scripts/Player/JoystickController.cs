@@ -6,6 +6,8 @@ public class JoystickController : MonoBehaviour
 {
     public bool active = true;
 
+    [SerializeField] private Player player;
+
     [Header("Joystick Analog")]
     public GameObject mainCircle;
     public GameObject outCircle;
@@ -35,37 +37,43 @@ public class JoystickController : MonoBehaviour
             && GameManager.Instance.AllowEntityMove
             && GameManager.Instance.AllowPlayerMove)
         {
-            Controller();
+            if (PhotonNetwork.connected)
+            {
+                if (player.pv.isMine && (!PhotonNetwork.player.IsMasterClient || MultiplayerNetworkMaster.Instance.testClientSingle)) {
+                    Controller();
+                }
+            } else
+            {
+                Controller();
+            }
         }
     }
 
     private void Controller()
     {
         //Joystick Control
-        if (!PhotonNetwork.connected || !PhotonNetwork.isMasterClient || MultiplayerNetworkMaster.Instance.testClientSingle) {
-            if (active && OnCheckConditionJoystick.Invoke())
+        if (active && OnCheckConditionJoystick.Invoke())
+        {
+            if (Application.isMobilePlatform)
             {
-                if (Application.isMobilePlatform)
+                if (Input.touchCount > 0)
                 {
-                    if (Input.touchCount > 0)
-                    {
-                        bool tapCondition = Input.GetTouch(0).phase == TouchPhase.Began;
-                        bool holdCondition =
-                            Input.GetTouch(0).phase == TouchPhase.Moved
-                            || Input.GetTouch(0).phase == TouchPhase.Stationary;
-                        bool releaseCondition = Input.GetTouch(0).phase == TouchPhase.Ended;
-
-                        Controlling(tapCondition, holdCondition, releaseCondition);
-                    }
-                }
-                else
-                {
-                    bool tapCondition = Input.GetMouseButtonDown(0);
-                    bool holdCondition = Input.GetMouseButton(0);
-                    bool releaseCondition = Input.GetMouseButtonUp(0);
+                    bool tapCondition = Input.GetTouch(0).phase == TouchPhase.Began;
+                    bool holdCondition =
+                        Input.GetTouch(0).phase == TouchPhase.Moved
+                        || Input.GetTouch(0).phase == TouchPhase.Stationary;
+                    bool releaseCondition = Input.GetTouch(0).phase == TouchPhase.Ended;
 
                     Controlling(tapCondition, holdCondition, releaseCondition);
                 }
+            }
+            else
+            {
+                bool tapCondition = Input.GetMouseButtonDown(0);
+                bool holdCondition = Input.GetMouseButton(0);
+                bool releaseCondition = Input.GetMouseButtonUp(0);
+
+                Controlling(tapCondition, holdCondition, releaseCondition);
             }
         }
     }

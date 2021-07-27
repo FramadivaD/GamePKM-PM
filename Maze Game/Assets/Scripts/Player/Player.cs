@@ -127,9 +127,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        AnimationController();
+        if (pv.isMine) {
+            AnimationController();
 
-        ExecuteEquippedItem();
+            ExecuteEquippedItem();
+        }
     }
 
     private void Die()
