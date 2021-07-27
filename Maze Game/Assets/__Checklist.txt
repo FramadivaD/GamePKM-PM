@@ -156,6 +156,12 @@ Total
 - Melanjutkan sinkronisasi multiplayer pada effect projectile
 - Memperbarui tampilan layout Gate Manager
 - Menambahkan Audio Manager
+- Menambahkan Window Master
+- Memperbarui UI Main Menu, Lobby Menu, Laboratory
+- Mengganti encoding dari RAW ke JPG.
+
+[28/07/2021]
+- 
 
 ---------------------------------------- Progress -----------------------------------------
 
@@ -269,7 +275,7 @@ Total
 
 [X] Bug di lab editor ketika nambah fragment
 
-[ ] WEapon shoot delay bug
+[ ] Weapon shoot delay bug
 
 [ ] Sprite ordering bug on gameplay
 
