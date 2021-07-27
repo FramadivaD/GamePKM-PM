@@ -2,129 +2,132 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+namespace Extensione.Audio
 {
-    public static AudioManager Instance { get; private set; }
-
-    private AudioSource audioMusic;
-    private AudioSource audioSFX;
-
-    void Awake()
+    public class AudioManager : MonoBehaviour
     {
-        if (Instance != null)
+        public static AudioManager Instance { get; private set; }
+
+        private AudioSource audioMusic;
+        private AudioSource audioSFX;
+
+        void Awake()
         {
-            Destroy(this.gameObject);
-            return;
+            if (Instance != null)
+            {
+                Destroy(this.gameObject);
+                return;
+            }
+
+            Instance = this;
+            DontDestroyOnLoad(Instance);
+
+            audioMusic = gameObject.AddComponent<AudioSource>();
+            audioSFX = gameObject.AddComponent<AudioSource>();
+
+            audioMusic.playOnAwake = false;
+            audioSFX.playOnAwake = false;
+
+            audioMusic.loop = true;
+            audioSFX.loop = false;
         }
 
-        Instance = this;
-        DontDestroyOnLoad(Instance);
-
-        audioMusic = gameObject.AddComponent<AudioSource>();
-        audioSFX = gameObject.AddComponent<AudioSource>();
-
-        audioMusic.playOnAwake = false;
-        audioSFX.playOnAwake = false;
-
-        audioMusic.loop = true;
-        audioSFX.loop = false;
-    }
-
-    private void Update()
-    {
-        TransitionBetweenMusic();
-    }
-
-    public void PlaySFXOnce(AudioClip clip)
-    {
-        if (audioSFX)
+        private void Update()
         {
-            audioSFX.PlayOneShot(clip);
+            TransitionBetweenMusic();
         }
-    }
 
-    public void PlayMusicDelayed(AudioClip clip, float delay)
-    {
-        if (audioMusic)
+        public void PlaySFXOnce(AudioClip clip)
         {
-            audioMusic.clip = clip;
-            audioMusic.PlayDelayed(delay);
+            if (audioSFX)
+            {
+                audioSFX.PlayOneShot(clip);
+            }
         }
-    }
 
-    public void PlayMusic(AudioClip clip = null)
-    {
-        if (audioMusic)
+        public void PlayMusicDelayed(AudioClip clip, float delay)
         {
-            if (clip)
+            if (audioMusic)
             {
                 audioMusic.clip = clip;
+                audioMusic.PlayDelayed(delay);
             }
-            audioMusic.Play();
         }
-    }
 
-    private int fadingState = 0; //0 nothing, 1 fade out, 2 fade in, 0 done
-    private AudioClip fadingClipTarget;
-
-    public void ChangeMusic(AudioClip clip)
-    {
-        if (audioMusic)
+        public void PlayMusic(AudioClip clip = null)
         {
-            fadingState = 1;
-            fadingClipTarget = clip;
-        }
-    }
-
-    private void TransitionBetweenMusic()
-    {
-        if (audioMusic)
-        {
-            if (fadingState == 1) //fade out
+            if (audioMusic)
             {
-                audioMusic.volume += (0.0f - audioMusic.volume) * 0.1f;
-
-                if (audioMusic.volume <= 0.02f)
+                if (clip)
                 {
-                    fadingState = 2;
-                    audioMusic.clip = fadingClipTarget;
-                    audioMusic.Play();
+                    audioMusic.clip = clip;
+                }
+                audioMusic.Play();
+            }
+        }
+
+        private int fadingState = 0; //0 nothing, 1 fade out, 2 fade in, 0 done
+        private AudioClip fadingClipTarget;
+
+        public void ChangeMusic(AudioClip clip)
+        {
+            if (audioMusic)
+            {
+                fadingState = 1;
+                fadingClipTarget = clip;
+            }
+        }
+
+        private void TransitionBetweenMusic()
+        {
+            if (audioMusic)
+            {
+                if (fadingState == 1) //fade out
+                {
+                    audioMusic.volume += (0.0f - audioMusic.volume) * 0.1f;
+
+                    if (audioMusic.volume <= 0.02f)
+                    {
+                        fadingState = 2;
+                        audioMusic.clip = fadingClipTarget;
+                        audioMusic.Play();
+                    }
+                }
+                else if (fadingState == 2) //fade in
+                {
+                    audioMusic.volume += (1.0f - audioMusic.volume) * 0.1f;
+
+                    if (audioMusic.volume >= 0.98f)
+                    {
+                        fadingState = 0;
+                        audioMusic.volume = 1.00f;
+                    }
                 }
             }
-            else if (fadingState == 2) //fade in
-            {
-                audioMusic.volume += (1.0f - audioMusic.volume) * 0.1f;
+        }
 
-                if (audioMusic.volume >= 0.98f)
-                {
-                    fadingState = 0;
-                    audioMusic.volume = 1.00f;
-                }
+        public void PauseMusic()
+        {
+            if (audioMusic)
+            {
+                audioMusic.Pause();
             }
         }
-    }
 
-    public void PauseMusic()
-    {
-        if (audioMusic)
+        public void UnPauseMusic()
         {
-            audioMusic.Pause();
+            if (audioMusic)
+            {
+                audioMusic.UnPause();
+            }
         }
-    }
 
-    public void UnPauseMusic()
-    {
-        if (audioMusic)
+        public void StopMusic()
         {
-            audioMusic.UnPause();
-        }
-    }
-
-    public void StopMusic()
-    {
-        if (audioMusic)
-        {
-            audioMusic.Stop();
+            if (audioMusic)
+            {
+                audioMusic.Stop();
+            }
         }
     }
 }
