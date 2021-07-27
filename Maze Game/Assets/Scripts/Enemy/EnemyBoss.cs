@@ -39,6 +39,16 @@ public class EnemyBoss : MonoBehaviour
     {
         TeamType = teamType;
         MainGate = mainGate;
+
+        if (PhotonNetwork.connected) {
+            pv.RPC("InitializeRPC", PhotonTargets.Others, (int) teamType);
+        }
+    }
+
+    [PunRPC]
+    private void InitializeRPC(int teamTypeInt)
+    {
+        TeamType = (TeamType)teamTypeInt;
     }
 
     [SerializeField] private float changeRoomTimeInterval = 5;

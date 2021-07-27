@@ -22,6 +22,7 @@ public class WeaponManager : MonoBehaviour
         RefreshGraphic(null);
     }
 
+    private WeaponInventory prevWeapon = null;
     public void ExecuteWeapon(WeaponInventory weapon)
     {
         if (weapon != null)
@@ -100,14 +101,20 @@ public class WeaponManager : MonoBehaviour
 
     private void RefreshGraphic(WeaponInventory weapon)
     {
-        int weaponType = weapon == null ? -1 : (int) weapon.weaponType;
+        if (prevWeapon != weapon)
+        {
+            int weaponType = weapon == null ? -1 : (int)weapon.weaponType;
 
-        if (PhotonNetwork.connected)
-        {
-            player.pv.RPC("RefreshGraphicRPC", PhotonTargets.AllBuffered, weaponType);
-        } else
-        {
-            RefreshGraphicRPC(weaponType);
+            if (PhotonNetwork.connected)
+            {
+                player.pv.RPC("RefreshGraphicRPC", PhotonTargets.AllBuffered, weaponType);
+            }
+            else
+            {
+                RefreshGraphicRPC(weaponType);
+            }
+
+            prevWeapon = weapon;
         }
     }
 

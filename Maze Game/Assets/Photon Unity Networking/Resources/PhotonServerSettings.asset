@@ -79,4 +79,5 @@ MonoBehaviour:
   - SpawnProjectile
   - RefreshGraphicRPC
   - TellMasterThatClientReadyToPlay
+  - SyncTeamColorGraphic
   DisableAutoOpenWizard: 1

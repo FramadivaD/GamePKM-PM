@@ -87,11 +87,16 @@ public class Player : MonoBehaviour
             teamType = team;
             login.SubmitName();
 
-            playerHatGraphic.sprite = teamHatSprites[(int)teamType];
-            playerBodyGraphic.sprite = teamBodySprites[(int)teamType];
-
+            pv.RPC("SyncTeamColorGraphic", PhotonTargets.AllBuffered, (int)teamType);
             pv.RPC("DisableEtcObjects", PhotonTargets.OthersBuffered);
         }
+    }
+
+    [PunRPC]
+    private void SyncTeamColorGraphic(int teamTypeInt)
+    {
+        playerHatGraphic.sprite = teamHatSprites[teamTypeInt];
+        playerBodyGraphic.sprite = teamBodySprites[teamTypeInt];
     }
 
     [PunRPC]

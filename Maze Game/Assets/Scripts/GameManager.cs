@@ -145,7 +145,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            winnerTeamText.text = "TEAM " + winnerTeam.ToString();
+            winnerTeamText.text = "TEAM "
+                + "<color=\"#" + ColorUtility.ToHtmlStringRGB(TeamHelper.GetColorTeam(winnerTeam)) + "\">"
+                + winnerTeam.ToString()
+                + "</color>";
+
             winnerStatusText.text = (winnerTeam == player.teamType) ? "WINNER" : "DEFEAT";
 
             gameplayUI.SetActive(false);
