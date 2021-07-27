@@ -10,6 +10,10 @@ public class Player : MonoBehaviour
 
     [Header("Player Config")]
     public TeamType teamType;
+    [SerializeField] private SpriteRenderer playerHatGraphic;
+    [SerializeField] private SpriteRenderer playerBodyGraphic;
+    [SerializeField] private Sprite[] teamHatSprites;
+    [SerializeField] private Sprite[] teamBodySprites;
 
     [Header("Player Manager")]
     public PlayerGameManagerReference gameManagerReference;
@@ -82,6 +86,9 @@ public class Player : MonoBehaviour
         {
             teamType = team;
             login.SubmitName();
+
+            playerHatGraphic.sprite = teamHatSprites[(int)teamType];
+            playerBodyGraphic.sprite = teamBodySprites[(int)teamType];
 
             pv.RPC("DisableEtcObjects", PhotonTargets.OthersBuffered);
         }

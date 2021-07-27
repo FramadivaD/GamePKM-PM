@@ -6059,6 +6059,7 @@ GameObject:
   - component: {fileID: 4593806189981459242}
   - component: {fileID: 9073236876983084820}
   - component: {fileID: 3997672971475478631}
+  - component: {fileID: 7212833650153885002}
   m_Layer: 0
   m_Name: PlayerMultiplayer
   m_TagString: Player
@@ -6155,6 +6156,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pv: {fileID: 9073236876983084820}
   teamType: 0
+  playerHatGraphic: {fileID: 6117276586169726161}
+  playerBodyGraphic: {fileID: 6117276584984266834}
+  teamHatSprites:
+  - {fileID: 21300000, guid: 99c95b1c0187532479bb198aa7822fb2, type: 3}
+  - {fileID: 21300000, guid: 6543897ef7a97cf4b8d3e0e5fd88ece0, type: 3}
+  teamBodySprites:
+  - {fileID: 21300000, guid: 0de58de98aa5f514bba4e584fe24a796, type: 3}
+  - {fileID: 21300000, guid: 5c4cb0313ff4d074cbf1f9674ff6d550, type: 3}
   gameManagerReference: {fileID: 3068215454844158719}
   questionManager: {fileID: 839668587}
   gateManager: {fileID: 839668586}
@@ -6348,6 +6357,7 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 3997672971475478631}
+  - {fileID: 7212833650153885002}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -6431,6 +6441,33 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &7212833650153885002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6117276585491530554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: isWalkR
+  - Type: 4
+    SynchronizeType: 1
+    Name: isWalkL
+  - Type: 4
+    SynchronizeType: 1
+    Name: isWalk
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!1 &6117276585659172069
 GameObject:
   m_ObjectHideFlags: 0

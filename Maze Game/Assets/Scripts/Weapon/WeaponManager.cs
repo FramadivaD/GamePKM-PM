@@ -118,10 +118,14 @@ public class WeaponManager : MonoBehaviour
         {
             if (weaponType == 0) weaponGraphic.sprite = null;
             else if (weaponType == 1) weaponGraphic.sprite = weaponSprites[0];
+
+            Debug.Log("Refresh weapon dengan senjata asli");
         }
         else
         {
             weaponGraphic.sprite = null;
+
+            Debug.Log("Refresh weapon dengan null");
         }
     }
 
