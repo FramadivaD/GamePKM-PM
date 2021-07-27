@@ -252,7 +252,7 @@ Total
 [ ] Tampilan loading lobby menuju ke scene gameplay (game dimulai guru)
 [ ] Tampilan loading scene gameplay menuju player udah siap semua sehingga master generate map
 [ ] Tampilan winner nanti langsung balik ke lobby tanpa ada yang disconnect
-[ ] Tampilan kalau room udah full
+[X] Tampilan kalau room udah full
 [ ] Controller Spectator simple
 [ ] Port controller android
 [ ] konfirmasi nama package ke literally client.
@@ -263,7 +263,7 @@ Total
 
 [ ] About masih belum.
 
-[ ] Add android permission
+[ ] Add android permission internet, write and read storage data
 
 [X] Test Multiplayer 
 [ ] Convert Android Test

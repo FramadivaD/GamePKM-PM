@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Extensione.Window;
 
 public class LobbyMenu : MonoBehaviour
 {
@@ -35,6 +36,8 @@ public class LobbyMenu : MonoBehaviour
         } else
         {
             Debug.Log("Invalid ID. Must 5 characters.");
+
+            WindowMaster.Instance.Show("RoomID harus terdiri atas 5 karakter!");
         }
     }
 
@@ -51,6 +54,8 @@ public class LobbyMenu : MonoBehaviour
         else
         {
             Debug.Log("Invalid ID. Must 5 characters.");
+
+            WindowMaster.Instance.Show("RoomID harus terdiri atas 5 karakter!");
         }
     }
 
@@ -66,6 +71,8 @@ public class LobbyMenu : MonoBehaviour
         else
         {
             Debug.Log("Invalid Username. Must at least 3 characters.");
+
+            WindowMaster.Instance.Show("Username setidaknya terdiri atas 3 karakter!");
         }
     }
 }
