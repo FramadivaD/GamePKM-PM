@@ -12,6 +12,17 @@ public class LobbyMenu : MonoBehaviour
 
     [SerializeField] private Text roomIDText;
 
+    private void Start()
+    {
+        createGameInput.onValidateInput += CapslockInputField;
+        joinGameInput.onValidateInput += CapslockInputField;
+    }
+
+    private char CapslockInputField(string str, int i, char c)
+    {
+        return char.ToUpper(c);
+    }
+
     public void CreateNewGame()
     {
         string roomID = createGameInput.text;

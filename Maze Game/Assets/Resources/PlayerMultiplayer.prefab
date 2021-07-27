@@ -6246,6 +6246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 1
+  player: {fileID: 6117276585491530557}
   mainCircle: {fileID: 1425399188}
   outCircle: {fileID: 1365271173}
 --- !u!114 &6117276585491530557
