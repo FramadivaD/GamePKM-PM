@@ -76,4 +76,6 @@ MonoBehaviour:
   - SyncEnemyBossHealthRPC
   - InitializeProjectileRPC
   - CheckBossModeStartedRPC
+  - SpawnProjectile
+  - RefreshGraphicRPC
   DisableAutoOpenWizard: 1

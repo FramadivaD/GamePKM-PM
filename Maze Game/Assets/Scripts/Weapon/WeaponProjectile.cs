@@ -3,8 +3,6 @@ using System.Collections;
 
 public class WeaponProjectile : MonoBehaviour
 {
-    [SerializeField] protected PhotonView pv;
-
     [SerializeField] protected float damage;
     [SerializeField] protected float speed;
     [SerializeField] protected float destroyAfter = 5;
@@ -47,19 +45,17 @@ public class WeaponProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (pv.isMine) {
-            if (collider.CompareTag("RoomWall"))
-            {
-                TerminateProjectile();
-            }
-            else if (collider.CompareTag("RoomDoor"))
-            {
-                TerminateProjectile();
-            }
-            else if (collider.CompareTag("RoomGate"))
-            {
-                TerminateProjectile();
-            }
+        if (collider.CompareTag("RoomWall"))
+        {
+            TerminateProjectile();
+        }
+        else if (collider.CompareTag("RoomDoor"))
+        {
+            TerminateProjectile();
+        }
+        else if (collider.CompareTag("RoomGate"))
+        {
+            TerminateProjectile();
         }
     }
 
