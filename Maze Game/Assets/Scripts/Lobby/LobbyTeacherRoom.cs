@@ -24,7 +24,8 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
                     int redTeam = GetRedTeamCount();
                     int blueTeam = GetBlueTeamCount();
 
-                    bool skip = true;
+                    // Change this to true to debug mode
+                    bool skip = false;
 
                     if (!skip && (redTeam <= 0 || blueTeam <= 0))
                     {

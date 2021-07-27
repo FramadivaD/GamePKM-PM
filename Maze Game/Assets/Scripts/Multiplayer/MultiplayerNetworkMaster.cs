@@ -23,6 +23,15 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     private void Awake()
     {
         Instance = this;
+
+        if (PhotonNetwork.connected)
+        {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                PhotonNetwork.room.IsOpen = false;
+                PhotonNetwork.room.IsVisible = false;
+            }
+        }
     }
 
     private void TestClientSingle()

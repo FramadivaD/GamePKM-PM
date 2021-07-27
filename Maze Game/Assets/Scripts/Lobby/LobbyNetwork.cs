@@ -28,6 +28,15 @@ public class LobbyNetwork : Photon.PunBehaviour
 
     private void InitializePhotonNetwork()
     {
+        if (PhotonNetwork.connected)
+        {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                PhotonNetwork.room.IsOpen = true;
+                PhotonNetwork.room.IsVisible = true;
+            }
+        }
+
         PhotonNetwork.ConnectUsingSettings(GameVersion);
     }
 
@@ -112,6 +121,8 @@ public class LobbyNetwork : Photon.PunBehaviour
     public override void OnPhotonJoinRoomFailed(object[] codeAndMsg)
     {
         Debug.Log("Create or Join Room Failed");
+
+        Debug.Log("Room might full or ingame progress");
     }
 
     #endregion

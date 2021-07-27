@@ -28,7 +28,7 @@ Game System and Mechanic
 [9] [X] Sistem Multiplayer
 [5] [X] Sistem Online Multiplayer
 [3] [ ] Sistem Port Android
-[1] [ ] Sistem Audio Manager
+[1] [X] Sistem Audio Manager
 
 Design
 [0] [X] Design - Penataan UI yang sesuai layar dinamis
@@ -154,6 +154,8 @@ Total
 - Melanjutkan sinkronisasi multiplayer pada projectile
 - Melanjutkan sinkronisasi multiplayer pada winner
 - Melanjutkan sinkronisasi multiplayer pada effect projectile
+- Memperbarui tampilan layout Gate Manager
+- Menambahkan Audio Manager
 
 ---------------------------------------- Progress -----------------------------------------
 
@@ -244,6 +246,22 @@ Total
 [X] Implement Photon Lobby
 [X] Implement Photon Gameplay Multiplier
 [X] Implement Photon Logout Lobby
+
+[X] Cegah join kalo game udah dimulai
+[X] Cegah play kalo gaada pemain sama sekali
+[ ] Tampilan loading lobby menuju ke scene gameplay
+[ ] Tampilan loading scene gameplay menuju player udah siap semua sehingga master generate map
+[ ] Tampilan winner nanti langsung balik ke lobby tanpa ada yang disconnect
+[ ] Tampilan kalau room udah full
+[ ] Controller Spectator simple
+[ ] Port controller android
+[ ] konfirmasi nama package ke literally client.
+
+[ ] Cari sound effect
+[ ] Cari lagu main
+[ ] Sync dengan gameplay dan audio manager
+
+[ ] About masih belum.
 
 [X] Test Multiplayer 
 [ ] Convert Android Test
