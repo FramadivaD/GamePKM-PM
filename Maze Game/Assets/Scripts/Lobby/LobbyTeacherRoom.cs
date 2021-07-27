@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using Extensione.Window;
+
 public class LobbyTeacherRoom : Photon.PunBehaviour
 {
     [SerializeField] private PhotonView pv;
@@ -33,7 +35,6 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
                     }
                     else
                     {
-                        //StartGame();
                         UploadMainGateKeyFile();
                     }
                 } else
@@ -49,22 +50,39 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
 
     private void UploadMainGateKeyFile()
     {
+        WindowMaster.Instance.Show("Uploading Soal..");
+
         string filename = SystemInfo.deviceUniqueIdentifier + "/" + AndroidHelper.Base64Encode(LobbyTeacherRoomMainGate.CurrentMainGateKey.GateName);
         string data = LobbyTeacherRoomMainGate.CurrentMainGateKeyJson;
         firebaseManager.UploadData(filename, System.Text.Encoding.ASCII.GetBytes(data),
             () => {
                 Debug.Log("Upload Success. So the Game will starting.");
+
+                WindowMaster.Instance.Show("Upload Soal berhasil.\nMemulai Game!");
+
                 MainGateDownloadURL = filename;
                 MasterStartGame();
             },
             () => {
                 Debug.Log("Upload failed. So the Game not starting.");
+
+                WindowMaster.Instance.Show("Upload Soal gagal. Coba mulai kembali.");
             }
             );
     }
 
     private void MasterStartGame()
     {
+        // Lock Room
+        if (PhotonNetwork.connected)
+        {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                PhotonNetwork.room.IsOpen = false;
+                PhotonNetwork.room.IsVisible = false;
+            }
+        }
+
         if (PhotonNetwork.player.IsMasterClient)
         {
             PhotonNetwork.LoadLevel("GameplayScene");
@@ -76,6 +94,8 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
     [PunRPC]
     private void ClientJoinGame()
     {
+        WindowMaster.Instance.Show("Memulai Game..");
+
         if (!PhotonNetwork.player.IsMasterClient)
         {
             PhotonNetwork.LoadLevel("GameplayScene");
