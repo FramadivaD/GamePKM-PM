@@ -89,6 +89,9 @@ public class Player : MonoBehaviour
 
             pv.RPC("SyncTeamColorGraphic", PhotonTargets.AllBuffered, (int)teamType);
             pv.RPC("DisableEtcObjects", PhotonTargets.OthersBuffered);
+        } else
+        {
+            rb.isKinematic = true;
         }
     }
 
