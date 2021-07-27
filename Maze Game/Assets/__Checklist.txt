@@ -263,7 +263,9 @@ Total
 
 [ ] About masih belum.
 
-[ ] Add android permission internet, write and read storage data
+[ ] Add android internet permission
+[ ] Add android write and read storage data
+[ ] Add android Camera permission
 
 [X] Test Multiplayer 
 [ ] Convert Android Test
