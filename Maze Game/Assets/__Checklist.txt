@@ -269,5 +269,7 @@ Total
 
 [X] Bug di lab editor ketika nambah fragment
 
+[ ] Sprite ordering bug on gameplay
+
 [X] Test Multiplayer 
 [ ] Convert Android Test
