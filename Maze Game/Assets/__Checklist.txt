@@ -267,5 +267,7 @@ Total
 [ ] Add android write and read storage data
 [ ] Add android Camera permission
 
+[X] Bug di lab editor ketika nambah fragment
+
 [X] Test Multiplayer 
 [ ] Convert Android Test

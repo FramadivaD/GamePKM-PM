@@ -138,7 +138,22 @@ public class LaboratoryEditorMenu : MonoBehaviour
     {
         if (currentGateKey != null)
         {
-            currentGateKey.AddFragment(new MainGateFragmentRaw("Key " + currentGateKey.Fragments.Count, "Answer"));
+            MainGateFragmentRaw raw = new MainGateFragmentRaw("Key " + currentGateKey.Fragments.Count, "Answer");
+
+            Texture2D ex = new Texture2D(1, 1);
+            ex.SetPixels(new Color[] {new Color(255, 255, 255) });
+            ex.Apply();
+
+            raw.DataImage = ex.GetRawTextureData();
+            raw.DataImageWidth = ex.width;
+            raw.DataImageHeight = ex.height;
+
+            for (int i = 0; i < raw.DataImage.Length;i++)
+            {
+                Debug.Log(raw.DataImage[i]);
+            }
+
+            currentGateKey.AddFragment(raw);
         }
 
         RefreshFragmentContainer();
