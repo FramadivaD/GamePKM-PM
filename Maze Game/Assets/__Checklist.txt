@@ -255,13 +255,15 @@ Total
 
 [X] Cegah join kalo game udah dimulai
 [X] Cegah play kalo gaada pemain sama sekali
-[ ] Tampilan loading lobby menuju ke scene gameplay (game dimulai guru)
-[ ] Tampilan loading scene gameplay menuju player udah siap semua sehingga master generate map
+[X] Tampilan loading lobby menuju ke scene gameplay (game dimulai guru)
+[X] Tampilan loading scene gameplay menuju player udah siap semua sehingga master generate map
 [ ] Tampilan winner nanti langsung balik ke lobby tanpa ada yang disconnect
 [X] Tampilan kalau room udah full
 [ ] Controller Spectator simple
 [ ] Port controller android
 [ ] konfirmasi nama package ke literally client.
+
+[ ] Option volume di main menu
 
 [ ] Cari sound effect
 [ ] Cari lagu main

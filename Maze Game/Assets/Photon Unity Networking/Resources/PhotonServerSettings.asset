@@ -80,4 +80,7 @@ MonoBehaviour:
   - RefreshGraphicRPC
   - TellMasterThatClientReadyToPlay
   - SyncTeamColorGraphic
+  - ClientWaitMaster
+  - MasterCountPlayerRPC
+  - HideWindowRPC
   DisableAutoOpenWizard: 1

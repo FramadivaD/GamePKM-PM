@@ -4,6 +4,7 @@ using System.Collections;
 public class MultiplayerNetworkMaster : Photon.PunBehaviour
 {
     public static MultiplayerNetworkMaster Instance { get; private set; }
+    public NetworkUIManager networkUIManager;
 
     public Camera masterCamera;
 
@@ -77,10 +78,14 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
         {
             if (!PhotonNetwork.player.IsMasterClient)
             {
+                networkUIManager.StartAsMaster();
+
                 pv.RPC("AddClientPlayer", PhotonTargets.MasterClient);
             }
             else
             {
+                networkUIManager.StartAsClient();
+
                 Debug.Log("Waiting Player Count : " + playerSceneCount + "/" + PhotonNetwork.playerList.Length);
                 AddClientPlayer();
             }
@@ -100,6 +105,8 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
             Debug.Log("A Player Joined Scene.");
             Debug.Log("Waiting Player Count : " + playerSceneCount + "/" + PhotonNetwork.playerList.Length);
 
+            networkUIManager.MasterCountPlayer(playerSceneCount, PhotonNetwork.playerList.Length);
+
             if (playerSceneCount >= PhotonNetwork.playerList.Length)
             {
                 Debug.Log("Player Count Satisfied, Initialize Master Client.");
@@ -116,17 +123,23 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
         Debug.Log("Karena master jadi akan ngirim data");
 
+        networkUIManager.MasterSendMainGateData();
+
         pv.RPC("ReceiveMainGateKeyDownloadURLAndQuestionDifficultyData", PhotonTargets.AllBuffered, diffJson, keyJsonDownloadURL);
     }
 
     [PunRPC]
     private void ReceiveMainGateKeyDownloadURLAndQuestionDifficultyData(string diffJson, string keyJsonDownloadURL)
     {
+        networkUIManager.DownloadMainGateData();
+
         firebaseManager.DownloadData(keyJsonDownloadURL, 
             (byte[] data) => {
                 string keyJson = System.Text.Encoding.ASCII.GetString(data);
 
                 Debug.Log("Download MainGateKey Data Success!");
+
+                networkUIManager.DownloadMainGateDataSuccess();
 
                 Debug.Log("Download URL : " + keyJsonDownloadURL);
 
@@ -134,6 +147,8 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
             }, 
             () => {
                 Debug.Log("Download MainGateKey Data Failed.. Sadge.");
+
+                networkUIManager.DownloadMainGateDataFailed();
 
                 Debug.Log("Download URL : " + keyJsonDownloadURL);
             }
@@ -177,20 +192,56 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
             Debug.Log("Waiting Player Count : " + playerReadyCount + "/" + PhotonNetwork.playerList.Length);
 
+            networkUIManager.MasterCountPlayer(playerReadyCount, PhotonNetwork.playerList.Length);
+
             playerReadyCount++;
 
             if (playerReadyCount >= PhotonNetwork.playerList.Length)
             {
-
-                Debug.Log("Kalau player udah siap semua maka lanjut generate level dan main sebagai spectator");
-
-                Debug.Log("Karena master maka dia yang generate level, biar client bisa menyesuaikan.");
-                GameManager.Instance.GenerateLevel();
-
-                Debug.Log("Karena master maka akan main sebagai spectator.");
-                PlayAsSpectator();
+                networkUIManager.MasterWaitToStartTheGame();
+                PrepareGameAsMaster();
             }
         }
+    }
+
+    private void PrepareGameAsMaster()
+    {
+        if (PhotonNetwork.connected)
+        {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                networkUIManager.MasterShowStartGameButton();
+            }
+        } else
+        {
+            networkUIManager.MasterShowStartGameButton();
+        }
+    }
+
+    public void StartGameAsMaster()
+    {
+        if (PhotonNetwork.connected)
+        {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                StartGameAsMasterAfterMasterChecking();
+            }
+        }
+        else
+        {
+            StartGameAsMasterAfterMasterChecking();
+        }
+    }
+
+    private void StartGameAsMasterAfterMasterChecking()
+    {
+        Debug.Log("Kalau player udah siap semua maka lanjut generate level dan main sebagai spectator");
+
+        Debug.Log("Karena master maka dia yang generate level, biar client bisa menyesuaikan.");
+        GameManager.Instance.GenerateLevel();
+
+        Debug.Log("Karena master maka akan main sebagai spectator.");
+        PlayAsSpectator();
     }
 
     private void LoadMainGateKeyAndQuestionDifficultyData(QuestionDifficulty questionDifficulty, MainGateKeyRaw mainGateRaw)
