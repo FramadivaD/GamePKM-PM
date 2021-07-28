@@ -186,6 +186,7 @@ public class EnemyBoss : MonoBehaviour
         PlayDieAnimation();
         attackManager.enabled = false;
 
+        SpectatorController.Instance.Track(transform.position);
         GameManager.Instance.AnnounceWinner(TeamType);
     }
 

@@ -21,12 +21,12 @@ public class EnemyRadar : MonoBehaviour
 
     private void FindNearestPlayer()
     {
-        Player[] players = FindObjectsOfType<Player>();
-        foreach (Player player in players)
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in players)
         {
             if (Vector3.Distance(player.transform.position, transform.position) <= 7)
             {
-                enemy.playerTarget = player.gameObject;
+                enemy.playerTarget = player;
                 return;
             }
         }

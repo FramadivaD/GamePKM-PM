@@ -261,9 +261,11 @@ Total
 [X] Tampilan loading scene gameplay menuju player udah siap semua sehingga master generate map
 [ ] Tampilan winner nanti langsung balik ke lobby tanpa ada yang disconnect
 [X] Tampilan kalau room udah full
-[ ] Controller Spectator simple
+[X] Controller Spectator simple
 [ ] Port controller android
 [ ] konfirmasi nama package ke literally client.
+
+[ ] UI Spectator, leave room and disconnect all clients
 
 [X] Random enemy spawn
 
