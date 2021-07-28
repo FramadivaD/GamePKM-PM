@@ -287,6 +287,8 @@ Total
 
 [X] Player die
 
+[ ] Enemy boss die effect bullet hell
+
 [X] Display name character on join
 
 [X] Sprite ordering bug on gameplay

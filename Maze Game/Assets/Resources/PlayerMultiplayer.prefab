@@ -6502,6 +6502,8 @@ MonoBehaviour:
   pauseTeamText: {fileID: 116646753}
   movementSpeed: 80
   playerName: Player
+  dieSpawn: {fileID: 8021862887257837618, guid: cb049b15670659049adefe710f1cd984,
+    type: 3}
   allowMove: 1
 --- !u!70 &6117276585491530556
 CapsuleCollider2D:
