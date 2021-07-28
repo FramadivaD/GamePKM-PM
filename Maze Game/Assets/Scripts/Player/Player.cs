@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public GateManager gateManager;
     public InventoryManager inventoryManager;
     public WeaponManager weaponManager;
+    public PlayerCompass playerCompass;
 
     public JoystickController joystickController;
     public PlayerHealth health;
@@ -89,6 +90,8 @@ public class Player : MonoBehaviour
             teamType = team;
             login.SubmitName();
 
+            playerCompass.FindAllChest();
+
             pv.RPC("SyncTeamColorGraphic", PhotonTargets.AllBuffered, (int)teamType);
             pv.RPC("DisableEtcObjects", PhotonTargets.OthersBuffered);
         } else
@@ -121,6 +124,7 @@ public class Player : MonoBehaviour
         gateManager.Initialize(this);
         inventoryManager.Initialize(this);
         weaponManager.Initialize(this);
+        playerCompass.Initialize(this);
 
         SubscribeEvents();
     }

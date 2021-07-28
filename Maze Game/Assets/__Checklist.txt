@@ -260,7 +260,7 @@ Total
 [X] Cegah play kalo gaada pemain sama sekali
 [X] Tampilan loading lobby menuju ke scene gameplay (game dimulai guru)
 [X] Tampilan loading scene gameplay menuju player udah siap semua sehingga master generate map
-[ ] Tampilan winner nanti langsung balik ke lobby tanpa ada yang disconnect
+[X] Tampilan winner nanti langsung balik ke lobby tanpa ada yang disconnect
 [X] Tampilan kalau room udah full
 [X] Controller Spectator simple
 [ ] Port controller android
