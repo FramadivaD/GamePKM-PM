@@ -287,4 +287,21 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     {
         GameManager.Instance.BeginSpectator();
     }
+
+    public void DisconnectAllPlayer()
+    {
+        if (PhotonNetwork.connected)
+        {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                pv.RPC("DisconnectAllPlayerRPC", PhotonTargets.AllBuffered);
+            }
+        }
+    }
+
+    [PunRPC]
+    private void DisconnectAllPlayerRPC()
+    {
+        GameManager.Instance.BackToLobby();
+    }
 }

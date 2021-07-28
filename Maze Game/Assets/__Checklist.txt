@@ -266,7 +266,7 @@ Total
 [ ] Port controller android
 [ ] konfirmasi nama package ke literally client.
 
-[ ] UI Spectator, leave room and disconnect all clients
+[X] UI Spectator, leave room and disconnect all clients
 
 [X] Random enemy spawn
 

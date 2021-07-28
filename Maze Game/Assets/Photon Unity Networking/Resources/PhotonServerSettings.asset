@@ -87,4 +87,5 @@ MonoBehaviour:
   - EnableAllEntities
   - UpdateSprite
   - DieRPC
+  - DisconnectAllPlayerRPC
   DisableAutoOpenWizard: 1
