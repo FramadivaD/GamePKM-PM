@@ -283,7 +283,7 @@ Total
 
 [X] Bug di lab editor ketika nambah fragment
 
-[ ] Weapon shoot delay bug
+[X] Weapon shoot delay bug
 
 [ ] Player die
 

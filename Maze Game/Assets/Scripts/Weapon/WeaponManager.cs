@@ -41,12 +41,12 @@ public class WeaponManager : MonoBehaviour
                 RefreshGraphic(weapon);
             } else
             {
-                weaponTimer = 0;
+                weaponTimer = basokaCooldown;
                 RefreshGraphic(null);
             }
         } else
         {
-            weaponTimer = 0;
+            weaponTimer = basokaCooldown;
             RefreshGraphic(null);
         }
     }
