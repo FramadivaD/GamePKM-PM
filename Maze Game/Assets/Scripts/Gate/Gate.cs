@@ -144,6 +144,8 @@ public class Gate : MonoBehaviour
         Debug.Log("Opened Gate");
         IsOpened = true;
         gateAnim.SetBool("isAnswer", true);
+
+        GameManager.Instance.PlayEpicMusic();
     }
 
     private void PlayCollectAnimation()

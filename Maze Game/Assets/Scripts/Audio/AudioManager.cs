@@ -78,6 +78,17 @@ namespace Extensione.Audio
             }
         }
 
+        public void ChangeMusicSilent(AudioClip clip)
+        {
+            if (audioMusic)
+            {
+                if (fadingClipTarget != clip)
+                {
+                    ChangeMusic(clip);
+                }
+            }
+        }
+
         private void TransitionBetweenMusic()
         {
             if (audioMusic)

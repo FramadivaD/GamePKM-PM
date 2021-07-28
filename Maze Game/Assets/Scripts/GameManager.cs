@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+using Extensione.Audio;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -31,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject pauseUI;
     [SerializeField] private Text pausePlayerAndTeamText;
+
+    [SerializeField] private AudioClip epicMusic;
 
     private bool isPaused = false;
     public bool IsPaused
@@ -193,5 +197,10 @@ public class GameManager : MonoBehaviour
     public void HidePauseMenu()
     {
         IsPaused = false;
+    }
+
+    public void PlayEpicMusic()
+    {
+        AudioManager.Instance.ChangeMusicSilent(epicMusic);
     }
 }

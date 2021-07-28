@@ -34,9 +34,7 @@ Design
 [0] [X] Design - Penataan UI yang sesuai layar dinamis
 
 Audio
-[1] [ ] Audio - Main Theme
-[1] [ ] Audio - Gameplay Theme
-[3] [ ] Audio - Sound Effect
+[5] [ ] Audio - Sound Effect
 
 Etc.
 [0] [X] Server - Penyiapan Backend - (sementara pinjem punyaku)
@@ -275,7 +273,7 @@ Total
 [X] Option volume di main menu
 
 [ ] Cari sound effect
-[ ] Cari lagu main
+[X] Cari lagu main
 [ ] Sync dengan gameplay dan audio manager
 
 [ ] About masih belum.
