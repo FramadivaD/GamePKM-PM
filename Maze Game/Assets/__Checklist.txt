@@ -285,7 +285,7 @@ Total
 
 [X] Weapon shoot delay bug
 
-[ ] Player die
+[X] Player die
 
 [ ] Display name character on join
 

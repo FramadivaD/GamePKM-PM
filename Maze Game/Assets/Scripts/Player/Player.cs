@@ -50,6 +50,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private string playerName = "Player";
 
+    [SerializeField] private GameObject dieSpawn;
+
     public IInventoryAble EquippedItem { get; private set; }
 
     public string PlayerName
@@ -140,6 +142,32 @@ public class Player : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player Dies.");
+
+        if (PhotonNetwork.connected)
+        {
+            if (pv.isMine)
+            {
+                pv.RPC("DieRPC", PhotonTargets.AllBuffered, transform.position);
+                Vector3 randPos = new Vector3(Random.Range(-5, 5), Random.Range(-3.6f, 3.6f));
+                transform.position = randPos;
+
+                health.CurrentHealth = health.MaxHealth;
+            }
+        }
+        else
+        {
+            DieRPC(transform.position);
+            Vector3 randPos = new Vector3(Random.Range(-5, 5), Random.Range(-3.6f, 3.6f));
+            transform.position = randPos;
+
+            health.CurrentHealth = health.MaxHealth;
+        }
+    }
+
+    [PunRPC]
+    private void DieRPC(Vector3 diePos)
+    {
+        Instantiate(dieSpawn, diePos, Quaternion.identity);
     }
 
     #region All About Movement
