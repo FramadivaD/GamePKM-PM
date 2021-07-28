@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using Extensione.Window;
+
 public class MultiplayerNetworkMaster : Photon.PunBehaviour
 {
     public static MultiplayerNetworkMaster Instance { get; private set; }
@@ -74,17 +76,19 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
     private void Start()
     {
+        WindowMaster.Instance.Hide();
+        
         if (!testClientSingle)
         {
             if (!PhotonNetwork.player.IsMasterClient)
             {
-                networkUIManager.StartAsMaster();
+                networkUIManager.StartAsClient();
 
                 pv.RPC("AddClientPlayer", PhotonTargets.MasterClient);
             }
             else
             {
-                networkUIManager.StartAsClient();
+                networkUIManager.StartAsMaster();
 
                 Debug.Log("Waiting Player Count : " + playerSceneCount + "/" + PhotonNetwork.playerList.Length);
                 AddClientPlayer();
@@ -198,7 +202,6 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
             if (playerReadyCount >= PhotonNetwork.playerList.Length)
             {
-                networkUIManager.MasterWaitToStartTheGame();
                 PrepareGameAsMaster();
             }
         }
@@ -210,12 +213,23 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
         {
             if (PhotonNetwork.player.IsMasterClient)
             {
-                networkUIManager.MasterShowStartGameButton();
+                PrepareGameAsMasterExecute();
             }
         } else
         {
-            networkUIManager.MasterShowStartGameButton();
+            PrepareGameAsMasterExecute();
         }
+    }
+
+    private void PrepareGameAsMasterExecute()
+    {
+        networkUIManager.MasterShowStartGameButton();
+        networkUIManager.MasterWaitToStartTheGame();
+
+        Debug.Log("Kalau player udah siap semua maka lanjut generate level dan main sebagai spectator");
+
+        Debug.Log("Karena master maka dia yang generate level, biar client bisa menyesuaikan.");
+        GameManager.Instance.GenerateLevel();
     }
 
     public void StartGameAsMaster()
@@ -235,11 +249,6 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
     private void StartGameAsMasterAfterMasterChecking()
     {
-        Debug.Log("Kalau player udah siap semua maka lanjut generate level dan main sebagai spectator");
-
-        Debug.Log("Karena master maka dia yang generate level, biar client bisa menyesuaikan.");
-        GameManager.Instance.GenerateLevel();
-
         Debug.Log("Karena master maka akan main sebagai spectator.");
         PlayAsSpectator();
     }

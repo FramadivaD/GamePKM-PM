@@ -16,6 +16,7 @@ public class NetworkUIManager : MonoBehaviour
     private void Start()
     {
         masterButton.gameObject.SetActive(false);
+        ShowWindow();
     }
 
     public void MasterCountPlayer(int count, int max)
@@ -91,8 +92,7 @@ public class NetworkUIManager : MonoBehaviour
             if (PhotonNetwork.player.IsMasterClient)
             {
                 masterNotifText.text = "Siap untuk memulai game!";
-            } else
-            {
+
                 networkMaster.pv.RPC("ClientWaitMaster", PhotonTargets.OthersBuffered);
             }
         } else

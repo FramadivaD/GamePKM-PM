@@ -8748,12 +8748,12 @@ MonoBehaviour:
   playerList: {fileID: 2016174602}
   firebaseManager: {fileID: 1921115627}
   skipMustAtLeastAPlayer: 1
-  selectSoalButton: {fileID: 0}
-  selectDiffButton: {fileID: 0}
-  startGameButton: {fileID: 0}
-  leaveGameButton: {fileID: 0}
-  selectRedTeamButton: {fileID: 0}
-  selectBlueTeamButton: {fileID: 0}
+  selectSoalButton: {fileID: 316197249}
+  selectDiffButton: {fileID: 252936853}
+  startGameButton: {fileID: 1839599245}
+  leaveGameButton: {fileID: 1279777431}
+  selectRedTeamButton: {fileID: 188481588}
+  selectBlueTeamButton: {fileID: 1775377273}
 --- !u!1 &2044289655
 GameObject:
   m_ObjectHideFlags: 0
