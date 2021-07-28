@@ -10,9 +10,9 @@ public class PlayerCompass : MonoBehaviour
     private List<GameObject> compassUI;
     private List<ChestContainer> chestTreasures;
 
-    private GameObject compassPrefab;
+    [SerializeField] private GameObject compassPrefab;
 
-    private Transform compassParent;
+    [SerializeField] private Transform compassParent;
 
     private bool initialized = false;
 
@@ -38,9 +38,14 @@ public class PlayerCompass : MonoBehaviour
         if (chestTreasures == null) chestTreasures = new List<ChestContainer>();
         chestTreasures.Clear();
 
+        foreach (Transform t in compassParent)
+        {
+            Destroy(t.gameObject);
+        }
+
         foreach (ChestContainer chest in FindObjectsOfType<ChestContainer>())
         {
-            if (chest.teamType == player.teamType)
+            if (chest.teamType == player.teamType && !chest.IsFragmentTaken)
             {
                 chestTreasures.Add(chest);
 
