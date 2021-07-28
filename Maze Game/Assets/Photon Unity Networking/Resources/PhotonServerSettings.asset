@@ -88,4 +88,5 @@ MonoBehaviour:
   - UpdateSprite
   - DieRPC
   - DisconnectAllPlayerRPC
+  - FindAllChestsRPC
   DisableAutoOpenWizard: 1

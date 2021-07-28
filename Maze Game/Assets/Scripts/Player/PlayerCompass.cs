@@ -57,13 +57,16 @@ public class PlayerCompass : MonoBehaviour
 
     private void ControlCompassUI()
     {
-        for (int i = 0;i < chestTreasures.Count;i++)
+        if (chestTreasures != null)
         {
-            Vector3 direction = (chestTreasures[i].transform.position - player.transform.position);
+            for (int i = 0; i < chestTreasures.Count; i++)
+            {
+                Vector3 direction = (chestTreasures[i].transform.position - player.transform.position);
 
-            Vector3 clamped = Vector3.ClampMagnitude(direction, clampCompassMagnitude);
+                Vector3 clamped = Vector3.ClampMagnitude(direction, clampCompassMagnitude);
 
-            compassUI[i].transform.position = player.transform.position + clamped;
+                compassUI[i].transform.position = player.transform.position + clamped;
+            }
         }
     }
 }

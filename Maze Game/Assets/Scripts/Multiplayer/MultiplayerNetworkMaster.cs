@@ -255,6 +255,7 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
         Debug.Log("Karena master maka akan main sebagai spectator.");
 
         pv.RPC("EnableAllEntities", PhotonTargets.AllBuffered);
+        pv.RPC("FindAllChestsRPC", PhotonTargets.AllBuffered);
 
         PlayAsSpectator();
     }
@@ -263,6 +264,14 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     private void EnableAllEntities()
     {
         GameManager.Instance.EnableAllEntitiesMovement("nothing");
+    }
+
+    [PunRPC]
+    private void FindAllChestsRPC()
+    {
+        if (GameManager.Instance && GameManager.Instance.player) {
+            GameManager.Instance.player.playerCompass.FindAllChest();
+        }
     }
 
     private void LoadMainGateKeyAndQuestionDifficultyData(QuestionDifficulty questionDifficulty, MainGateKeyRaw mainGateRaw)
