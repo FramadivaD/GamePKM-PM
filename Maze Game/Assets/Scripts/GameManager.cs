@@ -173,12 +173,14 @@ public class GameManager : MonoBehaviour
 
     public void BackToLobby()
     {
+        PhotonNetwork.LeaveRoom();
         Debug.Log("Loading Lobby");
         SceneManager.LoadScene("LobbyMenu");
     }
 
     public void BackToMainMenu()
     {
+        PhotonNetwork.LeaveRoom();
         Debug.Log("Loading Main Menu");
         SceneManager.LoadScene("MainMenu");
     }
