@@ -129,5 +129,25 @@ namespace Extensione.Audio
                 audioMusic.Stop();
             }
         }
+
+        public void ChangeMusicVolume(float volume)
+        {
+            audioMusic.volume = volume;
+        }
+
+        public void ChangeSFXVolume(float volume)
+        {
+            audioSFX.volume = volume;
+        }
+
+        public float GetMusicVolume()
+        {
+            return audioMusic.volume;
+        }
+
+        public float GetSFXVolume()
+        {
+            return audioSFX.volume;
+        }
     }
 }

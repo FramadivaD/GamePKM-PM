@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 8603367335107045918}
   - component: {fileID: 2761875735092932265}
   - component: {fileID: 5876649811241394465}
+  - component: {fileID: 3436297478500109617}
   m_Layer: 0
   m_Name: EnemyMelee
   m_TagString: Untagged
@@ -515,6 +516,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 5411698538028754554}
   - {fileID: 8603367335107045918}
+  - {fileID: 3436297478500109617}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -536,9 +538,9 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 2
+    InterpolateOption: 4
     InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 1
+    InterpolateLerpSpeed: 5
     InterpolateMoveTowardsAcceleration: 2
     InterpolateMoveTowardsDeceleration: 2
     InterpolateSpeedCurve:
@@ -654,6 +656,20 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
+--- !u!114 &3436297478500109617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4096605515053387838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
 --- !u!1 &4096605515076734101
 GameObject:
   m_ObjectHideFlags: 0

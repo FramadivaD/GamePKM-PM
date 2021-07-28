@@ -6382,6 +6382,7 @@ GameObject:
   - component: {fileID: 3997672971475478631}
   - component: {fileID: 7212833650153885002}
   - component: {fileID: 2497640037042866859}
+  - component: {fileID: 2354128710146900929}
   m_Layer: 0
   m_Name: PlayerMultiplayer
   m_TagString: Player
@@ -6685,6 +6686,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 3997672971475478631}
   - {fileID: 7212833650153885002}
+  - {fileID: 2354128710146900929}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -6706,9 +6708,9 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 2
+    InterpolateOption: 4
     InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 1
+    InterpolateLerpSpeed: 5
     InterpolateMoveTowardsAcceleration: 2
     InterpolateMoveTowardsDeceleration: 2
     InterpolateSpeedCurve:
@@ -6806,6 +6808,20 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
+--- !u!114 &2354128710146900929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6117276585491530554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
 --- !u!1 &6117276585659172069
 GameObject:
   m_ObjectHideFlags: 0

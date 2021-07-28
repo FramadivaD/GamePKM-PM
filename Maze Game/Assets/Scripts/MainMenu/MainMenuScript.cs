@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+using Extensione.Audio;
+
 public class MainMenuScript : MonoBehaviour
 {
     Animator transistion;
@@ -11,17 +13,32 @@ public class MainMenuScript : MonoBehaviour
     public Sprite[] soundSprites;
     public bool isMute = false;
     public float lastSoundValue;
-   
+
+    public Slider musicVolumeSlider;
+    public Slider soundVolumeSlider;
+
+    public Button musicVolumeButton;
+    public Button soundVolumeButton;
+
+    private void Start()
+    {
+        musicVolumeSlider.onValueChanged.AddListener(AudioManager.Instance.ChangeMusicVolume);
+        soundVolumeSlider.onValueChanged.AddListener(AudioManager.Instance.ChangeSFXVolume);
+
+        musicVolumeButton.onClick.AddListener(() => { musicVolumeSlider.value = musicVolumeSlider.value == 0 ? 1 : 0; });
+        soundVolumeButton.onClick.AddListener(() => { soundVolumeSlider.value = soundVolumeSlider.value == 0 ? 1 : 0; });
+
+        musicVolumeSlider.value = 1.0f;
+        soundVolumeSlider.value = 1.0f;
+    }
+
     void Update()
     {
-        //Sound Monitoring
-        if(GameObject.Find("SoundSlider").GetComponent<Slider>().value == 0){
-            GameObject.Find("Music Button").GetComponent<Image>().sprite = soundSprites[1];
-            isMute = true;
-        }else if(GameObject.Find("SoundSlider").GetComponent<Slider>().value > 0){
-            GameObject.Find("Music Button").GetComponent<Image>().sprite = soundSprites[0];
-            isMute = false;
-        }
+        if (musicVolumeSlider.value <= 0) musicVolumeButton.image.sprite = soundSprites[1];
+        else if (musicVolumeSlider.value > 0) musicVolumeButton.image.sprite = soundSprites[0];
+
+        if (soundVolumeSlider.value <= 0) soundVolumeButton.image.sprite = soundSprites[1];
+        else if (soundVolumeSlider.value > 0) soundVolumeButton.image.sprite = soundSprites[0];
     }
 
     public void SettingsMenu(){
@@ -40,23 +57,5 @@ public class MainMenuScript : MonoBehaviour
         menus[0].transform.localPosition = Vector2.right * -1601f;
         menus[1].transform.localPosition = Vector2.up * 901f;
         menus[2].transform.localPosition = Vector2.zero;
-    }
-
-    public void SoundSettings(){
-        if(isMute){
-            //GameObject.Find("Music Button").GetComponent<Image>().sprite = soundSprites[0];
-            if(lastSoundValue == 0){
-                GameObject.Find("SoundSlider").GetComponent<Slider>().value += 0.1f;
-            }else if(lastSoundValue != 0){
-                GameObject.Find("SoundSlider").GetComponent<Slider>().value = lastSoundValue;
-            }
-            isMute = false;
-        }
-        else if(!isMute){
-            //GameObject.Find("Music Button").GetComponent<Image>().sprite = soundSprites[1];
-            lastSoundValue = GameObject.Find("SoundSlider").GetComponent<Slider>().value;
-            GameObject.Find("SoundSlider").GetComponent<Slider>().value = 0;
-            isMute = true;
-        }
     }
 }

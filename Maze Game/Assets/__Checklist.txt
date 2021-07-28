@@ -270,9 +270,9 @@ Total
 
 [X] Random enemy spawn
 
-[ ] Fix collision antar player
+[X] Fix collision antar player
 
-[ ] Option volume di main menu
+[X] Option volume di main menu
 
 [ ] Cari sound effect
 [ ] Cari lagu main
