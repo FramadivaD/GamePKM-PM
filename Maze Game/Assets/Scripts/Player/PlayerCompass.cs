@@ -63,7 +63,7 @@ public class PlayerCompass : MonoBehaviour
 
             Vector3 clamped = Vector3.ClampMagnitude(direction, clampCompassMagnitude);
 
-            compassUI[i].transform.position = clamped;
+            compassUI[i].transform.position = player.transform.position + clamped;
         }
     }
 }

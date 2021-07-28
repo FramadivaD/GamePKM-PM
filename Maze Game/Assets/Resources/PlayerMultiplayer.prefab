@@ -6576,7 +6576,7 @@ MonoBehaviour:
   gateManager: {fileID: 839668586}
   inventoryManager: {fileID: 3703510726965139056}
   weaponManager: {fileID: 4593806189981459242}
-  playerCompass: {fileID: 0}
+  playerCompass: {fileID: 8494479699721382727}
   joystickController: {fileID: 5590809888531092290}
   health: {fileID: 6117276585491530531}
   login: {fileID: 6117276585491530530}
