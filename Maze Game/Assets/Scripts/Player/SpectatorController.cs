@@ -17,45 +17,52 @@ public class SpectatorController : MonoBehaviour
     private Vector3 initWorldPos;
     private Vector3 initScreenPos;
 
-    private Vector3 targetLerpPos;
+    private Transform targetLerp;
+
+    private float height = 0;
 
     private void Awake()
     {
         Instance = this;
+
+        height = transform.position.z;
     }
 
     private void Start()
     {
         StartCoroutine(RandomPlayer(5.0f));
 
-        targetLerpPos = transform.position;
+        targetLerp = transform;
     }
 
     private void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, targetLerpPos, 0.2f);
+        Vector3 lerppos = targetLerp.position;
+        lerppos.z = height;
+
+        transform.position = Vector3.Lerp(transform.position, lerppos, 0.2f);
     }
 
-    public void Track(Vector3 pos)
+    public void Track(Transform tra)
     {
         StopAllCoroutines();
 
-        targetLerpPos = pos;
+        targetLerp = tra;
     }
 
-    private IEnumerator RandomPlayer(float x)
+    private IEnumerator RandomPlayer(float timer)
     {
-        yield return new WaitForSecondsRealtime(x);
+        yield return new WaitForSecondsRealtime(timer);
 
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
         if (players.Length > 0) {
             GameObject randPlayer = players[Random.Range(0, players.Length)];
 
-            targetLerpPos = randPlayer.transform.position;
+            targetLerp = randPlayer.transform;
         }
 
-        StartCoroutine(RandomPlayer(x));
+        StartCoroutine(RandomPlayer(timer));
     }
 
     /*
