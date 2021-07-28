@@ -8747,6 +8747,13 @@ MonoBehaviour:
   questionDifficultyMenu: {fileID: 2016174604}
   playerList: {fileID: 2016174602}
   firebaseManager: {fileID: 1921115627}
+  skipMustAtLeastAPlayer: 1
+  selectSoalButton: {fileID: 0}
+  selectDiffButton: {fileID: 0}
+  startGameButton: {fileID: 0}
+  leaveGameButton: {fileID: 0}
+  selectRedTeamButton: {fileID: 0}
+  selectBlueTeamButton: {fileID: 0}
 --- !u!1 &2044289655
 GameObject:
   m_ObjectHideFlags: 0

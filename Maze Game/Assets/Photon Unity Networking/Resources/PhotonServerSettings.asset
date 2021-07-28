@@ -83,4 +83,5 @@ MonoBehaviour:
   - ClientWaitMaster
   - MasterCountPlayerRPC
   - HideWindowRPC
+  - SendUploadMessageToClientRPC
   DisableAutoOpenWizard: 1

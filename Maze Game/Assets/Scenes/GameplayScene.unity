@@ -515,7 +515,7 @@ MonoBehaviour:
     GateName: 
     Fragments: []
   firebaseManager: {fileID: 222803896}
-  testClientSingle: 1
+  testClientSingle: 0
 --- !u!4 &222803895
 Transform:
   m_ObjectHideFlags: 0

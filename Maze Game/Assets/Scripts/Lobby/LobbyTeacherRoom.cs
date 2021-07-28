@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 using Extensione.Window;
@@ -14,6 +15,16 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
 
     [SerializeField] private FirebaseManager firebaseManager;
 
+    [SerializeField] private bool skipMustAtLeastAPlayer = false;
+
+    [SerializeField] private Button selectSoalButton;
+    [SerializeField] private Button selectDiffButton;
+    [SerializeField] private Button startGameButton;
+    [SerializeField] private Button leaveGameButton;
+
+    [SerializeField] private Button selectRedTeamButton;
+    [SerializeField] private Button selectBlueTeamButton;
+
     public static string MainGateDownloadURL;
 
     public void CheckStartGame()
@@ -27,9 +38,9 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
                     int blueTeam = GetBlueTeamCount();
 
                     // Change this to true to debug mode
-                    bool skip = false;
+                    skipMustAtLeastAPlayer = true;
 
-                    if (!skip && (redTeam <= 0 || blueTeam <= 0))
+                    if (!skipMustAtLeastAPlayer && (redTeam <= 0 || blueTeam <= 0))
                     {
                         Debug.Log("Each team must have at least 1 player.");
 
@@ -58,6 +69,8 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
     {
         WindowMaster.Instance.Show("Uploading Soal..");
 
+        SendUploadMessageToClient();
+
         string filename = SystemInfo.deviceUniqueIdentifier + "/" + AndroidHelper.Base64Encode(LobbyTeacherRoomMainGate.CurrentMainGateKey.GateName);
         string data = LobbyTeacherRoomMainGate.CurrentMainGateKeyJson;
         firebaseManager.UploadData(filename, System.Text.Encoding.ASCII.GetBytes(data),
@@ -75,6 +88,30 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
                 WindowMaster.Instance.Show("Upload Soal gagal. Coba mulai kembali.");
             }
             );
+    }
+
+    private void SendUploadMessageToClient()
+    {
+        if (PhotonNetwork.connected)
+        {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                LockAllButtons();
+
+                pv.RPC("SendUploadMessageToClientRPC", PhotonTargets.OthersBuffered);
+            }
+        } else
+        {
+            SendUploadMessageToClientRPC();
+        }
+    }
+
+    [PunRPC]
+    private void SendUploadMessageToClientRPC()
+    {
+        WindowMaster.Instance.Show("Memulai Game..");
+
+        LockAllButtons();
     }
 
     private void MasterStartGame()
@@ -133,5 +170,27 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
             }
         }
         return blueTeam;
+    }
+
+    public void LockAllButtons()
+    {
+        selectSoalButton.interactable = false;
+        selectDiffButton.interactable = false;
+        startGameButton.interactable = false;
+        leaveGameButton.interactable = false;
+
+        selectRedTeamButton.interactable = false;
+        selectBlueTeamButton.interactable = false;
+    }
+
+    public void UnlockAllButtons()
+    {
+        selectSoalButton.interactable = true;
+        selectDiffButton.interactable = true;
+        startGameButton.interactable = true;
+        leaveGameButton.interactable = true;
+
+        selectRedTeamButton.interactable = true;
+        selectBlueTeamButton.interactable = true;
     }
 }
