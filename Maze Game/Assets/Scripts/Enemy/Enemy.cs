@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public PhotonView pv;
+
     public float timeAttack;
     public float timeIdle;
     public float enemySpeed;

@@ -85,4 +85,5 @@ MonoBehaviour:
   - HideWindowRPC
   - SendUploadMessageToClientRPC
   - EnableAllEntities
+  - UpdateSprite
   DisableAutoOpenWizard: 1

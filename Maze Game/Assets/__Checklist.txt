@@ -226,10 +226,12 @@ Total
 
 [X] Fitur Notifikasi di atas chest yang unlocked tapi belum diambil.
 
+[ ] Fitur player mati ngapain
+
 [X] Fitur Boss Enemy Follow Player AI
 
-[ ] Musuh baru Gelembung
-[ ] Musuh baru Batu
+[X] Musuh baru Gelembung
+[X] Musuh baru Batu
 
 [X] Fitur Navigasi Scene main menu
 [X] Fitur Navigasi Scene lobby
