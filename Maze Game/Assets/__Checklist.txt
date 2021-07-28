@@ -287,7 +287,7 @@ Total
 
 [X] Player die
 
-[ ] Display name character on join
+[X] Display name character on join
 
 [X] Sprite ordering bug on gameplay
 
