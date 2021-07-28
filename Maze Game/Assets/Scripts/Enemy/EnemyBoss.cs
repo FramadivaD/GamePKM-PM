@@ -18,6 +18,8 @@ public class EnemyBoss : MonoBehaviour
     private Rigidbody2D rb2;
     private EnemyBossAttackManager attackManager;
 
+    [SerializeField] private GameObject dieSpawn;
+    [SerializeField] private int spawnExplosionCount = 10;
 
     [SerializeField] private bool allowMove = false;
     public bool AllowMove
@@ -190,6 +192,21 @@ public class EnemyBoss : MonoBehaviour
     private void PlayDieAnimation()
     {
         Debug.Log("Boss is defeated.");
+
+        StartCoroutine(SpawnExplosion(spawnExplosionCount));
+    }
+
+    private IEnumerator SpawnExplosion(int count)
+    {
+        if (count > 0) {
+            yield return new WaitForSecondsRealtime(0.2f);
+
+            Vector3 randPos = new Vector3(UnityEngine.Random.Range(-2, 2), UnityEngine.Random.Range(-2, 2));
+
+            Instantiate(dieSpawn, randPos, Quaternion.identity);
+
+            StartCoroutine(SpawnExplosion(count - 1));
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
