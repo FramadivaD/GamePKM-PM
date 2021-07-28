@@ -23,6 +23,9 @@ public class RoomGeneratorGrid : MonoBehaviour
     [Header("Weapon Orb Config")]
     [SerializeField] private GameObject weaponOrbPrefab;
 
+    [Header("Enemy Config")]
+    [SerializeField] private GameObject[] enemyPrefab;
+
     [Header("Boss Room Config")]
     [SerializeField] private Transform bossParent;
     [SerializeField] private GameObject[] bossTypePrefab;
@@ -121,6 +124,46 @@ public class RoomGeneratorGrid : MonoBehaviour
         val += leftDoor.activeSelf ? 1 : 0;
 
         return val;
+    }
+
+    public GameObject SpawnEnemy()
+    {
+        int enemyType = Random.Range(0, enemyPrefab.Length);
+        if (spawnedItemCount < spawnedItemPossiblePos.Length)
+        {
+            if (spawnedItemSpawned == null) spawnedItemSpawned = new GameObject[spawnedItemPossiblePos.Length];
+            if (latestSpawnedItemPossiblePosIndex == -1)
+            {
+                latestSpawnedItemPossiblePosIndex = Random.Range(0, spawnedItemPossiblePos.Length);
+            }
+
+            while (true)
+            {
+                if (spawnedItemSpawned[latestSpawnedItemPossiblePosIndex] == null)
+                {
+                    GameObject enemy;
+
+                    if (PhotonNetwork.connected)
+                    {
+                        enemy = PhotonNetwork.Instantiate(enemyPrefab[enemyType].name, spawnedItemPossiblePos[latestSpawnedItemPossiblePosIndex].position, Quaternion.identity, 0);
+                    }
+                    else
+                    {
+                        enemy = Instantiate(weaponOrbPrefab, spawnedItemPossiblePos[latestSpawnedItemPossiblePosIndex].position, Quaternion.identity, spawnedItemParent);
+                    }
+
+                    spawnedItemSpawned[latestSpawnedItemPossiblePosIndex] = enemy;
+
+                    spawnedItemCount++;
+
+                    return enemy;
+                }
+
+                latestSpawnedItemPossiblePosIndex++;
+                latestSpawnedItemPossiblePosIndex %= spawnedItemPossiblePos.Length;
+            }
+        }
+        return null;
     }
 
     public WeaponOrb SpawnWeaponItemOrb()

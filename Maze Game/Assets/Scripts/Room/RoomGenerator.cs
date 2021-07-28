@@ -28,6 +28,9 @@ public class RoomGenerator : MonoBehaviour
     [Header("Item Configuration")]
     public int weaponItemCount = 3;
 
+    [Header("Enemies Configuration")]
+    public int enemiesCount = 3;
+
     [Header("Network")]
     public PhotonView pv;
 
@@ -84,6 +87,9 @@ public class RoomGenerator : MonoBehaviour
 
         // Spawn Random Items
         SpawnItems();
+
+        // Spawn Enemies
+        SpawnEnemies();
 
         // Set Corner rooms neighboroom
         SetCornerRoomNeighborRoom();
@@ -369,6 +375,32 @@ public class RoomGenerator : MonoBehaviour
                     {
                         WeaponOrb weaponOrb = selectedRoom.SpawnWeaponItemOrb();
                         if (weaponOrb)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void SpawnEnemies()
+    {
+        int itemsCount = weaponItemCount;
+
+        for (int j = 0; j < enemiesCount; j++)
+        {
+            int ind = Random.Range(0, notCornerRoom.Count);
+            if (ind < notCornerRoom.Count)
+            {
+                RoomGeneratorGrid selectedRoom = notCornerRoom[ind];
+                if (selectedRoom)
+                {
+                    // limit biar gak infinite
+                    for (int k = 0; k < 10; k++)
+                    {
+                        GameObject enemy= selectedRoom.SpawnEnemy();
+                        if (enemy)
                         {
                             break;
                         }

@@ -450,6 +450,10 @@ MonoBehaviour:
     type: 3}
   weaponOrbPrefab: {fileID: 3775917153467377673, guid: 59ae21e8238d672489529f74ccaf3925,
     type: 3}
+  enemyPrefab:
+  - {fileID: 4096605515053387838, guid: aa6fef2b16175d44c81aff409733040e, type: 3}
+  - {fileID: 6118508452189737155, guid: aaeab6c3fcf72984c854694f3d5902c2, type: 3}
+  - {fileID: 4958188707435704037, guid: 83f03ddd9afd82f4c81da8d3b15aae3b, type: 3}
   bossParent: {fileID: 5124675353304063843}
   bossTypePrefab:
   - {fileID: 1870654661280673874, guid: 8976d40eb6cd66d40ba7afae6f2df007, type: 3}
