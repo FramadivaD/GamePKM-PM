@@ -77,9 +77,16 @@ public class GameManager : MonoBehaviour
         AllowEntityMove = true;
     }
 
+    public void DisableAllEntitiesMovement(string str)
+    {
+        AllowEntityMove = false;
+    }
+
     private void SpawnPlayer(TeamType teamType)
     {
-        GameObject p = PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(), Quaternion.identity, 0);
+        Vector3 randPos = new Vector3(Random.Range(-5, 5), Random.Range(-5, 5));
+
+        GameObject p = PhotonNetwork.Instantiate(playerPrefab.name, randPos, Quaternion.identity, 0);
         player = p.GetComponent<Player>();
 
         pauseUI = player.PauseUI;

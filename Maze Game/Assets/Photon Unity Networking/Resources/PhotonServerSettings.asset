@@ -84,4 +84,5 @@ MonoBehaviour:
   - MasterCountPlayerRPC
   - HideWindowRPC
   - SendUploadMessageToClientRPC
+  - EnableAllEntities
   DisableAutoOpenWizard: 1

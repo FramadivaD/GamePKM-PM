@@ -80,6 +80,8 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
         
         if (!testClientSingle)
         {
+            GameManager.Instance.DisableAllEntitiesMovement("nothing");
+
             if (!PhotonNetwork.player.IsMasterClient)
             {
                 networkUIManager.StartAsClient();
@@ -250,7 +252,16 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     private void StartGameAsMasterAfterMasterChecking()
     {
         Debug.Log("Karena master maka akan main sebagai spectator.");
+
+        pv.RPC("EnableAllEntities", PhotonTargets.AllBuffered);
+
         PlayAsSpectator();
+    }
+
+    [PunRPC]
+    private void EnableAllEntities()
+    {
+        GameManager.Instance.EnableAllEntitiesMovement("nothing");
     }
 
     private void LoadMainGateKeyAndQuestionDifficultyData(QuestionDifficulty questionDifficulty, MainGateKeyRaw mainGateRaw)

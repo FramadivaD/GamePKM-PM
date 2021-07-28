@@ -31,17 +31,6 @@ public class RoomGenerator : MonoBehaviour
     [Header("Network")]
     public PhotonView pv;
 
-    private void Update()
-    {
-        if (Application.isEditor)
-        {
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
-        }
-    }
-
     public void RandomizeMap()
     {
         // kalo genap, jadikan ganjil
