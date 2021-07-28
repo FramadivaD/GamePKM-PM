@@ -396,6 +396,7 @@ GameObject:
   - component: {fileID: 9052686003985560676}
   - component: {fileID: 5138995550937514085}
   - component: {fileID: 3975869141725617192}
+  - component: {fileID: -2917305865651799900}
   m_Layer: 0
   m_Name: RoomNew
   m_TagString: Untagged
@@ -490,6 +491,17 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!210 &-2917305865651799900
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3165781595712665562}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &3547787880218295141
 GameObject:
   m_ObjectHideFlags: 0

@@ -135,6 +135,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pv: {fileID: 4889405277535929318}
   teamType: 0
+  fragmentKey:
+    key: 
+    data: 
+    dataImage: {fileID: 0}
   unlockedGraphic: {fileID: 3836950655389887356}
   lockedGraphic: {fileID: 3836950655007671386}
   teamIndicator: {fileID: 4260077095719641639}
@@ -177,7 +181,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
 --- !u!114 &4889405277535929318
 MonoBehaviour:
   m_ObjectHideFlags: 0

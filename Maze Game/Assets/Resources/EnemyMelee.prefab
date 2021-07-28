@@ -131,7 +131,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: a82f98095535b3943a26acb8137a06f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -245,7 +245,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -5538303793161256340, guid: 3bed2088c995eea40b1700828a751bd0,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -358,6 +358,7 @@ GameObject:
   - component: {fileID: 5411698538028754554}
   - component: {fileID: 8603367335107045918}
   - component: {fileID: 2761875735092932265}
+  - component: {fileID: 5876649811241394465}
   m_Layer: 0
   m_Name: EnemyMelee
   m_TagString: Untagged
@@ -642,6 +643,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!210 &5876649811241394465
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4096605515053387838}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
 --- !u!1 &4096605515076734101
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,7 +725,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 4168711047579277353, guid: 989b7cae4bd05434881abc949c22e2e3,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -849,7 +861,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -5538303793161256340, guid: 3bed2088c995eea40b1700828a751bd0,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

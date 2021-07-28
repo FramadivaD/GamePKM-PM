@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
 
     private void SpawnPlayer(TeamType teamType)
     {
-        Vector3 randPos = new Vector3(Random.Range(-5, 5), Random.Range(-5, 5));
+        Vector3 randPos = new Vector3(Random.Range(-5, 5), Random.Range(-3.6f, 3.6f));
 
         GameObject p = PhotonNetwork.Instantiate(playerPrefab.name, randPos, Quaternion.identity, 0);
         player = p.GetComponent<Player>();

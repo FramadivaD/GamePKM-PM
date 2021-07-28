@@ -585,7 +585,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 9ef3236195a813f43a1fa974ea7d3f1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1252,6 +1252,7 @@ GameObject:
   - component: {fileID: 6657697546887858857}
   - component: {fileID: 4320361549883593441}
   - component: {fileID: 5017101402805779576}
+  - component: {fileID: 2204544905047751712}
   m_Layer: 0
   m_Name: BossEnemy
   m_TagString: EnemyBoss
@@ -1532,6 +1533,17 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!210 &2204544905047751712
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8006803719243552604}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
 --- !u!1 &8252790847732994117
 GameObject:
   m_ObjectHideFlags: 0

@@ -448,7 +448,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
 --- !u!61 &7803712532238936629
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -488,6 +488,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pv: {fileID: 3678626785020164573}
+  fragment:
+    key: 
+    data: 
+    dataImage: {fileID: 0}
   canvasUI: {fileID: 2738107037573283419}
   fragmentImage: {fileID: 8197650652175736611}
   fragmentDataText: {fileID: 3066607266762825854}

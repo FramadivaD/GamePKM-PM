@@ -295,6 +295,7 @@ GameObject:
   - component: {fileID: -7793145144707639755}
   - component: {fileID: 9117323995026348594}
   - component: {fileID: 4481783188893819448}
+  - component: {fileID: 5438513212315662994}
   m_Layer: 0
   m_Name: MainGateNew
   m_TagString: GateOpen
@@ -404,6 +405,17 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!210 &5438513212315662994
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2830248482729328609}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
 --- !u!1 &4101750263681404057
 GameObject:
   m_ObjectHideFlags: 0

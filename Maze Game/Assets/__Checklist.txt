@@ -285,7 +285,7 @@ Total
 
 [ ] Weapon shoot delay bug
 
-[ ] Sprite ordering bug on gameplay
+[X] Sprite ordering bug on gameplay
 
 [X] Test Multiplayer 
 [ ] Convert Android Test
