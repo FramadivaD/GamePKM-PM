@@ -8,6 +8,9 @@ TextureImporter:
   - first:
       213: 3171858102278433413
     second: Map_Tembok_1
+  - first:
+      213: 4823168443981850374
+    second: Map_Tembok_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -141,7 +144,7 @@ TextureImporter:
         width: 3192
         height: 908
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -162,7 +165,7 @@ TextureImporter:
         width: 3192
         height: 908
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -170,6 +173,27 @@ TextureImporter:
       bones: []
       spriteID: 58a20488324b40c20800000000000000
       internalID: 3171858102278433413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Map_Tembok_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 3192
+        height: 1816
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 607696345265fe240800000000000000
+      internalID: 4823168443981850374
       vertices: []
       indices: 
       edges: []
