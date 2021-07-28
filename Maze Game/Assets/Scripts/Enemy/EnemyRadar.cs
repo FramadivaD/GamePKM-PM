@@ -5,48 +5,32 @@ public class EnemyRadar : MonoBehaviour
 {
     [SerializeField]private Enemy enemy;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Update()
     {
         if (PhotonNetwork.connected)
         {
             if (PhotonNetwork.player.IsMasterClient)
             {
-                if (other.CompareTag("Player"))
-                {
-                    enemy.playerTarget = other.gameObject;
-                }
+                FindNearestPlayer();
             }
         } else
         {
-            if (other.CompareTag("Player"))
-            {
-                enemy.playerTarget = other.gameObject;
-            }
+            FindNearestPlayer();
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void FindNearestPlayer()
     {
-        if (PhotonNetwork.connected)
+        Player[] players = FindObjectsOfType<Player>();
+        foreach (Player player in players)
         {
-            if (PhotonNetwork.player.IsMasterClient)
+            if (Vector3.Distance(player.transform.position, transform.position) <= 7)
             {
-                if (other.CompareTag("Player"))
-                {
-                    if (other.gameObject == enemy.playerTarget) {
-                        enemy.playerTarget = null;
-                    }
-                }
-            }
-        } else
-        {
-            if (other.CompareTag("Player"))
-            {
-                if (other.gameObject == enemy.playerTarget)
-                {
-                    enemy.playerTarget = null;
-                }
+                enemy.playerTarget = player.gameObject;
+                return;
             }
         }
+
+        enemy.playerTarget = null;
     }
 }

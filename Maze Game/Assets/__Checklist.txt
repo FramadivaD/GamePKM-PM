@@ -285,6 +285,10 @@ Total
 
 [ ] Weapon shoot delay bug
 
+[ ] Player die
+
+[ ] Display name character on join
+
 [X] Sprite ordering bug on gameplay
 
 [X] Test Multiplayer 
