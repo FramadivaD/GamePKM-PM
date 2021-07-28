@@ -6580,13 +6580,16 @@ MonoBehaviour:
   joystickController: {fileID: 5590809888531092290}
   health: {fileID: 6117276585491530531}
   login: {fileID: 6117276585491530530}
+  playerHead: {fileID: 6117276586123479491}
+  playerBody: {fileID: 6117276584984266835}
+  playerLegs: {fileID: 6117276585950082155}
   etcObjects: {fileID: 1381757313}
   nameTag: {fileID: 6117276585925300585}
   interactableButton: {fileID: 532639374}
   gameplayUI: {fileID: 1087816299}
   pauseUI: {fileID: 1399162799}
   pauseTeamText: {fileID: 116646753}
-  movementSpeed: 80
+  movementSpeed: 100
   playerName: Player
   dieSpawn: {fileID: 8021862887257837618, guid: cb049b15670659049adefe710f1cd984,
     type: 3}
@@ -6920,7 +6923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 6117276585491530557}
   mainCamera: {fileID: 519420031}
-  clampCompassMagnitude: 4
+  clampCompassMagnitude: 3
   compassPrefab: {fileID: 593910041248776194, guid: 7b25bedfe93c87642a637fa98392de94,
     type: 3}
   compassParent: {fileID: 5431768398674115692}
