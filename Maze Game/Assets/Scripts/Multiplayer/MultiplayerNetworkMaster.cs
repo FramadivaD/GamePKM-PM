@@ -312,5 +312,7 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     private void DisconnectAllPlayerRPC()
     {
         GameManager.Instance.BackToLobby();
+
+        WindowMaster.Instance.Show("Game was stopped by Master.");
     }
 }

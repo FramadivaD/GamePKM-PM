@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject playerHead;
     [SerializeField] private GameObject playerBody;
     [SerializeField] private GameObject playerLegs;
+    [SerializeField] private GameObject playerWeapon;
 
     [Header("UI Element")]
     [SerializeField] private GameObject etcObjects;
@@ -477,6 +478,7 @@ public class Player : MonoBehaviour
         playerHead.SetActive(true);
         playerBody.SetActive(true);
         playerLegs.SetActive(true);
+        playerWeapon.SetActive(true);
     }
 
     private void DisableGraphic()
@@ -484,5 +486,6 @@ public class Player : MonoBehaviour
         playerHead.SetActive(false);
         playerBody.SetActive(false);
         playerLegs.SetActive(false);
+        playerWeapon.SetActive(false);
     }
 }
