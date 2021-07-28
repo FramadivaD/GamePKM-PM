@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
 
     public GameObject dieSpawn;
 
+    private Rigidbody2D rb;
+
     [SerializeField] private bool allowMove = false;
     public bool AllowMove
     {
@@ -29,11 +31,21 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         enemyAnim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         health = GetComponent<Health>();
         startTimeIdle = timeIdle;
         startTimeAttack = timeAttack;
 
         health.OnDied += OnDie;
+
+        if (pv.isMine)
+        {
+
+        }
+        else
+        {
+            rb.isKinematic = true;
+        }
     }
 
     private void OnDestroy()
@@ -51,7 +63,10 @@ public class Enemy : MonoBehaviour
                 && !GameManager.Instance.WinnerWasAnnounced
                 && AllowMove)
             {
-                transform.position = Vector2.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * enemySpeed);
+                // transform.position = Vector2.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * enemySpeed);
+
+                rb.MovePosition(Vector2.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * enemySpeed));
+
                 if (transform.position.x < playerTarget.transform.position.x && transform.rotation.y == 0)
                 {
                     transform.eulerAngles = Vector3.down * 180f;
