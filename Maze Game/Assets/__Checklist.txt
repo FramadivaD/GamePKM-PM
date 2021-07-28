@@ -263,6 +263,10 @@ Total
 [ ] Port controller android
 [ ] konfirmasi nama package ke literally client.
 
+[ ] Random enemy spawn
+
+[ ] Fix collision antar player
+
 [ ] Option volume di main menu
 
 [ ] Cari sound effect
