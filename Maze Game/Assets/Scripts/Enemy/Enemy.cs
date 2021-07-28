@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
     private float startTimeAttack, startTimeIdle;
     private Animator enemyAnim;
 
+    public GameObject dieSpawn;
+
     [SerializeField] private bool allowMove = false;
     public bool AllowMove
     {
@@ -84,7 +86,24 @@ public class Enemy : MonoBehaviour
 
     private void OnDie()
     {
-        Destroy(gameObject);
+        if (PhotonNetwork.connected)
+        {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                pv.RPC("OnDieRPC", PhotonTargets.AllBuffered);
+
+                PhotonNetwork.Destroy(gameObject);
+            }
+        } else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    [PunRPC]
+    private void OnDieRPC()
+    {
+        Instantiate(dieSpawn, transform.position, Quaternion.identity);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -93,7 +112,13 @@ public class Enemy : MonoBehaviour
         {
             if (collision.TryGetComponent(out WeaponProjectile projectile))
             {
-                health.CurrentHealth -= projectile.Damage;
+                if (PhotonNetwork.connected)
+                {
+                    if (PhotonNetwork.player.IsMasterClient)
+                    {
+                        health.CurrentHealth -= projectile.Damage;
+                    }
+                }
                 projectile.TerminateProjectile();
             }
         }
