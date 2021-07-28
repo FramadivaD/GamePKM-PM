@@ -27,6 +27,11 @@ public class Player : MonoBehaviour
     public PlayerHealth health;
     public PlayerLogin login;
 
+    [Header("Player Object")]
+    [SerializeField] private GameObject playerHead;
+    [SerializeField] private GameObject playerBody;
+    [SerializeField] private GameObject playerLegs;
+
     [Header("UI Element")]
     [SerializeField] private GameObject etcObjects;
 
@@ -152,20 +157,40 @@ public class Player : MonoBehaviour
             if (pv.isMine)
             {
                 pv.RPC("DieRPC", PhotonTargets.AllBuffered, transform.position);
-                Vector3 randPos = new Vector3(Random.Range(-5, 5), Random.Range(-3.6f, 3.6f));
-                transform.position = randPos;
 
-                health.CurrentHealth = health.MaxHealth;
+                AllowMove = false;
+                rb.velocity = Vector2.zero;
+                joystickController.ResetPosition();
+
+                DisableGraphic();
+
+                Invoke("ResetHealth", 5);
             }
         }
         else
         {
             DieRPC(transform.position);
-            Vector3 randPos = new Vector3(Random.Range(-5, 5), Random.Range(-3.6f, 3.6f));
-            transform.position = randPos;
 
-            health.CurrentHealth = health.MaxHealth;
+            AllowMove = false;
+            rb.velocity = Vector2.zero;
+            joystickController.ResetPosition();
+
+            DisableGraphic();
+
+            Invoke("ResetHealth", 5);
         }
+    }
+
+    private void ResetHealth()
+    {
+        Vector3 randPos = new Vector3(Random.Range(-5, 5), Random.Range(-3.6f, 3.6f));
+        transform.position = randPos;
+
+        AllowMove = true;
+
+        health.ResetHealth();
+
+        EnableGraphic();
     }
 
     [PunRPC]
@@ -446,4 +471,18 @@ public class Player : MonoBehaviour
     }
 
     #endregion
+
+    private void EnableGraphic()
+    {
+        playerHead.SetActive(true);
+        playerBody.SetActive(true);
+        playerLegs.SetActive(true);
+    }
+
+    private void DisableGraphic()
+    {
+        playerHead.SetActive(false);
+        playerBody.SetActive(false);
+        playerLegs.SetActive(false);
+    }
 }

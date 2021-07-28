@@ -120,4 +120,9 @@ public class JoystickController : MonoBehaviour
 
         OnMovingJoystick?.Invoke(circleDir);
     }
+
+    public void ResetPosition()
+    {
+        Controlling(false, false, true);
+    }
 }
