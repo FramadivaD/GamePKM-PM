@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using UnityEngine.SceneManagement;
+
 using Extensione.Window;
 
 public class MultiplayerNetworkMaster : Photon.PunBehaviour
@@ -330,6 +332,11 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
             if (PhotonNetwork.player.IsMasterClient)
             {
                 pv.RPC("DisconnectAllPlayerRPC", PhotonTargets.AllBuffered);
+
+                PhotonNetwork.LeaveRoom();
+
+                Debug.Log("Loading Lobby");
+                SceneManager.LoadScene("LobbyMenu");
             }
         }
     }
