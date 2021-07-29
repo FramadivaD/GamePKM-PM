@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Laboratory.unity
     guid: a0343ef7b6e3ff6478f245dd8cba8b85
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LobbyMenu.unity
     guid: e58597107b33eb24d8b6da8aee631a1a
   - enabled: 0
