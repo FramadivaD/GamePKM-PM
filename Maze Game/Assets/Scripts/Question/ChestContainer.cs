@@ -35,7 +35,7 @@ public class ChestContainer : MonoBehaviour
             isUnlocked = value;
             unlockedGraphic.SetActive(isUnlocked);
             lockedGraphic.SetActive(!isUnlocked);
-            teamIndicator.color = TeamHelper.GetColorTeam(teamType);
+            teamIndicator.color = TeamHelper.GetColorTeamAlter(teamType);
 
             canvasUI.SetActive(isUnlocked && !IsFragmentTaken);
         }

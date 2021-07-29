@@ -54,8 +54,8 @@ public class GameManager : MonoBehaviour
             pausePlayerAndTeamText.text =
                 player.PlayerName
                 + " : "
-                + "<color=\"#" + ColorUtility.ToHtmlStringRGB(TeamHelper.GetColorTeam(player.teamType)) + "\">"
-                + player.teamType
+                + "<color=\"#" + ColorUtility.ToHtmlStringRGB(TeamHelper.GetColorTeamAlter(player.teamType)) + "\">"
+                + ((TeamType)TeamHelper.GetColorTeamAlterIndex(player.teamType)).ToString()
                 + "</color>"
                 + " Team";
         }
@@ -151,8 +151,8 @@ public class GameManager : MonoBehaviour
         if (PhotonNetwork.player.IsMasterClient)
         {
             winnerTeamText.text = "TEAM "
-                + "<color=\"#" + ColorUtility.ToHtmlStringRGB(TeamHelper.GetColorTeam(winnerTeam)) + "\">"
-                + winnerTeam.ToString()
+                + "<color=\"#" + ColorUtility.ToHtmlStringRGB(TeamHelper.GetColorTeamAlter(player.teamType)) + "\">"
+                + ((TeamType)TeamHelper.GetColorTeamAlterIndex(winnerTeam)).ToString()
                 + "</color>";
 
             winnerStatusText.text = "WINNER";
@@ -190,24 +190,13 @@ public class GameManager : MonoBehaviour
                 MultiplayerNetworkMaster.Instance.pv.RPC("BackToLobbyMasterRPC", PhotonTargets.AllBuffered);
             } else
             {
-                MultiplayerNetworkMaster.Instance.pv.RPC("BackToLobbyClientRPC", PhotonTargets.MasterClient, PhotonNetwork.player.NickName);
+                // MultiplayerNetworkMaster.Instance.pv.RPC("BackToLobbyClientRPC", PhotonTargets.MasterClient, PhotonNetwork.player.NickName);
+
                 BackToLobbyMasterRPC();
             }
         } else
         {
             BackToLobbyMasterRPC();
-        }
-    }
-
-    [PunRPC]
-    private void BackToLobbyClientRPC(string username)
-    {
-        if (PhotonNetwork.connected)
-        {
-            if (PhotonNetwork.player.IsMasterClient)
-            {
-                WindowMaster.Instance.Show(username + " Leave the Game");
-            }
         }
     }
 
@@ -251,5 +240,16 @@ public class GameManager : MonoBehaviour
     public void PlayEpicMusic()
     {
         AudioManager.Instance.ChangeMusicSilent(epicMusic);
+    }
+
+    private void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer)
+    {
+        if (PhotonNetwork.connected)
+        {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                WindowMaster.Instance.Show(otherPlayer.NickName + " Leave the Game");
+            }
+        }
     }
 }

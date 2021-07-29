@@ -23,6 +23,14 @@ public static class TeamHelper
 {
     public static readonly Color[] TeamColor = {
         new Color(255, 0, 0), // Red
+        new Color(0, 0, 255) //, // Blue
+        // new Color(0, 255, 0), // Green
+        // new Color(255, 255, 255), // Yellow
+        // new Color(255, 0, 255) // Magenta
+    };
+
+    public static readonly Color[] TeamColorAlter = {
+        new Color(255, 0, 0), // Red
         new Color(0, 0, 255), // Blue
         new Color(0, 255, 0), // Green
         new Color(255, 255, 255), // Yellow
@@ -33,9 +41,9 @@ public static class TeamHelper
     {
         TeamType.Red,
         TeamType.Blue,
-        TeamType.Green,
-        TeamType.Yellow,
-        TeamType.Magenta
+        // TeamType.Green,
+        // TeamType.Yellow,
+        // TeamType.Magenta
     };
 
     public static int GetTeamCount()
@@ -46,6 +54,16 @@ public static class TeamHelper
     public static Color GetColorTeam(TeamType teamType)
     {
         return TeamColor[(int) teamType];
+    }
+
+    public static Color GetColorTeamAlter(TeamType teamType)
+    {
+        return TeamColorAlter[GetColorTeamAlterIndex(teamType)];
+    }
+
+    public static int GetColorTeamAlterIndex(TeamType teamType)
+    {
+        return teamType == TeamType.Red ? LobbyPlayerList.PlayerRedTeamColorIndex : LobbyPlayerList.PlayerBlueTeamColorIndex;
     }
 
     public static TeamType FromPhotonTeam(PunTeams.Team team)

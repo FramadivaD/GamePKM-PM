@@ -124,6 +124,11 @@ public class LobbyNetwork : Photon.PunBehaviour
             JoinLobbyGame("MASTER");
         } else
         {
+            // if client retrieve master team data
+            if (!PhotonNetwork.player.IsMasterClient)
+            {
+                lobbyPlayerList.RetrievePlayerTeamType();
+            }
             OpenUsernameLobby();
         }
     }

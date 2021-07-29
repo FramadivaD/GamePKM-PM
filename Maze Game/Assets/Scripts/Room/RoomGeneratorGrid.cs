@@ -264,14 +264,16 @@ public class RoomGeneratorGrid : MonoBehaviour
 
     private void SpawnBoss(TeamType teamType)
     {
+        int teamAlter = TeamHelper.GetColorTeamAlterIndex(teamType);
+
         GameObject boss;
         if (PhotonNetwork.connected)
         {
-            boss = PhotonNetwork.Instantiate(bossTypePrefab[(int)teamType].name, bossParent.position, Quaternion.identity, 0);
+            boss = PhotonNetwork.Instantiate(bossTypePrefab[teamAlter].name, bossParent.position, Quaternion.identity, 0);
         }
         else
         {
-            boss = Instantiate(bossTypePrefab[(int)teamType], bossParent);
+            boss = Instantiate(bossTypePrefab[teamAlter], bossParent);
         }
 
         activeBossEnemy = boss.GetComponent<EnemyBoss>();

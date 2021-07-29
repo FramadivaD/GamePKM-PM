@@ -93,4 +93,6 @@ MonoBehaviour:
   - BackToLobbyClientRPC
   - BackToLobbyMasterRPC
   - ReceiveTeamColorDataClient
+  - RetrievePlayerTeamTypeClient
+  - RetrievePlayerTeamTypeMaster
   DisableAutoOpenWizard: 1

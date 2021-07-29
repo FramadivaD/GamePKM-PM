@@ -541,6 +541,9 @@ MonoBehaviour:
   bossTypePrefab:
   - {fileID: 1870654661280673874, guid: 8976d40eb6cd66d40ba7afae6f2df007, type: 3}
   - {fileID: 1870654661280673874, guid: bb4df74cb6794224e90a234abf6edaac, type: 3}
+  - {fileID: 1870654661280673874, guid: e2f72cc3b98febf4999c4958e77e188f, type: 3}
+  - {fileID: 1870654661280673874, guid: b8a7b9d88739b164cbf3e19a24fa7379, type: 3}
+  - {fileID: 1870654661280673874, guid: 98527b18a8970c3458b36a465439e16f, type: 3}
   mainGateParent: {fileID: 8834405245449930351}
   mainGatePrefab: {fileID: 2830248482729328609, guid: 2092ef8a657394043b37cb94eadfba85,
     type: 3}

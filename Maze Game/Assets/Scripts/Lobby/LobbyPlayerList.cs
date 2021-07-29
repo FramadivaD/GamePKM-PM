@@ -49,12 +49,7 @@ public class LobbyPlayerList : Photon.PunBehaviour
     private string playerMasterID;
     private string playerMasterName;
 
-    private void Start()
-    {
-        RandomizeTeamColorType();
-    }
-
-    private void RandomizeTeamColorType()
+    public void RandomizeTeamColorType()
     {
         PlayerRedTeamColorIndex = Random.Range(0, 5);
         PlayerBlueTeamColorIndex = Random.Range(0, 5);
@@ -65,8 +60,47 @@ public class LobbyPlayerList : Photon.PunBehaviour
         }
     }
 
+    public void RetrievePlayerTeamType()
+    {
+        // if client retrieve master team data
+        if (!PhotonNetwork.player.IsMasterClient)
+        {
+            pv.RPC("RetrievePlayerTeamTypeMaster", PhotonTargets.MasterClient);
+
+            Debug.Log("Client ask master to get color data");
+        }
+    }
+
+    [PunRPC]
+    private void RetrievePlayerTeamTypeMaster()
+    {
+        if (PhotonNetwork.player.IsMasterClient)
+        {
+            pv.RPC("RetrievePlayerTeamTypeClient", PhotonTargets.OthersBuffered, PlayerRedTeamColorIndex, PlayerBlueTeamColorIndex);
+
+            Debug.Log("Master Send team color data to clients");
+        }
+    }
+
+    [PunRPC]
+    private void RetrievePlayerTeamTypeClient(int redTeamIndex, int blueTeamIndex)
+    {
+        if (!PhotonNetwork.player.IsMasterClient)
+        {
+            PlayerRedTeamColorIndex = redTeamIndex;
+            PlayerBlueTeamColorIndex = blueTeamIndex;
+
+            Debug.Log("Client receive color data from master");
+        }
+    }
+
     public void Initialize()
     {
+        if (PhotonNetwork.player.IsMasterClient) {
+            // Reset player team color for master only
+            RandomizeTeamColorType();
+        }
+
         // Reset players.players
         players = CreatePlayers();
 
