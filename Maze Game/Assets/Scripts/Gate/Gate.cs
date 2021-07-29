@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Extensione.Audio;
+
 [System.Serializable]
 public class GateFragmentOrder
 {
@@ -29,6 +31,9 @@ public class Gate : MonoBehaviour
     public MainGateKey MainKey { get { return mainKey; } private set { mainKey = value; } }
 
     public List<int> CollectedFragmentIndex { get; private set; } = new List<int>();
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip openGateSFX;
 
     void Start()
     {
@@ -144,6 +149,8 @@ public class Gate : MonoBehaviour
         Debug.Log("Opened Gate");
         IsOpened = true;
         gateAnim.SetBool("isAnswer", true);
+
+        AudioManager.Instance.PlaySFXOnce(openGateSFX);
 
         GameManager.Instance.PlayEpicMusic();
     }

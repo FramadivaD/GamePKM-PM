@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using Extensione.Audio;
+
 public class WeaponOrb : MonoBehaviour
 {
     [SerializeField] private PhotonView pv;
 
     [SerializeField] private WeaponInventory weapon;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip pickupSFX;
 
     public WeaponInventory Weapon { get { return weapon; } }
 
@@ -31,6 +36,9 @@ public class WeaponOrb : MonoBehaviour
         if (!player.inventoryManager.IsFull)
         {
             player.inventoryManager.AddItem(Weapon);
+
+            AudioManager.Instance.PlaySFXOnce(pickupSFX);
+
             if (PhotonNetwork.connected)
             {
                 pv.RPC("DestroyOrb", PhotonTargets.MasterClient);

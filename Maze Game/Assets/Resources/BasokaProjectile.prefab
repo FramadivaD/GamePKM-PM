@@ -136,6 +136,7 @@ MonoBehaviour:
   destroyAfter: 5
   explosiveEffect: {fileID: 8021862887257837618, guid: b44523fbfd48caf4aa2353b15e1861ef,
     type: 3}
+  explosiveSFX: {fileID: 8300000, guid: 29254fb9fc20c16439f9aecd4c450fce, type: 3}
 --- !u!61 &1202516131466650086
 BoxCollider2D:
   m_ObjectHideFlags: 0

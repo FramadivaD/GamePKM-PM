@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
+using Extensione.Audio;
+
 public class WeaponManager : MonoBehaviour
 {
     Player player;
@@ -14,6 +16,8 @@ public class WeaponManager : MonoBehaviour
 
     [SerializeField] private Transform weaponControl;
     [SerializeField] private Transform weaponProjectileOrigin;
+
+    [SerializeField] private AudioClip shootSFX;
 
     public void Initialize(Player player)
     {
@@ -143,5 +147,7 @@ public class WeaponManager : MonoBehaviour
 
         WeaponProjectile bullet = ne.GetComponent<WeaponProjectile>();
         bullet.Initialize(rot);
+
+        AudioManager.Instance.PlaySFXOnce(shootSFX);
     }
 }

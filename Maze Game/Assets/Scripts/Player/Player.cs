@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Extensione.Audio;
+
 public class Player : MonoBehaviour
 {
     [Header("Network")]
@@ -89,6 +91,11 @@ public class Player : MonoBehaviour
             && !questionManager.questionContainer.activeSelf;
     }
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip damagedSFX;
+    [SerializeField] private AudioClip dieSFX;
+    [SerializeField] private AudioClip reviveSFX;
+
     public void Initialize(TeamType team)
     {
         if (pv.isMine)
@@ -165,6 +172,8 @@ public class Player : MonoBehaviour
 
                 DisableGraphic();
 
+                AudioManager.Instance.PlaySFXOnce(dieSFX);
+
                 Invoke("ResetHealth", 5);
             }
         }
@@ -188,6 +197,8 @@ public class Player : MonoBehaviour
         transform.position = randPos;
 
         AllowMove = true;
+
+        AudioManager.Instance.PlaySFXOnce(reviveSFX);
 
         health.ResetHealth();
 
@@ -291,6 +302,8 @@ public class Player : MonoBehaviour
                 Debug.Log("damage from left");
             }
             health.CurrentHealth -= 1;
+
+            AudioManager.Instance.PlaySFXOnce(damagedSFX);
         }
         else if (other.tag == "EnemyProjectile")
         {
@@ -298,6 +311,8 @@ public class Player : MonoBehaviour
             {
                 health.CurrentHealth -= projectile.Damage;
                 projectile.TerminateProjectile();
+
+                AudioManager.Instance.PlaySFXOnce(damagedSFX);
             }
         }
         else if (other.tag == "EnemyBoss")
@@ -305,6 +320,8 @@ public class Player : MonoBehaviour
             if (other.TryGetComponent(out EnemyBoss boss))
             {
                 health.CurrentHealth -= boss.TouchDamage;
+
+                AudioManager.Instance.PlaySFXOnce(damagedSFX);
             }
         }
     }

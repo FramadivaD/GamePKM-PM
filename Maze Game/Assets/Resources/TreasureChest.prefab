@@ -145,6 +145,8 @@ MonoBehaviour:
   canvasUI: {fileID: 3291978353126454893}
   fragmentImage: {fileID: 1985434093114650969}
   fragmentDataText: {fileID: 4128368949294970589}
+  unlockChestSFX: {fileID: 8300000, guid: c3691ef0b78efb847aa85a3bbce39c31, type: 3}
+  takeFragmentSFX: {fileID: 8300000, guid: 3c85aa3c68f741d4ca96980ef1c12cbe, type: 3}
 --- !u!61 &3836950654754379899
 BoxCollider2D:
   m_ObjectHideFlags: 0

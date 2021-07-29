@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
+using Extensione.Audio;
+
 public class ChestContainer : MonoBehaviour
 {
     [SerializeField] private PhotonView pv;
@@ -19,6 +21,10 @@ public class ChestContainer : MonoBehaviour
     [SerializeField] private GameObject canvasUI;
     [SerializeField] private Image fragmentImage;
     [SerializeField] private Text fragmentDataText;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip unlockChestSFX;
+    [SerializeField] private AudioClip takeFragmentSFX;
 
     private bool isUnlocked = false;
     public bool IsUnlocked {
@@ -109,6 +115,8 @@ public class ChestContainer : MonoBehaviour
     [PunRPC]
     private void UnlockChestRPCAll()
     {
+        AudioManager.Instance.PlaySFXOnce(unlockChestSFX);
+
         IsUnlocked = true;
     }
 
@@ -167,5 +175,7 @@ public class ChestContainer : MonoBehaviour
         IsFragmentTaken = true;
 
         canvasUI.SetActive(false);
+
+        AudioManager.Instance.PlaySFXOnce(takeFragmentSFX);
     }
 }

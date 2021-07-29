@@ -495,6 +495,7 @@ MonoBehaviour:
   canvasUI: {fileID: 2738107037573283419}
   fragmentImage: {fileID: 8197650652175736611}
   fragmentDataText: {fileID: 3066607266762825854}
+  pickupSFX: {fileID: 8300000, guid: 3c85aa3c68f741d4ca96980ef1c12cbe, type: 3}
 --- !u!114 &3678626785020164573
 MonoBehaviour:
   m_ObjectHideFlags: 0

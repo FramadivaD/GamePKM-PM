@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using Extensione.Audio;
+
 public class WeaponProjectile : MonoBehaviour
 {
     [SerializeField] protected float damage;
@@ -11,6 +13,8 @@ public class WeaponProjectile : MonoBehaviour
     public float Speed { get { return damage; } }
 
     [SerializeField] protected GameObject explosiveEffect;
+
+    [SerializeField] protected AudioClip explosiveSFX;
 
     Rigidbody2D rb2;
 
@@ -63,6 +67,8 @@ public class WeaponProjectile : MonoBehaviour
     {
         if (explosiveEffect)
         {
+            AudioManager.Instance.PlaySFXOnce(explosiveSFX);
+
             Instantiate(explosiveEffect, transform.position, Quaternion.identity);
         }
     }

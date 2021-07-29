@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+using Extensione.Audio;
+
 public class MainGateFragmentOrb : MonoBehaviour
 {
     [SerializeField] private PhotonView pv;
@@ -12,6 +14,9 @@ public class MainGateFragmentOrb : MonoBehaviour
     [SerializeField] private GameObject canvasUI;
     [SerializeField] private Image fragmentImage;
     [SerializeField] private Text fragmentDataText;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip pickupSFX;
 
     public void Initialize(TeamType teamType, int fragmentIndex)
     {
@@ -57,6 +62,8 @@ public class MainGateFragmentOrb : MonoBehaviour
         {
             canvasUI.SetActive(false);
             player.inventoryManager.AddItem(Fragment);
+
+            AudioManager.Instance.PlaySFXOnce(pickupSFX);
 
             if (PhotonNetwork.connected)
             {

@@ -6595,6 +6595,9 @@ MonoBehaviour:
   dieSpawn: {fileID: 8021862887257837618, guid: cb049b15670659049adefe710f1cd984,
     type: 3}
   allowMove: 1
+  damagedSFX: {fileID: 8300000, guid: 6338ad5e25604304ba9c616207bca3de, type: 3}
+  dieSFX: {fileID: 8300000, guid: 75f5f453885031b459a002f2cae6c4f8, type: 3}
+  reviveSFX: {fileID: 8300000, guid: 6191e51e6c2455547bd05de051f0365e, type: 3}
 --- !u!70 &6117276585491530556
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -6618,7 +6621,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6117276585491530554}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c0d9762d5ac9594c8165ac0af68d10b, type: 3}
   m_Name: 
@@ -6751,6 +6754,7 @@ MonoBehaviour:
   - {fileID: 8687706552621162461, guid: a9303fecb8058a64ea9be8d650d4595d, type: 3}
   weaponControl: {fileID: 1672847131}
   weaponProjectileOrigin: {fileID: 2962693582260253500}
+  shootSFX: {fileID: 8300000, guid: 824e0042fba54f54b99564f2438afc61, type: 3}
 --- !u!114 &9073236876983084820
 MonoBehaviour:
   m_ObjectHideFlags: 0
