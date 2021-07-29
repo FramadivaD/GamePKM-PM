@@ -89,4 +89,5 @@ MonoBehaviour:
   - DieRPC
   - DisconnectAllPlayerRPC
   - FindAllChestsRPC
+  - PlayCollectAnimationRPC
   DisableAutoOpenWizard: 1

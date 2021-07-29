@@ -539,7 +539,7 @@ MonoBehaviour:
     GateName: 
     Fragments: []
   firebaseManager: {fileID: 222803896}
-  testClientSingle: 1
+  testClientSingle: 0
 --- !u!4 &222803895
 Transform:
   m_ObjectHideFlags: 0
@@ -1619,11 +1619,11 @@ RectTransform:
   m_Father: {fileID: 878733646}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -436.0695, y: -310}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 25, y: 23}
   m_SizeDelta: {x: 367.4444, y: 72}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1326562270
 MonoBehaviour:
   m_ObjectHideFlags: 0

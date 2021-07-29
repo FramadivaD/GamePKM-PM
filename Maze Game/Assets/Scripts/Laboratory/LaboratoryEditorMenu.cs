@@ -131,6 +131,8 @@ public class LaboratoryEditorMenu : MonoBehaviour
         } else
         {
             Debug.Log("Please insert file name");
+
+            Extensione.Window.WindowMaster.Instance.Show("Mohon masukkan nama file!");
         }
     }
 

@@ -353,6 +353,7 @@ MonoBehaviour:
   isOpened: 0
   _teamType: 0
   openGateSFX: {fileID: 8300000, guid: fe24bb32b545ef74385e70aca9272452, type: 3}
+  turnInFragmentSFX: {fileID: 8300000, guid: c3691ef0b78efb847aa85a3bbce39c31, type: 3}
 --- !u!61 &9117323995026348594
 BoxCollider2D:
   m_ObjectHideFlags: 0

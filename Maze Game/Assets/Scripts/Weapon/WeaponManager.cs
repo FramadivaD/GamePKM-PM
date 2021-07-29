@@ -31,24 +31,52 @@ public class WeaponManager : MonoBehaviour
     {
         if (weapon != null)
         {
-            if (Input.GetMouseButton(0)) {
-                if (weapon.weaponType == WeaponType.None)
-                {
-                    // gak perlu ngapa ngapain
-                }
-                else if (weapon.weaponType == WeaponType.Basoka)
-                {
-                    AimWeapon();
-                    FireWeapon(weapon);
-                }
+            if (Application.isMobilePlatform)
+            {
+                if (Input.touchCount > 1) {
+                    bool tapCondition = Input.GetTouch(1).phase == TouchPhase.Began;
+                    bool holdCondition =
+                        Input.GetTouch(1).phase == TouchPhase.Moved
+                        || Input.GetTouch(1).phase == TouchPhase.Stationary;
+                    bool releaseCondition = Input.GetTouch(1).phase == TouchPhase.Ended;
 
-                RefreshGraphic(weapon);
+                    Controller(weapon, tapCondition, holdCondition, releaseCondition);
+                } else
+                {
+                    Controller(weapon, false, false, true);
+                }
             } else
             {
-                weaponTimer = basokaCooldown;
-                RefreshGraphic(null);
+                bool tapCondition = Input.GetMouseButtonDown(0);
+                bool holdCondition = Input.GetMouseButton(0);
+                bool releaseCondition = Input.GetMouseButtonUp(0);
+
+                Controller(weapon, tapCondition, holdCondition, releaseCondition);
             }
         } else
+        {
+            weaponTimer = basokaCooldown;
+            RefreshGraphic(null);
+        }
+    }
+
+    private void Controller(WeaponInventory weapon, bool tapCondition, bool holdCondition, bool releaseCondition)
+    {
+        if (holdCondition)
+        {
+            if (weapon.weaponType == WeaponType.None)
+            {
+                // gak perlu ngapa ngapain
+            }
+            else if (weapon.weaponType == WeaponType.Basoka)
+            {
+                AimWeapon();
+                FireWeapon(weapon);
+            }
+
+            RefreshGraphic(weapon);
+        }
+        else
         {
             weaponTimer = basokaCooldown;
             RefreshGraphic(null);
@@ -62,7 +90,21 @@ public class WeaponManager : MonoBehaviour
 
     private Vector3 GetAimDirection()
     {
-        Vector3 aimPos = playerCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 aimPos;
+
+        if (Application.isMobilePlatform)
+        {
+            if (Input.touchCount > 1)
+            {
+                aimPos = playerCamera.ScreenToWorldPoint(Input.GetTouch(1).position);
+            } else
+            {
+                aimPos = Vector3.zero;
+            }
+        } else
+        {
+            aimPos = playerCamera.ScreenToWorldPoint(Input.mousePosition);
+        }
 
         Vector3 direction = aimPos - transform.position;
         return direction;

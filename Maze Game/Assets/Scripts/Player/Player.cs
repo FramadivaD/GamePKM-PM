@@ -88,7 +88,8 @@ public class Player : MonoBehaviour
             && GameManager.Instance.AllowPlayerMove
             && !GameManager.Instance.WinnerWasAnnounced
             && AllowMove
-            && !questionManager.questionContainer.activeSelf;
+            && !questionManager.questionContainer.activeSelf
+            && !gateManager.questionContainer.activeSelf;
     }
 
     [Header("Audio")]

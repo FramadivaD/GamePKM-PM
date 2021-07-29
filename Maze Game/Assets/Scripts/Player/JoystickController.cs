@@ -35,7 +35,10 @@ public class JoystickController : MonoBehaviour
     {
         if (!GameManager.Instance.IsPaused
             && GameManager.Instance.AllowEntityMove
-            && GameManager.Instance.AllowPlayerMove)
+            && GameManager.Instance.AllowPlayerMove
+            && !GameManager.Instance.WinnerWasAnnounced
+            && !player.questionManager.questionContainer.activeSelf
+            && !player.gateManager.questionContainer.activeSelf)
         {
             if (PhotonNetwork.connected)
             {
@@ -46,6 +49,9 @@ public class JoystickController : MonoBehaviour
             {
                 Controller();
             }
+        } else
+        {
+            ResetPosition();
         }
     }
 
@@ -64,7 +70,7 @@ public class JoystickController : MonoBehaviour
                         || Input.GetTouch(0).phase == TouchPhase.Stationary;
                     bool releaseCondition = Input.GetTouch(0).phase == TouchPhase.Ended;
 
-                    Controlling(tapCondition, holdCondition, releaseCondition);
+                    Controlling(tapCondition, holdCondition, releaseCondition, Input.GetTouch(0).position);
                 }
             }
             else
@@ -73,16 +79,16 @@ public class JoystickController : MonoBehaviour
                 bool holdCondition = Input.GetMouseButton(0);
                 bool releaseCondition = Input.GetMouseButtonUp(0);
 
-                Controlling(tapCondition, holdCondition, releaseCondition);
+                Controlling(tapCondition, holdCondition, releaseCondition, Input.mousePosition);
             }
         }
     }
 
-    private void Controlling(bool tapCondition, bool holdCondition, bool releaseCondition)
+    private void Controlling(bool tapCondition, bool holdCondition, bool releaseCondition, Vector3 touchPos)
     {
         if (tapCondition)
         {
-            Vector3 mouseDir = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 mouseDir = mainCamera.ScreenToWorldPoint(touchPos);
             Vector3 mouseDis = mouseDir - mainCamera.transform.position;
             if (mouseDis.x <= -2f && mouseDis.y <= 0)
             {
@@ -99,7 +105,7 @@ public class JoystickController : MonoBehaviour
 
         if (outCircle.activeSelf)
         {
-            Vector2 circleDis = mainCamera.ScreenToWorldPoint(Input.mousePosition) - outCircle.transform.position;
+            Vector2 circleDis = mainCamera.ScreenToWorldPoint(touchPos) - outCircle.transform.position;
             circleDir = Vector2.ClampMagnitude(circleDis, 1f);
             mainCircle.transform.position = new Vector2(outCircle.transform.position.x + circleDir.x, outCircle.transform.position.y + circleDir.y);
         }
@@ -123,6 +129,6 @@ public class JoystickController : MonoBehaviour
 
     public void ResetPosition()
     {
-        Controlling(false, false, true);
+        Controlling(false, false, true, Vector3.zero);
     }
 }

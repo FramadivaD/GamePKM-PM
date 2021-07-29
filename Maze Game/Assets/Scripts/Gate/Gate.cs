@@ -34,6 +34,7 @@ public class Gate : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private AudioClip openGateSFX;
+    [SerializeField] private AudioClip turnInFragmentSFX;
 
     void Start()
     {
@@ -157,7 +158,19 @@ public class Gate : MonoBehaviour
 
     private void PlayCollectAnimation()
     {
-        
+        if (PhotonNetwork.connected)
+        {
+            pv.RPC("PlayCollectAnimationRPC", PhotonTargets.AllBuffered);
+        } else
+        {
+            PlayCollectAnimationRPC();
+        }
+    }
+
+    [PunRPC]
+    private void PlayCollectAnimationRPC()
+    {
+        AudioManager.Instance.PlaySFXOnce(turnInFragmentSFX);
     }
 
     public bool CheckIsOpened()
