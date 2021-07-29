@@ -34,7 +34,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pauseUI;
     [SerializeField] private Text pausePlayerAndTeamText;
 
+    [Header("Audio")]
     [SerializeField] private AudioClip epicMusic;
+    [SerializeField] private AudioClip winSFX;
 
     private bool isPaused = false;
     public bool IsPaused
@@ -172,7 +174,9 @@ public class GameManager : MonoBehaviour
     public IEnumerator AnnounceWinnerUIAfter(TeamType winnerTeam, float waitTime)
     {
         yield return new WaitForSecondsRealtime(waitTime);
+
         winnerUI.SetActive(true);
+        AudioManager.Instance.PlaySFXOnce(winSFX);
     }
 
     public void BackToLobby()
