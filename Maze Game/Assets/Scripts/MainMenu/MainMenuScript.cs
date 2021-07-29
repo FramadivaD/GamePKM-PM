@@ -30,6 +30,8 @@ public class MainMenuScript : MonoBehaviour
 
         musicVolumeSlider.value = 1.0f;
         soundVolumeSlider.value = 1.0f;
+
+        MainMenus();
     }
 
     void Update()
@@ -42,20 +44,45 @@ public class MainMenuScript : MonoBehaviour
     }
 
     public void SettingsMenu(){
-        menus[0].transform.localPosition = Vector2.right * -1601f;
-        menus[1].transform.localPosition = Vector2.zero;
-        menus[2].transform.localPosition = Vector2.right * 1601f;
+        menus[0].SetActive(false);
+        menus[1].SetActive(true);
+        menus[2].SetActive(false);
+        menus[3].SetActive(false);
+        menus[4].SetActive(false);
     }
 
     public void MainMenus(){
-        menus[0].transform.localPosition = Vector2.zero;
-        menus[1].transform.localPosition = Vector2.up * 901f;
-        menus[2].transform.localPosition = Vector2.right * 1601f;
+        menus[0].SetActive(true);
+        menus[1].SetActive(false);
+        menus[2].SetActive(false);
+        menus[3].SetActive(false);
+        menus[4].SetActive(false);
     }
 
-    public void JoinMenus(){
-        menus[0].transform.localPosition = Vector2.right * -1601f;
-        menus[1].transform.localPosition = Vector2.up * 901f;
-        menus[2].transform.localPosition = Vector2.zero;
+    public void JoinMenus()
+    {
+        menus[0].SetActive(false);
+        menus[1].SetActive(false);
+        menus[2].SetActive(true);
+        menus[3].SetActive(false);
+        menus[4].SetActive(false);
+    }
+
+    public void AboutMenus()
+    {
+        menus[0].SetActive(false);
+        menus[1].SetActive(false);
+        menus[2].SetActive(false);
+        menus[3].SetActive(true);
+        menus[4].SetActive(false);
+    }
+
+    public void CreditsMenus()
+    {
+        menus[0].SetActive(false);
+        menus[1].SetActive(false);
+        menus[2].SetActive(false);
+        menus[3].SetActive(false);
+        menus[4].SetActive(true);
     }
 }

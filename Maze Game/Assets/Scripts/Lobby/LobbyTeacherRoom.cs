@@ -38,9 +38,10 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
                     int blueTeam = GetBlueTeamCount();
 
                     // Change this to true to debug mode
-                    skipMustAtLeastAPlayer = true;
+                    skipMustAtLeastAPlayer = false;
 
-                    if (!skipMustAtLeastAPlayer && (redTeam <= 0 || blueTeam <= 0))
+                    // if (!skipMustAtLeastAPlayer && (redTeam <= 0 || blueTeam <= 0))
+                    if (!skipMustAtLeastAPlayer && (redTeam <= 0 && blueTeam <= 0))
                     {
                         Debug.Log("Each team must have at least 1 player.");
 
