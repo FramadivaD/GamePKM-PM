@@ -176,6 +176,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(waitTime);
 
         winnerUI.SetActive(true);
+        AudioManager.Instance.StopMusic();
         AudioManager.Instance.PlaySFXOnce(winSFX);
     }
 

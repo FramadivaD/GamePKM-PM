@@ -169,6 +169,11 @@ namespace Extensione.Audio
 
         private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
+            if (!audioMusic.isPlaying)
+            {
+                audioMusic.Play();
+            }
+
             foreach (Button b in FindObjectsOfType<Button>())
             {
                 b.onClick.AddListener(ButtonClick);
