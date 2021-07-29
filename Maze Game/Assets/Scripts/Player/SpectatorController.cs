@@ -37,10 +37,13 @@ public class SpectatorController : MonoBehaviour
 
     private void Update()
     {
-        Vector3 lerppos = targetLerp.position;
-        lerppos.z = height;
+        if (targetLerp)
+        {
+            Vector3 lerppos = targetLerp.position;
+            lerppos.z = height;
 
-        transform.position = Vector3.Lerp(transform.position, lerppos, 0.2f);
+            transform.position = Vector3.Lerp(transform.position, lerppos, 0.2f);
+        }
     }
 
     public void Track(Transform tra)

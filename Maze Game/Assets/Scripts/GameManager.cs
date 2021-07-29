@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 using Extensione.Audio;
+using Extensione.Window;
 
 public class GameManager : MonoBehaviour
 {
@@ -182,7 +183,50 @@ public class GameManager : MonoBehaviour
 
     public void BackToLobby()
     {
-        PhotonNetwork.LeaveRoom();
+        if (PhotonNetwork.connected)
+        {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                MultiplayerNetworkMaster.Instance.pv.RPC("BackToLobbyMasterRPC", PhotonTargets.AllBuffered);
+            } else
+            {
+                MultiplayerNetworkMaster.Instance.pv.RPC("BackToLobbyClientRPC", PhotonTargets.MasterClient, PhotonNetwork.player.NickName);
+                BackToLobbyMasterRPC();
+            }
+        } else
+        {
+            BackToLobbyMasterRPC();
+        }
+    }
+
+    [PunRPC]
+    private void BackToLobbyClientRPC(string username)
+    {
+        if (PhotonNetwork.connected)
+        {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                WindowMaster.Instance.Show(username + " Leave the Game");
+            }
+        }
+    }
+
+    [PunRPC]
+    private void BackToLobbyMasterRPC()
+    {
+        if (PhotonNetwork.connected)
+        {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                WindowMaster.Instance.Show("Leaving Game..");
+            } else
+            {
+                WindowMaster.Instance.Show("Leaving Game..");
+            }
+
+            PhotonNetwork.LeaveRoom();
+        }
+
         Debug.Log("Loading Lobby");
         SceneManager.LoadScene("LobbyMenu");
     }

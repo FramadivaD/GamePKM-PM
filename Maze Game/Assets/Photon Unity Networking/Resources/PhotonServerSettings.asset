@@ -90,4 +90,6 @@ MonoBehaviour:
   - DisconnectAllPlayerRPC
   - FindAllChestsRPC
   - PlayCollectAnimationRPC
+  - BackToLobbyClientRPC
+  - BackToLobbyMasterRPC
   DisableAutoOpenWizard: 1
