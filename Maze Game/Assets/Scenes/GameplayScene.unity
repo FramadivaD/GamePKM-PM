@@ -2698,6 +2698,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4115678027287425925, guid: eea3f130a4da6dd4ab31bb50f647b007,
         type: 3}
+      propertyPath: winSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 6c6d2f185735af74cbe44a19a75be404, type: 3}
+    - target: {fileID: 4115678027287425925, guid: eea3f130a4da6dd4ab31bb50f647b007,
+        type: 3}
       propertyPath: pauseUI
       value: 
       objectReference: {fileID: 0}
