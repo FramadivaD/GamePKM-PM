@@ -27,14 +27,14 @@ Game System and Mechanic
 [3] [X] Sistem Result Post Gameplay
 [9] [X] Sistem Multiplayer
 [5] [X] Sistem Online Multiplayer
-[3] [ ] Sistem Port Android
+[3] [X] Sistem Port Android
 [1] [X] Sistem Audio Manager
 
 Design
 [0] [X] Design - Penataan UI yang sesuai layar dinamis
 
 Audio
-[5] [ ] Audio - Sound Effect
+[5] [X] Audio - Sound Effect
 
 Etc.
 [0] [X] Server - Penyiapan Backend - (sementara pinjem punyaku)
@@ -261,8 +261,8 @@ Total
 [X] Tampilan winner nanti langsung balik ke lobby tanpa ada yang disconnect
 [X] Tampilan kalau room udah full
 [X] Controller Spectator simple
-[ ] Port controller android
-[ ] konfirmasi nama package ke literally client.
+[X] Port controller android
+[X] konfirmasi nama package ke literally client.
 
 [X] UI Spectator, leave room and disconnect all clients
 
@@ -276,11 +276,11 @@ Total
 [X] Cari lagu main
 [X] Sync dengan gameplay dan audio manager
 
-[ ] About masih belum.
+[X] About masih belum.
 
-[ ] Add android internet permission
-[ ] Add android write and read storage data
-[ ] Add android Camera permission
+[X] Add android internet permission
+[X] Add android write and read storage data
+[X] Add android Camera permission
 
 [X] Bug di lab editor ketika nambah fragment
 
@@ -295,4 +295,4 @@ Total
 [X] Sprite ordering bug on gameplay
 
 [X] Test Multiplayer 
-[ ] Convert Android Test
+[X] Convert Android Test
