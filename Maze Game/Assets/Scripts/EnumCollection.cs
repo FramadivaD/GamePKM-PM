@@ -33,7 +33,7 @@ public static class TeamHelper
         new Color(255, 0, 0), // Red
         new Color(0, 0, 255), // Blue
         new Color(0, 255, 0), // Green
-        new Color(255, 255, 255), // Yellow
+        new Color(255, 255, 0), // Yellow
         new Color(255, 0, 255) // Magenta
     };
 
