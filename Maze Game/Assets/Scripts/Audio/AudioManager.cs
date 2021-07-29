@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Extensione.Audio
 {
     public class AudioManager : MonoBehaviour
     {
         public static AudioManager Instance { get; private set; }
+
+        [SerializeField] private AudioClip buttonSFX;
 
         private AudioSource audioMusic;
         private AudioSource audioSFX;
@@ -30,6 +34,8 @@ namespace Extensione.Audio
 
             audioMusic.loop = true;
             audioSFX.loop = false;
+
+            SceneManager.sceneLoaded += SceneManager_sceneLoaded;
         }
 
         private void Update()
@@ -159,6 +165,19 @@ namespace Extensione.Audio
         public float GetSFXVolume()
         {
             return audioSFX.volume;
+        }
+
+        private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            foreach (Button b in FindObjectsOfType<Button>())
+            {
+                b.onClick.AddListener(ButtonClick);
+            }
+        }
+
+        private void ButtonClick()
+        {
+            PlaySFXOnce(buttonSFX);
         }
     }
 }
