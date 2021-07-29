@@ -272,9 +272,9 @@ Total
 
 [X] Option volume di main menu
 
-[ ] Cari sound effect
+[X] Cari sound effect
 [X] Cari lagu main
-[ ] Sync dengan gameplay dan audio manager
+[X] Sync dengan gameplay dan audio manager
 
 [ ] About masih belum.
 
