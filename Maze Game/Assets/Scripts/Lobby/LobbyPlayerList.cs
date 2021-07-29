@@ -43,8 +43,27 @@ public class LobbyPlayerList : Photon.PunBehaviour
     [SerializeField] private Button changeRedTeamButton;
     [SerializeField] private Button changeBlueTeamButton;
 
+    public static int PlayerRedTeamColorIndex { get; set; } = 0;
+    public static int PlayerBlueTeamColorIndex { get; set; } = 1;
+
     private string playerMasterID;
     private string playerMasterName;
+
+    private void Start()
+    {
+        RandomizeTeamColorType();
+    }
+
+    private void RandomizeTeamColorType()
+    {
+        PlayerRedTeamColorIndex = Random.Range(0, 5);
+        PlayerBlueTeamColorIndex = Random.Range(0, 5);
+
+        if (PlayerBlueTeamColorIndex == PlayerRedTeamColorIndex)
+        {
+            PlayerBlueTeamColorIndex = (PlayerBlueTeamColorIndex + 1) % 5;
+        }
+    }
 
     public void Initialize()
     {
@@ -54,7 +73,7 @@ public class LobbyPlayerList : Photon.PunBehaviour
         // Reset Player Preview List
         for (int i = 0; i < 8; i++)
         {
-            playersPreviewList[i].Initialize(null);
+            playersPreviewList[i].Initialize(null, 0);
         }
 
         // Kalau masuk lobby langsung set team ke none aja, biar pas regist bisa sesuai
@@ -226,6 +245,9 @@ public class LobbyPlayerList : Photon.PunBehaviour
 
         for (int i = 0; i < 8; i++)
         {
+            // color of red or blue team based of selected random color in the start
+            int colorIndex = i < 4 ? PlayerRedTeamColorIndex : PlayerBlueTeamColorIndex;
+
             if (players.players[i] != null && players.players[i].playerExist)
             {
                 if (players.players[i].playerID == playerNameLocal) {
@@ -234,11 +256,11 @@ public class LobbyPlayerList : Photon.PunBehaviour
                 }
 
                 Debug.Log("ID : " + players.players[i].playerID + " : " + players.players[i].playerName);
-                playersPreviewList[i].Initialize(players.players[i]);
+                playersPreviewList[i].Initialize(players.players[i], colorIndex);
             } else
             {
                 players.players[i] = new PlayerListDetails(false);
-                playersPreviewList[i].Initialize(null);
+                playersPreviewList[i].Initialize(null, colorIndex);
             }
         }
 

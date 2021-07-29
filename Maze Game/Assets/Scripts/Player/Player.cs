@@ -117,8 +117,16 @@ public class Player : MonoBehaviour
     [PunRPC]
     private void SyncTeamColorGraphic(int teamTypeInt)
     {
-        playerHatGraphic.sprite = teamHatSprites[teamTypeInt];
-        playerBodyGraphic.sprite = teamBodySprites[teamTypeInt];
+        // brarti red team
+        if (teamTypeInt == 0)
+        {
+            playerHatGraphic.sprite = teamHatSprites[LobbyPlayerList.PlayerRedTeamColorIndex];
+            playerBodyGraphic.sprite = teamBodySprites[LobbyPlayerList.PlayerRedTeamColorIndex];
+        } else if (teamTypeInt == 1) // berarti blue team
+        {
+            playerHatGraphic.sprite = teamHatSprites[LobbyPlayerList.PlayerBlueTeamColorIndex];
+            playerBodyGraphic.sprite = teamBodySprites[LobbyPlayerList.PlayerBlueTeamColorIndex];
+        }
     }
 
     [PunRPC]

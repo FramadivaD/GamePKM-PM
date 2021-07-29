@@ -1490,7 +1490,7 @@ MonoBehaviour:
   - {fileID: 2048753402}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 6
-  instantiationId: 6
+  instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &252936851
@@ -3137,7 +3137,7 @@ MonoBehaviour:
   - {fileID: 1294767488}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 4
-  instantiationId: 4
+  instantiationId: 14
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &679356586 stripped
@@ -3170,7 +3170,7 @@ MonoBehaviour:
   - {fileID: 1893518620}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 3
-  instantiationId: 3
+  instantiationId: 10
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &719516445
@@ -3587,7 +3587,7 @@ MonoBehaviour:
   - {fileID: 2001039305}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 8
-  instantiationId: 8
+  instantiationId: 15
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &783265723
@@ -3736,11 +3736,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 5c4cb0313ff4d074cbf1f9674ff6d550,
         type: 3}
+    - target: {fileID: 1781249849, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
+      propertyPath: viewIdField
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1781249849, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
+      propertyPath: instantiationId
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1996982824, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 6543897ef7a97cf4b8d3e0e5fd88ece0,
         type: 3}
+    - target: {fileID: 1118867437587043830, guid: abc663b0a43a1a74086250dd747c9f19,
+        type: 3}
+      propertyPath: teamType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1279515014283049666, guid: abc663b0a43a1a74086250dd747c9f19,
         type: 3}
       propertyPath: m_Name
@@ -4445,7 +4458,7 @@ MonoBehaviour:
   - {fileID: 853284599}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 7
-  instantiationId: 7
+  instantiationId: 12
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &1016881278 stripped
@@ -4478,7 +4491,7 @@ MonoBehaviour:
   - {fileID: 1122964698}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 1
-  instantiationId: 1
+  instantiationId: 11
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &1047016020
@@ -4800,6 +4813,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 628102182}
     m_Modifications:
+    - target: {fileID: 1781249849, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
+      propertyPath: viewIdField
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1781249849, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
+      propertyPath: instantiationId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1279515014283049666, guid: abc663b0a43a1a74086250dd747c9f19,
         type: 3}
       propertyPath: m_Name
@@ -5167,6 +5188,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 628102182}
     m_Modifications:
+    - target: {fileID: 1781249849, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
+      propertyPath: viewIdField
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1781249849, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
+      propertyPath: instantiationId
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1279515014283049666, guid: abc663b0a43a1a74086250dd747c9f19,
         type: 3}
       propertyPath: m_Name
@@ -5521,11 +5550,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 5c4cb0313ff4d074cbf1f9674ff6d550,
         type: 3}
+    - target: {fileID: 1781249849, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
+      propertyPath: viewIdField
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1781249849, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
+      propertyPath: instantiationId
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1996982824, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 6543897ef7a97cf4b8d3e0e5fd88ece0,
         type: 3}
+    - target: {fileID: 1118867437587043830, guid: abc663b0a43a1a74086250dd747c9f19,
+        type: 3}
+      propertyPath: teamType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1279515014283049666, guid: abc663b0a43a1a74086250dd747c9f19,
         type: 3}
       propertyPath: m_Name
@@ -7097,39 +7139,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &1781249848 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1279515014283049666, guid: abc663b0a43a1a74086250dd747c9f19,
-    type: 3}
-  m_PrefabInstance: {fileID: 1279515013526896157}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1781249849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781249848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ownerId: 0
-  group: 0
-  OwnerShipWasTransfered: 0
-  prefixBackup: -1
-  synchronization: 3
-  onSerializeTransformOption: 3
-  onSerializeRigidBodyOption: 2
-  ownershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 2098332896}
-  ObservedComponentsFoldoutOpen: 1
-  viewIdField: 2
-  instantiationId: 2
-  currentMasterID: -1
-  isRuntimeInstantiated: 0
 --- !u!1 &1792854112
 GameObject:
   m_ObjectHideFlags: 0
@@ -7596,11 +7605,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 5c4cb0313ff4d074cbf1f9674ff6d550,
         type: 3}
+    - target: {fileID: 1781249849, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
+      propertyPath: viewIdField
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1781249849, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
+      propertyPath: instantiationId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1996982824, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 6543897ef7a97cf4b8d3e0e5fd88ece0,
         type: 3}
+    - target: {fileID: 1118867437587043830, guid: abc663b0a43a1a74086250dd747c9f19,
+        type: 3}
+      propertyPath: teamType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1279515014283049666, guid: abc663b0a43a1a74086250dd747c9f19,
         type: 3}
       propertyPath: m_Name
@@ -7962,7 +7984,7 @@ MonoBehaviour:
   - {fileID: 1258034725}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 5
-  instantiationId: 5
+  instantiationId: 13
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &1926418462
@@ -8351,11 +8373,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 5c4cb0313ff4d074cbf1f9674ff6d550,
         type: 3}
+    - target: {fileID: 1781249849, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
+      propertyPath: viewIdField
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1781249849, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
+      propertyPath: instantiationId
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1996982824, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 6543897ef7a97cf4b8d3e0e5fd88ece0,
         type: 3}
+    - target: {fileID: 1118867437587043830, guid: abc663b0a43a1a74086250dd747c9f19,
+        type: 3}
+      propertyPath: teamType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1279515014283049666, guid: abc663b0a43a1a74086250dd747c9f19,
         type: 3}
       propertyPath: m_Name
@@ -9074,6 +9109,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 628102182}
     m_Modifications:
+    - target: {fileID: 1781249849, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
+      propertyPath: viewIdField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1781249849, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
+      propertyPath: instantiationId
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1279515014283049666, guid: abc663b0a43a1a74086250dd747c9f19,
         type: 3}
       propertyPath: m_Name
@@ -9377,6 +9420,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 628102182}
     m_Modifications:
+    - target: {fileID: 1781249849, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
+      propertyPath: viewIdField
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1781249849, guid: abc663b0a43a1a74086250dd747c9f19, type: 3}
+      propertyPath: instantiationId
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 1279515014283049666, guid: abc663b0a43a1a74086250dd747c9f19,
         type: 3}
       propertyPath: m_Name
@@ -9495,7 +9546,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1279515013526896157}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781249848}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bddbe7c4b8c39c94fb812909cdde2143, type: 3}

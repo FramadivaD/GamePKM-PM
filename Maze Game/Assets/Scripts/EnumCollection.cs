@@ -11,7 +11,7 @@ public enum PlayerInteractionType
 [System.Serializable]
 public enum TeamType
 {
-    Red, Blue
+    Red, Blue, Green, Yellow, Magenta
 }
 
 public enum BossAttackType
@@ -23,13 +23,19 @@ public static class TeamHelper
 {
     public static readonly Color[] TeamColor = {
         new Color(255, 0, 0), // Red
-        new Color(0, 0, 255) // Blue
+        new Color(0, 0, 255), // Blue
+        new Color(0, 255, 0), // Green
+        new Color(255, 255, 255), // Yellow
+        new Color(255, 0, 255) // Magenta
     };
 
     public static readonly TeamType[] TeamTypes =
     {
         TeamType.Red,
-        TeamType.Blue
+        TeamType.Blue,
+        TeamType.Green,
+        TeamType.Yellow,
+        TeamType.Magenta
     };
 
     public static int GetTeamCount()

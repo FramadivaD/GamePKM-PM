@@ -92,4 +92,5 @@ MonoBehaviour:
   - PlayCollectAnimationRPC
   - BackToLobbyClientRPC
   - BackToLobbyMasterRPC
+  - ReceiveTeamColorDataClient
   DisableAutoOpenWizard: 1

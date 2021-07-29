@@ -9,9 +9,15 @@ public class LobbyPlayerPreview : MonoBehaviour
 
     [SerializeField] private GameObject playerPreview;
 
+    [SerializeField] private Image playerPreviewHat;
+    [SerializeField] private Image playerPreviewBody;
+
     [SerializeField] private Text displayNameInput;
 
-    public void Initialize(PlayerListDetails player)
+    [SerializeField] private Sprite[] playersHatColorType;
+    [SerializeField] private Sprite[] playersBodyColorType;
+
+    public void Initialize(PlayerListDetails player, int colorType)
     {
         this.player = player;
 
@@ -23,5 +29,8 @@ public class LobbyPlayerPreview : MonoBehaviour
             playerPreview.SetActive(true);
             displayNameInput.text = player.playerName;
         }
+
+        playerPreviewHat.sprite = playersHatColorType[colorType];
+        playerPreviewBody.sprite = playersBodyColorType[colorType];
     }
 }

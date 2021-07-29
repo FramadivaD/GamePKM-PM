@@ -125,6 +125,32 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
     private void InitializeMasterClient()
     {
+        InitializeMasterClientTeam();
+        InitializeMasterClientData();
+    }
+
+    private void InitializeMasterClientTeam()
+    {
+        if (PhotonNetwork.connected) {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                pv.RPC("ReceiveTeamColorDataClient",
+                    PhotonTargets.AllBuffered,
+                    LobbyPlayerList.PlayerRedTeamColorIndex,
+                    LobbyPlayerList.PlayerBlueTeamColorIndex);
+            }
+        }
+    }
+
+    [PunRPC]
+    private void ReceiveTeamColorDataClient(int redColor, int blueColor)
+    {
+        LobbyPlayerList.PlayerRedTeamColorIndex = redColor;
+        LobbyPlayerList.PlayerBlueTeamColorIndex = blueColor;
+    }
+
+    private void InitializeMasterClientData()
+    {
         string diffJson = LobbyTeacherRoomQuestionDifficulty.SelectedDifficultyJson;
         string keyJsonDownloadURL = LobbyTeacherRoom.MainGateDownloadURL;
 

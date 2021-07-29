@@ -754,6 +754,7 @@ GameObject:
   - component: {fileID: 1279515014283049727}
   - component: {fileID: 1279515014283049724}
   - component: {fileID: 1118867437587043830}
+  - component: {fileID: 1781249849}
   m_Layer: 5
   m_Name: LobbyPlayerPreview
   m_TagString: Untagged
@@ -831,7 +832,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bddbe7c4b8c39c94fb812909cdde2143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 
-  playerName: 
+  teamType: 0
+  player:
+    playerExist: 0
+    playerID: 
+    playerName: 
   playerPreview: {fileID: 501673010}
+  playerPreviewHat: {fileID: 1996982824}
+  playerPreviewBody: {fileID: 24187028}
   displayNameInput: {fileID: 420315586}
+  playersHatColorType:
+  - {fileID: 21300000, guid: e5265f56444fac24ba25062bf2907f37, type: 3}
+  - {fileID: 21300000, guid: 6543897ef7a97cf4b8d3e0e5fd88ece0, type: 3}
+  - {fileID: 21300000, guid: 927e0f382c37cbf4ea5db1bf121b84a5, type: 3}
+  - {fileID: 21300000, guid: ffdbec24f845d674a927559c7ec29f2a, type: 3}
+  - {fileID: 21300000, guid: 957f30fb9901f784698448f9a5b1518a, type: 3}
+  playersBodyColorType:
+  - {fileID: 21300000, guid: f2ecf2ef007f57d468f5bbb2473be455, type: 3}
+  - {fileID: 21300000, guid: 5c4cb0313ff4d074cbf1f9674ff6d550, type: 3}
+  - {fileID: 21300000, guid: ac3a39483fc0944409f3308e4a029475, type: 3}
+  - {fileID: 21300000, guid: 6622bd5e7a156ee45b346e18302f5e35, type: 3}
+  - {fileID: 21300000, guid: 148acec8933c8a640a73ffe0bcd9916c, type: 3}
+--- !u!114 &1781249849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279515014283049666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 1279515014283049725}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
