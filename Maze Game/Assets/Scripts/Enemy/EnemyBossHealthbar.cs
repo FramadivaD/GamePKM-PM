@@ -32,6 +32,7 @@ public class EnemyBossHealthbar : MonoBehaviour
     {
         if (enemyBoss.BossModeStarted)
         {
+            CheckBossEnemyPlayerTeam();
             if (!healthStarted)
             {
                 health.CurrentHealth = health.MaxHealth;
@@ -54,5 +55,20 @@ public class EnemyBossHealthbar : MonoBehaviour
     void OnDie()
     {
         healthBarParent.SetActive(false);
+    }
+
+    private void CheckBossEnemyPlayerTeam()
+    {
+        if (PhotonNetwork.connected)
+        {
+            if (!PhotonNetwork.player.IsMasterClient)
+            {
+                // if is client and enemy boss differ from team then disabl healthbar ui
+                if (enemyBoss.TeamType != TeamHelper.FromPhotonTeam(PhotonNetwork.player.GetTeam()))
+                {
+                    healthBarParent.SetActive(false);
+                }
+            }
+        }
     }
 }

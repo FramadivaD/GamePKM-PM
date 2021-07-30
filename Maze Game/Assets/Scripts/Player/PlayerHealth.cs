@@ -20,7 +20,7 @@ public class PlayerHealth : Health
 
     private void RefreshHealthUI()
     {
-        int healthCount = Mathf.RoundToInt(MaxHealth);
+        int healthCount = Mathf.FloorToInt(MaxHealth);
         for (int i = 0; i < healthCount || i < hearts.Length; i++)
         {
             if (i < hearts.Length)
