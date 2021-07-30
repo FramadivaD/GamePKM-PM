@@ -28,8 +28,16 @@ public class LobbyNetwork : Photon.PunBehaviour
     {
         OpenJoinLobby();
 
-        createGameButton.interactable = false;
-        joinGameButton.interactable = false;
+        if (PhotonNetwork.connected)
+        {
+            createGameButton.interactable = true;
+            joinGameButton.interactable = true;
+        }
+        else
+        {
+            createGameButton.interactable = false;
+            joinGameButton.interactable = false;
+        }
 
         InitializePhotonNetwork();
     }
