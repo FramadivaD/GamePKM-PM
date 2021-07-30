@@ -8764,6 +8764,7 @@ MonoBehaviour:
   studentDashboardMenu: {fileID: 1799766521}
   createGameButton: {fileID: 111216781}
   joinGameButton: {fileID: 783265725}
+  exitGameButton: {fileID: 1669082810}
 --- !u!114 &2016174602
 MonoBehaviour:
   m_ObjectHideFlags: 0

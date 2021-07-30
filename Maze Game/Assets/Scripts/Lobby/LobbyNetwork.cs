@@ -21,6 +21,7 @@ public class LobbyNetwork : Photon.PunBehaviour
 
     [SerializeField] private Button createGameButton;
     [SerializeField] private Button joinGameButton;
+    [SerializeField] private Button exitGameButton;
 
     private bool connected = false;
 
@@ -32,6 +33,8 @@ public class LobbyNetwork : Photon.PunBehaviour
         {
             createGameButton.interactable = true;
             joinGameButton.interactable = true;
+
+            connected = true;
         }
         else
         {
@@ -54,6 +57,8 @@ public class LobbyNetwork : Photon.PunBehaviour
         }
 
         PhotonNetwork.ConnectUsingSettings(GameVersion);
+
+        exitGameButton.interactable = true;
     }
 
     public void CreateNewGame(string roomID)
@@ -63,6 +68,8 @@ public class LobbyNetwork : Photon.PunBehaviour
             if (roomID.Length == 5)
             {
                 PhotonNetwork.CreateRoom(roomID, new RoomOptions() { MaxPlayers = 9, PublishUserId = true }, null);
+
+                exitGameButton.interactable = false;
             } else
             {
                 Debug.Log("RoomID must 5 characters.");
@@ -79,6 +86,8 @@ public class LobbyNetwork : Photon.PunBehaviour
             if (roomID.Length == 5)
             {
                 PhotonNetwork.JoinRoom(roomID);
+
+                exitGameButton.interactable = false;
             }
             else
             {
@@ -100,6 +109,8 @@ public class LobbyNetwork : Photon.PunBehaviour
 
             lobbyPlayerList.Initialize();
             OpenPlayerLobby();
+
+            exitGameButton.interactable = false;
         }
     }
 
@@ -108,6 +119,8 @@ public class LobbyNetwork : Photon.PunBehaviour
         if (connected)
         {
             PhotonNetwork.LeaveRoom();
+
+            exitGameButton.interactable = true;
         }
     }
 
@@ -139,6 +152,8 @@ public class LobbyNetwork : Photon.PunBehaviour
             }
             OpenUsernameLobby();
         }
+
+        exitGameButton.interactable = true;
     }
 
     public override void OnLeftRoom()
@@ -147,6 +162,8 @@ public class LobbyNetwork : Photon.PunBehaviour
 
         createGameButton.interactable = false;
         joinGameButton.interactable = false;
+
+        exitGameButton.interactable = true;
     }
 
     public override void OnPhotonJoinRoomFailed(object[] codeAndMsg)
@@ -156,6 +173,8 @@ public class LobbyNetwork : Photon.PunBehaviour
         Debug.Log("Room might full or ingame progress");
 
         WindowMaster.Instance.Show("Join Room Gagal!\nRoom telah penuh atau sedang dimulai!");
+
+        exitGameButton.interactable = true;
     }
 
     #endregion
