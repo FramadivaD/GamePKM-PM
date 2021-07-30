@@ -1,10 +1,117 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Question
 {
+    public string question;
+    public string answer;
+
+    public Question()
+    {
+        bool[] questionType = {
+            LobbyTeacherRoomQuestionDifficulty.SelectedDifficulty.pecahan,
+            LobbyTeacherRoomQuestionDifficulty.SelectedDifficulty.pengurangan,
+            LobbyTeacherRoomQuestionDifficulty.SelectedDifficulty.penjumlahan,
+            LobbyTeacherRoomQuestionDifficulty.SelectedDifficulty.perkalian,
+            LobbyTeacherRoomQuestionDifficulty.SelectedDifficulty.pembagian
+        };
+
+        // Random soal
+        int randType = Random.Range(0, questionType.Length);
+
+        // if the randomed value is false, then find the true
+        for (int i = 0;i < questionType.Length;i++)
+        {
+            int ind = (randType + i) % questionType.Length;
+            if (questionType[ind])
+            {
+                randType = ind;
+                break;
+            }
+        }
+
+        if (randType == 0) GenerateSoalPecahan();
+        else if (randType == 1) GenerateSoalPengurangan();
+        else if (randType == 2) GenerateSoalPenjumlahan();
+        else if (randType == 3) GenerateSoalPerkalian();
+        else if (randType == 4) GenerateSoalPembagian();
+    }
+
+    private void GenerateSoalPembagian()
+    {
+        int a = Random.Range(1, 10);
+        int b = Random.Range(1, 10);
+        int val = a * b;
+
+        question = "Berapa hasil dari perhitungan berikut ini :\n" + val + " / " + a + " = ?";
+        answer = b.ToString();
+    }
+
+    private void GenerateSoalPerkalian()
+    {
+        int a = Random.Range(1, 10);
+        int b = Random.Range(1, 10);
+        int val = a * b;
+
+        question = "Berapa hasil dari perhitungan berikut ini :\n" + a + " x " + b + " = ?";
+        answer = val.ToString();
+    }
+
+    private void GenerateSoalPenjumlahan()
+    {
+        int a = Random.Range(1, 10);
+        int b = Random.Range(1, 10);
+        int val = a + b;
+
+        question = "Berapa hasil dari perhitungan berikut ini :\n" + a + " + " + b + " = ?";
+        answer = val.ToString();
+    }
+
+    private void GenerateSoalPengurangan()
+    {
+        int a = Random.Range(1, 10);
+        int b = Random.Range(1, 10);
+        int val = a + b;
+
+        question = "Berapa hasil dari perhitungan berikut ini :\n" + a + " - " + b + " = ?";
+        answer = val.ToString();
+    }
+
+    private void GenerateSoalPecahan()
+    {
+        int a = Random.Range(1, 6);
+        int b = Random.Range(1, 6);
+
+        int a_ = Random.Range(1, 6);
+        int b_ = Random.Range(1, 6);
+
+        int pembilang = a * b_ + b * a_;
+        int penyebut = a_ * b_;
+
+        int gcd = GCD(pembilang, penyebut);
+
+        pembilang /= gcd;
+        penyebut /= gcd;
+
+        question = "Berapa hasil dari perhitungan berikut ini :\n" + a + "/" + a_ + " " + "+" + " " + b + "/" + b_ + " = ??";
+        answer = (penyebut == 1 ? pembilang.ToString() : (pembilang + "/" + penyebut));
+    }
+
+    private static int GCD(int a, int b)
+    {
+        while (a != 0 && b != 0)
+        {
+            if (a > b)
+                a %= b;
+            else
+                b %= a;
+        }
+
+        return a | b;
+    }
+
+    /*
     float koef1, koef2, konst;
     int pembilang1, pembilang2, pembilang3, penyebut1, penyebut2, penyebut3;
     int FPB;
@@ -86,4 +193,5 @@ public class Question
     void perhitunganKPK(float a, float b){
 
     }
+    */
 }

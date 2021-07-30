@@ -14,11 +14,11 @@ public class LobbyTeacherRoomQuestionDifficulty : MonoBehaviour
 
     public static QuestionDifficulty SelectedDifficulty = new QuestionDifficulty()
     {
-        bangunDatar = true,
         pecahan = true,
+        pengurangan = true,
         penjumlahan = true,
         perkalian = true,
-        persamaan = true
+        pembagian = true
     };
     public static string SelectedDifficultyJson { get { return JsonUtility.ToJson(SelectedDifficulty); } }
 
@@ -35,11 +35,11 @@ public class LobbyTeacherRoomQuestionDifficulty : MonoBehaviour
         togglePerkalian.onValueChanged.AddListener(TogglePerkalian);
         togglePersamaan.onValueChanged.AddListener(TogglePersamaan);
 
-        toggleBangunDatar.isOn = SelectedDifficulty.bangunDatar;
-        togglePecahan.isOn = SelectedDifficulty.pecahan;
+        toggleBangunDatar.isOn = SelectedDifficulty.pecahan;
+        togglePecahan.isOn = SelectedDifficulty.pengurangan;
         togglePenjumlahan.isOn = SelectedDifficulty.penjumlahan;
         togglePerkalian.isOn = SelectedDifficulty.perkalian;
-        togglePersamaan.isOn = SelectedDifficulty.persamaan;
+        togglePersamaan.isOn = SelectedDifficulty.pembagian;
     }
 
     public void OpenDifficultyMenu()
@@ -54,12 +54,12 @@ public class LobbyTeacherRoomQuestionDifficulty : MonoBehaviour
 
     public void ToggleBangunDatar(bool toggle)
     {
-        SelectedDifficulty.bangunDatar = toggle;
+        SelectedDifficulty.pecahan = toggle;
     }
 
     public void TogglePecahan(bool toggle)
     {
-        SelectedDifficulty.pecahan = toggle;
+        SelectedDifficulty.pengurangan = toggle;
     }
 
     public void TogglePenjumlahan(bool toggle)
@@ -74,6 +74,6 @@ public class LobbyTeacherRoomQuestionDifficulty : MonoBehaviour
 
     public void TogglePersamaan(bool toggle)
     {
-        SelectedDifficulty.persamaan = toggle;
+        SelectedDifficulty.pembagian = toggle;
     }
 }
