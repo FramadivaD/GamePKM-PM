@@ -717,8 +717,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -139.94543, y: -32.4084}
-  m_SizeDelta: {x: 828.7919, y: 483.718}
+  m_AnchoredPosition: {x: -139.94543, y: -35}
+  m_SizeDelta: {x: 828.7919, y: 518.2189}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &148188962
 MonoBehaviour:
@@ -753,7 +753,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1. Tutup
+  m_Text: 'Kamu dan teman - teman sedang mencari harta karun, tetapi malah terjebak
+    dalam suatu Labirin yang mempunyai Aura Matematika!
+
+
+    Suatu Monster Gurita
+    mengerikan menjaga harta dan emas yang dimilikinya.
+
+
+    Kumpulkan potongan
+    jawaban yang ada pada Chest Treasure di Labirin untuk mendapatkan potongan jawaban.
+
+
+    Cari
+    gerbang menuju Monster Gurita dan satukan potongan jawaban yang telah didapat
+    untuk mengalahkannya!'
 --- !u!222 &148188963
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4390,7 +4404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1453066653
 RectTransform:
   m_ObjectHideFlags: 0
