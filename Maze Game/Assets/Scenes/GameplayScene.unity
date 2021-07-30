@@ -530,11 +530,11 @@ MonoBehaviour:
   masterCamera: {fileID: 540583549}
   pv: {fileID: 222803893}
   questionDifficulty:
-    persamaan: 0
-    pecahan: 0
+    pembagian: 0
+    pengurangan: 0
     penjumlahan: 0
     perkalian: 0
-    bangunDatar: 0
+    pecahan: 0
   mainGateRaw:
     GateName: 
     Fragments: []
@@ -2636,12 +2636,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomWidthHeight: {x: 17.76, y: 10}
-  roomSize: 3
-  roomWalkIteration: 3
+  roomSize: 9
+  roomWalkIteration: 12
   roomPrefab: {fileID: 5138995550937514085, guid: e1b9403ec5c5e7b4d804e2f1adf3e62b,
     type: 3}
-  weaponItemCount: 3
-  enemiesCount: 3
+  weaponItemCount: 5
+  enemiesCount: 12
   pv: {fileID: 2088515437}
 --- !u!4 &2088515436
 Transform:
