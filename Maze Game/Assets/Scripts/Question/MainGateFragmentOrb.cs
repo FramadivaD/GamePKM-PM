@@ -58,23 +58,27 @@ public class MainGateFragmentOrb : MonoBehaviour
 
     public MainGateFragment TakeFragment(Player player)
     {
-        if (!player.inventoryManager.IsFull)
+        // check if team is equal
+        if (player.teamType == fragment.Team)
         {
-            canvasUI.SetActive(false);
-            player.inventoryManager.AddItem(Fragment);
-
-            AudioManager.Instance.PlaySFXOnce(pickupSFX);
-
-            if (PhotonNetwork.connected)
+            if (!player.inventoryManager.IsFull)
             {
-                pv.RPC("DestroyOrb", PhotonTargets.MasterClient);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+                canvasUI.SetActive(false);
+                player.inventoryManager.AddItem(Fragment);
 
-            return fragment;
+                AudioManager.Instance.PlaySFXOnce(pickupSFX);
+
+                if (PhotonNetwork.connected)
+                {
+                    pv.RPC("DestroyOrb", PhotonTargets.MasterClient);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+
+                return fragment;
+            }
         }
         return null;
     }

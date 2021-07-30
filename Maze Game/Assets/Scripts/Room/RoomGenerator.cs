@@ -336,18 +336,22 @@ public class RoomGenerator : MonoBehaviour
 
                 for (int j = 0; j < chestTreasureCount; j++)
                 {
-                    int ind = Random.Range(0, notCornerRoom.Count);
-                    if (ind < notCornerRoom.Count) {
-                        RoomGeneratorGrid selectedRoom = notCornerRoom[ind];
-                        if (selectedRoom)
+                    // limit biar gak infinite
+                    ChestContainer chest = null;
+
+                    while (true)
+                    {
+                        int ind = Random.Range(0, notCornerRoom.Count);
+                        if (ind < notCornerRoom.Count)
                         {
-                            // limit biar gak infinite
-                            for (int k = 0; k < 10; k++)
+                            RoomGeneratorGrid selectedRoom = notCornerRoom[ind];
+                            if (selectedRoom)
                             {
-                                ChestContainer chest = selectedRoom.SpawnTreasureChest(TeamHelper.TeamTypes[i], j);
+                                chest = selectedRoom.SpawnTreasureChest(TeamHelper.TeamTypes[i], j);
 
                                 if (chest)
                                 {
+                                    // break, spot kosong ditemukan
                                     break;
                                 }
                             }
@@ -364,18 +368,21 @@ public class RoomGenerator : MonoBehaviour
 
         for (int j = 0; j < itemsCount; j++)
         {
-            int ind = Random.Range(0, notCornerRoom.Count);
-            if (ind < notCornerRoom.Count)
+            // limit biar gak infinite
+            WeaponOrb weaponOrb = null;
+
+            while (true)
             {
-                RoomGeneratorGrid selectedRoom = notCornerRoom[ind];
-                if (selectedRoom)
+                int ind = Random.Range(0, notCornerRoom.Count);
+                if (ind < notCornerRoom.Count)
                 {
-                    // limit biar gak infinite
-                    for (int k = 0; k < 10; k++)
+                    RoomGeneratorGrid selectedRoom = notCornerRoom[ind];
+                    if (selectedRoom)
                     {
-                        WeaponOrb weaponOrb = selectedRoom.SpawnWeaponItemOrb();
+                        weaponOrb = selectedRoom.SpawnWeaponItemOrb();
                         if (weaponOrb)
                         {
+                            // break, spot kosong ditemukan
                             break;
                         }
                     }
@@ -390,18 +397,21 @@ public class RoomGenerator : MonoBehaviour
 
         for (int j = 0; j < enemiesCount; j++)
         {
-            int ind = Random.Range(0, notCornerRoom.Count);
-            if (ind < notCornerRoom.Count)
+            // limit biar gak infinite
+            GameObject enemy = null;
+
+            while (true)
             {
-                RoomGeneratorGrid selectedRoom = notCornerRoom[ind];
-                if (selectedRoom)
+                int ind = Random.Range(0, notCornerRoom.Count);
+                if (ind < notCornerRoom.Count)
                 {
-                    // limit biar gak infinite
-                    for (int k = 0; k < 10; k++)
+                    RoomGeneratorGrid selectedRoom = notCornerRoom[ind];
+                    if (selectedRoom)
                     {
-                        GameObject enemy= selectedRoom.SpawnEnemy();
+                        enemy = selectedRoom.SpawnEnemy();
                         if (enemy)
                         {
+                            // break, spot kosong ditemukan
                             break;
                         }
                     }
