@@ -168,11 +168,22 @@ public class LobbyNetwork : Photon.PunBehaviour
 
     public override void OnPhotonJoinRoomFailed(object[] codeAndMsg)
     {
-        Debug.Log("Create or Join Room Failed");
+        Debug.Log("Join Room Failed");
 
         Debug.Log("Room might full or ingame progress");
 
         WindowMaster.Instance.Show("Join Room Gagal!\nRoom telah penuh atau sedang dimulai!");
+
+        exitGameButton.interactable = true;
+    }
+
+    public override void OnPhotonCreateRoomFailed(object[] codeAndMsg)
+    {
+        Debug.Log("Create Room Failed");
+
+        Debug.Log("Room might exists or ingame progress");
+
+        WindowMaster.Instance.Show("Create Room Gagal!\nRoom telah ada, silahkan join!");
 
         exitGameButton.interactable = true;
     }

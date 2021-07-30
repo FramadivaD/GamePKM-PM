@@ -192,32 +192,12 @@ public class GameManager : MonoBehaviour
             {
                 // MultiplayerNetworkMaster.Instance.pv.RPC("BackToLobbyClientRPC", PhotonTargets.MasterClient, PhotonNetwork.player.NickName);
 
-                BackToLobbyMasterRPC();
+                MultiplayerNetworkMaster.Instance.BackToLobbyMasterRPC();
             }
         } else
         {
-            BackToLobbyMasterRPC();
+            MultiplayerNetworkMaster.Instance.BackToLobbyMasterRPC();
         }
-    }
-
-    [PunRPC]
-    private void BackToLobbyMasterRPC()
-    {
-        if (PhotonNetwork.connected)
-        {
-            if (PhotonNetwork.player.IsMasterClient)
-            {
-                WindowMaster.Instance.Show("Leaving Game..");
-            } else
-            {
-                WindowMaster.Instance.Show("Leaving Game..");
-            }
-
-            PhotonNetwork.LeaveRoom();
-        }
-
-        Debug.Log("Loading Lobby");
-        SceneManager.LoadScene("LobbyMenu");
     }
 
     public void BackToMainMenu()

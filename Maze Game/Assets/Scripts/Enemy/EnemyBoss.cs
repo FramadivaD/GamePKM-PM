@@ -152,7 +152,8 @@ public class EnemyBoss : MonoBehaviour
         if (changeRoomTime <= 0)
         {
             // Change move Target
-            if (Vector3.Distance(target.transform.position, transform.position) < 0.5f)
+            // if (Vector3.Distance(target.transform.position, transform.position) < 0.5f)
+            if (Vector3.Distance(target.transform.position, transform.position) < 1.5f)
             {
                 // isFollowPlayerInsteadOfMove = !isFollowPlayerInsteadOfMove;
 

@@ -186,8 +186,15 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
                 networkUIManager.DownloadMainGateDataFailed();
 
                 Debug.Log("Download URL : " + keyJsonDownloadURL);
+
+                Invoke("BackToLobby", 3);
             }
         );
+    }
+
+    private void BackToLobby()
+    {
+        GameManager.Instance.BackToLobby();
     }
 
     private void ReceiveMainGateKeyAndQuestionDifficultyData(string diffJson, string keyJson)
@@ -347,5 +354,26 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
         GameManager.Instance.BackToLobby();
 
         WindowMaster.Instance.Show("Game was stopped by Master.");
+    }
+
+    [PunRPC]
+    public void BackToLobbyMasterRPC()
+    {
+        if (PhotonNetwork.connected)
+        {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                WindowMaster.Instance.Show("Leaving Game..");
+            }
+            else
+            {
+                WindowMaster.Instance.Show("Leaving Game..");
+            }
+
+            PhotonNetwork.LeaveRoom();
+        }
+
+        Debug.Log("Loading Lobby");
+        SceneManager.LoadScene("LobbyMenu");
     }
 }
