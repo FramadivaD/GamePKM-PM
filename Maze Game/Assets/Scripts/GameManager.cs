@@ -160,8 +160,8 @@ public class GameManager : MonoBehaviour
         else
         {
             winnerTeamText.text = "TEAM "
-                + "<color=\"#" + ColorUtility.ToHtmlStringRGB(TeamHelper.GetColorTeam(winnerTeam)) + "\">"
-                + winnerTeam.ToString()
+                + "<color=\"#" + ColorUtility.ToHtmlStringRGB(TeamHelper.GetColorTeamAlter(player.teamType)) + "\">"
+                + ((TeamType)TeamHelper.GetColorTeamAlterIndex(player.teamType)).ToString()
                 + "</color>";
 
             winnerStatusText.text = (winnerTeam == player.teamType) ? "WINNER" : "DEFEAT";
@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
         {
             if (PhotonNetwork.player.IsMasterClient)
             {
-                //MultiplayerNetworkMaster.Instance.pv.RPC("BackToLobbyMasterRPC", PhotonTargets.AllBuffered);
+                MultiplayerNetworkMaster.Instance.pv.RPC("BackToLobbyMasterRPC", PhotonTargets.AllBuffered);
             } else
             {
                 // MultiplayerNetworkMaster.Instance.pv.RPC("BackToLobbyClientRPC", PhotonTargets.MasterClient, PhotonNetwork.player.NickName);
@@ -200,6 +200,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [PunRPC]
     private void BackToLobbyMasterRPC()
     {
         if (PhotonNetwork.connected)

@@ -72,7 +72,7 @@ public class Question
     {
         int a = Random.Range(1, 10);
         int b = Random.Range(1, 10);
-        int val = a + b;
+        int val = a - b;
 
         question = "Berapa hasil dari perhitungan berikut ini :\n" + a + " - " + b + " = ?";
         answer = val.ToString();
