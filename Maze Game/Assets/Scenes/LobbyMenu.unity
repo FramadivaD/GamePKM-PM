@@ -1490,7 +1490,7 @@ MonoBehaviour:
   - {fileID: 2048753402}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 6
-  instantiationId: 6
+  instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &252936851
@@ -3137,7 +3137,7 @@ MonoBehaviour:
   - {fileID: 1294767488}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 4
-  instantiationId: 4
+  instantiationId: 14
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &679356586 stripped
@@ -3170,7 +3170,7 @@ MonoBehaviour:
   - {fileID: 1893518620}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 3
-  instantiationId: 3
+  instantiationId: 10
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &719516445
@@ -3587,7 +3587,7 @@ MonoBehaviour:
   - {fileID: 2001039305}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 8
-  instantiationId: 8
+  instantiationId: 15
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &783265723
@@ -4458,7 +4458,7 @@ MonoBehaviour:
   - {fileID: 853284599}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 7
-  instantiationId: 7
+  instantiationId: 12
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &1016881278 stripped
@@ -4491,7 +4491,7 @@ MonoBehaviour:
   - {fileID: 1122964698}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 1
-  instantiationId: 1
+  instantiationId: 11
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &1047016020
@@ -7984,7 +7984,7 @@ MonoBehaviour:
   - {fileID: 1258034725}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 5
-  instantiationId: 5
+  instantiationId: 13
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &1926418462
@@ -8318,10 +8318,10 @@ RectTransform:
   m_Father: {fileID: 2133202785}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1550.6577, y: 866.776}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1986929264
 MonoBehaviour:
@@ -9371,10 +9371,10 @@ RectTransform:
   m_Father: {fileID: 905506846}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2137263338
 GameObject:
