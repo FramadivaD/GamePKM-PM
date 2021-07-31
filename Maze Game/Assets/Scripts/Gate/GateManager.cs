@@ -112,7 +112,9 @@ public class GateManager : MonoBehaviour
 
         questionImage.sprite = fragmentImage;
 
-        questionImage.rectTransform.sizeDelta = new Vector2(questionImageTargetWidth, originalY * questionImageTargetHeight / originalX);
+        // questionImage.rectTransform.sizeDelta = new Vector2(questionImageTargetWidth, originalY * questionImageTargetHeight / originalX);
+        // questionImage.rectTransform.sizeDelta = new Vector2(questionImageTargetWidth, questionImageTargetWidth * originalY / originalX);
+        questionImage.rectTransform.sizeDelta = new Vector2(questionImageTargetHeight * originalX / originalY, questionImageTargetHeight);
     }
 
     // dipencet tombol next

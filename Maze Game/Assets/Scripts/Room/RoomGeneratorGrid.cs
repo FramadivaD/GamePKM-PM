@@ -66,7 +66,7 @@ public class RoomGeneratorGrid : MonoBehaviour
         for (int i = 0; i < siz;i++)
         {
             int ind = (i + randomIndex) % siz;
-            if (neighborRoom[ind] != null)
+            if (neighborRoom[ind] != null && !neighborRoom[ind].IsBossRoom)
             {
                 return neighborRoom[ind];
             }

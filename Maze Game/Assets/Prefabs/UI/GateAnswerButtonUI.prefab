@@ -200,7 +200,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 7ef995abb4b0f704f915efc7ef80bfa0, type: 3}
-    m_FontSize: 95
+    m_FontSize: 48
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -211,4 +211,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ENTER
+  m_Text: Suatu jawaban..

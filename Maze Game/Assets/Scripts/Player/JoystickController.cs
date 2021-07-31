@@ -29,6 +29,17 @@ public class JoystickController : MonoBehaviour
     private void Start()
     {
         outCircle.SetActive(false);
+
+        if (PhotonNetwork.connected)
+        {
+            if (player.pv.isMine)
+            {
+                mainCamera.transform.parent = null;
+            }
+        } else
+        {
+            mainCamera.transform.parent = null;
+        }
     }
 
     void Update()

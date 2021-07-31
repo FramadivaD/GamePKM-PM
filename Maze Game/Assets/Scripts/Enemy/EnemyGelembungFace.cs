@@ -12,9 +12,12 @@ public class EnemyGelembungFace : MonoBehaviour
     [SerializeField] private Sprite frontFace;
     [SerializeField] private Sprite rightFace;
 
+    private Animator animator;
+
     private void Start()
     {
         enemy = GetComponent<Enemy>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -25,22 +28,27 @@ public class EnemyGelembungFace : MonoBehaviour
             {
                 if (enemy.playerTarget.transform.position.x > enemy.transform.position.x)
                 {
-                    face.sprite = rightFace;
+                    // face.sprite = rightFace;
 
-                    enemy.pv.RPC("UpdateSprite", PhotonTargets.AllBuffered, 1);
+                    // enemy.pv.RPC("UpdateSprite", PhotonTargets.AllBuffered, 1);
+
+                    animator.SetInteger("FacingState", 1);
                 }
             }
         } else
         {
             if (face.sprite != frontFace)
             {
-                face.sprite = frontFace;
+                // face.sprite = frontFace;
 
-                enemy.pv.RPC("UpdateSprite", PhotonTargets.AllBuffered, 0);
+                // enemy.pv.RPC("UpdateSprite", PhotonTargets.AllBuffered, 0);
+
+                animator.SetInteger("FacingState", 0);
             }
         }
     }
-
+    
+    /*
     [PunRPC]
     private void UpdateSprite(int state)
     {
@@ -52,4 +60,5 @@ public class EnemyGelembungFace : MonoBehaviour
             face.sprite = rightFace;
         }
     }
+    */
 }
