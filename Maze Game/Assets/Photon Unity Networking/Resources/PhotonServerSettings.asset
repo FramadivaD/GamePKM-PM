@@ -95,4 +95,6 @@ MonoBehaviour:
   - ReceiveTeamColorDataClient
   - RetrievePlayerTeamTypeClient
   - RetrievePlayerTeamTypeMaster
+  - ReceiveEveryoneChat
+  - ReceivePrivateTeamChat
   DisableAutoOpenWizard: 1

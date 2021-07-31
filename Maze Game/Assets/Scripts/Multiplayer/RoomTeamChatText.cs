@@ -1,18 +1,32 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class RoomTeamChatText : MonoBehaviour
 {
+    Text messageText;
 
-    // Use this for initialization
-    void Start()
+    string username;
+    string message;
+    string teamType;
+
+    public void Initialize(string username, string message, int teamTypeInt)
     {
+        string content = BuildMessageContent(username, message, teamTypeInt);
 
+        messageText.text = content;
     }
 
-    // Update is called once per frame
-    void Update()
+    private string BuildMessageContent(string username, string message, int teamTypeInt)
     {
+        string content = "";
 
+        content += "<color=\"#" + TeamHelper.TeamColorAlter[teamTypeInt] + "\"";
+        content += username;
+        content += "</color>";
+        content += " : ";
+        content += message;
+
+        return content;
     }
 }

@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RoomTeamChat
+public class RoomTeamChat : MonoBehaviour
 {
     public PhotonView pv;
 
     [SerializeField] private RoomTeamChatText roomChatTextPrefab;
+
+    [SerializeField] private GameObject chatPanel;
+
+    [SerializeField] private GameObject everyoneChatPanel;
+    [SerializeField] private GameObject privateTeamChatPanel;
 
     [SerializeField] private Transform everyoneChatContainer;
     [SerializeField] private Transform privateTeamChatContainer;
@@ -23,8 +28,8 @@ public class RoomTeamChat
     {
         receivePrivateTeamChat = false;
 
-        everyoneChatContainer.gameObject.SetActive(false);
-        privateTeamChatContainer.gameObject.SetActive(false);
+        everyoneChatPanel.gameObject.SetActive(false);
+        privateTeamChatPanel.gameObject.SetActive(false);
 
         if (PhotonNetwork.connected)
         {
@@ -38,12 +43,22 @@ public class RoomTeamChat
 
     private void InitializeEveryoneChat()
     {
-        everyoneChatContainer.gameObject.SetActive(true);
+        everyoneChatPanel.gameObject.SetActive(true);
+
+        foreach(Transform t in everyoneChatContainer)
+        {
+            Destroy(t.gameObject);
+        }
     }
 
     private void InitializePrivateTeamChat()
     {
-        privateTeamChatContainer.gameObject.SetActive(true);
+        privateTeamChatPanel.gameObject.SetActive(true);
+
+        foreach (Transform t in privateTeamChatContainer)
+        {
+            Destroy(t.gameObject);
+        }
 
         receivePrivateTeamChat = true;
     }
@@ -99,7 +114,15 @@ public class RoomTeamChat
     {
         if (PhotonNetwork.connected)
         {
+            TeamType teamType = (TeamType)teamTypeInt;
+            TeamType playerTeamType = TeamHelper.FromPhotonTeam(PhotonNetwork.player.GetTeam());
 
+            // kalo sama maka receive
+            if (teamType == playerTeamType)
+            {
+                RoomTeamChatText text = Instantiate(roomChatTextPrefab.gameObject, privateTeamChatContainer).GetComponent<RoomTeamChatText>();
+                text.Initialize(username, message, teamTypeInt);
+            }
         }
     }
 
@@ -108,7 +131,33 @@ public class RoomTeamChat
     {
         if (PhotonNetwork.connected)
         {
+            TeamType teamType = (TeamType)teamTypeInt;
 
+            // semua bakal receive
+            RoomTeamChatText text = Instantiate(roomChatTextPrefab.gameObject, everyoneChatContainer).GetComponent<RoomTeamChatText>();
+            text.Initialize(username, message, teamTypeInt);
         }
+    }
+
+    public void OpenChatPanel()
+    {
+        chatPanel.SetActive(true);
+    }
+
+    public void HideChatPanel()
+    {
+        chatPanel.SetActive(false);
+    }
+
+    public void OpenEveryoneChatPanel()
+    {
+        everyoneChatPanel.SetActive(true);
+        privateTeamChatPanel.SetActive(false);
+    }
+
+    public void OpenPrivateChatPanel()
+    {
+        everyoneChatPanel.SetActive(false);
+        privateTeamChatPanel.SetActive(true);
     }
 }
