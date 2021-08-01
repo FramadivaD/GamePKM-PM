@@ -66,12 +66,12 @@ public class ScoreManager : MonoBehaviour
 
         string content = "<color=\"#" + ColorUtility.ToHtmlStringRGB(redColor) + "\">" + redTeam.ToString() + "</color>";
         content += "\n";
-        content += RedTeamScore.ToString() + " point(s)";
+        content += RedTeamScore.ToString() + " PTS";
         content += "\n";
 
         content += "<color=\"#" + ColorUtility.ToHtmlStringRGB(blueColor) + "\">" + blueTeam.ToString() + "</color>";
         content += "\n";
-        content += BlueTeamScore.ToString() + " point(s)";
+        content += BlueTeamScore.ToString() + " PTS";
         content += "\n";
 
         scoreText.text = content;
