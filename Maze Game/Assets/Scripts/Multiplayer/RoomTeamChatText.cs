@@ -25,7 +25,14 @@ public class RoomTeamChatText : MonoBehaviour
     {
         string content = "";
 
-        content += "<color=\"#" + TeamHelper.TeamColorAlter[teamTypeInt] + "\"";
+        string teamColor = (teamTypeInt < 0 ? "FFFFFF" : TeamHelper.TeamColorAlter[teamTypeInt].ToString());
+
+        if (teamTypeInt < 0)
+        {
+            username = "MASTER";
+        }
+
+        content += "<color=\"#" + teamColor + "\">";
         content += username;
         content += "</color>";
 
@@ -33,7 +40,7 @@ public class RoomTeamChatText : MonoBehaviour
 
         if (isPrivateTeam)
         {
-            content += "<color=\"#" + TeamHelper.TeamColorAlter[teamTypeInt] + "\"";
+            content += "<color=\"#" + teamColor + "\">";
             content += "Teammates";
             content += "</color>";
         } else

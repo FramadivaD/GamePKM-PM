@@ -21,6 +21,11 @@ public class ScoreManager : MonoBehaviour
         Instance = this;
     }
 
+    public void Start()
+    {
+        RefreshScoreUI();
+    }
+
     public void AddScore(TeamType teamType, int value)
     {
         if (PhotonNetwork.connected) {
@@ -59,14 +64,14 @@ public class ScoreManager : MonoBehaviour
         Color redColor = TeamHelper.GetColorTeamAlter((TeamType)TeamHelper.GetColorTeamAlterIndex(TeamType.Red));
         Color blueColor = TeamHelper.GetColorTeamAlter((TeamType)TeamHelper.GetColorTeamAlterIndex(TeamType.Blue));
 
-        string content = "<color=\"" + ColorUtility.ToHtmlStringRGB(redColor) + "\">" + redTeam.ToString() + "</color>";
+        string content = "<color=\"#" + ColorUtility.ToHtmlStringRGB(redColor) + "\">" + redTeam.ToString() + "</color>";
         content += "\n";
-        content += RedTeamScore.ToString();
+        content += RedTeamScore.ToString() + " point(s)";
         content += "\n";
 
-        content += "<color=\"" + ColorUtility.ToHtmlStringRGB(blueColor) + "\">" + blueTeam.ToString() + "</color>";
+        content += "<color=\"#" + ColorUtility.ToHtmlStringRGB(blueColor) + "\">" + blueTeam.ToString() + "</color>";
         content += "\n";
-        content += BlueTeamScore.ToString();
+        content += BlueTeamScore.ToString() + " point(s)";
         content += "\n";
 
         scoreText.text = content;

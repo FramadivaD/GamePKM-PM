@@ -15,10 +15,9 @@ public class RoomTeamChat : MonoBehaviour
 
     private bool receivePrivateTeamChat = false;
 
-    private void Start()
-    {
-        
-    }
+    private bool sendPrivateTeamChat = false;
+
+    public InputField chatInputText;
 
     public void Initialize()
     {
@@ -38,6 +37,17 @@ public class RoomTeamChat : MonoBehaviour
         }
 
         receivePrivateTeamChat = true;
+    }
+
+    public void SendChat()
+    {
+        if (sendPrivateTeamChat)
+        {
+            SendPrivateTeamChat(chatInputText.text);
+        } else
+        {
+            SendEveryoneChat(chatInputText.text);
+        }
     }
 
     public void SendPrivateTeamChat(string message)
@@ -124,5 +134,26 @@ public class RoomTeamChat : MonoBehaviour
     public void HideChatPanel()
     {
         chatPanel.SetActive(false);
+    }
+
+    public void ToggleChatPanel()
+    {
+        if (chatPanel.activeSelf)
+        {
+            HideChatPanel();
+        } else
+        {
+            OpenChatPanel();
+        }
+    }
+
+    public void PrepareEveryoneChat()
+    {
+        sendPrivateTeamChat = false;
+    }
+
+    public void PreparePrivateTeamChat()
+    {
+        sendPrivateTeamChat = true;
     }
 }
