@@ -11,11 +11,7 @@ public class RoomTeamChat : MonoBehaviour
 
     [SerializeField] private GameObject chatPanel;
 
-    [SerializeField] private GameObject everyoneChatPanel;
-    [SerializeField] private GameObject privateTeamChatPanel;
-
-    [SerializeField] private Transform everyoneChatContainer;
-    [SerializeField] private Transform privateTeamChatContainer;
+    [SerializeField] private Transform textChatContainer;
 
     private bool receivePrivateTeamChat = false;
 
@@ -28,34 +24,15 @@ public class RoomTeamChat : MonoBehaviour
     {
         receivePrivateTeamChat = false;
 
-        everyoneChatPanel.gameObject.SetActive(false);
-        privateTeamChatPanel.gameObject.SetActive(false);
-
         if (PhotonNetwork.connected)
         {
-            InitializeEveryoneChat();
-            if (!PhotonNetwork.player.IsMasterClient)
-            {
-                InitializePrivateTeamChat();
-            }
+            InitializeTeamChat();
         }
     }
 
-    private void InitializeEveryoneChat()
+    private void InitializeTeamChat()
     {
-        everyoneChatPanel.gameObject.SetActive(true);
-
-        foreach(Transform t in everyoneChatContainer)
-        {
-            Destroy(t.gameObject);
-        }
-    }
-
-    private void InitializePrivateTeamChat()
-    {
-        privateTeamChatPanel.gameObject.SetActive(true);
-
-        foreach (Transform t in privateTeamChatContainer)
+        foreach (Transform t in textChatContainer)
         {
             Destroy(t.gameObject);
         }
@@ -120,8 +97,8 @@ public class RoomTeamChat : MonoBehaviour
             // kalo sama maka receive
             if (teamType == playerTeamType)
             {
-                RoomTeamChatText text = Instantiate(roomChatTextPrefab.gameObject, privateTeamChatContainer).GetComponent<RoomTeamChatText>();
-                text.Initialize(username, message, teamTypeInt);
+                RoomTeamChatText text = Instantiate(roomChatTextPrefab.gameObject, textChatContainer).GetComponent<RoomTeamChatText>();
+                text.Initialize(true, username, message, teamTypeInt);
             }
         }
     }
@@ -134,8 +111,8 @@ public class RoomTeamChat : MonoBehaviour
             TeamType teamType = (TeamType)teamTypeInt;
 
             // semua bakal receive
-            RoomTeamChatText text = Instantiate(roomChatTextPrefab.gameObject, everyoneChatContainer).GetComponent<RoomTeamChatText>();
-            text.Initialize(username, message, teamTypeInt);
+            RoomTeamChatText text = Instantiate(roomChatTextPrefab.gameObject, textChatContainer).GetComponent<RoomTeamChatText>();
+            text.Initialize(false, username, message, teamTypeInt);
         }
     }
 
@@ -147,17 +124,5 @@ public class RoomTeamChat : MonoBehaviour
     public void HideChatPanel()
     {
         chatPanel.SetActive(false);
-    }
-
-    public void OpenEveryoneChatPanel()
-    {
-        everyoneChatPanel.SetActive(true);
-        privateTeamChatPanel.SetActive(false);
-    }
-
-    public void OpenPrivateChatPanel()
-    {
-        everyoneChatPanel.SetActive(false);
-        privateTeamChatPanel.SetActive(true);
     }
 }

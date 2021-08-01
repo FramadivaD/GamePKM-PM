@@ -97,4 +97,5 @@ MonoBehaviour:
   - RetrievePlayerTeamTypeMaster
   - ReceiveEveryoneChat
   - ReceivePrivateTeamChat
+  - AddScoreRPC
   DisableAutoOpenWizard: 1

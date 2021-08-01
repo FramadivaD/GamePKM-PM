@@ -4,27 +4,45 @@ using System.Collections;
 
 public class RoomTeamChatText : MonoBehaviour
 {
-    Text messageText;
+    [SerializeField] private Text messageText;
 
+    bool isPrivateTeam = false;
     string username;
     string message;
-    string teamType;
+    int teamTypeInt;
 
-    public void Initialize(string username, string message, int teamTypeInt)
+    public void Initialize(bool isPrivateTeam, string username, string message, int teamTypeInt)
     {
-        string content = BuildMessageContent(username, message, teamTypeInt);
+        this.isPrivateTeam = isPrivateTeam;
+        this.username = username;
+        this.message = message;
+        this.teamTypeInt = teamTypeInt;
 
-        messageText.text = content;
+        messageText.text = BuildMessageContent(isPrivateTeam, username, message, teamTypeInt);
     }
 
-    private string BuildMessageContent(string username, string message, int teamTypeInt)
+    private string BuildMessageContent(bool isPrivateTeam, string username, string message, int teamTypeInt)
     {
         string content = "";
 
         content += "<color=\"#" + TeamHelper.TeamColorAlter[teamTypeInt] + "\"";
         content += username;
         content += "</color>";
-        content += " : ";
+
+        content += " to ";
+
+        if (isPrivateTeam)
+        {
+            content += "<color=\"#" + TeamHelper.TeamColorAlter[teamTypeInt] + "\"";
+            content += "Teammates";
+            content += "</color>";
+        } else
+        {
+            content += "Everyone :";
+        }
+
+        content += "\n";
+
         content += message;
 
         return content;
