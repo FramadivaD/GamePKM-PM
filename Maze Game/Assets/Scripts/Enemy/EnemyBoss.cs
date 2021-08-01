@@ -221,22 +221,29 @@ public class EnemyBoss : MonoBehaviour
             {
                 if (collision.TryGetComponent(out WeaponProjectile projectile))
                 {
-                    if (PhotonNetwork.connected)
+                    if (projectile.IsTrigger)
                     {
-                        if (PhotonNetwork.player.IsMasterClient)
+                        if (PhotonNetwork.connected)
+                        {
+                            if (PhotonNetwork.player.IsMasterClient)
+                            {
+                                DamagedByProjectile(projectile.Damage);
+
+                                projectile.TerminateProjectile();
+                            }
+                            else
+                            {
+                                projectile.TerminateProjectile();
+                            }
+                        }
+                        else
                         {
                             DamagedByProjectile(projectile.Damage);
 
                             projectile.TerminateProjectile();
-                        } else
-                        {
-                            projectile.TerminateProjectile();
                         }
-                    } else
-                    {
-                        DamagedByProjectile(projectile.Damage);
 
-                        projectile.TerminateProjectile();
+                        projectile.DisableTrigger();
                     }
                 }
             }

@@ -131,12 +131,12 @@ public class WeaponManager : MonoBehaviour
                 if (PhotonNetwork.connected)
                 {
                     player.pv.RPC("SpawnProjectile", 
-                        PhotonTargets.AllBuffered, 
-                        weaponProjectileOrigin.position, GetAimRotation());
+                        PhotonTargets.AllBuffered,
+                        (int)player.teamType, weaponProjectileOrigin.position, GetAimRotation());
                 }
                 else
                 {
-                    SpawnProjectile(weaponProjectileOrigin.position, GetAimRotation());
+                    SpawnProjectile((int)player.teamType, weaponProjectileOrigin.position, GetAimRotation());
                 }
 
                 weaponTimer += basokaCooldown;
@@ -183,12 +183,12 @@ public class WeaponManager : MonoBehaviour
     }
 
     [PunRPC]
-    private void SpawnProjectile(Vector3 pos, Quaternion rot)
+    private void SpawnProjectile(int teamTypeInt, Vector3 pos, Quaternion rot)
     {
         GameObject ne = Instantiate(weaponProjectiles[0], pos, Quaternion.identity);
 
         WeaponProjectile bullet = ne.GetComponent<WeaponProjectile>();
-        bullet.Initialize(rot);
+        bullet.Initialize(teamTypeInt, rot);
 
         AudioManager.Instance.PlaySFXOnce(shootSFX);
     }

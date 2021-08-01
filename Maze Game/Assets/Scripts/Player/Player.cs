@@ -318,10 +318,15 @@ public class Player : MonoBehaviour
         {
             if (other.TryGetComponent(out WeaponProjectile projectile))
             {
-                health.CurrentHealth -= projectile.Damage;
-                projectile.TerminateProjectile();
+                if (projectile.IsTrigger)
+                {
+                    health.CurrentHealth -= projectile.Damage;
+                    projectile.TerminateProjectile();
 
-                AudioManager.Instance.PlaySFXOnce(damagedSFX);
+                    AudioManager.Instance.PlaySFXOnce(damagedSFX);
+
+                    projectile.DisableTrigger();
+                }
             }
         }
         else if (other.tag == "EnemyBoss")

@@ -842,7 +842,7 @@ MonoBehaviour:
     GateName: 
     Fragments: []
   firebaseManager: {fileID: 222803896}
-  testClientSingle: 0
+  testClientSingle: 1
   masterStopGameButton: {fileID: 1326562268}
   masterExitGameButton: {fileID: 1453109493}
 --- !u!4 &222803895

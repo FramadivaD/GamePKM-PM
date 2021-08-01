@@ -12,6 +12,9 @@ public class WeaponProjectile : MonoBehaviour
     public float Damage { get { return damage; } }
     public float Speed { get { return damage; } }
 
+    public int LaunchedBy { get; private set; } // 0 red Team, 1 blue team, neither ignoreable
+    public bool IsTrigger { get; private set; } = true;
+
     [SerializeField] protected GameObject explosiveEffect;
 
     [SerializeField] protected AudioClip explosiveSFX;
@@ -28,11 +31,19 @@ public class WeaponProjectile : MonoBehaviour
         StartCoroutine(DestroyProjectile(destroyAfter));
     }
 
-    public void Initialize(Quaternion rotation)
+    public void Initialize(int launchedBy, Quaternion rotation)
     {
+        LaunchedBy = launchedBy;
+        IsTrigger = true;
+
         transform.rotation = rotation;
 
         Launch();
+    }
+
+    public void Initialize(Quaternion rotation)
+    {
+        Initialize(-1, rotation);
     }
 
     private void Launch()
@@ -78,5 +89,10 @@ public class WeaponProjectile : MonoBehaviour
         yield return new WaitForSecondsRealtime(destroyAfter);
 
         TerminateProjectile();
+    }
+
+    public void DisableTrigger()
+    {
+        IsTrigger = false;
     }
 }

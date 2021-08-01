@@ -131,7 +131,26 @@ public class Enemy : MonoBehaviour
                 {
                     if (PhotonNetwork.player.IsMasterClient)
                     {
-                        health.CurrentHealth -= projectile.Damage;
+                        if (projectile.IsTrigger)
+                        {
+                            health.CurrentHealth -= projectile.Damage;
+
+                            if (health.IsDie)
+                            {
+                                // killed by red team
+                                if (projectile.LaunchedBy == 0)
+                                {
+                                    ScoreManager.Instance.AddScore(TeamType.Red, 1);
+                                }
+                                // killed by blue team
+                                else if (projectile.LaunchedBy == 1)
+                                {
+                                    ScoreManager.Instance.AddScore(TeamType.Blue, 1);
+                                }
+                            }
+
+                            projectile.DisableTrigger();
+                        }
                     }
                 }
                 projectile.TerminateProjectile();
