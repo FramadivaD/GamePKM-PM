@@ -1490,7 +1490,7 @@ MonoBehaviour:
   - {fileID: 2048753402}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 6
-  instantiationId: 6
+  instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &252936851
@@ -3137,7 +3137,7 @@ MonoBehaviour:
   - {fileID: 1294767488}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 4
-  instantiationId: 4
+  instantiationId: 14
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &679356586 stripped
@@ -3170,7 +3170,7 @@ MonoBehaviour:
   - {fileID: 1893518620}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 3
-  instantiationId: 3
+  instantiationId: 10
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &719516445
@@ -3587,7 +3587,7 @@ MonoBehaviour:
   - {fileID: 2001039305}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 8
-  instantiationId: 8
+  instantiationId: 15
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &783265723
@@ -4228,6 +4228,7 @@ GameObject:
   - component: {fileID: 894895249}
   - component: {fileID: 894895248}
   - component: {fileID: 894895247}
+  - component: {fileID: 894895250}
   m_Layer: 0
   m_Name: BrowseContainer
   m_TagString: Untagged
@@ -4323,6 +4324,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894895245}
   m_CullTransparentMesh: 1
+--- !u!114 &894895250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894895245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &905506842
 GameObject:
   m_ObjectHideFlags: 0
@@ -4458,7 +4473,7 @@ MonoBehaviour:
   - {fileID: 853284599}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 7
-  instantiationId: 7
+  instantiationId: 12
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &1016881278 stripped
@@ -4491,7 +4506,7 @@ MonoBehaviour:
   - {fileID: 1122964698}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 1
-  instantiationId: 1
+  instantiationId: 11
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &1047016020
@@ -7984,7 +7999,7 @@ MonoBehaviour:
   - {fileID: 1258034725}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 5
-  instantiationId: 5
+  instantiationId: 13
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &1926418462
@@ -8851,7 +8866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   browseMenu: {fileID: 306928268}
   browseButtonContainer: {fileID: 1708025257}
-  browseButtonPrefab: {fileID: 2711469051184612099, guid: 98c2e29d14821a34da0c33c79327b9f8,
+  browseButtonPrefab: {fileID: 2711469051184612099, guid: 14934978adec3634aa204fd29268b4c9,
     type: 3}
   noFilesText: {fileID: 1550349638}
   mainGateKeyName: {fileID: 864180952}
