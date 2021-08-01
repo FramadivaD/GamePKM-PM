@@ -168,16 +168,18 @@ public class EnemyBoss : MonoBehaviour
 
     private void OnDie()
     {
-        if (PhotonNetwork.player.IsMasterClient)
+        if (PhotonNetwork.connected)
         {
-            if (PhotonNetwork.connected)
+            if (PhotonNetwork.player.IsMasterClient)
             {
                 pv.RPC("OnDieRPC", PhotonTargets.AllBuffered);
+                ScoreManager.Instance.AddScore(MainGate.teamType, 7);
             }
-            else
-            {
-                OnDieRPC();
-            }
+        }
+        else
+        {
+            OnDieRPC();
+            ScoreManager.Instance.AddScore(MainGate.teamType, 7);
         }
     }
 

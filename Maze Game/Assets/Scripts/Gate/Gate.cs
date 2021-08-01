@@ -138,9 +138,11 @@ public class Gate : MonoBehaviour
     {
         if (PhotonNetwork.connected) {
             pv.RPC("OpenGateRPC", PhotonTargets.AllBuffered);
+            ScoreManager.Instance.AddScore(teamType, 5);
         } else
         {
             OpenGateRPC();
+            ScoreManager.Instance.AddScore(teamType, 5);
         }
     }
 

@@ -108,10 +108,25 @@ public class Enemy : MonoBehaviour
                 pv.RPC("OnDieRPC", PhotonTargets.AllBuffered);
 
                 PhotonNetwork.Destroy(gameObject);
+
+                AddPlayerScore();
             }
         } else
         {
             Destroy(gameObject);
+
+            AddPlayerScore();
+        }
+    }
+
+    private void AddPlayerScore()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Players");
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            TeamType team = players[i].GetComponent<Player>().teamType;
+            ScoreManager.Instance.AddScore(team, 1);
         }
     }
 

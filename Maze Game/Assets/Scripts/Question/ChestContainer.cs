@@ -106,9 +106,11 @@ public class ChestContainer : MonoBehaviour
         if (PhotonNetwork.connected)
         {
             pv.RPC("UnlockChestRPCAll", PhotonTargets.AllBuffered);
+            ScoreManager.Instance.AddScore(teamType, 3);
         } else
         {
             UnlockChestRPCAll();
+            ScoreManager.Instance.AddScore(teamType, 3);
         }
     }
 

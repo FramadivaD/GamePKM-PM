@@ -9,8 +9,7 @@ public class ScoreManager : MonoBehaviour
 
     public PhotonView pv;
 
-    public Text redTeamScoreText;
-    public Text blueTeamScoreText;
+    public Text scoreText;    
 
     public int RedTeamScore { get; private set; }
     public int BlueTeamScore { get; private set; }
@@ -54,11 +53,23 @@ public class ScoreManager : MonoBehaviour
 
     private void RefreshScoreUI()
     {
+        TeamType redTeam = (TeamType)TeamHelper.GetColorTeamAlterIndex(TeamType.Red);
+        TeamType blueTeam = (TeamType)TeamHelper.GetColorTeamAlterIndex(TeamType.Blue);
+
         Color redColor = TeamHelper.GetColorTeamAlter((TeamType)TeamHelper.GetColorTeamAlterIndex(TeamType.Red));
         Color blueColor = TeamHelper.GetColorTeamAlter((TeamType)TeamHelper.GetColorTeamAlterIndex(TeamType.Blue));
 
-        redTeamScoreText.text = "<color=\"" + ColorUtility.ToHtmlStringRGB(redColor) + "\">" + RedTeamScore.ToString() + "</color>";
-        blueTeamScoreText.text = "<color=\"" + ColorUtility.ToHtmlStringRGB(blueColor) + "\">" + BlueTeamScore.ToString() + "</color>";
+        string content = "<color=\"" + ColorUtility.ToHtmlStringRGB(redColor) + "\">" + redTeam.ToString() + "</color>";
+        content += "\n";
+        content += RedTeamScore.ToString();
+        content += "\n";
+
+        content += "<color=\"" + ColorUtility.ToHtmlStringRGB(blueColor) + "\">" + blueTeam.ToString() + "</color>";
+        content += "\n";
+        content += BlueTeamScore.ToString();
+        content += "\n";
+
+        scoreText.text = content;
     }
 
     public void LockScore()
