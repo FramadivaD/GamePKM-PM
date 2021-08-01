@@ -20,8 +20,20 @@ public class RoomTeamChat : MonoBehaviour
     [SerializeField] private InputField chatInputText;
     [SerializeField] private Button chatPanelButton;
 
-    [SerializeField] private GameObject chatPrivateTeamPanelButton;
-    [SerializeField] private GameObject chatEveryonePanelButton;
+    [SerializeField] private Button chatPrivateTeamPanelButton;
+    [SerializeField] private Button chatEveryonePanelButton;
+
+    [SerializeField] private ScrollRect chatScroll;
+    [SerializeField] private ContentSizeFitter chatContentFitter;
+    [SerializeField] private GridLayoutGroup chatGridLayout;
+
+    private Vector3 panelOriginalPosition;
+    private bool chatPanelIsHiding = false;
+
+    private void Awake()
+    {
+        panelOriginalPosition = chatPanel.transform.localPosition;
+    }
 
     private void Start()
     {
@@ -38,10 +50,10 @@ public class RoomTeamChat : MonoBehaviour
 
             if (PhotonNetwork.player.IsMasterClient)
             {
-                chatPrivateTeamPanelButton.SetActive(false);
+                chatPrivateTeamPanelButton.gameObject.SetActive(false);
             } else
             {
-                chatPrivateTeamPanelButton.SetActive(true);
+                chatPrivateTeamPanelButton.gameObject.SetActive(true);
             }
         }
     }
@@ -75,22 +87,19 @@ public class RoomTeamChat : MonoBehaviour
 
     public void SendPrivateTeamChat(string message)
     {
-        if (receivePrivateTeamChat)
+        if (PhotonNetwork.connected)
         {
-            if (PhotonNetwork.connected)
-            {
-                string username = PhotonNetwork.player.NickName;
+            string username = PhotonNetwork.player.NickName;
 
-                if (!PhotonNetwork.player.IsMasterClient)
-                {
-                    int teamTypeInt =
-                    TeamHelper.GetColorTeamAlterIndex(
-                        TeamHelper.FromPhotonTeam(
-                            PhotonNetwork.player.GetTeam()
-                        )
-                    );
-                    pv.RPC("ReceivePrivateTeamChat", PhotonTargets.AllBuffered, username, message, teamTypeInt);
-                }
+            if (!PhotonNetwork.player.IsMasterClient)
+            {
+                int teamTypeInt =
+                TeamHelper.GetColorTeamAlterIndex(
+                    TeamHelper.FromPhotonTeam(
+                        PhotonNetwork.player.GetTeam()
+                    )
+                );
+                pv.RPC("ReceivePrivateTeamChat", PhotonTargets.AllBuffered, username, message, teamTypeInt);
             }
         }
     }
@@ -124,14 +133,21 @@ public class RoomTeamChat : MonoBehaviour
     {
         if (PhotonNetwork.connected)
         {
-            TeamType teamType = (TeamType)teamTypeInt;
-            TeamType playerTeamType = TeamHelper.FromPhotonTeam(PhotonNetwork.player.GetTeam());
-
-            // kalo sama maka receive
-            if (teamType == playerTeamType)
+            if (!PhotonNetwork.player.IsMasterClient)
             {
-                RoomTeamChatText text = Instantiate(roomChatTextPrefab.gameObject, textChatContainer).GetComponent<RoomTeamChatText>();
-                text.Initialize(true, username, message, teamTypeInt);
+                TeamType teamType = (TeamType)teamTypeInt;
+                TeamType playerTeamType = TeamHelper.FromPhotonTeam(PhotonNetwork.player.GetTeam());
+
+                // kalo sama maka receive
+                if (teamType == playerTeamType)
+                {
+                    RoomTeamChatText text = Instantiate(roomChatTextPrefab.gameObject, textChatContainer).GetComponent<RoomTeamChatText>();
+                    text.Initialize(true, username, message, teamTypeInt);
+
+                    chatGridLayout.CalculateLayoutInputVertical();
+                    chatContentFitter.SetLayoutVertical();
+                    chatScroll.verticalNormalizedPosition = 0;
+                }
             }
         }
     }
@@ -146,6 +162,12 @@ public class RoomTeamChat : MonoBehaviour
             // semua bakal receive
             RoomTeamChatText text = Instantiate(roomChatTextPrefab.gameObject, textChatContainer).GetComponent<RoomTeamChatText>();
             text.Initialize(false, username, message, teamTypeInt);
+
+            Canvas.ForceUpdateCanvases();
+
+            chatGridLayout.CalculateLayoutInputVertical();
+            chatContentFitter.SetLayoutVertical();
+            chatScroll.verticalNormalizedPosition = 0;
         }
     }
 
@@ -153,33 +175,39 @@ public class RoomTeamChat : MonoBehaviour
     {
         if (PhotonNetwork.player.IsMasterClient)
         {
-            chatPrivateTeamPanelButton.SetActive(false);
+            chatPrivateTeamPanelButton.gameObject.SetActive(false);
         }
         else
         {
-            chatPrivateTeamPanelButton.SetActive(true);
+            chatPrivateTeamPanelButton.gameObject.SetActive(true);
         }
     }
 
     public void OpenChatPanel()
     {
-        chatPanel.SetActive(true);
+        // chatPanel.SetActive(true);
+        chatPanelIsHiding = false;
+        chatPanel.transform.localPosition = panelOriginalPosition;
 
         chatPanelButton.transform.localScale = new Vector3(1, 1, 1);
 
         CheckChatIsMaster();
+        RefreshChatTypePrep();
     }
 
     public void HideChatPanel()
     {
-        chatPanel.SetActive(false);
+        // chatPanel.SetActive(false);
+        chatPanelIsHiding = true;
+        chatPanel.transform.localPosition = new Vector3(10000, 10000, 10000);
 
         chatPanelButton.transform.localScale = new Vector3(-1, 1, 1);
     }
 
     public void ToggleChatPanel()
     {
-        if (chatPanel.activeSelf)
+        //if (chatPanel.activeSelf)
+        if (!chatPanelIsHiding)
         {
             HideChatPanel();
         } else
@@ -191,10 +219,28 @@ public class RoomTeamChat : MonoBehaviour
     public void PrepareEveryoneChat()
     {
         sendPrivateTeamChat = false;
+
+        RefreshChatTypePrep();
     }
 
     public void PreparePrivateTeamChat()
     {
         sendPrivateTeamChat = true;
+
+        RefreshChatTypePrep();
+    }
+
+    private void RefreshChatTypePrep()
+    {
+        if (sendPrivateTeamChat)
+        {
+            chatPrivateTeamPanelButton.image.color = new Color(1, 1, 1, 1);
+            chatEveryonePanelButton.image.color = new Color(1, 1, 1, 0.5f);
+        }
+        else
+        {
+            chatPrivateTeamPanelButton.image.color = new Color(1, 1, 1, 0.5f);
+            chatEveryonePanelButton.image.color = new Color(1, 1, 1, 1);
+        }
     }
 }

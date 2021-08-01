@@ -61,8 +61,8 @@ public class ScoreManager : MonoBehaviour
         TeamType redTeam = (TeamType)TeamHelper.GetColorTeamAlterIndex(TeamType.Red);
         TeamType blueTeam = (TeamType)TeamHelper.GetColorTeamAlterIndex(TeamType.Blue);
 
-        Color redColor = TeamHelper.GetColorTeamAlter((TeamType)TeamHelper.GetColorTeamAlterIndex(TeamType.Red));
-        Color blueColor = TeamHelper.GetColorTeamAlter((TeamType)TeamHelper.GetColorTeamAlterIndex(TeamType.Blue));
+        Color redColor = TeamHelper.GetColorTeamAlter(TeamType.Red);
+        Color blueColor = TeamHelper.GetColorTeamAlter(TeamType.Blue);
 
         string content = "<color=\"#" + ColorUtility.ToHtmlStringRGB(redColor) + "\">" + redTeam.ToString() + "</color>";
         content += "\n";
