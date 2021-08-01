@@ -98,4 +98,5 @@ MonoBehaviour:
   - ReceiveEveryoneChat
   - ReceivePrivateTeamChat
   - AddScoreRPC
+  - StopGameRPC
   DisableAutoOpenWizard: 1

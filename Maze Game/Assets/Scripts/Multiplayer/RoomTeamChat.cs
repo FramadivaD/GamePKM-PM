@@ -136,7 +136,12 @@ public class RoomTeamChat : MonoBehaviour
             if (!PhotonNetwork.player.IsMasterClient)
             {
                 TeamType teamType = (TeamType)teamTypeInt;
-                TeamType playerTeamType = TeamHelper.FromPhotonTeam(PhotonNetwork.player.GetTeam());
+                TeamType playerTeamType = 
+                    (TeamType) TeamHelper.GetColorTeamAlterIndex(
+                        TeamHelper.FromPhotonTeam(
+                            PhotonNetwork.player.GetTeam()
+                            )
+                        );
 
                 // kalo sama maka receive
                 if (teamType == playerTeamType)

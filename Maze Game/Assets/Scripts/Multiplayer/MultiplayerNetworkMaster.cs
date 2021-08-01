@@ -27,6 +27,9 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
     public bool testClientSingle;
 
+    [SerializeField] private GameObject masterStopGameButton;
+    [SerializeField] private GameObject masterExitGameButton;
+
     private void Awake()
     {
         Instance = this;
@@ -332,6 +335,43 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     private void PlayAsSpectator()
     {
         GameManager.Instance.BeginSpectator();
+    }
+
+    public void EnableExitGameButton()
+    {
+        masterStopGameButton.SetActive(false);
+        masterExitGameButton.SetActive(true);
+    }
+
+    public void StopGame()
+    {
+        if (PhotonNetwork.connected)
+        {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                pv.RPC("StopGameRPC", PhotonTargets.AllBuffered, ScoreManager.Instance.RedTeamScore, ScoreManager.Instance.BlueTeamScore);
+
+                EnableExitGameButton();
+            }
+        }
+    }
+
+    [PunRPC]
+    private void StopGameRPC(int redScore, int blueScore)
+    {
+        if (redScore == blueScore) {
+            GameManager.Instance.AnnounceWinnerDraw();
+        } else
+        {
+            if (redScore > blueScore)
+            {
+                GameManager.Instance.AnnounceWinner(TeamType.Red);
+            }
+            else if (blueScore > redScore)
+            {
+                GameManager.Instance.AnnounceWinner(TeamType.Blue);
+            }
+        }
     }
 
     public void DisconnectAllPlayer()

@@ -25,7 +25,7 @@ public class RoomTeamChatText : MonoBehaviour
     {
         string content = "";
 
-        string teamColor = (teamTypeInt < 0 ? "FFFFFF" : TeamHelper.TeamColorAlter[teamTypeInt].ToString());
+        string teamColor = (teamTypeInt < 0 ? "FFFFFF" : ColorUtility.ToHtmlStringRGB(TeamHelper.TeamColorAlter[teamTypeInt]));
 
         if (teamTypeInt < 0)
         {
@@ -43,9 +43,10 @@ public class RoomTeamChatText : MonoBehaviour
             content += "<color=\"#" + teamColor + "\">";
             content += "Teammates";
             content += "</color>";
+            content += " : ";
         } else
         {
-            content += "Everyone :";
+            content += "Everyone : ";
         }
 
         content += "\n";

@@ -145,10 +145,44 @@ public class GameManager : MonoBehaviour
         // Untuk si Guru nanti jadi spectator
     }
 
+    public void AnnounceWinnerDraw()
+    {
+        WinnerWasAnnounced = true;
+
+        string content = "TEAM "
+                + "<color=\"#" + ColorUtility.ToHtmlStringRGB(TeamHelper.GetColorTeamAlter(TeamType.Red)) + "\">"
+                + ((TeamType)TeamHelper.GetColorTeamAlterIndex(TeamType.Red)).ToString()
+                + "</color>";
+
+        content += " and TEAM "
+                + "<color=\"#" + ColorUtility.ToHtmlStringRGB(TeamHelper.GetColorTeamAlter(TeamType.Blue)) + "\">"
+                + ((TeamType)TeamHelper.GetColorTeamAlterIndex(TeamType.Blue)).ToString()
+                + "</color>";
+
+        content += "\n";
+
+        content += ScoreManager.Instance.RedTeamScore + " vs " + ScoreManager.Instance.BlueTeamScore;
+
+        winnerTeamText.text = content;
+
+        winnerStatusText.text = "DRAW";
+
+        if (!PhotonNetwork.player.IsMasterClient)
+        {
+            gameplayUI.SetActive(false);
+            scoreManagerUI.SetActive(false);
+            chatRoomUI.SetActive(false);
+        }
+
+        StartCoroutine(AnnounceWinnerUIDrawAfter(3));
+    }
+
     public void AnnounceWinner(TeamType winnerTeam)
     {
         WinnerWasAnnounced = true;
         WinnerTeam = winnerTeam;
+
+        MultiplayerNetworkMaster.Instance.EnableExitGameButton();
 
         if (PhotonNetwork.player.IsMasterClient)
         {
@@ -177,6 +211,15 @@ public class GameManager : MonoBehaviour
     }
 
     public IEnumerator AnnounceWinnerUIAfter(TeamType winnerTeam, float waitTime)
+    {
+        yield return new WaitForSecondsRealtime(waitTime);
+
+        winnerUI.SetActive(true);
+        AudioManager.Instance.StopMusic();
+        AudioManager.Instance.PlaySFXOnce(winSFX);
+    }
+
+    public IEnumerator AnnounceWinnerUIDrawAfter(float waitTime)
     {
         yield return new WaitForSecondsRealtime(waitTime);
 

@@ -87,6 +87,7 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
                 Debug.Log("Upload failed. So the Game not starting.");
 
                 WindowMaster.Instance.Show("Upload Soal gagal. Coba mulai kembali.");
+                MasterAbortGame();
             }
             );
     }
@@ -113,6 +114,36 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
         WindowMaster.Instance.Show("Memulai Game..");
 
         LockAllButtons();
+    }
+
+    private void MasterAbortGame()
+    {
+        // Unlock Room
+        if (PhotonNetwork.connected)
+        {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                PhotonNetwork.room.IsOpen = true;
+                PhotonNetwork.room.IsVisible = true;
+            }
+        }
+
+        if (PhotonNetwork.player.IsMasterClient)
+        {
+            pv.RPC("ClientAbortGame", PhotonTargets.Others);
+
+            WindowMaster.Instance.Show("Upload soal gagal. Game dibatalkan.");
+
+            UnlockAllButtons();
+        }
+    }
+
+    [PunRPC]
+    private void ClientAbortGame()
+    {
+        WindowMaster.Instance.Show("Master gagal memulai Game.");
+
+        UnlockAllButtons();
     }
 
     private void MasterStartGame()
