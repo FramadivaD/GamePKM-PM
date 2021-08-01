@@ -99,4 +99,5 @@ MonoBehaviour:
   - ReceivePrivateTeamChat
   - AddScoreRPC
   - StopGameRPC
+  - ClientAbortGame
   DisableAutoOpenWizard: 1

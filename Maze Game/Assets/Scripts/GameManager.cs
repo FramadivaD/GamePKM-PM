@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
         // Untuk si Guru nanti jadi spectator
     }
 
-    public void AnnounceWinnerDraw()
+    public void AnnounceWinnerForced(int redTeamScore, int blueTeamScore)
     {
         WinnerWasAnnounced = true;
 
@@ -161,11 +161,59 @@ public class GameManager : MonoBehaviour
 
         content += "\n";
 
-        content += ScoreManager.Instance.RedTeamScore + " vs " + ScoreManager.Instance.BlueTeamScore;
+        // content += ScoreManager.Instance.RedTeamScore + " vs " + ScoreManager.Instance.BlueTeamScore;
+        content += redTeamScore + " vs " + blueTeamScore;
 
         winnerTeamText.text = content;
 
-        winnerStatusText.text = "DRAW";
+
+        if (!PhotonNetwork.player.IsMasterClient) {
+            if (redTeamScore == blueTeamScore)
+            {
+                winnerStatusText.text = "DRAW";
+            }
+            else if (redTeamScore > blueTeamScore)
+            {
+                if (player.teamType == TeamType.Red)
+                {
+                    winnerStatusText.text = "WINNER";
+                } else
+                {
+                    winnerStatusText.text = "DEFEAT";
+                }
+            }
+            else if (redTeamScore < blueTeamScore)
+            {
+                if (player.teamType == TeamType.Blue)
+                {
+                    winnerStatusText.text = "WINNER";
+                }
+                else
+                {
+                    winnerStatusText.text = "DEFEAT";
+                }
+            }
+        } else
+        {
+            if (redTeamScore == blueTeamScore)
+            {
+                winnerStatusText.text = "DRAW";
+            }
+            else if (redTeamScore > blueTeamScore)
+            {
+                winnerStatusText.text =
+                "<color=\"#" + ColorUtility.ToHtmlStringRGB(TeamHelper.GetColorTeamAlter(TeamType.Red)) + "\">"
+                + ((TeamType)TeamHelper.GetColorTeamAlterIndex(TeamType.Red)).ToString()
+                + "</color> WIN";
+            }
+            else if (redTeamScore < blueTeamScore)
+            {
+                winnerStatusText.text =
+                "<color=\"#" + ColorUtility.ToHtmlStringRGB(TeamHelper.GetColorTeamAlter(TeamType.Blue)) + "\">"
+                + ((TeamType)TeamHelper.GetColorTeamAlterIndex(TeamType.Blue)).ToString()
+                + "</color> WIN";
+            }
+        }
 
         if (!PhotonNetwork.player.IsMasterClient)
         {
@@ -174,7 +222,7 @@ public class GameManager : MonoBehaviour
             chatRoomUI.SetActive(false);
         }
 
-        StartCoroutine(AnnounceWinnerUIDrawAfter(3));
+        StartCoroutine(AnnounceWinnerUIForcedAfter(3));
     }
 
     public void AnnounceWinner(TeamType winnerTeam)
@@ -219,7 +267,7 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlaySFXOnce(winSFX);
     }
 
-    public IEnumerator AnnounceWinnerUIDrawAfter(float waitTime)
+    public IEnumerator AnnounceWinnerUIForcedAfter(float waitTime)
     {
         yield return new WaitForSecondsRealtime(waitTime);
 

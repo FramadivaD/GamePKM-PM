@@ -340,7 +340,8 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     public void EnableExitGameButton()
     {
         masterStopGameButton.SetActive(false);
-        masterExitGameButton.SetActive(true);
+        // masterExitGameButton.SetActive(true);
+        masterExitGameButton.SetActive(false);
     }
 
     public void StopGame()
@@ -359,19 +360,7 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     [PunRPC]
     private void StopGameRPC(int redScore, int blueScore)
     {
-        if (redScore == blueScore) {
-            GameManager.Instance.AnnounceWinnerDraw();
-        } else
-        {
-            if (redScore > blueScore)
-            {
-                GameManager.Instance.AnnounceWinner(TeamType.Red);
-            }
-            else if (blueScore > redScore)
-            {
-                GameManager.Instance.AnnounceWinner(TeamType.Blue);
-            }
-        }
+        GameManager.Instance.AnnounceWinnerForced(redScore, blueScore);
     }
 
     public void DisconnectAllPlayer()

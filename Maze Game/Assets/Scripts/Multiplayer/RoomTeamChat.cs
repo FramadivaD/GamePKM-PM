@@ -149,6 +149,8 @@ public class RoomTeamChat : MonoBehaviour
                     RoomTeamChatText text = Instantiate(roomChatTextPrefab.gameObject, textChatContainer).GetComponent<RoomTeamChatText>();
                     text.Initialize(true, username, message, teamTypeInt);
 
+                    Canvas.ForceUpdateCanvases();
+
                     chatGridLayout.CalculateLayoutInputVertical();
                     chatContentFitter.SetLayoutVertical();
                     chatScroll.verticalNormalizedPosition = 0;
