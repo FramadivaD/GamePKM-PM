@@ -380,6 +380,11 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
                 EnableExitGameButton();
             }
+        } else
+        {
+            StopGameRPC(ScoreManager.Instance.RedTeamScore, ScoreManager.Instance.BlueTeamScore);
+
+            EnableExitGameButton();
         }
     }
 
@@ -402,6 +407,12 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
                 Debug.Log("Loading Lobby");
                 SceneManager.LoadScene("LobbyMenu");
             }
+        } else
+        {
+            DisconnectAllPlayerRPC();
+
+            Debug.Log("Loading Lobby");
+            SceneManager.LoadScene("LobbyMenu");
         }
     }
 
