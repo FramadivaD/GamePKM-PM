@@ -102,11 +102,22 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
                 Debug.Log("Waiting Player Count : " + playerSceneCount + "/" + PhotonNetwork.playerList.Length);
                 AddClientPlayer();
+
+                StartCoroutine(WaitingPlayerCountUntilTimeout(20));
             }
         } else
         {
             Invoke("TestClientSingle", 1);
         }
+    }
+
+    private IEnumerator WaitingPlayerCountUntilTimeout(float time)
+    {
+        yield return new WaitForSecondsRealtime(time);
+
+        Debug.Log("Player Count Wait Timeout, Skip to Initialize Master Client.");
+
+        InitializeMasterClient();
     }
 
     [PunRPC]
@@ -123,6 +134,8 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
             if (playerSceneCount >= PhotonNetwork.playerList.Length)
             {
+                StopAllCoroutines();
+
                 Debug.Log("Player Count Satisfied, Initialize Master Client.");
 
                 InitializeMasterClient();
@@ -216,6 +229,8 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
             Debug.Log("Sabar, nunggu download semua selesai");
 
             TellMasterThatClientReadyToPlay();
+
+            StartCoroutine(WaitingPlayerReadyUntilTimeout(20));
         }
         else
         {
@@ -227,6 +242,15 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
             pv.RPC("TellMasterThatClientReadyToPlay", PhotonTargets.MasterClient);
         }
+    }
+
+    private IEnumerator WaitingPlayerReadyUntilTimeout(float time)
+    {
+        yield return new WaitForSecondsRealtime(time);
+
+        Debug.Log("Player Ready Wait Timeout, Skip to Prepare Game as Master.");
+
+        PrepareGameAsMaster();
     }
 
     [PunRPC]
@@ -245,6 +269,8 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
             if (playerReadyCount >= PhotonNetwork.playerList.Length)
             {
+                StopAllCoroutines();
+
                 PrepareGameAsMaster();
             }
         }
