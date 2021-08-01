@@ -9,6 +9,8 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 {
     public static MultiplayerNetworkMaster Instance { get; private set; }
     public NetworkUIManager networkUIManager;
+    public ScoreManager scoreManager;
+    public RoomTeamChat roomTeamChat;
 
     public Camera masterCamera;
 

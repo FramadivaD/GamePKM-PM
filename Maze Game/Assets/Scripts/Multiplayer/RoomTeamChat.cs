@@ -17,7 +17,16 @@ public class RoomTeamChat : MonoBehaviour
 
     private bool sendPrivateTeamChat = false;
 
-    public InputField chatInputText;
+    [SerializeField] private InputField chatInputText;
+    [SerializeField] private Button chatPanelButton;
+
+    [SerializeField] private GameObject chatPrivateTeamPanelButton;
+    [SerializeField] private GameObject chatEveryonePanelButton;
+
+    private void Start()
+    {
+        HideChatPanel();
+    }
 
     public void Initialize()
     {
@@ -26,6 +35,14 @@ public class RoomTeamChat : MonoBehaviour
         if (PhotonNetwork.connected)
         {
             InitializeTeamChat();
+
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                chatPrivateTeamPanelButton.SetActive(false);
+            } else
+            {
+                chatPrivateTeamPanelButton.SetActive(true);
+            }
         }
     }
 
@@ -41,12 +58,18 @@ public class RoomTeamChat : MonoBehaviour
 
     public void SendChat()
     {
-        if (sendPrivateTeamChat)
+        if (chatInputText.text.Length > 0)
         {
-            SendPrivateTeamChat(chatInputText.text);
-        } else
-        {
-            SendEveryoneChat(chatInputText.text);
+            if (sendPrivateTeamChat)
+            {
+                SendPrivateTeamChat(chatInputText.text);
+            }
+            else
+            {
+                SendEveryoneChat(chatInputText.text);
+            }
+
+            chatInputText.text = "";
         }
     }
 
@@ -126,14 +149,32 @@ public class RoomTeamChat : MonoBehaviour
         }
     }
 
+    private void CheckChatIsMaster()
+    {
+        if (PhotonNetwork.player.IsMasterClient)
+        {
+            chatPrivateTeamPanelButton.SetActive(false);
+        }
+        else
+        {
+            chatPrivateTeamPanelButton.SetActive(true);
+        }
+    }
+
     public void OpenChatPanel()
     {
         chatPanel.SetActive(true);
+
+        chatPanelButton.transform.localScale = new Vector3(1, 1, 1);
+
+        CheckChatIsMaster();
     }
 
     public void HideChatPanel()
     {
         chatPanel.SetActive(false);
+
+        chatPanelButton.transform.localScale = new Vector3(-1, 1, 1);
     }
 
     public void ToggleChatPanel()

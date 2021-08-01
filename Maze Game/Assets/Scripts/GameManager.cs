@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject winnerUI;
     [SerializeField] private Text winnerStatusText;
     [SerializeField] private Text winnerTeamText;
+    [SerializeField] private GameObject scoreManagerUI;
+    [SerializeField] private GameObject chatRoomUI;
 
     [SerializeField] private GameObject pauseUI;
     [SerializeField] private Text pausePlayerAndTeamText;
@@ -167,6 +169,8 @@ public class GameManager : MonoBehaviour
             winnerStatusText.text = (winnerTeam == player.teamType) ? "WINNER" : "DEFEAT";
 
             gameplayUI.SetActive(false);
+            scoreManagerUI.SetActive(false);
+            chatRoomUI.SetActive(false);
         }
 
         StartCoroutine(AnnounceWinnerUIAfter(winnerTeam, 3));
