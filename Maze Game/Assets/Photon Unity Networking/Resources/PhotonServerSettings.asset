@@ -100,4 +100,6 @@ MonoBehaviour:
   - AddScoreRPC
   - StopGameRPC
   - ClientAbortGame
+  - LeaveLobbyGameRPC
+  - LeaveLobbyGameForcedRPC
   DisableAutoOpenWizard: 1

@@ -107,6 +107,12 @@ public class Gate : MonoBehaviour
         return true;
     }
 
+    public bool CheckGateZeroFragment()
+    {
+        // if fragments count == 0 maka tidak ada fragment sama sekali, jadi langsung open
+        return mainKey.Fragments.Count == 0;
+    }
+
     public bool CheckGateIsReadyReordering()
     {
         return CollectedFragmentIndex.Count == mainKey.Fragments.Count;

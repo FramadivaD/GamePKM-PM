@@ -8,6 +8,8 @@ public class LobbyNetwork : Photon.PunBehaviour
 {
     private string GameVersion { get { return Application.version; } }
 
+    [SerializeField] PhotonView pv;
+
     [SerializeField] LobbyPlayerList lobbyPlayerList;
 
     [SerializeField] private GameObject joinLobbyMenu;
@@ -118,10 +120,34 @@ public class LobbyNetwork : Photon.PunBehaviour
     {
         if (connected)
         {
-            PhotonNetwork.LeaveRoom();
-
-            exitGameButton.interactable = true;
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                pv.RPC("LeaveLobbyGameForcedRPC", PhotonTargets.AllBuffered);
+            } else
+            {
+                LeaveLobbyGameRPC();
+            }
         }
+    }
+
+    private void LeaveLobbyGameRPC()
+    {
+        PhotonNetwork.LeaveRoom();
+
+        exitGameButton.interactable = true;
+    }
+
+    [PunRPC]
+    private void LeaveLobbyGameForcedRPC()
+    {
+        if (!PhotonNetwork.player.IsMasterClient)
+        {
+            WindowMaster.Instance.Show("Master keluar dari room. Game dibatalkan.");
+        }
+
+        PhotonNetwork.LeaveRoom();
+
+        exitGameButton.interactable = true;
     }
 
     #region Photon Callbacks

@@ -1490,7 +1490,7 @@ MonoBehaviour:
   - {fileID: 2048753402}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 6
-  instantiationId: 2
+  instantiationId: 6
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &252936851
@@ -3137,7 +3137,7 @@ MonoBehaviour:
   - {fileID: 1294767488}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 4
-  instantiationId: 14
+  instantiationId: 4
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &679356586 stripped
@@ -3170,7 +3170,7 @@ MonoBehaviour:
   - {fileID: 1893518620}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 3
-  instantiationId: 10
+  instantiationId: 3
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &719516445
@@ -3587,7 +3587,7 @@ MonoBehaviour:
   - {fileID: 2001039305}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 8
-  instantiationId: 15
+  instantiationId: 8
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &783265723
@@ -4473,7 +4473,7 @@ MonoBehaviour:
   - {fileID: 853284599}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 7
-  instantiationId: 12
+  instantiationId: 7
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &1016881278 stripped
@@ -4506,7 +4506,7 @@ MonoBehaviour:
   - {fileID: 1122964698}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 1
-  instantiationId: 11
+  instantiationId: 1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &1047016020
@@ -7999,7 +7999,7 @@ MonoBehaviour:
   - {fileID: 1258034725}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 5
-  instantiationId: 13
+  instantiationId: 5
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &1926418462
@@ -8770,6 +8770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e68ce056a9873e34ebc855888ddf81ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pv: {fileID: 2016174603}
   lobbyPlayerList: {fileID: 2016174602}
   joinLobbyMenu: {fileID: 383025379}
   usernameLobbyMenu: {fileID: 494840402}

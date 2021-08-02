@@ -41,7 +41,12 @@ public class GateManager : MonoBehaviour
         {
             if (gate != null)
             {
-                if (gate.CheckGateIsReadyReordering())
+                if (gate.CheckGateZeroFragment())
+                {
+                    Debug.Log("zero fragment, auto open!");
+                    gate.OpenGate();
+                }
+                else if (gate.CheckGateIsReadyReordering())
                 {
                     Debug.Log("open game Reordering now!");
                     StartReorderingMiniGame(gate);
@@ -75,10 +80,14 @@ public class GateManager : MonoBehaviour
             GameObject buttonAnswer = Instantiate(answerImagePrefab, answerContainerParent);
             Button button = buttonAnswer.GetComponent<Button>();
 
+            /*
             if (Application.isEditor)
             {
                 button.GetComponentInChildren<Text>().text = GameManager.PlayersTeam[gate.teamType].FragmentsKey.Fragments[fragmentIndex].Data;
             }
+            */
+
+            button.GetComponentInChildren<Text>().text = GameManager.PlayersTeam[gate.teamType].FragmentsKey.Fragments[fragmentIndex].Data;
 
             button.onClick.AddListener(() =>
             {
