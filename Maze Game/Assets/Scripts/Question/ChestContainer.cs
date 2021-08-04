@@ -178,6 +178,15 @@ public class ChestContainer : MonoBehaviour
 
         canvasUI.SetActive(false);
 
+        foreach (GameObject p in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            Player player = p.GetComponent<Player>();
+            if (player)
+            {
+                player.playerCompass.FindAllChest();
+            }
+        }
+
         AudioManager.Instance.PlaySFXOnce(takeFragmentSFX);
     }
 }

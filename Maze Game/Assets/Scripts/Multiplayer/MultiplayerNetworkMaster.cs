@@ -337,6 +337,7 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     {
         if (GameManager.Instance && GameManager.Instance.player) {
             GameManager.Instance.player.playerCompass.FindAllChest();
+            GameManager.Instance.player.playerCompass.FindMainGate();
         }
     }
 

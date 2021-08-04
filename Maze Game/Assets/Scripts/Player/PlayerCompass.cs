@@ -10,9 +10,14 @@ public class PlayerCompass : MonoBehaviour
     private List<GameObject> compassUI;
     private List<ChestContainer> chestTreasures;
 
+    private GameObject mainGateCompassUI;
+    private Gate mainGate;
+
     [SerializeField] private GameObject compassPrefab;
+    [SerializeField] private GameObject mainGateCompassPrefab;
 
     [SerializeField] private Transform compassParent;
+    [SerializeField] private Transform mainGateCompassParent;
 
     private bool initialized = false;
 
@@ -27,6 +32,29 @@ public class PlayerCompass : MonoBehaviour
     {
         if (initialized) {
             ControlCompassUI();
+            ControlMainGateCompassUI();
+        }
+    }
+
+    public void FindMainGate()
+    {
+        foreach (Transform t in mainGateCompassParent)
+        {
+            Destroy(t.gameObject);
+        }
+
+        if (mainGateCompassUI)
+        {
+            Destroy(mainGateCompassUI.gameObject);
+        }
+
+        foreach (Gate gate in FindObjectsOfType<Gate>())
+        {
+            if (gate.teamType == player.teamType && !gate.IsOpened)
+            {
+                mainGateCompassUI = Instantiate(mainGateCompassPrefab, compassParent.transform.position, Quaternion.identity, mainGateCompassParent);
+                mainGate = gate;
+            }
         }
     }
 
@@ -67,6 +95,18 @@ public class PlayerCompass : MonoBehaviour
 
                 compassUI[i].transform.position = player.transform.position + clamped;
             }
+        }
+    }
+
+    private void ControlMainGateCompassUI()
+    {
+        if (mainGateCompassUI != null && mainGate != null)
+        {
+            Vector3 direction = (mainGate.transform.position - player.transform.position);
+
+            Vector3 clamped = Vector3.ClampMagnitude(direction, clampCompassMagnitude);
+
+            mainGateCompassUI.transform.position = player.transform.position + clamped;
         }
     }
 }

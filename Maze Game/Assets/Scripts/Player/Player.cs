@@ -105,6 +105,7 @@ public class Player : MonoBehaviour
             login.SubmitName();
 
             playerCompass.FindAllChest();
+            playerCompass.FindMainGate();
 
             pv.RPC("SyncTeamColorGraphic", PhotonTargets.AllBuffered, (int)teamType);
             pv.RPC("DisableEtcObjects", PhotonTargets.OthersBuffered);

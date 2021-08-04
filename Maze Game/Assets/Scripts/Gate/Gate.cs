@@ -159,6 +159,15 @@ public class Gate : MonoBehaviour
         IsOpened = true;
         gateAnim.SetBool("isAnswer", true);
 
+        foreach(GameObject p in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            Player player = p.GetComponent<Player>();
+            if (player)
+            {
+                player.playerCompass.FindMainGate();
+            }
+        }
+
         AudioManager.Instance.PlaySFXOnce(openGateSFX);
 
         GameManager.Instance.PlayEpicMusic();

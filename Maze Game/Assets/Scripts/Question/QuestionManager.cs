@@ -31,7 +31,7 @@ public class QuestionManager : MonoBehaviour
                 SelectedChest = chest;
                 SelectedChest.TryTakeFragmentKey(player);
 
-                player.playerCompass.FindAllChest();
+                // player.playerCompass.FindAllChest();
             }
             else
             {
