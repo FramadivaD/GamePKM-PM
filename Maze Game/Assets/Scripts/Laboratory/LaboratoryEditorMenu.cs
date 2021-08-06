@@ -133,11 +133,13 @@ public class LaboratoryEditorMenu : MonoBehaviour
             OpenMainEditor();
 
             Debug.Log("Save Main Gate Key");
+
+            WindowMaster.Instance.Show("Gate Key Berhasil disimpan!");
         } else
         {
             Debug.Log("Please insert file name");
 
-            Extensione.Window.WindowMaster.Instance.Show("Mohon masukkan nama file!");
+            WindowMaster.Instance.Show("Mohon masukkan nama file!");
         }
     }
 
@@ -174,8 +176,19 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
     public void SaveMainGateKeyAndBackToSelectMenu()
     {
-        SaveMainGateKey();
-        BackToSelectMenu();
+        if (mainGateKeyName.text.Length > 0)
+        {
+            SaveMainGateKey();
+            BackToSelectMenu();
+
+            WindowMaster.Instance.Show("Gate Key Berhasil disimpan!");
+        }
+        else
+        {
+            Debug.Log("Please insert file name");
+
+            WindowMaster.Instance.Show("Mohon masukkan nama file!");
+        }
     }
 
     private void ChangeGateKeyName(string x)
