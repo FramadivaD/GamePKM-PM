@@ -14,7 +14,11 @@ public class Question
             LobbyTeacherRoomQuestionDifficulty.SelectedDifficulty.pengurangan,
             LobbyTeacherRoomQuestionDifficulty.SelectedDifficulty.penjumlahan,
             LobbyTeacherRoomQuestionDifficulty.SelectedDifficulty.perkalian,
-            LobbyTeacherRoomQuestionDifficulty.SelectedDifficulty.pembagian
+            LobbyTeacherRoomQuestionDifficulty.SelectedDifficulty.pembagian,
+            LobbyTeacherRoomQuestionDifficulty.SelectedDifficulty.persamaanAljabar,
+            LobbyTeacherRoomQuestionDifficulty.SelectedDifficulty.barisanAritmatika,
+            LobbyTeacherRoomQuestionDifficulty.SelectedDifficulty.barisanGeometri,
+            LobbyTeacherRoomQuestionDifficulty.SelectedDifficulty.penyederhanaanPecahan
         };
 
         // Random soal
@@ -36,6 +40,10 @@ public class Question
         else if (randType == 2) GenerateSoalPenjumlahan();
         else if (randType == 3) GenerateSoalPerkalian();
         else if (randType == 4) GenerateSoalPembagian();
+        else if (randType == 5) GenerateSoalPersamaanAljabar();
+        else if (randType == 6) GenerateSoalBarisanAritmatika();
+        else if (randType == 7) GenerateSoalBarisanGeometri();
+        else if (randType == 8) GenerateSoalPenyederhanaanPecahan();
     }
 
     private void GenerateSoalPembagian()
@@ -98,6 +106,77 @@ public class Question
         answer = (penyebut == 1 ? pembilang.ToString() : (pembilang + "/" + penyebut));
     }
 
+    private void GenerateSoalPersamaanAljabar()
+    {
+        int a = Random.Range(1, 6);
+        int b = Random.Range(1, 10);
+
+        int x = Random.Range(0, 10);
+
+        // ax + b = c
+        int c = a * x + b;
+
+        question = "Berapakah nilai x dari persamaan berikut :\n" + a + x + " + " + b + " = " + c;
+        answer = x.ToString();
+    }
+
+    private void GenerateSoalBarisanAritmatika()
+    {
+        int a = Random.Range(1, 20);
+        int b = Random.Range(1, 5);
+
+        question = "Berapakah lanjutan dari barisan aritmatika berikut :\n";
+
+        int proc = a;
+
+        for (int i = 0; i < 4; i++)
+        {
+            question += proc + ", ";
+            proc += b;
+        }
+
+        question += "...";
+        answer = proc.ToString();
+    }
+
+    private void GenerateSoalBarisanGeometri()
+    {
+        int a = Random.Range(1, 10);
+        int b = Random.Range(1, 5);
+
+        question = "Berapakah lanjutan dari barisan geometri berikut :\n";
+
+        int proc = a;
+
+        for (int i = 0; i < 4; i++)
+        {
+            question += proc + ", ";
+            proc *= b;
+        }
+
+        question += "...";
+        answer = proc.ToString();
+    }
+
+    private void GenerateSoalPenyederhanaanPecahan()
+    {
+        int rand = Mathf.RoundToInt(Random.value * 100);
+
+        int a = rand;
+        int b = 100;
+
+        int pembilang = rand;
+        int penyebut = 100;
+
+        int gcd = GCD(pembilang, penyebut);
+
+        pembilang /= gcd;
+        penyebut /= gcd;
+
+        question = "Berapakah pecahan paling sederhana dari bilangan berikut :\n" + a + "/" + b;
+        answer = (penyebut == 1 ? pembilang.ToString() : (pembilang + "/" + penyebut));
+    }
+
     private static int GCD(int a, int b)
     {
         while (a != 0 && b != 0)
@@ -110,88 +189,4 @@ public class Question
 
         return a | b;
     }
-
-    /*
-    float koef1, koef2, konst;
-    int pembilang1, pembilang2, pembilang3, penyebut1, penyebut2, penyebut3;
-    int FPB;
-    public string question;
-    char[] plusminus = {'+', '-'};
-    int randplsmin;
-    public string answer;
-    public int tipeSoal = 1;
-
-    public Question()
-    {
-        switch(tipeSoal){
-            case 0:
-                randplsmin = UnityEngine.Random.Range(0,2);
-                do{
-                    koef1 = UnityEngine.Random.Range(1, 11);
-                    do{
-                        koef2 = UnityEngine.Random.Range(1, 11);
-                    }while(koef1 == koef2);
-                    konst = UnityEngine.Random.Range(11, 21);
-                    question = "Tentukan nilai x dari persamaan berikut ini :\n" + koef1 + "x " + plusminus[randplsmin] + " " +konst + " = " + koef2 + "x";
-                }while(koef1 % 2 != 0 || koef2 % 2 != 0 || konst % 2 != 0);
-                if(randplsmin == 0){
-                    answer = Math.Round((-konst/(koef1 - koef2)), 2).ToString();
-                }else answer = Math.Round((konst/(koef1 - koef2)), 2).ToString();
-                break;
-            case 1:
-                randplsmin = UnityEngine.Random.Range(0,2);
-                pembilang1 = UnityEngine.Random.Range(1, 11);
-                pembilang2 = UnityEngine.Random.Range(1, 11);
-                penyebut1 = UnityEngine.Random.Range(1, 11);
-                penyebut2 = UnityEngine.Random.Range(1, 11);
-                question = "Berapa hasil dari perhitungan berikut ini :\n" + pembilang1 + "/" + penyebut1 + " " + plusminus[randplsmin] + " " + pembilang2 + "/" + penyebut2 + " = ??";
-                penyebut3 = penyebut1 * penyebut2;
-                if(randplsmin == 0){
-                    pembilang3 = (pembilang1 * penyebut2) + (pembilang2 * penyebut1);
-                    FPB = perhitunganFPB(pembilang3, penyebut3);
-                    penyebut3 /= FPB;
-                    pembilang3 /= FPB;
-                    answer = pembilang3.ToString() + "/" + penyebut3.ToString();
-                }else {
-                    pembilang3 = (pembilang1 * penyebut2) - (pembilang2 * penyebut1);
-                    FPB = perhitunganFPB(pembilang3, penyebut3);
-                    penyebut3 /= FPB;
-                    pembilang3 /= FPB;
-                    answer = pembilang3.ToString() + "/" + penyebut3.ToString();
-                }
-                break;
-        }
-        
-    }
-
-    private int perhitunganFPB(int a, int b){
-        if(a < 0){
-            a *= -1;
-        }
-        int i;
-        if(a > b){
-            i = b;
-            while (i > 1){
-                if(a % i == 0 && b % i == 0){
-                    break;
-                }
-                i--;
-            }
-            return i;
-        }else if(a < b){
-            i = a;
-            while (i > 1){
-                if(a % i == 0 && b % i == 0){
-                    break;
-                }
-                i--;
-            }
-            return i;
-        }else return a;
-    }
-
-    void perhitunganKPK(float a, float b){
-
-    }
-    */
 }
