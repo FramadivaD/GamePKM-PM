@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 using System.IO;
 
+using SimpleFileBrowser;
+using Extensione.Window;
+
 public class LaboratoryEditorMenu : MonoBehaviour
 {
     LaboratoryMenu laboratoryMenu;
@@ -29,6 +32,8 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
     [SerializeField] private Button cameraUpdateButton;
     [SerializeField] private Button cameraSaveButton;
+
+    [SerializeField] private Button openGalleryButton;
 
     [SerializeField] private Button cameraSnapButton;
     [SerializeField] private Button cameraCancelButton;
@@ -250,6 +255,67 @@ public class LaboratoryEditorMenu : MonoBehaviour
     public void OpenGallery()
     {
         Debug.Log("Open gallery..");
+
+        AndroidHelper.CheckAndCreateDirectory(AndroidHelper.GetAndroidExternalStoragePath());
+        AndroidHelper.CheckAndCreateDirectory(AndroidHelper.MainGateSavePath);
+        AndroidHelper.CheckAndCreateDirectory(AndroidHelper.MainGateSavePath + "/Data");
+
+        string basepath = AndroidHelper.MainGateSavePath + "/Data";
+
+        FileBrowser.SetDefaultFilter(".jpg");
+        FileBrowser.SetFilters(false, ".jpg", ".jpeg", ".png");
+        FileBrowser.ShowLoadDialog(
+            (paths) => { OpenGalleryImage(paths[0]); }, 
+            ()=> { }, 
+            FileBrowser.PickMode.Files, 
+            false, 
+            basepath
+        );
+    }
+
+    private void OpenGalleryImage(string filepath)
+    {
+        if (File.Exists(filepath))
+        {
+            byte[] imageData = File.ReadAllBytes(filepath);
+
+            Texture2D source = new Texture2D(0, 0);
+            source.LoadImage(imageData);
+            source.Apply();
+
+            // Resize
+            int alteredX = source.width;
+            int alteredY = source.height;
+
+            source.filterMode = FilterMode.Point;
+
+            RenderTexture rt = RenderTexture.GetTemporary(alteredX, alteredY);
+            rt.filterMode = FilterMode.Point;
+
+            RenderTexture.active = rt;
+            Graphics.Blit(source, rt);
+
+            Texture2D ntex = new Texture2D(alteredX, alteredY);
+            ntex.ReadPixels(new Rect(0, 0, alteredX, alteredY), 0, 0);
+            ntex.Apply();
+
+            RenderTexture.active = null;
+            RenderTexture.ReleaseTemporary(rt);
+
+            Sprite sprite = Sprite.Create(ntex, new Rect(0, 0, alteredX, alteredY), new Vector2(0.5f, 0.5f));
+
+            fragmentImagePreview.sprite = sprite;
+
+            // currentGateFragment.DataImage = ntex.GetRawTextureData();
+            currentGateFragment.DataImage = ntex.EncodeToJPG();
+            currentGateFragment.DataImageWidth = ntex.width;
+            currentGateFragment.DataImageHeight = ntex.height;
+
+            fragmentImageCamera.rectTransform.sizeDelta = new Vector2(500, alteredY * 500 / alteredX);
+            fragmentImagePreview.rectTransform.sizeDelta = new Vector2(500, alteredY * 500 / alteredX);
+        }
+
+        HideFragmentButtonCamera();
     }
 
     // Update Button
@@ -330,11 +396,31 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
     public void SaveFragment()
     {
+        if (fragmentKeyName.text.Length <= 0)
+        {
+            WindowMaster.Instance.Show("Nama Fragment harus diisi!");
+            return;
+        }
+
+        // check fragment key is exist
+        for (int i = 0;i < currentGateKey.Fragments.Count;i++)
+        {
+            if (currentGateKey.Fragments[i].Key == fragmentKeyName.text && currentGateKey.Fragments[i] != currentGateFragment)
+            {
+                WindowMaster.Instance.Show("Nama Fragment harus berbeda dengan Fragment yang lain!");
+                return;
+            }
+        }
+
+        // if not exist then allow to save
+
         currentGateFragment.Key = fragmentKeyName.text;
         currentGateFragment.Data = fragmentKeyData.text;
 
         HideFragmentButtonCamera();
         OpenMainEditor();
+
+        RefreshFragmentContainer();
     }
 
     private void CloseFragmentKey()
@@ -368,6 +454,8 @@ public class LaboratoryEditorMenu : MonoBehaviour
         cameraSnapButton.gameObject.SetActive(true);
         cameraCancelButton.gameObject.SetActive(true);
 
+        openGalleryButton.gameObject.SetActive(false);
+
         fragmentImagePreview.gameObject.SetActive(false);
         fragmentImageCamera.gameObject.SetActive(true);
     }
@@ -379,6 +467,8 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
         cameraSnapButton.gameObject.SetActive(false);
         cameraCancelButton.gameObject.SetActive(false);
+
+        openGalleryButton.gameObject.SetActive(true);
 
         fragmentImagePreview.gameObject.SetActive(true);
         fragmentImageCamera.gameObject.SetActive(false);
