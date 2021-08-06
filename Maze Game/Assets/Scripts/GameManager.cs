@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadQuestionDifficulty(QuestionDifficulty difficulty)
     {
-        // TODO : Tambahi untuk check difficulty question
+        LobbyTeacherRoomQuestionDifficulty.SelectedDifficulty = difficulty;
     }
 
     public void GenerateLevel()

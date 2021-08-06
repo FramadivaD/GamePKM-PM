@@ -38,6 +38,8 @@ public class LaboratoryEditorMenu : MonoBehaviour
     [SerializeField] private Button cameraSnapButton;
     [SerializeField] private Button cameraCancelButton;
 
+    [SerializeField] private GameObject galleryLockWindow;
+
     public void Initialize(LaboratoryMenu laboratoryMenu)
     {
         this.laboratoryMenu = laboratoryMenu;
@@ -275,11 +277,13 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
         string basepath = AndroidHelper.MainGateSavePath + "/Data";
 
+        galleryLockWindow.SetActive(true);
+
         FileBrowser.SetDefaultFilter(".jpg");
         FileBrowser.SetFilters(false, ".jpg", ".jpeg", ".png");
         FileBrowser.ShowLoadDialog(
-            (paths) => { OpenGalleryImage(paths[0]); }, 
-            ()=> { }, 
+            (paths) => { OpenGalleryImage(paths[0]); galleryLockWindow.SetActive(false); }, 
+            ()=> { galleryLockWindow.SetActive(false); }, 
             FileBrowser.PickMode.Files, 
             false, 
             basepath
@@ -297,8 +301,10 @@ public class LaboratoryEditorMenu : MonoBehaviour
             source.Apply();
 
             // Resize
-            int alteredX = source.width;
-            int alteredY = source.height;
+            // int alteredX = source.width;
+            // int alteredY = source.height;
+            int alteredX = 500;
+            int alteredY = source.height * 500 / source.width;
 
             source.filterMode = FilterMode.Point;
 
