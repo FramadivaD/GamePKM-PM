@@ -167,6 +167,12 @@ public class LaboratoryEditorMenu : MonoBehaviour
         OpenMainEditor();
     }
 
+    public void SaveMainGateKeyAndBackToSelectMenu()
+    {
+        SaveMainGateKey();
+        BackToSelectMenu();
+    }
+
     private void ChangeGateKeyName(string x)
     {
         if (currentGateKey != null)
@@ -239,6 +245,12 @@ public class LaboratoryEditorMenu : MonoBehaviour
     }
 
     #region All About Fragment Editor
+
+    // Take image file from gallery
+    public void OpenGallery()
+    {
+        Debug.Log("Open gallery..");
+    }
 
     // Update Button
     public void OpenCamera()
