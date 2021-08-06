@@ -67,16 +67,16 @@ public class LobbyNetwork : Photon.PunBehaviour
     {
         if (connected)
         {
-            if (roomID.Length == 5)
+            if (roomID.Length > 0)
             {
                 PhotonNetwork.CreateRoom(roomID, new RoomOptions() { MaxPlayers = 9, PublishUserId = true }, null);
 
                 exitGameButton.interactable = false;
             } else
             {
-                Debug.Log("RoomID must 5 characters.");
+                Debug.Log("RoomID must have a character.");
 
-                WindowMaster.Instance.Show("RoomID harus terdiri atas 5 karakter!");
+                WindowMaster.Instance.Show("RoomID harus terdapat setidaknya 1 karakter!");
             }
         }
     }
@@ -85,7 +85,7 @@ public class LobbyNetwork : Photon.PunBehaviour
     {
         if (connected)
         {
-            if (roomID.Length == 5)
+            if (roomID.Length > 0)
             {
                 PhotonNetwork.JoinRoom(roomID);
 
@@ -93,9 +93,9 @@ public class LobbyNetwork : Photon.PunBehaviour
             }
             else
             {
-                Debug.Log("RoomID must 5 characters.");
+                Debug.Log("RoomID must have a character.");
 
-                WindowMaster.Instance.Show("RoomID harus terdiri atas 5 karakter!");
+                WindowMaster.Instance.Show("RoomID harus terdapat setidaknya 1 karakter!");
             }
         }
     }

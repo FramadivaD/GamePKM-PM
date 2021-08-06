@@ -56,6 +56,12 @@ public class LaboratoryBrowseMenu : MonoBehaviour
                         {
                             button.onClick.AddListener(() => { OpenEditor(dir[x]); });
                         }
+
+                        Button deleteButton = ne.transform.Find("Delete").GetComponent<Button>();
+
+                        if (deleteButton) {
+                            deleteButton.onClick.AddListener(() => { DeleteKeyFile(dir[x]); });
+                        }
                     }
                 }
             }
@@ -72,5 +78,14 @@ public class LaboratoryBrowseMenu : MonoBehaviour
     {
         laboratoryMenu.OpenEditorWindow();
         laboratoryEditor.OpenMainGateKey(filename);
+    }
+
+    private void DeleteKeyFile(string filename)
+    {
+        if (File.Exists(filename))
+        {
+            File.Delete(filename);
+        }
+        LoadDirectory();
     }
 }

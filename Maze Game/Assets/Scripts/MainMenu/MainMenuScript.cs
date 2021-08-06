@@ -22,14 +22,7 @@ public class MainMenuScript : MonoBehaviour
 
     private void Start()
     {
-        musicVolumeSlider.onValueChanged.AddListener(AudioManager.Instance.ChangeMusicVolume);
-        soundVolumeSlider.onValueChanged.AddListener(AudioManager.Instance.ChangeSFXVolume);
-
-        musicVolumeButton.onClick.AddListener(() => { musicVolumeSlider.value = musicVolumeSlider.value == 0 ? 1 : 0; });
-        soundVolumeButton.onClick.AddListener(() => { soundVolumeSlider.value = soundVolumeSlider.value == 0 ? 1 : 0; });
-
-        musicVolumeSlider.value = 1.0f;
-        soundVolumeSlider.value = 1.0f;
+        AudioVolumeInitialization();
 
         MainMenus();
     }
@@ -84,5 +77,31 @@ public class MainMenuScript : MonoBehaviour
         menus[2].SetActive(false);
         menus[3].SetActive(false);
         menus[4].SetActive(true);
+    }
+
+    private void AudioVolumeInitialization()
+    {
+        musicVolumeSlider.onValueChanged.AddListener((float x) => { AudioManager.Instance.ChangeMusicVolume(x); PlayerPrefs.SetFloat("AudioMusicVolume", x); });
+        soundVolumeSlider.onValueChanged.AddListener((float x) => { AudioManager.Instance.ChangeSFXVolume(x); PlayerPrefs.SetFloat("AudioSFXVolume", x); });
+
+        musicVolumeButton.onClick.AddListener(() => { musicVolumeSlider.value = musicVolumeSlider.value == 0 ? 1 : 0; });
+        soundVolumeButton.onClick.AddListener(() => { soundVolumeSlider.value = soundVolumeSlider.value == 0 ? 1 : 0; });
+
+        // Load Volume if exists, if not then set volume to 1.0
+        if (PlayerPrefs.HasKey("AudioMusicVolume")) {
+            musicVolumeSlider.value = PlayerPrefs.GetFloat("AudioMusicVolume");
+        } else
+        {
+            musicVolumeSlider.value = 1.0f;
+        }
+
+        if (PlayerPrefs.HasKey("AudioSFXVolume"))
+        {
+            soundVolumeSlider.value = PlayerPrefs.GetFloat("AudioSFXVolume");
+        }
+        else
+        {
+            soundVolumeSlider.value = 1.0f;
+        }
     }
 }

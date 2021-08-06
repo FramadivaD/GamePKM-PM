@@ -27,7 +27,7 @@ public class LobbyMenu : MonoBehaviour
     public void CreateNewGame()
     {
         string roomID = createGameInput.text;
-        if (roomID.Length == 5)
+        if (roomID.Length > 0)
         {
             Debug.Log("Creating New Game on : " + roomID);
 
@@ -35,16 +35,16 @@ public class LobbyMenu : MonoBehaviour
             roomIDText.text = "ROOM ID : " + roomID;
         } else
         {
-            Debug.Log("Invalid ID. Must 5 characters.");
+            Debug.Log("Invalid ID. Must have a character.");
 
-            WindowMaster.Instance.Show("RoomID harus terdiri atas 5 karakter!");
+            WindowMaster.Instance.Show("RoomID harus terdapat setidaknya 1 karakter!");
         }
     }
 
     public void JoinGame()
     {
         string roomID = joinGameInput.text;
-        if (roomID.Length == 5)
+        if (roomID.Length > 0)
         {
             Debug.Log("Joining Game on : " + roomID);
 
@@ -53,9 +53,9 @@ public class LobbyMenu : MonoBehaviour
         }
         else
         {
-            Debug.Log("Invalid ID. Must 5 characters.");
+            Debug.Log("Invalid ID. Must have a character.");
 
-            WindowMaster.Instance.Show("RoomID harus terdiri atas 5 karakter!");
+            WindowMaster.Instance.Show("RoomID harus terdapat setidaknya 1 karakter!");
         }
     }
 
