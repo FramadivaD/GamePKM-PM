@@ -116,7 +116,7 @@ public class Question
         // ax + b = c
         int c = a * x + b;
 
-        question = "Berapakah nilai x dari persamaan berikut :\n" + a + x + " + " + b + " = " + c;
+        question = "Berapakah nilai x dari persamaan berikut :\n" + a + "x" + " + " + b + " = " + c;
         answer = x.ToString();
     }
 
@@ -160,7 +160,7 @@ public class Question
 
     private void GenerateSoalPenyederhanaanPecahan()
     {
-        int rand = Mathf.RoundToInt(Random.value * 100);
+        int rand = Mathf.RoundToInt(Mathf.Clamp(Random.value, 0.01f, 0.99f) * 100);
 
         int a = rand;
         int b = 100;
@@ -173,7 +173,7 @@ public class Question
         pembilang /= gcd;
         penyebut /= gcd;
 
-        question = "Berapakah pecahan paling sederhana dari bilangan berikut :\n" + a + "/" + b;
+        question = "Berapakah pecahan paling sederhana dari bilangan berikut :\n" + "0." + a;
         answer = (penyebut == 1 ? pembilang.ToString() : (pembilang + "/" + penyebut));
     }
 
