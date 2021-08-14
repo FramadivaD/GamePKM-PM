@@ -67,11 +67,11 @@ public class Enemy : MonoBehaviour
 
                 rb.MovePosition(Vector2.MoveTowards(transform.position, playerTarget.transform.position, Time.deltaTime * enemySpeed));
 
-                if (transform.position.x < playerTarget.transform.position.x && transform.rotation.y == 0)
+                if (transform.position.x < playerTarget.transform.position.x)
                 {
                     transform.eulerAngles = Vector3.down * 180f;
                 }
-                else if (transform.position.x > playerTarget.transform.position.x && transform.rotation.y != 0)
+                else
                 {
                     transform.eulerAngles = Vector3.zero;
                 }
@@ -95,6 +95,14 @@ public class Enemy : MonoBehaviour
                 {
                     startTimeIdle -= Time.deltaTime;
                 }
+            }
+        } else
+        {
+            if (startTimeIdle <= 0 && isAttack)
+            {
+                enemyAnim.SetTrigger("StopAttack");
+                isAttack = false;
+                startTimeIdle = timeIdle;
             }
         }
     }

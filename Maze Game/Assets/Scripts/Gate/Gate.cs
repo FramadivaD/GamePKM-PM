@@ -165,6 +165,7 @@ public class Gate : MonoBehaviour
             if (player)
             {
                 player.playerCompass.FindMainGate();
+                player.playerCompass.FindEnemyBoss();
             }
         }
 

@@ -13,11 +13,16 @@ public class PlayerCompass : MonoBehaviour
     private GameObject mainGateCompassUI;
     private Gate mainGate;
 
+    private GameObject enemyBossCompassUI;
+    private EnemyBoss enemyBoss;
+
     [SerializeField] private GameObject compassPrefab;
     [SerializeField] private GameObject mainGateCompassPrefab;
+    [SerializeField] private GameObject enemyBossCompassPrefab;
 
     [SerializeField] private Transform compassParent;
     [SerializeField] private Transform mainGateCompassParent;
+    [SerializeField] private Transform enemyBossCompassParent;
 
     private bool initialized = false;
 
@@ -33,6 +38,7 @@ public class PlayerCompass : MonoBehaviour
         if (initialized) {
             ControlCompassUI();
             ControlMainGateCompassUI();
+            ControlEnemyBossCompassUI();
         }
     }
 
@@ -54,6 +60,28 @@ public class PlayerCompass : MonoBehaviour
             {
                 mainGateCompassUI = Instantiate(mainGateCompassPrefab, compassParent.transform.position, Quaternion.identity, mainGateCompassParent);
                 mainGate = gate;
+            }
+        }
+    }
+
+    public void FindEnemyBoss()
+    {
+        foreach (Transform t in enemyBossCompassParent)
+        {
+            Destroy(t.gameObject);
+        }
+
+        if (enemyBossCompassUI)
+        {
+            Destroy(enemyBossCompassUI.gameObject);
+        }
+
+        foreach (EnemyBoss boss in FindObjectsOfType<EnemyBoss>())
+        {
+            if (boss.TeamType == player.teamType)
+            {
+                enemyBossCompassUI = Instantiate(enemyBossCompassPrefab, compassParent.transform.position, Quaternion.identity, enemyBossCompassParent);
+                enemyBoss = boss;
             }
         }
     }
@@ -107,6 +135,18 @@ public class PlayerCompass : MonoBehaviour
             Vector3 clamped = Vector3.ClampMagnitude(direction, clampCompassMagnitude);
 
             mainGateCompassUI.transform.position = player.transform.position + clamped;
+        }
+    }
+
+    private void ControlEnemyBossCompassUI()
+    {
+        if (enemyBossCompassUI != null && enemyBoss != null)
+        {
+            Vector3 direction = (enemyBoss.transform.position - player.transform.position);
+
+            Vector3 clamped = Vector3.ClampMagnitude(direction, clampCompassMagnitude);
+
+            enemyBossCompassUI.transform.position = player.transform.position + clamped;
         }
     }
 }

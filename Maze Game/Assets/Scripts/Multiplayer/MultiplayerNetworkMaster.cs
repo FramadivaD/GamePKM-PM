@@ -248,9 +248,20 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     {
         yield return new WaitForSecondsRealtime(time);
 
-        Debug.Log("Player Ready Wait Timeout, Skip to Prepare Game as Master.");
+        if (PhotonNetwork.connected)
+        {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                Debug.Log("Player Ready Wait Timeout, Skip to Prepare Game as Master.");
 
-        PrepareGameAsMaster();
+                PrepareGameAsMaster();
+            }
+        } else
+        {
+            Debug.Log("Player Ready Wait Timeout, Skip to Prepare Game as Master.");
+
+            PrepareGameAsMaster();
+        }
     }
 
     [PunRPC]
@@ -290,15 +301,22 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
         }
     }
 
+    bool isLevelGenerated = false;
+
     private void PrepareGameAsMasterExecute()
     {
-        networkUIManager.MasterShowStartGameButton();
-        networkUIManager.MasterWaitToStartTheGame();
+        if (!isLevelGenerated)
+        {
+            isLevelGenerated = true;
 
-        Debug.Log("Kalau player udah siap semua maka lanjut generate level dan main sebagai spectator");
+            networkUIManager.MasterShowStartGameButton();
+            networkUIManager.MasterWaitToStartTheGame();
 
-        Debug.Log("Karena master maka dia yang generate level, biar client bisa menyesuaikan.");
-        GameManager.Instance.GenerateLevel();
+            Debug.Log("Kalau player udah siap semua maka lanjut generate level dan main sebagai spectator");
+
+            Debug.Log("Karena master maka dia yang generate level, biar client bisa menyesuaikan.");
+            GameManager.Instance.GenerateLevel();
+        }
     }
 
     public void StartGameAsMaster()
@@ -338,6 +356,7 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
         if (GameManager.Instance && GameManager.Instance.player) {
             GameManager.Instance.player.playerCompass.FindAllChest();
             GameManager.Instance.player.playerCompass.FindMainGate();
+            GameManager.Instance.player.playerCompass.FindEnemyBoss();
         }
     }
 
