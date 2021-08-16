@@ -40,16 +40,16 @@ public class NetworkUIManager : MonoBehaviour
         {
             if (PhotonNetwork.player.IsMasterClient)
             {
-                masterNotifText.text = $"Menunggu player.. ({count}/{max})";
+                masterNotifText.text = $"Waiting player.. ({count}/{max})";
             }
             else
             {
-                clientsNotifText.text = $"Menunggu player.. ({count}/{max})";
+                clientsNotifText.text = $"Waiting player.. ({count}/{max})";
             }
         }
         else
         {
-            masterNotifText.text = $"Menunggu player.. ({count}/{max})";
+            masterNotifText.text = $"Waiting player.. ({count}/{max})";
         }
     }
 
@@ -59,30 +59,30 @@ public class NetworkUIManager : MonoBehaviour
         {
             if (PhotonNetwork.player.IsMasterClient)
             {
-                masterNotifText.text = "Mengirim data soal..";
+                masterNotifText.text = "Sending question data..";
             }
         } else
         {
-            masterNotifText.text = "Mengirim data soal..";
+            masterNotifText.text = "Sending question data..";
         }
     }
 
     public void DownloadMainGateData()
     {
-        masterNotifText.text = "Mengunduh data soal..";
-        clientsNotifText.text = "Mengunduh data soal..";
+        masterNotifText.text = "Retrieving question data..";
+        clientsNotifText.text = "Retrieving question data..";
     }
 
     public void DownloadMainGateDataSuccess()
     {
-        masterNotifText.text = "Data soal berhasil diunduh!";
-        clientsNotifText.text = "Data soal berhasil diunduh!";
+        masterNotifText.text = "Question data retrieved successfully!";
+        clientsNotifText.text = "Question data retrieved successfully!";
     }
 
     public void DownloadMainGateDataFailed()
     {
-        masterNotifText.text = "Data soal gagal diunduh!\nKembali ke main menu.";
-        clientsNotifText.text = "Data soal gagal diunduh!\nKembali ke main menu.";
+        masterNotifText.text = "Retrieve question data failed!\nReturn to Lobby Menu.";
+        clientsNotifText.text = "Retrieve question data failed!\nReturn to Lobby Menu";
     }
 
     public void MasterWaitToStartTheGame()
@@ -91,13 +91,13 @@ public class NetworkUIManager : MonoBehaviour
         {
             if (PhotonNetwork.player.IsMasterClient)
             {
-                masterNotifText.text = "Siap untuk memulai game!";
+                masterNotifText.text = "Ready to start the game!";
 
                 networkMaster.pv.RPC("ClientWaitMaster", PhotonTargets.OthersBuffered);
             }
         } else
         {
-            masterNotifText.text = "Siap untuk memulai game!";
+            masterNotifText.text = "Ready to start the game!";
         }
     }
 
@@ -120,11 +120,11 @@ public class NetworkUIManager : MonoBehaviour
     {
         if (PhotonNetwork.connected) {
             if (!PhotonNetwork.player.IsMasterClient) {
-                clientsNotifText.text = "Menunggu guru untuk memulai game..";
+                clientsNotifText.text = "Waiting teacher to start the game..";
             }
         } else
         {
-            clientsNotifText.text = "Menunggu guru untuk memulai game..";
+            clientsNotifText.text = "Waiting teacher to start the game..";
         }
     }
 

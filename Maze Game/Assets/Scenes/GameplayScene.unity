@@ -846,7 +846,7 @@ MonoBehaviour:
     GateName: 
     Fragments: []
   firebaseManager: {fileID: 222803896}
-  testClientSingle: 1
+  testClientSingle: 0
   masterStopGameButton: {fileID: 1326562268}
   masterExitGameButton: {fileID: 1453109493}
 --- !u!4 &222803895
@@ -3279,12 +3279,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
-    m_FontSize: 42
+    m_Font: {fileID: 12800000, guid: 7ef995abb4b0f704f915efc7ef80bfa0, type: 3}
+    m_FontSize: 54
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
-    m_MaxSize: 42
+    m_MinSize: 0
+    m_MaxSize: 160
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -4493,12 +4493,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
-    m_FontSize: 42
+    m_Font: {fileID: 12800000, guid: 7ef995abb4b0f704f915efc7ef80bfa0, type: 3}
+    m_FontSize: 54
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
-    m_MaxSize: 42
+    m_MinSize: 0
+    m_MaxSize: 160
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1

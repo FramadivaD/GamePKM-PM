@@ -957,22 +957,18 @@ MonoBehaviour:
   m_Text: 'You and your friends is looking for The Legendary Underground Treasure,
     but you were trapped in The Maze that has Mathematics Aura!
 
-    
 
-    The
-    Large Terrifiying Octopus Monster is guarding The Legendary Treasure and the
-    Golds.
+    The Large Terrifiying
+    Octopus Monster is guarding The Legendary Treasure and the Golds.
 
-    
 
-    Collect The Answer Fragment inside the Chest Treasures throughout
-    The Maze by solving the Mathematics Question.
+    Collect
+    The Answer Fragment inside the Chest Treasures throughout The Maze by solving
+    the Mathematics Question.
 
-    
 
-    Find the Main Gate
-    of The Octopus Chamber then Combine, Sort and Solve the Answer Fragments to Defeat
-    It!'
+    Find the Main Gate of The Octopus Chamber then
+    Combine, Sort and Solve the Answer Fragments to Defeat It!'
 --- !u!222 &148188963
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4863,7 +4859,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1453066653
 RectTransform:
   m_ObjectHideFlags: 0
