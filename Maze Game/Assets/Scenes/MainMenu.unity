@@ -299,7 +299,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 903713748}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -954,21 +954,25 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Kamu dan teman - teman sedang mencari harta karun, tetapi malah terjebak
-    dalam suatu Labirin yang mempunyai Aura Matematika!
+  m_Text: 'You and your friends is looking for The Legendary Underground Treasure,
+    but you were trapped in The Maze that has Mathematics Aura!
 
+    
 
-    Suatu Monster Gurita
-    mengerikan menjaga harta dan emas yang dimilikinya.
+    The
+    Large Terrifiying Octopus Monster is guarding The Legendary Treasure and the
+    Golds.
 
+    
 
-    Kumpulkan potongan
-    jawaban yang ada pada Chest Treasure di Labirin untuk mendapatkan potongan jawaban.
+    Collect The Answer Fragment inside the Chest Treasures throughout
+    The Maze by solving the Mathematics Question.
 
+    
 
-    Cari
-    gerbang menuju Monster Gurita dan satukan potongan jawaban yang telah didapat
-    untuk mengalahkannya!'
+    Find the Main Gate
+    of The Octopus Chamber then Combine, Sort and Solve the Answer Fragments to Defeat
+    It!'
 --- !u!222 &148188963
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2357,7 +2361,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 903713748}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3307,6 +3311,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 148188961}
+  - {fileID: 2129774124}
   - {fileID: 683218981}
   - {fileID: 2107077968}
   - {fileID: 1257787666}
@@ -3521,12 +3526,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
-    m_FontSize: 42
+    m_Font: {fileID: 12800000, guid: 7ef995abb4b0f704f915efc7ef80bfa0, type: 3}
+    m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
-    m_MaxSize: 64
+    m_MinSize: 0
+    m_MaxSize: 160
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -4281,7 +4286,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 903713748}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4858,7 +4863,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1453066653
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7022,7 +7027,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 903713748}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7273,6 +7278,99 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113067550}
+  m_CullTransparentMesh: 1
+--- !u!1 &2129774123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2129774124}
+  - component: {fileID: 2129774126}
+  - component: {fileID: 2129774125}
+  m_Layer: 5
+  m_Name: Text-ID
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2129774124
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129774123}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 903713748}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -169.51007, y: -42.288}
+  m_SizeDelta: {x: 799.9, y: 532.797}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2129774125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129774123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: e72a3076a88a52f4da79a5052e3e601e, type: 3}
+    m_FontSize: 37
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Kamu dan teman - teman sedang mencari harta karun, tetapi malah terjebak
+    dalam suatu Labirin yang mempunyai Aura Matematika!
+
+
+    Suatu Monster Gurita
+    mengerikan menjaga harta dan emas yang dimilikinya.
+
+
+    Kumpulkan potongan
+    jawaban yang ada pada Chest Treasure di Labirin untuk mendapatkan potongan jawaban.
+
+
+    Cari
+    gerbang menuju Monster Gurita dan satukan potongan jawaban yang telah didapat
+    untuk mengalahkannya!'
+--- !u!222 &2129774126
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129774123}
   m_CullTransparentMesh: 1
 --- !u!1 &2144788492
 GameObject:

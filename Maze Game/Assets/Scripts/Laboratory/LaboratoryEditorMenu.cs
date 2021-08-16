@@ -136,12 +136,12 @@ public class LaboratoryEditorMenu : MonoBehaviour
 
             Debug.Log("Save Main Gate Key");
 
-            WindowMaster.Instance.Show("Gate Key Berhasil disimpan!");
+            WindowMaster.Instance.Show("Gate Key Saved Successfully!");
         } else
         {
             Debug.Log("Please insert file name");
 
-            WindowMaster.Instance.Show("Mohon masukkan nama file!");
+            WindowMaster.Instance.Show("Please insert the file name!");
         }
     }
 
@@ -183,13 +183,13 @@ public class LaboratoryEditorMenu : MonoBehaviour
             SaveMainGateKey();
             BackToSelectMenu();
 
-            WindowMaster.Instance.Show("Gate Key Berhasil disimpan!");
+            WindowMaster.Instance.Show("Gate Key Saved Successfully!");
         }
         else
         {
             Debug.Log("Please insert file name");
 
-            WindowMaster.Instance.Show("Mohon masukkan nama file!");
+            WindowMaster.Instance.Show("Please insert the file name!");
         }
     }
 
@@ -417,7 +417,7 @@ public class LaboratoryEditorMenu : MonoBehaviour
     {
         if (fragmentKeyName.text.Length <= 0)
         {
-            WindowMaster.Instance.Show("Nama Fragment harus diisi!");
+            WindowMaster.Instance.Show("Please insert the Fragment name!");
             return;
         }
 
@@ -426,7 +426,7 @@ public class LaboratoryEditorMenu : MonoBehaviour
         {
             if (currentGateKey.Fragments[i].Key == fragmentKeyName.text && currentGateKey.Fragments[i] != currentGateFragment)
             {
-                WindowMaster.Instance.Show("Nama Fragment harus berbeda dengan Fragment yang lain!");
+                WindowMaster.Instance.Show("Fragment Name must unique from others!");
                 return;
             }
         }

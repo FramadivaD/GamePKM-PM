@@ -76,7 +76,7 @@ public class LobbyNetwork : Photon.PunBehaviour
             {
                 Debug.Log("RoomID must have a character.");
 
-                WindowMaster.Instance.Show("RoomID harus terdapat setidaknya 1 karakter!");
+                WindowMaster.Instance.Show("RoomID must have at least 1 character!");
             }
         }
     }
@@ -95,7 +95,7 @@ public class LobbyNetwork : Photon.PunBehaviour
             {
                 Debug.Log("RoomID must have a character.");
 
-                WindowMaster.Instance.Show("RoomID harus terdapat setidaknya 1 karakter!");
+                WindowMaster.Instance.Show("RoomID must have at least 1 character!");
             }
         }
     }
@@ -142,7 +142,7 @@ public class LobbyNetwork : Photon.PunBehaviour
     {
         if (!PhotonNetwork.player.IsMasterClient)
         {
-            WindowMaster.Instance.Show("Master keluar dari room. Game dibatalkan.");
+            WindowMaster.Instance.Show("Master leave the room. Game Aborted.");
         }
 
         PhotonNetwork.LeaveRoom();
@@ -198,7 +198,7 @@ public class LobbyNetwork : Photon.PunBehaviour
 
         Debug.Log("Room might full or ingame progress");
 
-        WindowMaster.Instance.Show("Join Room Gagal!\nRoom telah penuh atau sedang dimulai!");
+        WindowMaster.Instance.Show("Join Room Failed!\nThe Room is full or in progress!");
 
         exitGameButton.interactable = true;
     }
@@ -209,7 +209,7 @@ public class LobbyNetwork : Photon.PunBehaviour
 
         Debug.Log("Room might exists or ingame progress");
 
-        WindowMaster.Instance.Show("Create Room Gagal!\nRoom telah ada, silahkan join!");
+        WindowMaster.Instance.Show("Create Room Failed!\nRoom exist, please join the room!");
 
         exitGameButton.interactable = true;
     }

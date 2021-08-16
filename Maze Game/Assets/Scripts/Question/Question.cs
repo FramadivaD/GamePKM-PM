@@ -52,7 +52,7 @@ public class Question
         int b = Random.Range(1, 10);
         int val = a * b;
 
-        question = "Berapa hasil dari perhitungan berikut ini :\n" + val + " / " + a + " = ?";
+        question = "Write the result of this equation :\n" + val + " / " + a + " = ?";
         answer = b.ToString();
     }
 
@@ -62,7 +62,7 @@ public class Question
         int b = Random.Range(1, 10);
         int val = a * b;
 
-        question = "Berapa hasil dari perhitungan berikut ini :\n" + a + " x " + b + " = ?";
+        question = "Write the result of this equation :\n" + a + " x " + b + " = ?";
         answer = val.ToString();
     }
 
@@ -72,7 +72,7 @@ public class Question
         int b = Random.Range(1, 10);
         int val = a + b;
 
-        question = "Berapa hasil dari perhitungan berikut ini :\n" + a + " + " + b + " = ?";
+        question = "Write the result of this equation :\n" + a + " + " + b + " = ?";
         answer = val.ToString();
     }
 
@@ -82,7 +82,7 @@ public class Question
         int b = Random.Range(1, 10);
         int val = a - b;
 
-        question = "Berapa hasil dari perhitungan berikut ini :\n" + a + " - " + b + " = ?";
+        question = "Write the result of this equation :\n" + a + " - " + b + " = ?";
         answer = val.ToString();
     }
 
@@ -102,7 +102,7 @@ public class Question
         pembilang /= gcd;
         penyebut /= gcd;
 
-        question = "Berapa hasil dari perhitungan berikut ini :\n" + a + "/" + a_ + " " + "+" + " " + b + "/" + b_ + " = ??";
+        question = "Write the result of this equation :\n" + a + "/" + a_ + " " + "+" + " " + b + "/" + b_ + " = ??";
         answer = (penyebut == 1 ? pembilang.ToString() : (pembilang + "/" + penyebut));
     }
 
@@ -116,7 +116,7 @@ public class Question
         // ax + b = c
         int c = a * x + b;
 
-        question = "Berapakah nilai x dari persamaan berikut :\n" + a + "x" + " + " + b + " = " + c;
+        question = "Write the value of x from this equation :\n" + a + "x" + " + " + b + " = " + c;
         answer = x.ToString();
     }
 
@@ -125,7 +125,7 @@ public class Question
         int a = Random.Range(1, 20);
         int b = Random.Range(1, 5);
 
-        question = "Berapakah lanjutan dari barisan aritmatika berikut :\n";
+        question = "Write the next value of this arithmetic sequence :\n";
 
         int proc = a;
 
@@ -144,7 +144,7 @@ public class Question
         int a = Random.Range(1, 10);
         int b = Random.Range(1, 5);
 
-        question = "Berapakah lanjutan dari barisan geometri berikut :\n";
+        question = "Write the next value of this geometry sequence :\n";
 
         int proc = a;
 
@@ -173,7 +173,7 @@ public class Question
         pembilang /= gcd;
         penyebut /= gcd;
 
-        question = "Berapakah pecahan paling sederhana dari bilangan berikut :\n" + "0." + a;
+        question = "Write the fraction simplicity of this decimal :\n" + "0." + a;
         answer = (penyebut == 1 ? pembilang.ToString() : (pembilang + "/" + penyebut));
     }
 

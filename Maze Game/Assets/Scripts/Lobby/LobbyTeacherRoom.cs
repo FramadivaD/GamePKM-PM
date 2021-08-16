@@ -45,7 +45,7 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
                     {
                         Debug.Log("Each team must have at least 1 player.");
 
-                        WindowMaster.Instance.Show("Setidaknya harus terdapat 1 pemain di masing - masing team.");
+                        WindowMaster.Instance.Show("The game must have at least 1 player!");
                     }
                     else
                     {
@@ -55,20 +55,20 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
                 {
                     Debug.Log("At least must has 1 difficulty.");
 
-                    WindowMaster.Instance.Show("Setidaknya harus terdapat 1 jenis soal!");
+                    WindowMaster.Instance.Show("The game must have at least 1 difficulty type!");
                 }
             } else
             {
-                Debug.Log("Teacher Must select 1 Question for Main Gate");
+                Debug.Log("Teacher Must select a Question for Main Gate");
 
-                WindowMaster.Instance.Show("Harus memilih Soal untuk Main Gate!");
+                WindowMaster.Instance.Show("Teacher must select 1 Question for the Main Gate!");
             }
         }
     }
 
     private void UploadMainGateKeyFile()
     {
-        WindowMaster.Instance.Show("Uploading Soal..");
+        WindowMaster.Instance.Show("Uploading Question..");
 
         SendUploadMessageToClient();
 
@@ -78,7 +78,7 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
             () => {
                 Debug.Log("Upload Success. So the Game will starting.");
 
-                WindowMaster.Instance.Show("Upload Soal berhasil.\nMemulai Game!");
+                WindowMaster.Instance.Show("Upload Question success.\nStarting the Game..");
 
                 MainGateDownloadURL = filename;
                 MasterStartGame();
@@ -86,7 +86,7 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
             () => {
                 Debug.Log("Upload failed. So the Game not starting.");
 
-                WindowMaster.Instance.Show("Upload Soal gagal. Coba mulai kembali.");
+                WindowMaster.Instance.Show("Upload Question failed. Please try again.");
                 MasterAbortGame();
             }
             );
@@ -111,7 +111,7 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
     [PunRPC]
     private void SendUploadMessageToClientRPC()
     {
-        WindowMaster.Instance.Show("Memulai Game..");
+        WindowMaster.Instance.Show("Starting Game..");
 
         LockAllButtons();
     }
@@ -132,7 +132,7 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
         {
             pv.RPC("ClientAbortGame", PhotonTargets.Others);
 
-            WindowMaster.Instance.Show("Upload soal gagal. Game dibatalkan.");
+            WindowMaster.Instance.Show("Upload Question failed. Game aborted.");
 
             UnlockAllButtons();
         }
@@ -141,7 +141,7 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
     [PunRPC]
     private void ClientAbortGame()
     {
-        WindowMaster.Instance.Show("Master gagal memulai Game.");
+        WindowMaster.Instance.Show("Master failed to Start the Game.");
 
         UnlockAllButtons();
     }
@@ -169,7 +169,7 @@ public class LobbyTeacherRoom : Photon.PunBehaviour
     [PunRPC]
     private void ClientJoinGame()
     {
-        WindowMaster.Instance.Show("Memulai Game..");
+        WindowMaster.Instance.Show("Starting Game..");
 
         if (!PhotonNetwork.player.IsMasterClient)
         {

@@ -37,7 +37,7 @@ public class LobbyMenu : MonoBehaviour
         {
             Debug.Log("Invalid ID. Must have a character.");
 
-            WindowMaster.Instance.Show("RoomID harus terdapat setidaknya 1 karakter!");
+            WindowMaster.Instance.Show("RoomID must have at least 1 character!");
         }
     }
 
@@ -55,7 +55,7 @@ public class LobbyMenu : MonoBehaviour
         {
             Debug.Log("Invalid ID. Must have a character.");
 
-            WindowMaster.Instance.Show("RoomID harus terdapat setidaknya 1 karakter!");
+            WindowMaster.Instance.Show("RoomID must have at least 1 character!");
         }
     }
 
@@ -72,7 +72,7 @@ public class LobbyMenu : MonoBehaviour
         {
             Debug.Log("Invalid Username. Must at least 3 characters.");
 
-            WindowMaster.Instance.Show("Username setidaknya terdiri atas 3 karakter!");
+            WindowMaster.Instance.Show("Username must have at least 3 character!");
         }
     }
 }

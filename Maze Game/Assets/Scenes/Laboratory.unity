@@ -339,7 +339,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Contoh : Menyederhanakan Pecahan'
+  m_Text: 'Eg : Fraction Simplicity'
 --- !u!222 &60754877
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -399,7 +399,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Contoh : Pythagoras 2'
+  m_Text: 'Eg : Pythagoras 2'
 --- !u!222 &86606368
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4326,7 +4326,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Contoh : Pertanyaan / Langkah 1'
+  m_Text: 'Eg : Question / Answer Step'
 --- !u!222 &1440359091
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4736,12 +4736,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
-    m_FontSize: 42
+    m_Font: {fileID: 12800000, guid: 7ef995abb4b0f704f915efc7ef80bfa0, type: 3}
+    m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
-    m_MaxSize: 64
+    m_MaxSize: 160
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
