@@ -23,9 +23,12 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
 
     private int playerSceneCount = 0;
     private int playerReadyCount = 0;
-    private bool masterClientInitialized = false;
 
     public bool testClientSingle;
+
+    bool masterClientInitialized = false;
+    bool allClientsDownloadDataSuccess = false;
+    bool isLevelGenerated = false;
 
     [SerializeField] private GameObject masterStopGameButton;
     [SerializeField] private GameObject masterExitGameButton;
@@ -115,38 +118,48 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     {
         yield return new WaitForSecondsRealtime(time);
 
-        Debug.Log("Player Count Wait Timeout, Skip to Initialize Master Client.");
+        if (!masterClientInitialized)
+        {
+            Debug.Log("Player Count Wait Timeout, Skip to Initialize Master Client.");
 
-        InitializeMasterClient();
+            InitializeMasterClient();
+        }
     }
 
     [PunRPC]
     private void AddClientPlayer()
     {
-        if (PhotonNetwork.player.IsMasterClient)
+        if (!masterClientInitialized)
         {
-            playerSceneCount++;
-
-            Debug.Log("A Player Joined Scene.");
-            Debug.Log("Waiting Player Count : " + playerSceneCount + "/" + PhotonNetwork.playerList.Length);
-
-            networkUIManager.MasterCountPlayer(playerSceneCount, PhotonNetwork.playerList.Length);
-
-            if (playerSceneCount >= PhotonNetwork.playerList.Length)
+            if (PhotonNetwork.player.IsMasterClient)
             {
-                StopAllCoroutines();
+                playerSceneCount++;
 
-                Debug.Log("Player Count Satisfied, Initialize Master Client.");
+                Debug.Log("A Player Joined Scene.");
+                Debug.Log("Waiting Player Count : " + playerSceneCount + "/" + PhotonNetwork.playerList.Length);
 
-                InitializeMasterClient();
+                networkUIManager.MasterCountPlayer(playerSceneCount, PhotonNetwork.playerList.Length);
+
+                if (playerSceneCount >= PhotonNetwork.playerList.Length)
+                {
+                    StopAllCoroutines();
+
+                    Debug.Log("Player Count Satisfied, Initialize Master Client.");
+
+                    InitializeMasterClient();
+                }
             }
         }
     }
 
     private void InitializeMasterClient()
     {
-        InitializeMasterClientTeam();
-        InitializeMasterClientData();
+        if (!masterClientInitialized)
+        {
+            masterClientInitialized = true;
+            InitializeMasterClientTeam();
+            InitializeMasterClientData();
+        }
     }
 
     private void InitializeMasterClientTeam()
@@ -248,60 +261,70 @@ public class MultiplayerNetworkMaster : Photon.PunBehaviour
     {
         yield return new WaitForSecondsRealtime(time);
 
-        if (PhotonNetwork.connected)
+        if (!allClientsDownloadDataSuccess)
         {
-            if (PhotonNetwork.player.IsMasterClient)
+            if (PhotonNetwork.connected)
+            {
+                if (PhotonNetwork.player.IsMasterClient)
+                {
+                    Debug.Log("Player Ready Wait Timeout, Skip to Prepare Game as Master.");
+
+                    PrepareGameAsMaster();
+                }
+            }
+            else
             {
                 Debug.Log("Player Ready Wait Timeout, Skip to Prepare Game as Master.");
 
                 PrepareGameAsMaster();
             }
-        } else
-        {
-            Debug.Log("Player Ready Wait Timeout, Skip to Prepare Game as Master.");
-
-            PrepareGameAsMaster();
         }
     }
 
     [PunRPC]
     private void TellMasterThatClientReadyToPlay()
     {
-
-        if (PhotonNetwork.player.IsMasterClient)
+        if (!allClientsDownloadDataSuccess)
         {
-            Debug.Log("Cuman berjalan di Master, bakal nunggu sampai semua client siap generate level");
-
-            Debug.Log("Waiting Player Count : " + playerReadyCount + "/" + PhotonNetwork.playerList.Length);
-
-            networkUIManager.MasterCountPlayer(playerReadyCount, PhotonNetwork.playerList.Length);
-
-            playerReadyCount++;
-
-            if (playerReadyCount >= PhotonNetwork.playerList.Length)
+            if (PhotonNetwork.player.IsMasterClient)
             {
-                StopAllCoroutines();
+                Debug.Log("Cuman berjalan di Master, bakal nunggu sampai semua client siap generate level");
 
-                PrepareGameAsMaster();
+                Debug.Log("Waiting Player Count : " + playerReadyCount + "/" + PhotonNetwork.playerList.Length);
+
+                networkUIManager.MasterCountPlayer(playerReadyCount, PhotonNetwork.playerList.Length);
+
+                playerReadyCount++;
+
+                if (playerReadyCount >= PhotonNetwork.playerList.Length)
+                {
+                    StopAllCoroutines();
+
+                    PrepareGameAsMaster();
+                }
             }
         }
     }
 
     private void PrepareGameAsMaster()
     {
-        if (PhotonNetwork.connected)
+        if (!allClientsDownloadDataSuccess)
         {
-            if (PhotonNetwork.player.IsMasterClient)
+            allClientsDownloadDataSuccess = true;
+
+            if (PhotonNetwork.connected)
+            {
+                if (PhotonNetwork.player.IsMasterClient)
+                {
+                    PrepareGameAsMasterExecute();
+                }
+            }
+            else
             {
                 PrepareGameAsMasterExecute();
             }
-        } else
-        {
-            PrepareGameAsMasterExecute();
         }
     }
-
-    bool isLevelGenerated = false;
 
     private void PrepareGameAsMasterExecute()
     {
