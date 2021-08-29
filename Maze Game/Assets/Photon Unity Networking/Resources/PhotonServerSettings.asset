@@ -102,4 +102,6 @@ MonoBehaviour:
   - ClientAbortGame
   - LeaveLobbyGameRPC
   - LeaveLobbyGameForcedRPC
+  - SaveFragmentOrbMaster
+  - SaveWeaponOrbMaster
   DisableAutoOpenWizard: 1

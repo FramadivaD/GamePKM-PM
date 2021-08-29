@@ -327,7 +327,38 @@ public class GameManager : MonoBehaviour
             if (PhotonNetwork.player.IsMasterClient)
             {
                 WindowMaster.Instance.Show(otherPlayer.NickName + " Leave the Game");
+
+                DropDisconnectedPlayer(otherPlayer.NickName);
             }
+        }
+    }
+
+    private void DropDisconnectedPlayer(string nickname)
+    {
+        if (PhotonNetwork.connected)
+        {
+            if (PhotonNetwork.player.IsMasterClient)
+            {
+                Player[] players = GameObject.FindObjectsOfType<Player>();
+                for (int i = 0; i < players.Length; i++)
+                {
+                    if (players[i].PlayerName == nickname)
+                    {
+                        players[i].DropAllItems();
+                        break;
+                    }
+                }
+
+                Debug.Log("Drop ALL GAME MANAGER");
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            DropDisconnectedPlayer(PhotonNetwork.player.NickName);
         }
     }
 }

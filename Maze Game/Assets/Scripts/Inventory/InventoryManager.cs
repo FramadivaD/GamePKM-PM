@@ -91,6 +91,17 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 
+    public void DropAllItems()
+    {
+        for (int i = 0; i < inventory.Length; i++)
+        {
+            if (inventory[i] != null)
+            {
+                DropItem(inventory[i]);
+            }
+        }
+    }
+
     public bool AddItem(IInventoryAble item)
     {
         for (int i = 0; i < inventory.Length; i++)
@@ -98,6 +109,8 @@ public class InventoryManager : MonoBehaviour
             if (inventory[i] == null)
             {
                 inventory[i] = item;
+
+                SaveAddedItem(i, item);
 
                 RefreshImageUI();
 
@@ -214,6 +227,40 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    private void SaveAddedItem(int index, IInventoryAble item)
+    {
+        if (item != null)
+        {
+            if (item is MainGateFragment)
+            {
+                MainGateFragment fragment = item as MainGateFragment;
+
+                if (PhotonNetwork.connected)
+                {
+                    player.pv.RPC("SaveFragmentOrbMaster", PhotonTargets.MasterClient, index, (int)fragment.Team, fragment.FragmentIndex);
+                } else
+                {
+                    inventory[index] = item;
+                }
+            }
+            else if (item is WeaponInventory)
+            {
+                WeaponInventory weapon = item as WeaponInventory;
+                if (weapon.weaponType == WeaponType.Basoka)
+                {
+                    if (PhotonNetwork.connected)
+                    {
+                        player.pv.RPC("SaveWeaponOrbMaster", PhotonTargets.MasterClient, index, (int)weapon.weaponType);
+                    }
+                    else
+                    {
+                        inventory[index] = item;
+                    }
+                }
+            }
+        }
+    }
+
     [PunRPC]
     private void SpawnFragmentOrbMaster(Vector3 pos, int teamType, int fragmentIndex)
     {
@@ -229,5 +276,19 @@ public class InventoryManager : MonoBehaviour
 
         WeaponOrb orb = ne.GetComponent<WeaponOrb>();
         orb.Initialize(weaponType);
+    }
+
+    [PunRPC]
+    private void SaveFragmentOrbMaster(int index, int teamType, int fragmentIndex)
+    {
+        MainGateFragment fragment = GameManager.PlayersTeam[(TeamType)teamType].FragmentsKey.Fragments[fragmentIndex];
+        inventory[index] = fragment;
+    }
+
+    [PunRPC]
+    private void SaveWeaponOrbMaster(int index, int weaponType)
+    {
+        WeaponInventory weapon = new WeaponInventory() { weaponType = (WeaponType)weaponType };
+        inventory[index] = weapon;
     }
 }

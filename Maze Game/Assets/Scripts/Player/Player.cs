@@ -435,6 +435,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void DropAllItems()
+    {
+        inventoryManager.DropAllItems();
+        EquippedItem = null;
+    }
+
     public void ExecuteEquippedItem()
     {
         if (CheckAllowedMove()) {
