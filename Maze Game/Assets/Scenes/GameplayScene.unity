@@ -1258,7 +1258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28dfa139cbc24574aadcb2e67d501932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: e3d1ebb3c3b315843895691fc87bf46b, type: 3}
+  clip: {fileID: 8300000, guid: 791bb8aa7d1a2ad40a63fbbfa48fd85a, type: 3}
 --- !u!4 &662812983
 Transform:
   m_ObjectHideFlags: 0
@@ -4871,7 +4871,7 @@ PrefabInstance:
         type: 3}
       propertyPath: epicMusic
       value: 
-      objectReference: {fileID: 8300000, guid: a06ef3ecce7031347af872730fec606a, type: 3}
+      objectReference: {fileID: 8300000, guid: f8c16b0c222834648beb9ed9e896cb62, type: 3}
     - target: {fileID: 4115678027287425925, guid: eea3f130a4da6dd4ab31bb50f647b007,
         type: 3}
       propertyPath: chatRoomUI

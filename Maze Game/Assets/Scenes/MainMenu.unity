@@ -571,10 +571,15 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Music :
 
-    Andrey Sitkov & Q Up Arts
+    gamedevmarket.net
+
+    Esteban Mercado
+
+    omerakz
 
 
-    SFX :
+    SFX
+    :
 
     freesound.org'
 --- !u!222 &101423737
@@ -1269,7 +1274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &275159468
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1437,7 +1442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28dfa139cbc24574aadcb2e67d501932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: e3d1ebb3c3b315843895691fc87bf46b, type: 3}
+  clip: {fileID: 8300000, guid: 791bb8aa7d1a2ad40a63fbbfa48fd85a, type: 3}
 --- !u!4 &372408160
 Transform:
   m_ObjectHideFlags: 0
